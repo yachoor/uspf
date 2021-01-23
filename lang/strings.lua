@@ -281,6 +281,15 @@ local strings = {
 	USPF_QUEST_WS_2		= "The Vampire Scholar",
 	USPF_QUEST_WS_3		= "Daughter of the Wolf",
 	USPF_QUEST_GO		= "Bound in Blood",
+	USPF_QUEST_TR_1		= "The Despot of Markarth",
+	USPF_QUEST_TR_2		= "Blood of the Reach",
+	USPF_QUEST_TR_3		= "The Study of Souls",
+	USPF_QUEST_TR_4		= "The Awakening Darkness",
+	USPF_QUEST_TR_5		= "The Dark Heart",
+	USPF_QUEST_TR_6		= "A Feast of Souls",
+	USPF_QUEST_TR_7		= "The End of Eternity",
+	USPF_QUEST_TR_8		= "Kingdom of Ash",
+	USPF_QUEST_TR_9		= "Second Chances",
 }
 
 for stringId, stringValue in pairs(strings) do

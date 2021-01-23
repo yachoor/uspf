@@ -1,0 +1,9 @@
+<Bindings>
+	<Layer name="SI_KEYBINDINGS_LAYER_GENERAL">
+		<Category name="Urich's Skill Point Finder">
+			<Action name="USPF_TOGGLE">
+				<Up>USPF:ToggleWindow()</Up>
+			</Action>
+		</Category>
+	</Layer>
+</Bindings>

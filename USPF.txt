@@ -1,0 +1,23 @@
+## Title: Urich's Skill Point Finder
+## Author: Onigar,Originally Urich
+## Version: 5.4.0
+## AddOnVersion: 540
+## APIVersion: 100032
+## SavedVariables: USPF_Settings
+## DependsOn: LibAddonMenu-2.0 LibTableFunctions-1.0
+## 
+##
+## This Add-on is not created by, affiliated with or sponsored by ZeniMax Media
+## Inc. or its affiliates. The Elder Scrolls® and related logos are registered
+## trademarks or trademarks of ZeniMax Media Inc. in the United States and/or
+## other countries. All rights reserved
+##
+## You can read the full terms at https://account.elderscrollsonline.com/add-on-terms
+
+lang\strings.lua
+lang\$(language).lua
+
+USPF_Menu.lua
+USPF.xml
+USPF.lua
+bindings.xml

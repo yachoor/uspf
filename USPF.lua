@@ -102,9 +102,9 @@ USPF.ptsData = {
 	},
 }
 
-USPF.ptsTots = {	--Tot and GenTot are 470 and 129 because you can't do more than one DLC tutorial.
-	Tot	= 479, GenTot = 129, ZQTot	= 115, numSSTot	= 495, SSTot  = 165,
-	GDTot	=  44, PDTot  =  26, Level	=  64, MainQ	=  11, FolDis =   2,
+USPF.ptsTots = {	--Tot and GenTot are 481 and 129 because you can't do more than one DLC tutorial.
+	Tot	= 481, GenTot = 129, ZQTot	= 115, numSSTot	= 495, SSTot  = 165,
+	GDTot	=  44, PDTot  =  28, Level	=  64, MainQ	=  11, FolDis =   2,
 	MWChar	=   1, SUChar =   1, EWChar	=   1, GMChar	=   1,
 	PvPRank	=  50, MaelAr =   1,
 	ZQ = {

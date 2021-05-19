@@ -411,7 +411,7 @@ USPF.data = {
 		{6547, 2932, zf("<<t:1>>", GS(USPF_QUEST_TR_3)),	1},
 		{6548, 2933, zf("<<t:1>>", GS(USPF_QUEST_TR_4)),	1},
 		{6554, 2934, zf("<<t:1>>", GS(USPF_QUEST_TR_5)),	1},
-		{6566, 2934, zf("<<t:1>>", GS(USPF_QUEST_TR_6)),	1},
+		{6566, 2935, zf("<<t:1>>", GS(USPF_QUEST_TR_6)),	1},
 		{6552, 2937, zf("<<t:1>>", GS(USPF_QUEST_TR_7)),	1},
 		{6560, 2936, zf("<<t:1>>", GS(USPF_QUEST_TR_8)),	1},
 		{6570, 2939, zf("<<t:1>>", GS(USPF_QUEST_TR_9)),	1},

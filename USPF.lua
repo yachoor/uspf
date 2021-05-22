@@ -54,6 +54,7 @@ USPF.settings = {
 	SSC = false,
 	EWC = false,
 	GMC = false,
+	BWC = false,
 }
 
 USPF.defaults = {
@@ -68,7 +69,7 @@ USPF.defaults = {
 USPF.ptsData = {
 	Tot	= 0, GenTot	= 0, ZQTot	= 0, numSSTot	= 0, SSTot	= 0,
 	GDTot	= 0, PDTot	= 0, Level	= 0, MainQ	= 0, FolDis	= 0,
-	MWChar	= 0, SUChar	= 0, EWChar	= 0, GMChar	= 0,
+	MWChar	= 0, SUChar	= 0, EWChar	= 0, GMChar	= 0, BWChar = 0,
 	PvPRank	= 0, MaelAr	= 0,
 	ZQ = {
 		AD0 = 0, AD1 = 0, AD2 = 0, AD3 = 0, AD4 = 0, AD5  = 0, DC0a = 0, DC0b = 0,
@@ -105,7 +106,7 @@ USPF.ptsData = {
 USPF.ptsTots = {	--Tot and GenTot are 481 and 129 because you can't do more than one DLC tutorial.
 	Tot		= 481, GenTot = 129, ZQTot	= 115, numSSTot	= 495, SSTot  = 165,
 	GDTot	=  44, PDTot  =  28, Level	=  64, MainQ	=  11, FolDis =   2,
-	MWChar	=   1, SUChar =   1, EWChar	=   1, GMChar	=   1,
+	MWChar	=   1, SUChar =   1, EWChar	=   1, GMChar	=   1, BWChar =   1,
 	PvPRank	=  50, MaelAr =   1,
 	ZQ = {
 		AD0 = 0, AD1 = 3, AD2 =  3, AD3 = 3, AD4 = 3, AD5  = 3, DC0a = 0, DC0b = 0,
@@ -408,6 +409,9 @@ USPF.data = {
 	GO = {
 		{6455,    0, zf("<<t:1>>", GS(USPF_QUEST_GO)),		1},
 	},
+	BO = {
+		{6646,    0, zf("<<t:1>>", GS(USPF_QUEST_BO)),		1},
+	},
 	TR = {
 		{6550, 2930, zf("<<t:1>>", GS(USPF_QUEST_TR_1)),	1},
 		{6551, 2931, zf("<<t:1>>", GS(USPF_QUEST_TR_2)),	1},
@@ -623,21 +627,23 @@ local function USPF_UpdateGUITable()
 		SU	 = GetQuestTooltipText("SU"),
 		WS   = GetQuestTooltipText("WS"),
 		GO   = GetQuestTooltipText("GO"),
+		BO   = GetQuestTooltipText("BO"),
 		TR   = GetQuestTooltipText("TR"),
 		BW   = GetQuestTooltipText("BW"),
 	}
 	
 	USPF.GUI = {
 		GSP = {
-			{1, GS(USPF_GUI_CHAR_LEVEL),	USPF.ptsData.Level,		USPF.ptsTots.Level,		GS(USPF_QUEST_NA)},
-			{2, GS(USPF_GUI_MAIN_QUEST),	USPF.ptsData.MainQ,		USPF.ptsTots.MainQ,		questTooltips.MQ},
-			{3, GS(USPF_GUI_FOLIUM),		USPF.ptsData.FolDis,	USPF.ptsTots.FolDis,	GS(USPF_QUEST_NA)},
-			{4, GS(USPF_GUI_MW_CHAR),		USPF.ptsData.MWChar,	USPF.ptsTots.MWChar,	questTooltips.MO},
-			{5, GS(USPF_GUI_SU_CHAR),		USPF.ptsData.SUChar,	USPF.ptsTots.SUChar,	questTooltips.SO},
-			{6, GS(USPF_GUI_EW_CHAR),		USPF.ptsData.EWChar,	USPF.ptsTots.EWChar,	questTooltips.EO},
-			{7, GS(USPF_GUI_GM_CHAR),		USPF.ptsData.GMChar,	USPF.ptsTots.GMChar,	questTooltips.GO},
-			{8, GS(USPF_GUI_AVA_RANK),		USPF.ptsData.PvPRank,	USPF.ptsTots.PvPRank,	GS(USPF_QUEST_NA)},
-			{9, GS(USPF_GUI_MAEL_ARENA),	USPF.ptsData.MaelAr,	USPF.ptsTots.MaelAr,	GS(USPF_QUEST_NA)},
+			{ 1, GS(USPF_GUI_CHAR_LEVEL),	USPF.ptsData.Level,		USPF.ptsTots.Level,		GS(USPF_QUEST_NA)},
+			{ 2, GS(USPF_GUI_MAIN_QUEST),	USPF.ptsData.MainQ,		USPF.ptsTots.MainQ,		questTooltips.MQ},
+			{ 3, GS(USPF_GUI_FOLIUM),		USPF.ptsData.FolDis,	USPF.ptsTots.FolDis,	GS(USPF_QUEST_NA)},
+			{ 4, GS(USPF_GUI_MW_CHAR),		USPF.ptsData.MWChar,	USPF.ptsTots.MWChar,	questTooltips.MO},
+			{ 5, GS(USPF_GUI_SU_CHAR),		USPF.ptsData.SUChar,	USPF.ptsTots.SUChar,	questTooltips.SO},
+			{ 6, GS(USPF_GUI_EW_CHAR),		USPF.ptsData.EWChar,	USPF.ptsTots.EWChar,	questTooltips.EO},
+			{ 7, GS(USPF_GUI_GM_CHAR),		USPF.ptsData.GMChar,	USPF.ptsTots.GMChar,	questTooltips.GO},
+			{ 8, GS(USPF_GUI_BW_CHAR),		USPF.ptsData.BWChar,	USPF.ptsTots.BWChar,	questTooltips.BO},
+			{ 9, GS(USPF_GUI_AVA_RANK),		USPF.ptsData.PvPRank,	USPF.ptsTots.PvPRank,	GS(USPF_QUEST_NA)},
+			{10, GS(USPF_GUI_MAEL_ARENA),	USPF.ptsData.MaelAr,	USPF.ptsTots.MaelAr,	GS(USPF_QUEST_NA)},
 		},
 		GSP_T = strF("%s: %d/%d", GS(USPF_GUI_TOTAL), USPF.ptsData.GenTot, USPF.ptsTots.GenTot),
 		SQS = {
@@ -807,7 +813,10 @@ local function USPF_SetQuestPoints()
 	USPF.ptsData.EWChar = ((GCQI(USPF.data.EO[1][1]) ~= "" or USPF.settings.EWC) and USPF.data.EO[1][4] or 0)
   
   	--Greymoor Only Character Quest Skill Points
-	USPF.ptsData.GMChar = ((GCQI(USPF.data.GO[1][1]) ~= "" or USPF.settings.GWC) and USPF.data.GO[1][4] or 0)
+	USPF.ptsData.GMChar = ((GCQI(USPF.data.GO[1][1]) ~= "" or USPF.settings.GMC) and USPF.data.GO[1][4] or 0)
+
+  	--Blackwood Only Character Quest Skill Points
+	USPF.ptsData.BWChar = ((GCQI(USPF.data.BO[1][1]) ~= "" or USPF.settings.BWC) and USPF.data.BO[1][4] or 0)
 	
 	for k,_ in pairs(USPF.ptsData.ZQ) do
 		if(USPF.data[k] ~= nil) then
@@ -831,6 +840,7 @@ local function USPF_SetQuestPoints()
 		USPF.sVar.ptsData[selectedChar].SUChar = USPF.ptsData.SUChar
 		USPF.sVar.ptsData[selectedChar].EWChar = USPF.ptsData.EWChar
 		USPF.sVar.ptsData[selectedChar].GMChar = USPF.ptsData.GMChar		
+		USPF.sVar.ptsData[selectedChar].BWChar = USPF.ptsData.BWChar		
 
 		USPF.sVar.ptsData[selectedChar].ZQ = USPF_LTF:CopyTable(USPF.ptsData.ZQ)
 		USPF.sVar.ptsData[selectedChar].GD = USPF_LTF:CopyTable(USPF.ptsData.GD)
@@ -1007,9 +1017,10 @@ local function USPF_SetFoliumDiscognitumPoints()
 	else
 		local skillPoints = USPF_GetTotSkillPoints()
 		local skillPointsDiff =	USPF.ptsData.Level + USPF.ptsData.MainQ + USPF.ptsData.MWChar +
-								USPF.ptsData.SUChar + USPF.ptsData.EWChar + USPF.ptsData.PvPRank +
-								USPF.ptsData.MaelAr + USPF.ptsData.ZQTot + USPF.ptsData.SSTot +
-								USPF.ptsData.GDTot + USPF.ptsData.PDTot
+								USPF.ptsData.SUChar + USPF.ptsData.EWChar + USPF.ptsData.GMChar +
+								USPF.ptsData.BWChar + USPF.ptsData.PvPRank + USPF.ptsData.MaelAr +
+								USPF.ptsData.ZQTot + USPF.ptsData.SSTot + USPF.ptsData.GDTot +
+								USPF.ptsData.PDTot
 		USPF.ptsData.FolDis = (skillPoints == skillPointsDiff + 2 and 2 or 0)
 	end
 	
@@ -1039,7 +1050,8 @@ end
 
 local function USPF_SetGeneralPoints()
 	USPF.ptsData.GenTot =	USPF.ptsData.Level + USPF.ptsData.MainQ + USPF.ptsData.FolDis + USPF.ptsData.MWChar + 
-							USPF.ptsData.SUChar + USPF.ptsData.EWChar + USPF.ptsData.PvPRank + USPF.ptsData.MaelAr
+							USPF.ptsData.SUChar + USPF.ptsData.EWChar + USPF.ptsData.GMChar + USPF.ptsData.BWChar +
+							USPF.ptsData.PvPRank + USPF.ptsData.MaelAr
 	
 	--Update saved variables.
 	if(USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar])) then
@@ -1125,15 +1137,16 @@ local function USPF_LoadData(charId)
 	
 	USPF.GUI = {
 		GSP = {
-			{1, GS(USPF_GUI_CHAR_LEVEL),	GetSV(sVarPtsData.Level),	USPF.ptsTots.Level,		GS(USPF_QUEST_NA)},
-			{2, GS(USPF_GUI_MAIN_QUEST),	GetSV(sVarPtsData.MainQ),	USPF.ptsTots.MainQ,		questTooltips.MQ},
-			{3, GS(USPF_GUI_FOLIUM),		GetSV(sVarPtsData.FolDis),	USPF.ptsTots.FolDis,	GS(USPF_QUEST_NA)},
-			{4, GS(USPF_GUI_MW_CHAR),		GetSV(sVarPtsData.MWChar),	USPF.ptsTots.MWChar,	questTooltips.MO},
-			{5, GS(USPF_GUI_SU_CHAR),		GetSV(sVarPtsData.SUChar),	USPF.ptsTots.SUChar,	questTooltips.SO},
-			{6, GS(USPF_GUI_EW_CHAR),		GetSV(sVarPtsData.EWChar),	USPF.ptsTots.EWChar,	questTooltips.EO},
-			{7, GS(USPF_GUI_GM_CHAR),		GetSV(sVarPtsData.GMChar),	USPF.ptsTots.GMChar,	questTooltips.GO},
-			{8, GS(USPF_GUI_AVA_RANK),		GetSV(sVarPtsData.PvPRank),	USPF.ptsTots.PvPRank,	GS(USPF_QUEST_NA)},
-			{9, GS(USPF_GUI_MAEL_ARENA),	GetSV(sVarPtsData.MaelAr),	USPF.ptsTots.MaelAr,	GS(USPF_QUEST_NA)},
+			{ 1, GS(USPF_GUI_CHAR_LEVEL),	GetSV(sVarPtsData.Level),	USPF.ptsTots.Level,		GS(USPF_QUEST_NA)},
+			{ 2, GS(USPF_GUI_MAIN_QUEST),	GetSV(sVarPtsData.MainQ),	USPF.ptsTots.MainQ,		questTooltips.MQ},
+			{ 3, GS(USPF_GUI_FOLIUM),		GetSV(sVarPtsData.FolDis),	USPF.ptsTots.FolDis,	GS(USPF_QUEST_NA)},
+			{ 4, GS(USPF_GUI_MW_CHAR),		GetSV(sVarPtsData.MWChar),	USPF.ptsTots.MWChar,	questTooltips.MO},
+			{ 5, GS(USPF_GUI_SU_CHAR),		GetSV(sVarPtsData.SUChar),	USPF.ptsTots.SUChar,	questTooltips.SO},
+			{ 6, GS(USPF_GUI_EW_CHAR),		GetSV(sVarPtsData.EWChar),	USPF.ptsTots.EWChar,	questTooltips.EO},
+			{ 7, GS(USPF_GUI_GM_CHAR),		GetSV(sVarPtsData.GMChar),	USPF.ptsTots.GMChar,	questTooltips.GO},
+			{ 8, GS(USPF_GUI_BW_CHAR),		GetSV(sVarPtsData.BWChar),	USPF.ptsTots.BWChar,	questTooltips.BO},
+			{ 9, GS(USPF_GUI_AVA_RANK),		GetSV(sVarPtsData.PvPRank),	USPF.ptsTots.PvPRank,	GS(USPF_QUEST_NA)},
+			{10, GS(USPF_GUI_MAEL_ARENA),	GetSV(sVarPtsData.MaelAr),	USPF.ptsTots.MaelAr,	GS(USPF_QUEST_NA)},
 		},
 		GSP_T = strF("%s: %d/%d", GS(USPF_GUI_TOTAL), sVarPtsData.GenTot, USPF.ptsTots.GenTot),
 		SQS = {

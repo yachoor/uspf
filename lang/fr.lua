@@ -49,22 +49,18 @@ SafeAddString(USPF_SETTINGS_SORT_PDB_DESC,				"Définissez l'ordre de tri pour l
 SafeAddString(USPF_SETTINGS_OVERRIDE_TITLE,				"Paramètres Remplacer")
 SafeAddString(USPF_SETTINGS_OVERRIDE_FOLIUM,			"Remplacer pour Folium Discognitum")
 SafeAddString(USPF_SETTINGS_OVERRIDE_FOLIUM_DESC,		"Ce paramètre vous permet de remplacer la logique Folium Discognitum intégrée de l'USPF. Cela n'est généralement nécessaire que si vous n'avez pas reçu les points de compétence que vous avez réellement obtenus.")
-SafeAddString(USPF_SETTINGS_OVERRIDE_FOLIUM_WARN,		"Peut entraîner un nombre total incorrect de points de compétence dans USPF.")
+SafeAddString(USPF_SETTINGS_OVERRIDE_WARN,				"Peut entraîner un nombre total incorrect de points de compétence dans USPF.")
 SafeAddString(USPF_SETTINGS_OVERRIDE_FOLIUM_SET,		"Folium Discognitum a un personnage.")
 SafeAddString(USPF_SETTINGS_OVERRIDE_FOLIUM_SET_DESC,	"Ce paramètre force les points Folium Discognitum intégrés de l'USPF. Vous devez sélectionner l'option Folium Discognitum Override pour que cela ait un effet.")
-SafeAddString(USPF_SETTINGS_OVERRIDE_FOLIUM_SET_WARN,	"Peut entraîner un nombre total incorrect de points de compétence dans USPF.")
 
 SafeAddString(USPF_SETTINGS_OVERRIDE_MWC_SET,			"Morrowind Quest Override")
 SafeAddString(USPF_SETTINGS_OVERRIDE_MWC_SET_DESC,		"Ce paramètre vous permet de remplacer la logique de caractère de Morrowind intégrée à l'USPF uniquement. Ceci est nécessaire si vous avez créé un personnage après la sortie de Morrowind et avez sauté la quête d'introduction \"Liens Brisés\".")
-SafeAddString(USPF_SETTINGS_OVERRIDE_MWC_SET_WARN,		"Peut entraîner un nombre total incorrect de points de compétence dans USPF.")
 
 SafeAddString(USPF_SETTINGS_OVERRIDE_SSC_SET,			"Couchant Quest Override")
 SafeAddString(USPF_SETTINGS_OVERRIDE_SSC_SET_DESC,		"Ce paramètre vous permet de remplacer la logique de caractère uniquement Couchant intégrée de l'USPF. Ceci est nécessaire si vous avez créé un personnage après la sortie de Couchant et avez sauté la quête d'introduction \"Le Piège Mental\".")
-SafeAddString(USPF_SETTINGS_OVERRIDE_SSC_SET_WARN,		"Peut entraîner un nombre total incorrect de points de compétence dans USPF.")
 
 SafeAddString(USPF_SETTINGS_OVERRIDE_EWC_SET,			"Elsweyr Quest Override")
 SafeAddString(USPF_SETTINGS_OVERRIDE_EWC_SET_DESC,		"Ce paramètre vous permet de remplacer la logique de caractère de Elsweyr intégrée à l'USPF uniquement. Ceci est nécessaire si vous avez créé un personnage après la sortie de Elsweyr et avez sauté la quête d'introduction \"Vives Lunes, Ssables Cchauds\".")
-SafeAddString(USPF_SETTINGS_OVERRIDE_EWC_SET_WARN,		"Peut entraîner un nombre total incorrect de points de compétence dans USPF.")
 
 
 SafeAddString(USPF_GUI_CHAR_LEVEL,						"Niveau du Personnage")

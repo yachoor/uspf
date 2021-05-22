@@ -49,22 +49,18 @@ SafeAddString(USPF_SETTINGS_SORT_PDB_DESC,				"公開ダンジョングループ
 SafeAddString(USPF_SETTINGS_OVERRIDE_TITLE,				"オーバーライド設定")
 SafeAddString(USPF_SETTINGS_OVERRIDE_FOLIUM,			"フォリム・ディスコニタムのオーバーライド")
 SafeAddString(USPF_SETTINGS_OVERRIDE_FOLIUM_DESC,		"この設定により、USPFに組み込まれているフォリム・ディスコニタム用ロジックを無効にすることができます。これは\"マッドゴッドの取引\" クエストで書物\"フォリム・ディスコニタム\"を使用してスキルポイントを受け取っていない場合に必要です。")
-SafeAddString(USPF_SETTINGS_OVERRIDE_FOLIUM_WARN,		"USPFのスキルポイントの総量が正しくない可能性があります。")
+SafeAddString(USPF_SETTINGS_OVERRIDE_WARN,				"USPFのスキルポイントの総量が正しくない可能性があります。")
 SafeAddString(USPF_SETTINGS_OVERRIDE_FOLIUM_SET,		"このキャラはフォリム・ディスコニタムを使用")
 SafeAddString(USPF_SETTINGS_OVERRIDE_FOLIUM_SET_DESC,	"この設定により、USPFに組み込まれているフォリム・ディスコニタムポイントが強制的に設定されます。これを有効にするには、\"フォリム・ディスコニタムのオーバーライド\"オプションを選択する必要があります。")
-SafeAddString(USPF_SETTINGS_OVERRIDE_FOLIUM_SET_WARN,	"USPFのスキルポイントの総量が正しくない可能性があります。")
 
 SafeAddString(USPF_SETTINGS_OVERRIDE_MWC_SET,			"モロウウィンド・クエストのオーバーライド")
 SafeAddString(USPF_SETTINGS_OVERRIDE_MWC_SET_DESC,		"この設定では、USPFに組み込まれているモロウウィンド導入クエスト用ロジックを無効にすることができます。これは、モロウウィンドのリリース後にキャラクターを作成し、\"壊れた絆\" 導入クエストをスキップした場合に必要です。")
-SafeAddString(USPF_SETTINGS_OVERRIDE_MWC_SET_WARN,		"USPFのスキルポイントの総量が正しくない可能性があります。")
 
 SafeAddString(USPF_SETTINGS_OVERRIDE_SSC_SET,			"サマーセット・クエストのオーバーライド")
 SafeAddString(USPF_SETTINGS_OVERRIDE_SSC_SET_DESC,		"この設定では、USPFに組み込まれているサマーセット導入クエスト用ロジックを無効にすることができます。これはサマーセットのリリース後にキャラクターを作成し、\"マインドトラップ\" 導入クエストをスキップした場合に必要です。")
-SafeAddString(USPF_SETTINGS_OVERRIDE_SSC_SET_WARN,		"USPFのスキルポイントの総量が正しくない可能性があります。")
 
 SafeAddString(USPF_SETTINGS_OVERRIDE_EWC_SET,			"エルスウェアの・クエストのオーバーライド")
 SafeAddString(USPF_SETTINGS_OVERRIDE_EWC_SET_DESC,		"この設定では、USPFに組み込まれているエルスウェアの導入クエスト用ロジックを無効にすることができます。これはエルスウェアののリリース後にキャラクターを作成し、\"輝く月と温かい砂\" 導入クエストをスキップした場合に必要です。")
-SafeAddString(USPF_SETTINGS_OVERRIDE_EWC_SET_WARN,		"USPFのスキルポイントの総量が正しくない可能性があります。")
 
 
 SafeAddString(USPF_GUI_CHAR_LEVEL,						"キャラクターレベル")

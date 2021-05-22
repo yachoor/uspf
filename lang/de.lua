@@ -49,22 +49,18 @@ SafeAddString(USPF_SETTINGS_SORT_PDB_DESC,				"Legen Sie die Sortierreihenfolge 
 SafeAddString(USPF_SETTINGS_OVERRIDE_TITLE,				"Einstellungen überschreiben")
 SafeAddString(USPF_SETTINGS_OVERRIDE_FOLIUM,			"Folium Discognitum überschreiben")
 SafeAddString(USPF_SETTINGS_OVERRIDE_FOLIUM_DESC,		"Mit dieser Einstellung können Sie die integrierte Folium Discognitum-Logik des USPF überschreiben. Dies ist normalerweise nur notwendig, wenn Sie keine Fertigkeitspunkte erhalten haben, die Sie tatsächlich verdient haben.")
-SafeAddString(USPF_SETTINGS_OVERRIDE_FOLIUM_WARN,		"Dies kann zu einer falschen Gesamtanzahl an Fertigkeitspunkten in USPF führen.")
+SafeAddString(USPF_SETTINGS_OVERRIDE_WARN,				"Dies kann zu einer falschen Gesamtanzahl an Fertigkeitspunkten in USPF führen.")
 SafeAddString(USPF_SETTINGS_OVERRIDE_FOLIUM_SET,		"Charakter Hat Folium Discognitum")
 SafeAddString(USPF_SETTINGS_OVERRIDE_FOLIUM_SET_DESC,	"Diese Einstellung erzwingt die eingebauten Folium Discognitum-Punkte des USPF. Sie müssen die Option \"Folium Discognitum Override\" auswählen, um einen Effekt zu erzielen.")
-SafeAddString(USPF_SETTINGS_OVERRIDE_FOLIUM_SET_WARN,	"Dies kann zu einer falschen Gesamtanzahl an Fertigkeitspunkten in USPF führen.")
 
 SafeAddString(USPF_SETTINGS_OVERRIDE_MWC_SET,			"Morrowind Quest Überschreibe")
 SafeAddString(USPF_SETTINGS_OVERRIDE_MWC_SET_DESC,		"Mit dieser Einstellung können Sie die eingebaute Morrowind-Charakterlogik des USPF überschreiben. Dies ist notwendig, wenn Sie nach der Veröffentlichung von Morrowind einen Charakter erstellt und die Einführungsquest \"Gesprengte Ketten\" übersprungen haben.")
-SafeAddString(USPF_SETTINGS_OVERRIDE_MWC_SET_WARN,		"Dies kann zu einer falschen Gesamtanzahl an Fertigkeitspunkten in USPF führen.")
 
 SafeAddString(USPF_SETTINGS_OVERRIDE_SSC_SET,			"Sommersend Quest Außerkraftsetzung")
 SafeAddString(USPF_SETTINGS_OVERRIDE_SSC_SET_DESC,		"Mit dieser Einstellung können Sie die in USPF integrierte Sommersend-Charakterlogik überschreiben. Dies ist notwendig, wenn du nach der Veröffentlichung von Sommersend einen Charakter erstellt und die Einführungsquest \"Die Gedankenfalle\" übersprungen hast.")
-SafeAddString(USPF_SETTINGS_OVERRIDE_SSC_SET_WARN,		"Dies kann zu einer falschen Gesamtanzahl an Fertigkeitspunkten in USPF führen.")
 
 SafeAddString(USPF_SETTINGS_OVERRIDE_EWC_SET,			"Elsweyr Quest Überschreibe")
 SafeAddString(USPF_SETTINGS_OVERRIDE_EWC_SET_DESC,		"Mit dieser Einstellung können Sie die eingebaute Elsweyr-Charakterlogik des USPF überschreiben. Dies ist notwendig, wenn Sie nach der Veröffentlichung von Elsweyr einen Charakter erstellt und die Einführungsquest \"Helle Monde, Warme Sande\" übersprungen haben.")
-SafeAddString(USPF_SETTINGS_OVERRIDE_EWC_SET_WARN,		"Dies kann zu einer falschen Gesamtanzahl an Fertigkeitspunkten in USPF führen.")
 
 
 SafeAddString(USPF_GUI_CHAR_LEVEL,						"Charakterstufe")

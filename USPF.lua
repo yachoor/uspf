@@ -414,7 +414,7 @@ USPF.data = {
 		{6547, 2932, zf("<<t:1>>", GS(USPF_QUEST_TR_3)),	1},
 		{6548, 2933, zf("<<t:1>>", GS(USPF_QUEST_TR_4)),	1},
 		{6554, 2934, zf("<<t:1>>", GS(USPF_QUEST_TR_5)),	1},
-		{6566, 2934, zf("<<t:1>>", GS(USPF_QUEST_TR_6)),	1},
+		{6566, 2935, zf("<<t:1>>", GS(USPF_QUEST_TR_6)),	1},
 		{6552, 2937, zf("<<t:1>>", GS(USPF_QUEST_TR_7)),	1},
 		{6560, 2936, zf("<<t:1>>", GS(USPF_QUEST_TR_8)),	1},
 		{6570, 2939, zf("<<t:1>>", GS(USPF_QUEST_TR_9)),	1},
@@ -892,7 +892,7 @@ end
 local enchantingSkillType, enchantingSkillLine = USPF_GetCraftingSkillLineIndices(CRAFTING_TYPE_ENCHANTING)
 local provisionSkillType, provisionSkillLine = USPF_GetCraftingSkillLineIndices(CRAFTING_TYPE_PROVISIONING)
 local DARK_BROTHERHOOD, FIGHTERS_GUILD, MAGES_GUILD, THIEVES_GUILD, UNDAUNTED, SOUL_MAGIC, LEGERDEMAIN, PSIJIC_ORDER = 118, 45, 44, 117, 55, 72, 111, 130
-local VAMPIRE, SCRYING, EXCAVATION = 51, 155, 157
+local WEREWOLF, VAMPIRE, SCRYING, EXCAVATION = 50, 51, 155, 157
 
 local function USPF_IsValidRacialLine(skillType, skillLine)
 	if (skillType == SKILL_TYPE_RACIAL) then
@@ -912,8 +912,8 @@ local function USPF_GetReduceAbility(skillType, skillLine, skillIndex)
 		val = ((skillLineId == EXCAVATION and skillIndex == 1) and 1 or val) -- Excavation - Hand Brush
 		val = ((skillLineId == EXCAVATION and skillIndex == 2) and 1 or val) -- Excavation - Augur
 		val = ((skillLineId == VAMPIRE and skillIndex == 7) and 1 or val) -- Vampire - Feed
-		val = ((IsWerewolfSkillLine(skillType, skillLine) and skillIndex == 1) and 1 or val) -- Werewolf - Transformation
-		val = ((IsWerewolfSkillLine(skillType, skillLine) and skillIndex == 7) and 1 or val) -- Werewolf - Devour
+		val = ((skillLineId == WEREWOLF and skillIndex == 1) and 1 or val) -- Werewolf - Transformation
+		val = ((skillLineId == WEREWOLF and skillIndex == 7) and 1 or val) -- Werewolf - Devour
 	end
 	if skillType == SKILL_TYPE_TRADESKILL then
 		val = (skillIndex == 1 and 1 or val)
@@ -921,6 +921,12 @@ local function USPF_GetReduceAbility(skillType, skillLine, skillIndex)
 		val = ((skillIndex == 2 and skillType == provisionSkillType and skillLine == provisionSkillLine) and 1 or val)
 	end
 	
+	if skillType == SKILL_TYPE_ARMOR then -- first armor passive is now free, as is the second for light and heavy armor
+		val = (skillIndex == 2 and 1 or val)
+		val = ((skillIndex == 3 and skillLine == ARMORTYPE_LIGHT) and 1 or val)
+		val = ((skillIndex == 3 and skillLine == ARMORTYPE_HEAVY) and 1 or val)
+	end
+
 	val = ((USPF_IsValidRacialLine(skillType, skillLine) and skillIndex == 1) and 1 or val)
 	
 	if skillType == SKILL_TYPE_GUILD then

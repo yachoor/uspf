@@ -292,6 +292,9 @@ local strings = {
 	USPF_QUEST_TR_7		= "The End of Eternity",
 	USPF_QUEST_TR_8		= "Kingdom of Ash",
 	USPF_QUEST_TR_9		= "Second Chances",
+	USPF_QUEST_BW_1		= "An Unexpecteded Adversary", -- TODO needs correct quest names
+	USPF_QUEST_BW_2		= "Weapons Of Destruction",
+	USPF_QUEST_BW_3		= "Heroes Of Blackwood",
 }
 
 for stringId, stringValue in pairs(strings) do

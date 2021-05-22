@@ -76,6 +76,7 @@ USPF.ptsData = {
 		EP2 = 0, EP3 = 0, EP4 = 0, EP5 = 0, CH  = 0, CAD  = 0, CDC  = 0, CEP  = 0,
 		CMT = 0, LCL = 0, UCL = 0, CC  = 0, DB  = 0, IC   = 0, MW   = 0, RO   = 0,
 		TG  = 0, SU  = 0, MM  = 0, NE  = 0, WP  = 0, SE   = 0, WS   = 0, TR   = 0,
+		BW  = 0
 	},
 	SS = {
 		AD0 = 0, AD1 = 0, AD2 = 0, AD3 = 0, AD4 = 0, AD5  = 0, DC0a = 0, DC0b = 0,
@@ -83,6 +84,7 @@ USPF.ptsData = {
 		EP2 = 0, EP3 = 0, EP4 = 0, EP5 = 0, CH  = 0, CAD  = 0, CDC  = 0, CEP  = 0,
 		CMT = 0, LCL = 0, UCL = 0, IC  = 0, WR  = 0, HB   = 0, GC   = 0, VV   = 0,
 		CC  = 0, MQ  = 0, SU  = 0, MM  = 0, NE  = 0, SE   = 0, WS   = 0, TR   = 0,
+		BW  = 0
 	},
 	GD = {
 		BC1 = 0, BC2 = 0, EH1 = 0, EH2 = 0, CA1 = 0, CA2 = 0, TI = 0, SW = 0,
@@ -96,13 +98,13 @@ USPF.ptsData = {
 		AD1 = 0, AD2 = 0, AD3 = 0, AD4 = 0, AD5 = 0, DC1 = 0, DC2 = 0, DC3 = 0,
 		DC4 = 0, DC5 = 0, EP1 = 0, EP2 = 0, EP3 = 0, EP4 = 0, EP5 = 0, CH  = 0,
 		VFW = 0, VNC = 0, WOO = 0, WRK = 0, SKW = 0, SSH = 0, RN  = 0, OC  = 0,
-		LT  = 0, NK  = 0,
+		LT  = 0, NK  = 0, SH = 0, ZA  = 0
 	},
 }
 
-USPF.ptsTots = {	--Tot and GenTot are 470 and 129 because you can't do more than one DLC tutorial.
-	Tot	= 470, GenTot = 129, ZQTot	= 112, numSSTot	= 477, SSTot  = 159,
-	GDTot	=  44, PDTot  =  26, Level	=  64, MainQ	=  11, FolDis =   2,
+USPF.ptsTots = {	--Tot and GenTot are 481 and 129 because you can't do more than one DLC tutorial.
+	Tot	= 481, GenTot = 129, ZQTot	= 115, numSSTot	= 495, SSTot  = 165,
+	GDTot	=  44, PDTot  =  28, Level	=  64, MainQ	=  11, FolDis =   2,
 	MWChar	=   1, SUChar =   1, EWChar	=   1, GMChar	=   1,
 	PvPRank	=  50, MaelAr =   1,
 	ZQ = {
@@ -111,6 +113,7 @@ USPF.ptsTots = {	--Tot and GenTot are 470 and 129 because you can't do more than
 		EP2 = 3, EP3 = 3, EP4 =  3, EP5 = 3, CH  = 3, CAD  = 0, CDC  = 0, CEP  = 0,
 		CMT = 0, LCL = 0, UCL =  0, CC  = 8, DB  = 8, IC   = 1, MW   = 3, RO   = 3,
 		TG  = 6, SU  = 3, MM  =  7, NE  = 3, WP  = 0, SE   = 9, WS   = 3, TR   = 9,
+		BW  = 3
 	},
 	SS = {
 		AD0  = 6,  AD1 = 16, AD2 = 16, AD3 = 16, AD4 = 16, AD5 = 16, DC0a = 3,
@@ -118,7 +121,7 @@ USPF.ptsTots = {	--Tot and GenTot are 470 and 129 because you can't do more than
 		EP0b = 3,  EP1 = 16, EP2 = 16, EP3 = 16, EP4 = 16, EP5 = 16, CH   = 16,
 		CAD  = 15, CDC = 15, CEP = 15, CMT = 1,  LCL = 12, UCL = 6,  IC   = 13,
 		WR   = 17, HB  = 6,  GC  = 6,  VV  = 18, CC  = 6,  MQ  = 1,  SU   = 18,
-		MM   = 6,  NE  = 18, SE  = 6,  WS  = 18, TR  = 6,
+		MM   = 6,  NE  = 18, SE  = 6,  WS  = 18, TR  = 6,  BW  = 18
 	},
 	GD = {
 		BC1 = 1, BC2 = 1, EH1 = 1, EH2 = 1, CA1 = 1, CA2 = 1, TI = 1, SW = 1,
@@ -132,7 +135,7 @@ USPF.ptsTots = {	--Tot and GenTot are 470 and 129 because you can't do more than
 		AD1 = 1, AD2 = 1, AD3 = 1, AD4 = 1, AD5 = 1, DC1 = 1, DC2 = 1, DC3 = 1,
 		DC4 = 1, DC5 = 1, EP1 = 1, EP2 = 1, EP3 = 1, EP4 = 1, EP5 = 1, CH  = 1,
 		VFW = 1, VNC = 1, WOO = 1, WRK = 1, SKW = 1, SSH = 1, RN  = 1, OC  = 1,
-		LT  = 1, NK  = 1,
+		LT  = 1, NK  = 1, SH = 1, ZA  = 1
 	},
 }
 
@@ -145,7 +148,7 @@ local tempZId = {
 		CEP  =  181, CMT  =  181, CL   = 888, LCL =  888, UCL = 888, IC  =  584,
 		RO   =  684, HB   =  816, GC   = 823, VV  =  849, CC  = 980, SU  = 1011,
 		MM   =  726, NE   = 1086, WP   = 586, SE  = 1133, WS = 1160, BGC = 1161,
-		TR   = 1207,
+		TR   = 1207, BW   = 1261,
 	},
 	GDN = {
 		BC1 =  380, BC2 =  935, EH1 =  126, EH2 =  931, CA1 =  176, CA2 =  681,
@@ -162,7 +165,7 @@ local tempZId = {
 		DC2 = 142, DC3 = 162, DC4 =  308, DC5 =  169, EP1 =  216, EP2 =  306,
 		EP3 = 134, EP4 = 339, EP5 =  341, CH  =  557, WOO =  706, WRK =  705,
 		VFW = 919, VNC = 918, SKW = 1020, SSH = 1021, RN  = 1089, OC  = 1090,
-		LT  = 1186, NK = 1187,
+		LT  = 1186, NK = 1187, SH  = 1260, ZA = 1259,
 	},
 }
 
@@ -175,7 +178,7 @@ USPF.data = {
 		CH  =  957, DB  = 1444, DC1 =  953, DC2 =  954, DC3 =  955, DC4 =  956,
 		DC5 =  958, EP1 =  948, EP2 =  949, EP3 =  950, EP4 =  951, EP5 =  952,
 		IC  = 1175, RO  = 1260, TG  = 1363, SU  = 2208, MM  = 2339, NE  = 2488,
-		SE  = 2604, WS  = 2716,
+		SE  = 2604, WS  = 2716, BW  = 3055
 	},
 	AD1 = {	--943
 		{4222,  360, zf("<<t:1>>", GS(USPF_QUEST_AD1_1)),	1},
@@ -416,6 +419,14 @@ USPF.data = {
 		{6560, 2936, zf("<<t:1>>", GS(USPF_QUEST_TR_8)),	1},
 		{6570, 2939, zf("<<t:1>>", GS(USPF_QUEST_TR_9)),	1},
 	},
+	-- TODO
+    -- The correct identifiers for quests and achievements are still needed. 
+	-- These are just guesses as I did not play the main quest yet
+	BW = {
+		{10000, 3049, zf("<<t:1>>", GS(USPF_QUEST_BW_1)),	1},
+		{10000, 3052, zf("<<t:1>>", GS(USPF_QUEST_BW_2)),	1},
+		{10000, 3054, zf("<<t:1>>", GS(USPF_QUEST_BW_3)),	1},
+	},
 	PD = {
 		AD1	= { 1,  468, zf("<<C:1>>", GZNBId(tempZId.ZN.AD1)), zf("<<C:1>>", GZNBId(tempZId.PDN.AD1))},
 		AD2	= { 2,  470, zf("<<C:1>>", GZNBId(tempZId.ZN.AD2)), zf("<<C:1>>", GZNBId(tempZId.PDN.AD2))},
@@ -442,7 +453,9 @@ USPF.data = {
 		RN	= {23, 2444, zf("<<C:1>>", GZNBId(tempZId.ZN.NE)),  zf("<<C:1>>", GZNBId(tempZId.PDN.RN))},
 		OC	= {24, 2445, zf("<<C:1>>", GZNBId(tempZId.ZN.NE)),  zf("<<C:1>>", GZNBId(tempZId.PDN.OC))},
 		LT	= {25, 2714, zf("<<C:1>>", GZNBId(tempZId.ZN.WS)),  zf("<<C:1>>", GZNBId(tempZId.PDN.LT))},
-		NK	= {26, 2715, zf("<<C:1>>", GZNBId(tempZId.ZN.BGC)),  zf("<<C:1>>", GZNBId(tempZId.PDN.NK))},
+		NK	= {26, 2715, zf("<<C:1>>", GZNBId(tempZId.ZN.BGC)), zf("<<C:1>>", GZNBId(tempZId.PDN.NK))},
+		SH	= {27, 2994, zf("<<C:1>>", GZNBId(tempZId.ZN.BW)),  zf("<<C:1>>", GZNBId(tempZId.PDN.SH))},
+		ZA	= {28, 2995, zf("<<C:1>>", GZNBId(tempZId.ZN.BW)),  zf("<<C:1>>", GZNBId(tempZId.PDN.ZA))},
 	},
 	SS = {
 		MQ	 = { 1, 2521, zf("<<C:1>>", GZNBId(tempZId.ZN.WP))},
@@ -485,6 +498,7 @@ USPF.data = {
 		SE	 = {38, 2562, zf("<<C:1>>", GZNBId(tempZId.ZN.SE))},
 		WS	 = {39, 2687, zf("<<C:1>>", GZNBId(tempZId.ZN.WS))},
 		TR	 = {40, 2857, zf("<<C:1>>", GZNBId(tempZId.ZN.TR))},
+		BW	 = {41, 2982, zf("<<C:1>>", GZNBId(tempZId.ZN.BW))},
 	},
 	racialLineIds = {
 		--RaceId	SkillLineId	Race
@@ -613,6 +627,7 @@ local function USPF_UpdateGUITable()
 		WS   = GetQuestTooltipText("WS"),
 		GO   = GetQuestTooltipText("GO"),
 		TR   = GetQuestTooltipText("TR"),
+		BW   = GetQuestTooltipText("BW"),
 	}
 	
 	USPF.GUI = {
@@ -669,6 +684,7 @@ local function USPF_UpdateGUITable()
 			{38, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.SE)),						USPF.ptsData.ZQ.SE,		USPF.ptsTots.ZQ.SE,		USPF.ptsData.SS.SE,		USPF.ptsTots.SS.SE,		questTooltips.SE},
 			{39, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.WS)),						USPF.ptsData.ZQ.WS,		USPF.ptsTots.ZQ.WS,		USPF.ptsData.SS.WS,		USPF.ptsTots.SS.WS,		questTooltips.WS},
 			{40, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.TR)),						USPF.ptsData.ZQ.TR,		USPF.ptsTots.ZQ.TR,		USPF.ptsData.SS.TR,		USPF.ptsTots.SS.TR,		questTooltips.TR},
+			{41, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.BW)),						USPF.ptsData.ZQ.BW,		USPF.ptsTots.ZQ.BW,		USPF.ptsData.SS.BW,		USPF.ptsTots.SS.BW,		questTooltips.BW},
 		},
 		SQS_SL_T = strF("%d/%d", USPF.ptsData.ZQTot, USPF.ptsTots.ZQTot),
 		SQS_SS_T = strF("%d/%d", USPF.ptsData.SSTot, USPF.ptsTots.SSTot),
@@ -746,6 +762,8 @@ local function USPF_UpdateGUITable()
 			{24, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.NE)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.RN)),	USPF.ptsData.PD.RN,		USPF.ptsTots.PD.RN,		GetAchLink(USPF.data.PD.RN[2])},
 			{25, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.WS)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.LT)),	USPF.ptsData.PD.LT,		USPF.ptsTots.PD.LT,		GetAchLink(USPF.data.PD.LT[2])},
 			{26, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BGC)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.NK)),	USPF.ptsData.PD.NK,		USPF.ptsTots.PD.NK,		GetAchLink(USPF.data.PD.NK[2])},
+			{27, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BW)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.SH)),	USPF.ptsData.PD.SH,		USPF.ptsTots.PD.SH,		GetAchLink(USPF.data.PD.SH[2])},
+			{28, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BW)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.ZA)),	USPF.ptsData.PD.ZA,		USPF.ptsTots.PD.ZA,		GetAchLink(USPF.data.PD.ZA[2])},
 		},
 		PDGBE_T = strF("%s: %d/%d", GS(USPF_GUI_TOTAL), USPF.ptsData.PDTot, USPF.ptsTots.PDTot),
 		CharacterTot = strF("%s: %d/%d", GS(USPF_GUI_CHAR_TOTAL), USPF.ptsData.Tot, USPF.ptsTots.Tot),
@@ -1105,6 +1123,7 @@ local function USPF_LoadData(charId)
 		WS   = GetQuestTooltipText("WS"),
 		GO   = GetQuestTooltipText("GO"),
 		TR   = GetQuestTooltipText("TR"),
+		BW   = GetQuestTooltipText("BW"),
 	}
 	
 	USPF.GUI = {
@@ -1161,6 +1180,7 @@ local function USPF_LoadData(charId)
 			{38, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.SE)),						GetSV(sVarPtsData.ZQ.SE),	USPF.ptsTots.ZQ.SE,		GetSV(sVarPtsData.SS.SE),	USPF.ptsTots.SS.SE,		questTooltips.SE},
 			{39, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.WS)),						GetSV(sVarPtsData.ZQ.WS),	USPF.ptsTots.ZQ.WS,		GetSV(sVarPtsData.SS.WS),	USPF.ptsTots.SS.WS,		questTooltips.WS},
 			{40, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.TR)),						GetSV(sVarPtsData.ZQ.TR),	USPF.ptsTots.ZQ.TR,		GetSV(sVarPtsData.SS.TR),	USPF.ptsTots.SS.TR,		questTooltips.TR},
+			{41, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.BW)),						GetSV(sVarPtsData.ZQ.BW),	USPF.ptsTots.ZQ.BW,		GetSV(sVarPtsData.SS.BW),	USPF.ptsTots.SS.BW,		questTooltips.BW},
 		},
 		SQS_SL_T = strF("%d/%d", sVarPtsData.ZQTot, USPF.ptsTots.ZQTot),
 		SQS_SS_T = strF("%d/%d", sVarPtsData.SSTot, USPF.ptsTots.SSTot),
@@ -1238,6 +1258,8 @@ local function USPF_LoadData(charId)
 			{24, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.NE)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.RN)),	GetSV(sVarPtsData.PD.RN),	USPF.ptsTots.PD.RN,		GetAchLink(USPF.data.PD.RN[2])},
 			{25, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.WS)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.LT)),	GetSV(sVarPtsData.PD.LT),	USPF.ptsTots.PD.LT,		GetAchLink(USPF.data.PD.LT[2])},
 			{26, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BGC)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.NK)),	GetSV(sVarPtsData.PD.NK),	USPF.ptsTots.PD.NK,		GetAchLink(USPF.data.PD.NK[2])},
+			{25, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BW)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.SH)),	GetSV(sVarPtsData.PD.SH),	USPF.ptsTots.PD.SH,		GetAchLink(USPF.data.PD.SH[2])},
+			{26, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BW)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.ZA)),	GetSV(sVarPtsData.PD.ZA),	USPF.ptsTots.PD.ZA,		GetAchLink(USPF.data.PD.ZA[2])},
 		},
 		PDGBE_T = strF("%s: %d/%d", GS(USPF_GUI_TOTAL), sVarPtsData.PDTot, USPF.ptsTots.PDTot),
 		CharacterTot = strF("%s: %d/%d", GS(USPF_GUI_CHAR_TOTAL), sVarPtsData.Tot, USPF.ptsTots.Tot),

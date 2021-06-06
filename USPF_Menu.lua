@@ -2,23 +2,8 @@ if USPF == nil then USPF = {} end
 
 local ADDON_NAME = GetString(USPF_GUI_TITLE)
 local ADDON_AUTHOR = "Urich"
-local ADDON_VERSION = "5.7.1"
+local ADDON_VERSION = "6.0.0"
 
--- Original 5.2.0 
-		-- Fonts = {
-			-- ["ProseAntique"]			= "/EsoUI/Common/Fonts/ProseAntiquePSMT.otf",		--ANTIQUE_FONT
-			-- ["Consolas"]				= "/EsoUI/Common/Fonts/consola.ttf",				--
-			-- ["Futura Condensed"]		= "/EsoUI/Common/Fonts/FTN57.otf",					--GAMEPAD_MEDIUM_FONT
-			-- ["Futura Condensed Bold"]	= "/EsoUI/Common/Fonts/FTN87.otf",					--GAMEPAD_BOLD_FONT
-			-- ["Futura Condensed Light"]	= "/EsoUI/Common/Fonts/FTN47.otf",					--GAMEPAD_LIGHT_FONT
-			-- ["Skyrim Handwritten"]		= "/EsoUI/Common/Fonts/Handwritten_Bold.otf",		--HANDWRITTEN_FONT
-			-- ["Trajan Pro"]				= "/EsoUI/Common/Fonts/trajanpro-regular.otf",		--STONE_TABLET_FONT
-			-- ["Univers 55"]				= "/EsoUI/Common/Fonts/univers55.otf",				--
-			-- ["Univers 57"]				= "/EsoUI/Common/Fonts/univers57.otf",				--MEDIUM_FONT/CHAT_FONT
-			-- ["Univers 67"]				= "/EsoUI/Common/Fonts/univers67.otf",				--BOLD_FONT
-		-- },
-
--- Font code changed for v 5.3.0
 USPF.Options = {
 	Font = {
 		Fonts = {
@@ -60,7 +45,7 @@ function USPF:SetupMenu(charId)
 		displayName = ADDON_NAME.." Settings",
 		author = ADDON_AUTHOR,
 		version = ADDON_VERSION,
-		website = "http://www.esoui.com/downloads/info1863-UrichsSkillPointFinder.html",
+		website = "https://www.esoui.com/downloads/info3089-UrichsSkillPointFinderUpdated.html",
 		slashCommand = "/uspfmenu",
 		registerForRefresh = true,
 		registerForDefaults = true,

@@ -6,7 +6,6 @@ USPF.cache = {}
 USPF.GUI = {}
 local selectedChar = GetCurrentCharacterId()
 local currentCharName = nil
-local debugMode = false
 local EM = EVENT_MANAGER
 local GZNBId, GCCId, GCQI = GetZoneNameById, GetCurrentCharacterId, GetCompletedQuestInfo
 local IAchC, GAchNCr, GAchCr = IsAchievementComplete, GetAchievementNumCriteria, GetAchievementCriterion
@@ -142,7 +141,7 @@ USPF.ptsTots = {	--Tot and GenTot are 481 and 129 because you can't do more than
 
 local tempZId = {
 	ZN = {
-		AD0  =  537, AD1  =  381, AD2  = 383, AD3 =  108, AD4 =  58, AD5 =  382, 
+		AD0  =  537, AD1  =  381, AD2  = 383, AD3 =  108, AD4 =  58, AD5 =  382,
 		DC0A =  535, DC0B =  534, DC1  =   3, DC2 =   19, DC3 =  20, DC4 =  104,
 		DC5  =   92, EP0B =  280, EP0A = 281, EP1 =   41, EP2 =  57, EP3 =  117,
 		EP4  =  101, EP5  =  103, CH   = 347, CYD =  181, CAD = 181, CDC =  181,
@@ -166,7 +165,7 @@ local tempZId = {
 		DC2 =  142, DC3 =  162, DC4 =  308, DC5 =  169, EP1 =  216, EP2 =  306,
 		EP3 =  134, EP4 =  339, EP5 =  341, CH  =  557, WOO =  706, WRK =  705,
 		VFW =  919, VNC =  918, SKW = 1020, SSH = 1021, RN  = 1089, OC  = 1090,
-		LT  = 1186, NK  = 1187, SH  = 1260, ZA  = 1259, 
+		LT  = 1186, NK  = 1187, SH  = 1260, ZA  = 1259,
 	},
 }
 
@@ -182,324 +181,324 @@ USPF.data = {
 		SE  = 2604, WS  = 2716, BW  = 3055
 	},
 	AD1 = {	--943
-		{4222,  360, zf("<<t:1>>", GS(USPF_QUEST_AD1_1)),	1},
-		{4345,  361, zf("<<t:1>>", GS(USPF_QUEST_AD1_2)),	1},
-		{4261,  362, zf("<<t:1>>", GS(USPF_QUEST_AD1_3)),	1},
+		{4222,  360},
+		{4345,  361},
+		{4261,  362},
 	},
 	AD2 = {	--944	(1-2 only)
-		{4868,  605, zf("<<t:1>>", GS(USPF_QUEST_AD2_1)),	1},
-		{4386,  606, zf("<<t:1>>", GS(USPF_QUEST_AD2_2)),	1},
-		{4885,  607, zf("<<t:1>>", GS(USPF_QUEST_AD2_3)),	1},
+		{4868,  605},
+		{4386,  606},
+		{4885,  607},
 	},
 	AD3 = {	--945
-		{4750,  510, zf("<<t:1>>", GS(USPF_QUEST_AD3_1)),	1},
-		{4765,  511, zf("<<t:1>>", GS(USPF_QUEST_AD3_2)),	1},
-		{4690,  512, zf("<<t:1>>", GS(USPF_QUEST_AD3_3)),	1},
+		{4750,  510},
+		{4765,  511},
+		{4690,  512},
 	},
 	AD4 = {	--946
-		{4337,    0, zf("<<t:1>>", GS(USPF_QUEST_AD4_1)),	1},
-		{4452,  283, zf("<<t:1>>", GS(USPF_QUEST_AD4_2)),	1},
-		{4143,  285, zf("<<t:1>>", GS(USPF_QUEST_AD4_3)),	1},
+		{4337,    0},
+		{4452,  283},
+		{4143,  285},
 	},
 	AD5 = {	--947
-		{4712,    0, zf("<<t:1>>", GS(USPF_QUEST_AD5_1)),	1},
-		{4479,  537, zf("<<t:1>>", GS(USPF_QUEST_AD5_2)),	1},
-		{4720,  538, zf("<<t:1>>", GS(USPF_QUEST_AD5_3)),	1},
+		{4712,    0},
+		{4479,  537},
+		{4720,  538},
 	},
 	CC = {	--2064
-		{6050, 2050, zf("<<t:1>>", GS(USPF_QUEST_CC_1)),	1},
-		{6057, 2058, zf("<<t:1>>", GS(USPF_QUEST_CC_2)),	1},
-		{6063, 2059, zf("<<t:1>>", GS(USPF_QUEST_CC_3)),	1},
-		{6025, 2060, zf("<<t:1>>", GS(USPF_QUEST_CC_4)),	1},
-		{6052, 2061, zf("<<t:1>>", GS(USPF_QUEST_CC_5)),	1},
-		{6046, 2062, zf("<<t:1>>", GS(USPF_QUEST_CC_6)),	1},
-		{6047, 2063, zf("<<t:1>>", GS(USPF_QUEST_CC_7)),	1},
-		{6048, 2064, zf("<<t:1>>", GS(USPF_QUEST_CC_8)),	1},
+		{6050, 2050},
+		{6057, 2058},
+		{6063, 2059},
+		{6025, 2060},
+		{6052, 2061},
+		{6046, 2062},
+		{6047, 2063},
+		{6048, 2064},
 	},
 	CH = {	--957
-		{4602,  612, zf("<<t:1>>", GS(USPF_QUEST_CH_1)),	1},
-		{4730,  613, zf("<<t:1>>", GS(USPF_QUEST_CH_2)),	1},
-		{4758,  614, zf("<<t:1>>", GS(USPF_QUEST_CH_3)),	1},
+		{4602,  612},
+		{4730,  613},
+		{4758,  614},
 	},
 	DB = {	--1444
-		{5540, 1436, zf("<<t:1>>", GS(USPF_QUEST_DB_1)),	1},
-		{5595, 1438, zf("<<t:1>>", GS(USPF_QUEST_DB_2)),	1},
-		{5599, 1439, zf("<<t:1>>", GS(USPF_QUEST_DB_3)),	1},
-		{5596, 1440, zf("<<t:1>>", GS(USPF_QUEST_DB_4)),	1},
-		{5567, 1441, zf("<<t:1>>", GS(USPF_QUEST_DB_5)),	1},
-		{5597, 1442, zf("<<t:1>>", GS(USPF_QUEST_DB_6)),	1},
-		{5598, 1443, zf("<<t:1>>", GS(USPF_QUEST_DB_7)),	1},
-		{5600, 1444, zf("<<t:1>>", GS(USPF_QUEST_DB_8)),	1},
+		{5540, 1436},
+		{5595, 1438},
+		{5599, 1439},
+		{5596, 1440},
+		{5567, 1441},
+		{5597, 1442},
+		{5598, 1443},
+		{5600, 1444},
 	},
 	DC1 = {	--953
-		{3006,    0, zf("<<t:1>>", GS(USPF_QUEST_DC1_1)),	1},
-		{3235,   30, zf("<<t:1>>", GS(USPF_QUEST_DC1_2)),	1},
-		{3267,   28, zf("<<t:1>>", GS(USPF_QUEST_DC1_3)),	1},
-		{3379,   31, zf("<<t:1>>", GS(USPF_QUEST_DC1_4)),	1},
+		{3006,    0},
+		{3235,   30},
+		{3267,   28},
+		{3379,   31},
 	},
 	DC2 = {	--954
-		{ 467,  154, zf("<<t:1>>", GS(USPF_QUEST_DC2_1)),	1},
-		{1633,  155, zf("<<t:1>>", GS(USPF_QUEST_DC2_2)),	1},
-		{ 575,    0, zf("<<t:1>>", GS(USPF_QUEST_DC2_3)),	1},
+		{ 467,  154},
+		{1633,  155},
+		{ 575,    0},
 	},
 	DC3 = {	--955
-		{ 465,  589, zf("<<t:1>>", GS(USPF_QUEST_DC3_1)),	1},
-		{4972,  590, zf("<<t:1>>", GS(USPF_QUEST_DC3_2)),	1},
-		{4884,  591, zf("<<t:1>>", GS(USPF_QUEST_DC3_3)),	1},
+		{ 465,  589},
+		{4972,  590},
+		{4884,  591},
 	},
 	DC4 = {	--956
-		{2192,  516, zf("<<t:1>>", GS(USPF_QUEST_DC4_1)),	1},
-		{2222,  517, zf("<<t:1>>", GS(USPF_QUEST_DC4_2)),	1},
-		{2997,  956, zf("<<t:1>>", GS(USPF_QUEST_DC4_3)),	1},
+		{2192,  516},
+		{2222,  517},
+		{2997,  956},
 	},
 	DC5 = {	--958
-		{4891,    0, zf("<<t:1>>", GS(USPF_QUEST_DC5_1)),	1},
-		{4912,  146, zf("<<t:1>>", GS(USPF_QUEST_DC5_2)),	1},
-		{4960,  147, zf("<<t:1>>", GS(USPF_QUEST_DC5_3)),	1},
+		{4891,    0},
+		{4912,  146},
+		{4960,  147},
 	},
 	EO = {
-		{6324,    0, zf("<<t:1>>", GS(USPF_QUEST_EO)),		1},
+		{6324,    0},
 	},
 	EP1 = {	--948
-		{3735,  201, zf("<<t:1>>", GS(USPF_QUEST_EP1_1)),	1},
-		{3634,  204, zf("<<t:1>>", GS(USPF_QUEST_EP1_2)),	1},
-		{3868,  209, zf("<<t:1>>", GS(USPF_QUEST_EP1_3)),	1},
+		{3735,  201},
+		{3634,  204},
+		{3868,  209},
 	},
 	EP2 = {	--949
-		{3797,  363, zf("<<t:1>>", GS(USPF_QUEST_EP2_1)),	1},
-		{3817,  364, zf("<<t:1>>", GS(USPF_QUEST_EP2_2)),	1},
-		{3831,  365, zf("<<t:1>>", GS(USPF_QUEST_EP2_3)),	1},
+		{3797,  363},
+		{3817,  364},
+		{3831,  365},
 	},
 	EP3 = {	--950
-		{4590,  184, zf("<<t:1>>", GS(USPF_QUEST_EP3_1)),	1},
-		{4606,  185, zf("<<t:1>>", GS(USPF_QUEST_EP3_2)),	1},
-		{3910,  186, zf("<<t:1>>", GS(USPF_QUEST_EP3_2)),	1},
+		{4590,  184},
+		{4606,  185},
+		{3910,  186},
 	},
 	EP4 = {	--951
-		{4061,    0, zf("<<t:1>>", GS(USPF_QUEST_EP4_1)),	1},
-		{4115,    0, zf("<<t:1>>", GS(USPF_QUEST_EP4_2)),	1},
-		{4117,  599, zf("<<t:1>>", GS(USPF_QUEST_EP4_3)),	1},
+		{4061,    0},
+		{4115,    0},
+		{4117,  599},
 	},
 	EP5 = {	--952
-		{3968,  335, zf("<<t:1>>", GS(USPF_QUEST_EP5_1)),	1},
-		{4139,  336, zf("<<t:1>>", GS(USPF_QUEST_EP5_2)),	1},
-		{4188,  337, zf("<<t:1>>", GS(USPF_QUEST_EP5_3)),	1},
+		{3968,  335},
+		{4139,  336},
+		{4188,  337},
 	},
 	GD = {
-		BC1 = { 1, 4107,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_BC1)),	zf("<<C:1>>", GZNBId(tempZId.ZN.AD1)),	zf("<<C:1>>", GZNBId(tempZId.GDN.BC1))},
-		BC2 = { 2, 4597,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_BC2)),	zf("<<C:1>>", GZNBId(tempZId.ZN.AD1)),	zf("<<C:1>>", GZNBId(tempZId.GDN.BC2))},
-		EH1 = { 3, 4336,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_EH1)),	zf("<<C:1>>", GZNBId(tempZId.ZN.AD2)),	zf("<<C:1>>", GZNBId(tempZId.GDN.EH1))},
-		EH2 = { 4, 4675,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_EH2)),	zf("<<C:1>>", GZNBId(tempZId.ZN.AD2)),	zf("<<C:1>>", GZNBId(tempZId.GDN.EH2))},
-		CA1 = { 5, 4778,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_CA1)),	zf("<<C:1>>", GZNBId(tempZId.ZN.AD3)),	zf("<<C:1>>", GZNBId(tempZId.GDN.CA1))},
-		CA2 = { 6, 5120,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_CA2)),	zf("<<C:1>>", GZNBId(tempZId.ZN.AD3)),	zf("<<C:1>>", GZNBId(tempZId.GDN.CA2))},
-		TI  = { 7, 4538,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_TI)),		zf("<<C:1>>", GZNBId(tempZId.ZN.AD4)),	zf("<<C:1>>", GZNBId(tempZId.GDN.TI))},
-		SW  = { 8, 4733,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_SW)),		zf("<<C:1>>", GZNBId(tempZId.ZN.AD5)),	zf("<<C:1>>", GZNBId(tempZId.GDN.SW))},
-		SC1 = { 9, 4054,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_SC1)),	zf("<<C:1>>", GZNBId(tempZId.ZN.DC1)),	zf("<<C:1>>", GZNBId(tempZId.GDN.SC1))},
-		SC2 = {10, 4555,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_SC2)),	zf("<<C:1>>", GZNBId(tempZId.ZN.DC1)),	zf("<<C:1>>", GZNBId(tempZId.GDN.SC2))},
-		WS1 = {11, 4246,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_WS1)),	zf("<<C:1>>", GZNBId(tempZId.ZN.DC2)),	zf("<<C:1>>", GZNBId(tempZId.GDN.WS1))},
-		WS2 = {12, 4813,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_WS2)),	zf("<<C:1>>", GZNBId(tempZId.ZN.DC2)),	zf("<<C:1>>", GZNBId(tempZId.GDN.WS2))},
-		CH1 = {13, 4379,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_CH1)),	zf("<<C:1>>", GZNBId(tempZId.ZN.DC3)),	zf("<<C:1>>", GZNBId(tempZId.GDN.CH1))},
-		CH2 = {14, 5113,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_CH2)),	zf("<<C:1>>", GZNBId(tempZId.ZN.DC3)),	zf("<<C:1>>", GZNBId(tempZId.GDN.CH2))},
-		VF  = {15, 4432,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_VF)),		zf("<<C:1>>", GZNBId(tempZId.ZN.DC4)),	zf("<<C:1>>", GZNBId(tempZId.GDN.VF))},
-		BH  = {16, 4589,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_BH)),		zf("<<C:1>>", GZNBId(tempZId.ZN.DC5)),	zf("<<C:1>>", GZNBId(tempZId.GDN.BH))},
-		FG1 = {17, 3993,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_FG1)),	zf("<<C:1>>", GZNBId(tempZId.ZN.EP1)),	zf("<<C:1>>", GZNBId(tempZId.GDN.FG1))},
-		FG2 = {18, 4303,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_FG2)),	zf("<<C:1>>", GZNBId(tempZId.ZN.EP1)),	zf("<<C:1>>", GZNBId(tempZId.GDN.FG2))},
-		DC1 = {19, 4145,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_DC1)),	zf("<<C:1>>", GZNBId(tempZId.ZN.EP2)),	zf("<<C:1>>", GZNBId(tempZId.GDN.DC1))},
-		DC2 = {20, 4641,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_DC2)),	zf("<<C:1>>", GZNBId(tempZId.ZN.EP2)),	zf("<<C:1>>", GZNBId(tempZId.GDN.DC2))},
-		AC  = {21, 4202,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_AC)),		zf("<<C:1>>", GZNBId(tempZId.ZN.EP3)),	zf("<<C:1>>", GZNBId(tempZId.GDN.AC))},
-		DK  = {22, 4346,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_DK)),		zf("<<C:1>>", GZNBId(tempZId.ZN.EP4)),	zf("<<C:1>>", GZNBId(tempZId.GDN.DK))},
-		BC  = {23, 4469,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_BC)),		zf("<<C:1>>", GZNBId(tempZId.ZN.EP5)),	zf("<<C:1>>", GZNBId(tempZId.GDN.BC))},
-		VM  = {24, 4822,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_VM)),		zf("<<C:1>>", GZNBId(tempZId.ZN.CH)),	zf("<<C:1>>", GZNBId(tempZId.GDN.VM))},
-		ICP = {25, 5136,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_ICP)),	zf("<<C:1>>", GZNBId(tempZId.ZN.CYD)),	zf("<<C:1>>", GZNBId(tempZId.GDN.ICP))},
-		WGT = {26, 5342,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_WGT)),	zf("<<C:1>>", GZNBId(tempZId.ZN.CYD)),	zf("<<C:1>>", GZNBId(tempZId.GDN.WGT))},
-		CS  = {27, 5702,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_CS)),		zf("<<C:1>>", GZNBId(tempZId.ZN.EP3)),	zf("<<C:1>>", GZNBId(tempZId.GDN.CS))},
-		RM  = {28, 5403,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_RM)),		zf("<<C:1>>", GZNBId(tempZId.ZN.EP3)),	zf("<<C:1>>", GZNBId(tempZId.GDN.RM))},
-		BF  = {29, 5889,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_BF)),		zf("<<C:1>>", GZNBId(tempZId.ZN.CL)),	zf("<<C:1>>", GZNBId(tempZId.GDN.BF))},
-		FH  = {30, 5891,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_FH)),		zf("<<C:1>>", GZNBId(tempZId.ZN.CL)),	zf("<<C:1>>", GZNBId(tempZId.GDN.FH))},
-		FL  = {31, 6064,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_FL)),		zf("<<C:1>>", GZNBId(tempZId.ZN.DC5)),	zf("<<C:1>>", GZNBId(tempZId.GDN.FL))},
-		SP  = {32, 6065,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_SP)),		zf("<<C:1>>", GZNBId(tempZId.ZN.DC2)),	zf("<<C:1>>", GZNBId(tempZId.GDN.SP))},
-		MHK = {33, 6186,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_MHK)),	zf("<<C:1>>", GZNBId(tempZId.ZN.AD5)),	zf("<<C:1>>", GZNBId(tempZId.GDN.MHK))},
-		MOS = {34, 6188,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_MOS)),	zf("<<C:1>>", GZNBId(tempZId.ZN.AD3)),	zf("<<C:1>>", GZNBId(tempZId.GDN.MOS))},
-		DoM = {35, 6251,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_DoM)),	zf("<<C:1>>", GZNBId(tempZId.ZN.GC)),	zf("<<C:1>>", GZNBId(tempZId.GDN.DoM))},
-		FV  = {36, 6249,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_FV)),		zf("<<C:1>>", GZNBId(tempZId.ZN.EP4)),	zf("<<C:1>>", GZNBId(tempZId.GDN.FV))},
-		LM  = {37, 6351,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_LM)),		zf("<<C:1>>", GZNBId(tempZId.ZN.AD2)),	zf("<<C:1>>", GZNBId(tempZId.GDN.LM))},
-		MF  = {38, 6349,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_MF)),		zf("<<C:1>>", GZNBId(tempZId.ZN.NE)),	zf("<<C:1>>", GZNBId(tempZId.GDN.MF))},
-		IR  = {39, 6414,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_IR)),		zf("<<C:1>>", GZNBId(tempZId.ZN.RO)),	zf("<<C:1>>", GZNBId(tempZId.GDN.IR))},
-		UG  = {40, 6416,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_UG)),		zf("<<C:1>>", GZNBId(tempZId.ZN.DC5)),	zf("<<C:1>>", GZNBId(tempZId.GDN.UG))},
-		SG  = {41, 6505,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_SG)),		zf("<<C:1>>", GZNBId(tempZId.ZN.BGC)),	zf("<<C:1>>", GZNBId(tempZId.GDN.SG))},
-		CT  = {42, 6507,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_CT)),		zf("<<C:1>>", GZNBId(tempZId.ZN.WS)),	zf("<<C:1>>", GZNBId(tempZId.GDN.CT))},
-		BDV = {43, 6576,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_BDV)),	zf("<<C:1>>", GZNBId(tempZId.ZN.GC)),	zf("<<C:1>>", GZNBId(tempZId.GDN.BDV))},
-		TC  = {44, 6578,    0, zf("<<t:1>>", GS(USPF_QUEST_GD_TC)),		zf("<<C:1>>", GZNBId(tempZId.ZN.EP2)),	zf("<<C:1>>", GZNBId(tempZId.GDN.TC))},
+		BC1 = { 1, 4107},
+		BC2 = { 2, 4597},
+		EH1 = { 3, 4336},
+		EH2 = { 4, 4675},
+		CA1 = { 5, 4778},
+		CA2 = { 6, 5120},
+		TI  = { 7, 4538},
+		SW  = { 8, 4733},
+		SC1 = { 9, 4054},
+		SC2 = {10, 4555},
+		WS1 = {11, 4246},
+		WS2 = {12, 4813},
+		CH1 = {13, 4379},
+		CH2 = {14, 5113},
+		VF  = {15, 4432},
+		BH  = {16, 4589},
+		FG1 = {17, 3993},
+		FG2 = {18, 4303},
+		DC1 = {19, 4145},
+		DC2 = {20, 4641},
+		AC  = {21, 4202},
+		DK  = {22, 4346},
+		BC  = {23, 4469},
+		VM  = {24, 4822},
+		ICP = {25, 5136},
+		WGT = {26, 5342},
+		CS  = {27, 5702},
+		RM  = {28, 5403},
+		BF  = {29, 5889},
+		FH  = {30, 5891},
+		FL  = {31, 6064},
+		SP  = {32, 6065},
+		MHK = {33, 6186},
+		MOS = {34, 6188},
+		DoM = {35, 6251},
+		FV  = {36, 6249},
+		LM  = {37, 6351},
+		MF  = {38, 6349},
+		IR  = {39, 6414},
+		UG  = {40, 6416},
+		SG  = {41, 6505},
+		CT  = {42, 6507},
+		BDV = {43, 6576},
+		TC  = {44, 6578},
 	},
 	IC = {	--1175
-		{5482, 1175, zf("<<t:1>>", GS(USPF_QUEST_IC)),		1},
+		{5482, 1175},
 	},
 	MM = {	--2339
-		{6246, 2333, zf("<<t:1>>", GS(USPF_QUEST_MM_1)),	1},
-		{6266, 2334, zf("<<t:1>>", GS(USPF_QUEST_MM_2)),	1},
-		{6241, 2335, zf("<<t:1>>", GS(USPF_QUEST_MM_3)),	1},
-		{6259, 2336, zf("<<t:1>>", GS(USPF_QUEST_MM_4)),	1},
-		{6243, 2337, zf("<<t:1>>", GS(USPF_QUEST_MM_5)),	1},
-		{6244, 2338, zf("<<t:1>>", GS(USPF_QUEST_MM_6)),	1},
-		{6245, 2339, zf("<<t:1>>", GS(USPF_QUEST_MM_7)),	1},
+		{6246, 2333},
+		{6266, 2334},
+		{6241, 2335},
+		{6259, 2336},
+		{6243, 2337},
+		{6244, 2338},
+		{6245, 2339},
 	},
 	MW = {
-		{6003, 1852, zf("<<t:1>>", GS(USPF_QUEST_MW_1)),	1},
-		{5922, 1869, zf("<<t:1>>", GS(USPF_QUEST_MW_2)),	1},
-		{5948, 1870, zf("<<t:1>>", GS(USPF_QUEST_MW_3)),	1},
+		{6003, 1852},
+		{5922, 1869},
+		{5948, 1870},
 	},
 	MO = {
-		{5804,    0, zf("<<t:1>>", GS(USPF_QUEST_MO)),		1},
+		{5804,    0},
 	},
 	MQ = {	--1003
-		{4296,  993, zf("<<t:1>>", GS(USPF_QUEST_MQ_1)),	1},
-		{4831,  994, zf("<<t:1>>", GS(USPF_QUEST_MQ_2)),	1},
-		{4474,  995, zf("<<t:1>>", GS(USPF_QUEST_MQ_3)),	1},
-		{4552,  996, zf("<<t:1>>", GS(USPF_QUEST_MQ_4)),	1},
-		{4607,  997, zf("<<t:1>>", GS(USPF_QUEST_MQ_5)),	1},
-		{4764,  998, zf("<<t:1>>", GS(USPF_QUEST_MQ_6)),	1},
-		{4836,  999, zf("<<t:1>>", GS(USPF_QUEST_MQ_7)),	1},
-		{4837, 1000, zf("<<t:1>>", GS(USPF_QUEST_MQ_8)),	1},
-		{4867, 1001, zf("<<t:1>>", GS(USPF_QUEST_MQ_9)),	1},
-		{4832, 1002, zf("<<t:1>>", GS(USPF_QUEST_MQ_10)),	1},
-		{4847, 1003, zf("<<t:1>>", GS(USPF_QUEST_MQ_11)),	1},
+		{4296,  993},
+		{4831,  994},
+		{4474,  995},
+		{4552,  996},
+		{4607,  997},
+		{4764,  998},
+		{4836,  999},
+		{4837, 1000},
+		{4867, 1001},
+		{4832, 1002},
+		{4847, 1003},
 	},
 	NE = {	--2488
-		{6336, 2482, zf("<<t:1>>", GS(USPF_QUEST_NE_1)),	1},
-		{6304, 2485, zf("<<t:1>>", GS(USPF_QUEST_NE_2)),	1},
-		{6315, 2488, zf("<<t:1>>", GS(USPF_QUEST_NE_3)),	1},
+		{6336, 2482},
+		{6304, 2485},
+		{6315, 2488},
 	},
 	RO = {	--1260
-		{5447, 1325, zf("<<t:1>>", GS(USPF_QUEST_RO_1)),	1},
-		{5468, 1326, zf("<<t:1>>", GS(USPF_QUEST_RO_2)),	1},
-		{5481, 1327, zf("<<t:1>>", GS(USPF_QUEST_RO_3)),	1},
+		{5447, 1325},
+		{5468, 1326},
+		{5481, 1327},
 	},
 	TG = {	--1363
-		{5531, 1371, zf("<<t:1>>", GS(USPF_QUEST_TG_1)),	1},
-		{5534, 1360, zf("<<t:1>>", GS(USPF_QUEST_TG_2)),	1},
-		{5532, 1370, zf("<<t:1>>", GS(USPF_QUEST_TG_3)),	1},
-		{5556, 1361, zf("<<t:1>>", GS(USPF_QUEST_TG_4)),	1},
-		{5549, 1362, zf("<<t:1>>", GS(USPF_QUEST_TG_5)),	1},
-		{5545, 1363, zf("<<t:1>>", GS(USPF_QUEST_TG_6)),	1},
+		{5531, 1371},
+		{5534, 1360},
+		{5532, 1370},
+		{5556, 1361},
+		{5549, 1362},
+		{5545, 1363},
 	},
 	SE = {	--2604
-		{6401, 2596, zf("<<t:1>>", GS(USPF_QUEST_SE_1)),	1},
-		{6409,    0, zf("<<t:1>>", GS(USPF_QUEST_SE_2)),	1},
-		{6394, 2597, zf("<<t:1>>", GS(USPF_QUEST_SE_3)),	1},
-		{6399, 2598, zf("<<t:1>>", GS(USPF_QUEST_SE_4)),	1},
-		{6403, 2599, zf("<<t:1>>", GS(USPF_QUEST_SE_5)),	1},
-		{6404, 2600, zf("<<t:1>>", GS(USPF_QUEST_SE_6)),	1},
-		{6393, 2602, zf("<<t:1>>", GS(USPF_QUEST_SE_7)),	1},
-		{6397, 2603, zf("<<t:1>>", GS(USPF_QUEST_SE_8)),	1},
-		{6402, 2604, zf("<<t:1>>", GS(USPF_QUEST_SE_9)),	1},
+		{6401, 2596},
+		{6409,    0},
+		{6394, 2597},
+		{6399, 2598},
+		{6403, 2599},
+		{6404, 2600},
+		{6393, 2602},
+		{6397, 2603},
+		{6402, 2604},
 	},
 	SO = {
-		{6143,    0, zf("<<t:1>>", GS(USPF_QUEST_SO)),		1},
+		{6143,    0},
 	},
 	SU = {	--2208
-		{6132, 2203, zf("<<t:1>>", GS(USPF_QUEST_SU_1)),	1},
-		{6113, 2206, zf("<<t:1>>", GS(USPF_QUEST_SU_2)),	1},
-		{6126, 2208, zf("<<t:1>>", GS(USPF_QUEST_SU_3)),	1},
+		{6132, 2203},
+		{6113, 2206},
+		{6126, 2208},
 	},
 	WS = {	--2722
-		{6476, 2720, zf("<<t:1>>", GS(USPF_QUEST_WS_1)),	1},
-		{6466, 2722, zf("<<t:1>>", GS(USPF_QUEST_WS_2)),	1},
-		{6481, 2725, zf("<<t:1>>", GS(USPF_QUEST_WS_3)),	1},
+		{6476, 2720},
+		{6466, 2722},
+		{6481, 2725},
 	},
 	GO = {
-		{6455,    0, zf("<<t:1>>", GS(USPF_QUEST_GO)),		1},
+		{6455,    0},
 	},
 	BO = {
-		{6646,    0, zf("<<t:1>>", GS(USPF_QUEST_BO)),		1},
+		{6646,    0},
 	},
 	TR = {
-		{6550, 2930, zf("<<t:1>>", GS(USPF_QUEST_TR_1)),	1},
-		{6551, 2931, zf("<<t:1>>", GS(USPF_QUEST_TR_2)),	1},
-		{6547, 2932, zf("<<t:1>>", GS(USPF_QUEST_TR_3)),	1},
-		{6548, 2933, zf("<<t:1>>", GS(USPF_QUEST_TR_4)),	1},
-		{6554, 2934, zf("<<t:1>>", GS(USPF_QUEST_TR_5)),	1},
-		{6566, 2935, zf("<<t:1>>", GS(USPF_QUEST_TR_6)),	1},
-		{6552, 2937, zf("<<t:1>>", GS(USPF_QUEST_TR_7)),	1},
-		{6560, 2936, zf("<<t:1>>", GS(USPF_QUEST_TR_8)),	1},
-		{6570, 2939, zf("<<t:1>>", GS(USPF_QUEST_TR_9)),	1},
+		{6550, 2930},
+		{6551, 2931},
+		{6547, 2932},
+		{6548, 2933},
+		{6554, 2934},
+		{6566, 2935},
+		{6552, 2937},
+		{6560, 2936},
+		{6570, 2939},
 	},
 	BW = {
-		{6616, 3049, zf("<<t:1>>", GS(USPF_QUEST_BW_1)),	1},
-		{6619, 3051, zf("<<t:1>>", GS(USPF_QUEST_BW_2)),	1},
-		{6660, 3054, zf("<<t:1>>", GS(USPF_QUEST_BW_3)),	1},
+		{6616, 3049},
+		{6619, 3051},
+		{6660, 3054},
 	},
 	PD = {
-		AD1	= { 1,  468, zf("<<C:1>>", GZNBId(tempZId.ZN.AD1)), zf("<<C:1>>", GZNBId(tempZId.PDN.AD1))},
-		AD2	= { 2,  470, zf("<<C:1>>", GZNBId(tempZId.ZN.AD2)), zf("<<C:1>>", GZNBId(tempZId.PDN.AD2))},
-		AD3	= { 3,  445, zf("<<C:1>>", GZNBId(tempZId.ZN.AD3)), zf("<<C:1>>", GZNBId(tempZId.PDN.AD3))},
-		AD4	= { 4,  460, zf("<<C:1>>", GZNBId(tempZId.ZN.AD4)), zf("<<C:1>>", GZNBId(tempZId.PDN.AD4))},
-		AD5	= { 5,  469, zf("<<C:1>>", GZNBId(tempZId.ZN.AD5)), zf("<<C:1>>", GZNBId(tempZId.PDN.AD5))},
-		DC1	= { 6,  380, zf("<<C:1>>", GZNBId(tempZId.ZN.DC1)), zf("<<C:1>>", GZNBId(tempZId.PDN.DC1))},
-		DC2	= { 7,  714, zf("<<C:1>>", GZNBId(tempZId.ZN.DC2)), zf("<<C:1>>", GZNBId(tempZId.PDN.DC2))},
-		DC3	= { 8,  713, zf("<<C:1>>", GZNBId(tempZId.ZN.DC3)), zf("<<C:1>>", GZNBId(tempZId.PDN.DC3))},
-		DC4	= { 9,  707, zf("<<C:1>>", GZNBId(tempZId.ZN.DC4)), zf("<<C:1>>", GZNBId(tempZId.PDN.DC4))},
-		DC5	= {10,  708, zf("<<C:1>>", GZNBId(tempZId.ZN.DC5)), zf("<<C:1>>", GZNBId(tempZId.PDN.DC5))},
-		EP1	= {11,  379, zf("<<C:1>>", GZNBId(tempZId.ZN.EP1)), zf("<<C:1>>", GZNBId(tempZId.PDN.EP1))},
-		EP2	= {12,  388, zf("<<C:1>>", GZNBId(tempZId.ZN.EP2)), zf("<<C:1>>", GZNBId(tempZId.PDN.EP2))},
-		EP3	= {13,  372, zf("<<C:1>>", GZNBId(tempZId.ZN.EP3)), zf("<<C:1>>", GZNBId(tempZId.PDN.EP3))},
-		EP4	= {14,  381, zf("<<C:1>>", GZNBId(tempZId.ZN.EP4)), zf("<<C:1>>", GZNBId(tempZId.PDN.EP4))},
-		EP5	= {15,  371, zf("<<C:1>>", GZNBId(tempZId.ZN.EP5)), zf("<<C:1>>", GZNBId(tempZId.PDN.EP5))},
-		CH	= {16,  874, zf("<<C:1>>", GZNBId(tempZId.ZN.CH)),  zf("<<C:1>>", GZNBId(tempZId.PDN.CH))},
-		VFW	= {17, 1855, zf("<<C:1>>", GZNBId(tempZId.ZN.VV)),  zf("<<C:1>>", GZNBId(tempZId.PDN.VFW))},
-		VNC	= {18, 1846, zf("<<C:1>>", GZNBId(tempZId.ZN.VV)),  zf("<<C:1>>", GZNBId(tempZId.PDN.VNC))},
-		WOO	= {19, 1238, zf("<<C:1>>", GZNBId(tempZId.ZN.RO)),  zf("<<C:1>>", GZNBId(tempZId.PDN.WOO))},
-		WRK	= {20, 1235, zf("<<C:1>>", GZNBId(tempZId.ZN.RO)),  zf("<<C:1>>", GZNBId(tempZId.PDN.WRK))},
-		SKW	= {21, 2096, zf("<<C:1>>", GZNBId(tempZId.ZN.SU)),  zf("<<C:1>>", GZNBId(tempZId.PDN.SKW))},
-		SSH	= {22, 2095, zf("<<C:1>>", GZNBId(tempZId.ZN.SU)),  zf("<<C:1>>", GZNBId(tempZId.PDN.SSH))},
-		RN	= {23, 2444, zf("<<C:1>>", GZNBId(tempZId.ZN.NE)),  zf("<<C:1>>", GZNBId(tempZId.PDN.RN))},
-		OC	= {24, 2445, zf("<<C:1>>", GZNBId(tempZId.ZN.NE)),  zf("<<C:1>>", GZNBId(tempZId.PDN.OC))},
-		LT	= {25, 2714, zf("<<C:1>>", GZNBId(tempZId.ZN.WS)),  zf("<<C:1>>", GZNBId(tempZId.PDN.LT))},
-		NK	= {26, 2715, zf("<<C:1>>", GZNBId(tempZId.ZN.BGC)), zf("<<C:1>>", GZNBId(tempZId.PDN.NK))},
-		SH	= {27, 2994, zf("<<C:1>>", GZNBId(tempZId.ZN.BW)),  zf("<<C:1>>", GZNBId(tempZId.PDN.SH))},
-		ZA	= {28, 2995, zf("<<C:1>>", GZNBId(tempZId.ZN.BW)),  zf("<<C:1>>", GZNBId(tempZId.PDN.ZA))},
+		AD1	=  468,
+		AD2	=  470,
+		AD3	=  445,
+		AD4	=  460,
+		AD5	=  469,
+		DC1	=  380,
+		DC2	=  714,
+		DC3	=  713,
+		DC4	=  707,
+		DC5	=  708,
+		EP1	=  379,
+		EP2	=  388,
+		EP3	=  372,
+		EP4	=  381,
+		EP5	=  371,
+		CH	=  874,
+		VFW	= 1855,
+		VNC	= 1846,
+		WOO	= 1238,
+		WRK	= 1235,
+		SKW	= 2096,
+		SSH	= 2095,
+		RN	= 2444,
+		OC	= 2445,
+		LT	= 2714,
+		NK	= 2715,
+		SH	= 2994,
+		ZA	= 2995,
 	},
 	SS = {
-		MQ	 = { 1, 2521, zf("<<C:1>>", GZNBId(tempZId.ZN.WP))},
-		AD0	 = { 2,  431, zf("<<C:1>>", GZNBId(tempZId.ZN.AD0))},
-		AD1	 = { 3,  695, zf("<<C:1>>", GZNBId(tempZId.ZN.AD1))},
-		AD2	 = { 4,  682, zf("<<C:1>>", GZNBId(tempZId.ZN.AD2))},
-		AD3	 = { 5,  683, zf("<<C:1>>", GZNBId(tempZId.ZN.AD3))},
-		AD4	 = { 6,  684, zf("<<C:1>>", GZNBId(tempZId.ZN.AD4))},
-		AD5	 = { 7,  685, zf("<<C:1>>", GZNBId(tempZId.ZN.AD5))},
-		DC0a = { 8,  408, zf("<<C:1>>", GZNBId(tempZId.ZN.DC0A))},
-		DC0b = { 9,  407, zf("<<C:1>>", GZNBId(tempZId.ZN.DC0B))},
-		DC1	 = {10,  409, zf("<<C:1>>", GZNBId(tempZId.ZN.DC1))},
-		DC2	 = {11,  515, zf("<<C:1>>", GZNBId(tempZId.ZN.DC2))},
-		DC3	 = {12,  554, zf("<<C:1>>", GZNBId(tempZId.ZN.DC3))},
-		DC4	 = {13,  556, zf("<<C:1>>", GZNBId(tempZId.ZN.DC4))},
-		DC5	 = {14,  557, zf("<<C:1>>", GZNBId(tempZId.ZN.DC5))},
-		EP0a = {15,  405, zf("<<C:1>>", GZNBId(tempZId.ZN.EP0A))},
-		EP0b = {16,  398, zf("<<C:1>>", GZNBId(tempZId.ZN.EP0B))},
-		EP1	 = {17,  397, zf("<<C:1>>", GZNBId(tempZId.ZN.EP1))},
-		EP2	 = {18,  547, zf("<<C:1>>", GZNBId(tempZId.ZN.EP2))},
-		EP3	 = {19,  687, zf("<<C:1>>", GZNBId(tempZId.ZN.EP3))},
-		EP4	 = {20,  688, zf("<<C:1>>", GZNBId(tempZId.ZN.EP4))},
-		EP5	 = {21,  689, zf("<<C:1>>", GZNBId(tempZId.ZN.EP5))},
-		CH	 = {22,  686, zf("<<C:1>>", GZNBId(tempZId.ZN.CH))},
-		CAD	 = {23,  694, zf("<<C:1>>", GZNBId(tempZId.ZN.CAD))},
-		CDC	 = {24,  693, zf("<<C:1>>", GZNBId(tempZId.ZN.CDC))},
-		CEP	 = {25,  692, zf("<<C:1>>", GZNBId(tempZId.ZN.CEP))},
-		CMT	 = {26,  748, zf("<<C:1>>", GZNBId(tempZId.ZN.CMT))},
-		LCL	 = {27,  727, zf("<<C:1>>", GZNBId(tempZId.ZN.LCL))},
-		UCL	 = {28,  912, zf("<<C:1>>", GZNBId(tempZId.ZN.UCL))},
-		IC	 = {29, 1160, zf("<<C:1>>", GZNBId(tempZId.ZN.IC))},
-		WR	 = {30, 1320, zf("<<C:1>>", GZNBId(tempZId.ZN.RO))},
-		HB	 = {31, 1347, zf("<<C:1>>", GZNBId(tempZId.ZN.HB))},
-		GC	 = {32, 1342, zf("<<C:1>>", GZNBId(tempZId.ZN.GC))},
-		VV	 = {33, 1843, zf("<<C:1>>", GZNBId(tempZId.ZN.VV))},
-		CC	 = {34, 1844, zf("<<C:1>>", GZNBId(tempZId.ZN.CC))},
-		SU	 = {35, 1845, zf("<<C:1>>", GZNBId(tempZId.ZN.SU))},
-		MM	 = {36, 2291, zf("<<C:1>>", GZNBId(tempZId.ZN.MM))},
-		NE	 = {37, 2461, zf("<<C:1>>", GZNBId(tempZId.ZN.NE))},
-		SE	 = {38, 2562, zf("<<C:1>>", GZNBId(tempZId.ZN.SE))},
-		WS	 = {39, 2687, zf("<<C:1>>", GZNBId(tempZId.ZN.WS))},
-		TR	 = {40, 2857, zf("<<C:1>>", GZNBId(tempZId.ZN.TR))},
-		BW	 = {41, 2982, zf("<<C:1>>", GZNBId(tempZId.ZN.BW))},
+		MQ	 = 2521,
+		AD0	 =  431,
+		AD1	 =  695,
+		AD2	 =  682,
+		AD3	 =  683,
+		AD4	 =  684,
+		AD5	 =  685,
+		DC0a =  408,
+		DC0b =  407,
+		DC1	 =  409,
+		DC2	 =  515,
+		DC3	 =  554,
+		DC4	 =  556,
+		DC5	 =  557,
+		EP0a =  405,
+		EP0b =  398,
+		EP1	 =  397,
+		EP2	 =  547,
+		EP3	 =  687,
+		EP4	 =  688,
+		EP5	 =  689,
+		CH	 =  686,
+		CAD	 =  694,
+		CDC	 =  693,
+		CEP	 =  692,
+		CMT	 =  748,
+		LCL	 =  727,
+		UCL	 =  912,
+		IC	 = 1160,
+		WR	 = 1320,
+		HB	 = 1347,
+		GC	 = 1342,
+		VV	 = 1843,
+		CC	 = 1844,
+		SU	 = 1845,
+		MM	 = 2291,
+		NE	 = 2461,
+		SE	 = 2562,
+		WS	 = 2687,
+		TR	 = 2857,
+		BW	 = 2982,
 	},
 	racialLineIds = {
 		--RaceId	SkillLineId	Race
@@ -546,7 +545,7 @@ local function USPF_ResetSelectedCharacter()
 	if(selectedChar ~= GCCId()) then
 		USPF_GUI_Header_CharList.comboBox = USPF_GUI_Header_CharList.comboBox or ZO_ComboBox_ObjectFromContainer(USPF_GUI_Header_CharList)
 		local USPF_comboBox = USPF_GUI_Header_CharList.comboBox
-		
+
 		local name, id = nil, nil
 		for k,_ in ipairs(USPF.charData) do
 			name, _, _, _, _, _, id, _ = GetCharacterInfo(k)
@@ -562,18 +561,20 @@ end
 local function GetQuestTooltipText(zone)
 	quests = ""
 	for i = 1, #USPF.data[zone] do
+		local questName = GetQuestName(USPF.data[zone][i][1])
 		quests = quests..(selectedChar == GCCId() and (USPF.data[zone][i][2] == 0 and GCQI(USPF.data[zone][i][1]) ~= "" or IAchC(USPF.data[zone][i][2]))
-					and "|l0:1:0:-25%:2:ffffff|l"..USPF.data[zone][i][3].."|l"
-					or USPF.data[zone][i][3])..(i < #USPF.data[zone] and "\n" or "")
+					and "|l0:1:0:-25%:2:ffffff|l"..questName.."|l"
+					or questName)..(i < #USPF.data[zone] and "\n" or "")
 	end
 	return quests
 end
 
 local function GetGDQuestTooltipText(dungeon)
+	local questName = GetQuestName(USPF.data.GD[dungeon][2])
 	if(selectedChar == GCCId() and GCQI(USPF.data.GD[dungeon][2]) ~= "") then
-		return "|l0:1:0:-25%:2:ffffff|l"..USPF.data.GD[dungeon][4].."|l"
+		return "|l0:1:0:-25%:2:ffffff|l"..questName.."|l"
 	else
-		return USPF.data.GD[dungeon][4]
+		return questName
 	end
 end
 
@@ -631,7 +632,7 @@ local function USPF_UpdateGUITable()
 		TR   = GetQuestTooltipText("TR"),
 		BW   = GetQuestTooltipText("BW"),
 	}
-	
+
 	USPF.GUI = {
 		GSP = {
 			{ 1, GS(USPF_GUI_CHAR_LEVEL),	USPF.ptsData.Level,		USPF.ptsTots.Level,		GS(USPF_QUEST_NA)},
@@ -734,39 +735,39 @@ local function USPF_UpdateGUITable()
 			{40, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.UG)),	USPF.ptsData.GD.UG,		USPF.ptsTots.GD.UG,		GetGDQuestTooltipText("UG")},
 			{41, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BGC)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.SG)),	USPF.ptsData.GD.SG,		USPF.ptsTots.GD.SG,		GetGDQuestTooltipText("SG")},
 			{42, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.WS)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.CT)),	USPF.ptsData.GD.CT,		USPF.ptsTots.GD.CT,		GetGDQuestTooltipText("CT")},
-			{43, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.GC)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.BDV)),	USPF.ptsData.GD.BDV,	USPF.ptsTots.GD.BDV,		GetGDQuestTooltipText("BDV")},
+			{43, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.GC)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.BDV)),	USPF.ptsData.GD.BDV,	USPF.ptsTots.GD.BDV,	GetGDQuestTooltipText("BDV")},
 			{44, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.TC)),	USPF.ptsData.GD.TC,		USPF.ptsTots.GD.TC,		GetGDQuestTooltipText("TC")},
 		},
 		GDQ_T = strF("%s: %d/%d", GS(USPF_GUI_TOTAL), USPF.ptsData.GDTot, USPF.ptsTots.GDTot),
 		PDGBE = {
-			{ 1, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD1)),	USPF.ptsData.PD.AD1,	USPF.ptsTots.PD.AD1,	GetAchLink(USPF.data.PD.AD1[2])},
-			{ 2, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD2)),	USPF.ptsData.PD.AD2,	USPF.ptsTots.PD.AD2,	GetAchLink(USPF.data.PD.AD2[2])},
-			{ 3, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD3)),	USPF.ptsData.PD.AD3,	USPF.ptsTots.PD.AD3,	GetAchLink(USPF.data.PD.AD3[2])},
-			{ 4, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD4)),	USPF.ptsData.PD.AD4,	USPF.ptsTots.PD.AD4,	GetAchLink(USPF.data.PD.AD4[2])},
-			{ 5, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD5)),	USPF.ptsData.PD.AD5,	USPF.ptsTots.PD.AD5,	GetAchLink(USPF.data.PD.AD5[2])},
-			{ 6, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC1)),	USPF.ptsData.PD.DC1,	USPF.ptsTots.PD.DC1,	GetAchLink(USPF.data.PD.DC1[2])},
-			{ 7, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC2)),	USPF.ptsData.PD.DC2,	USPF.ptsTots.PD.DC2,	GetAchLink(USPF.data.PD.DC2[2])},
-			{ 8, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC3)),	USPF.ptsData.PD.DC3,	USPF.ptsTots.PD.DC3,	GetAchLink(USPF.data.PD.DC3[2])},
-			{ 9, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC4)),	USPF.ptsData.PD.DC4,	USPF.ptsTots.PD.DC4,	GetAchLink(USPF.data.PD.DC4[2])},
-			{10, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC5)),	USPF.ptsData.PD.DC5,	USPF.ptsTots.PD.DC5,	GetAchLink(USPF.data.PD.DC5[2])},
-			{11, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP1)),	USPF.ptsData.PD.EP1,	USPF.ptsTots.PD.EP1,	GetAchLink(USPF.data.PD.EP1[2])},
-			{12, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP2)),	USPF.ptsData.PD.EP2,	USPF.ptsTots.PD.EP2,	GetAchLink(USPF.data.PD.EP2[2])},
-			{13, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP3)),	USPF.ptsData.PD.EP3,	USPF.ptsTots.PD.EP3,	GetAchLink(USPF.data.PD.EP3[2])},
-			{14, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP4)),	USPF.ptsData.PD.EP4,	USPF.ptsTots.PD.EP4,	GetAchLink(USPF.data.PD.EP4[2])},
-			{15, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP5)),	USPF.ptsData.PD.EP5,	USPF.ptsTots.PD.EP5,	GetAchLink(USPF.data.PD.EP5[2])},
-			{16, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.CH)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.CH)),	USPF.ptsData.PD.CH,		USPF.ptsTots.PD.CH,		GetAchLink(USPF.data.PD.CH[2])},
-			{17, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.RO)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.WOO)),	USPF.ptsData.PD.WOO,	USPF.ptsTots.PD.WOO,	GetAchLink(USPF.data.PD.WOO[2])},
-			{18, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.RO)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.WRK)),	USPF.ptsData.PD.WRK,	USPF.ptsTots.PD.WRK,	GetAchLink(USPF.data.PD.WRK[2])},
-			{19, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.VV)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.VFW)),	USPF.ptsData.PD.VFW,	USPF.ptsTots.PD.VFW,	GetAchLink(USPF.data.PD.VFW[2])},
-			{20, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.VV)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.VNC)),	USPF.ptsData.PD.VNC,	USPF.ptsTots.PD.VNC,	GetAchLink(USPF.data.PD.VNC[2])},
-			{21, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.SU)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.SKW)),	USPF.ptsData.PD.SKW,	USPF.ptsTots.PD.SKW,	GetAchLink(USPF.data.PD.SKW[2])},
-			{22, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.SU)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.SSH)),	USPF.ptsData.PD.SSH,	USPF.ptsTots.PD.SSH,	GetAchLink(USPF.data.PD.SSH[2])},
-			{23, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.NE)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.OC)),	USPF.ptsData.PD.OC,		USPF.ptsTots.PD.OC,		GetAchLink(USPF.data.PD.OC[2])},
-			{24, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.NE)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.RN)),	USPF.ptsData.PD.RN,		USPF.ptsTots.PD.RN,		GetAchLink(USPF.data.PD.RN[2])},
-			{25, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.WS)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.LT)),	USPF.ptsData.PD.LT,		USPF.ptsTots.PD.LT,		GetAchLink(USPF.data.PD.LT[2])},
-			{26, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BGC)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.NK)),	USPF.ptsData.PD.NK,		USPF.ptsTots.PD.NK,		GetAchLink(USPF.data.PD.NK[2])},
-			{27, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BW)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.SH)),	USPF.ptsData.PD.SH,		USPF.ptsTots.PD.SH,		GetAchLink(USPF.data.PD.SH[2])},
-			{28, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BW)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.ZA)),	USPF.ptsData.PD.ZA,		USPF.ptsTots.PD.ZA,		GetAchLink(USPF.data.PD.ZA[2])},
+			{ 1, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD1)),	USPF.ptsData.PD.AD1,	USPF.ptsTots.PD.AD1,	GetAchLink(USPF.data.PD.AD1)},
+			{ 2, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD2)),	USPF.ptsData.PD.AD2,	USPF.ptsTots.PD.AD2,	GetAchLink(USPF.data.PD.AD2)},
+			{ 3, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD3)),	USPF.ptsData.PD.AD3,	USPF.ptsTots.PD.AD3,	GetAchLink(USPF.data.PD.AD3)},
+			{ 4, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD4)),	USPF.ptsData.PD.AD4,	USPF.ptsTots.PD.AD4,	GetAchLink(USPF.data.PD.AD4)},
+			{ 5, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD5)),	USPF.ptsData.PD.AD5,	USPF.ptsTots.PD.AD5,	GetAchLink(USPF.data.PD.AD5)},
+			{ 6, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC1)),	USPF.ptsData.PD.DC1,	USPF.ptsTots.PD.DC1,	GetAchLink(USPF.data.PD.DC1)},
+			{ 7, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC2)),	USPF.ptsData.PD.DC2,	USPF.ptsTots.PD.DC2,	GetAchLink(USPF.data.PD.DC2)},
+			{ 8, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC3)),	USPF.ptsData.PD.DC3,	USPF.ptsTots.PD.DC3,	GetAchLink(USPF.data.PD.DC3)},
+			{ 9, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC4)),	USPF.ptsData.PD.DC4,	USPF.ptsTots.PD.DC4,	GetAchLink(USPF.data.PD.DC4)},
+			{10, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC5)),	USPF.ptsData.PD.DC5,	USPF.ptsTots.PD.DC5,	GetAchLink(USPF.data.PD.DC5)},
+			{11, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP1)),	USPF.ptsData.PD.EP1,	USPF.ptsTots.PD.EP1,	GetAchLink(USPF.data.PD.EP1)},
+			{12, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP2)),	USPF.ptsData.PD.EP2,	USPF.ptsTots.PD.EP2,	GetAchLink(USPF.data.PD.EP2)},
+			{13, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP3)),	USPF.ptsData.PD.EP3,	USPF.ptsTots.PD.EP3,	GetAchLink(USPF.data.PD.EP3)},
+			{14, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP4)),	USPF.ptsData.PD.EP4,	USPF.ptsTots.PD.EP4,	GetAchLink(USPF.data.PD.EP4)},
+			{15, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP5)),	USPF.ptsData.PD.EP5,	USPF.ptsTots.PD.EP5,	GetAchLink(USPF.data.PD.EP5)},
+			{16, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.CH)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.CH)),	USPF.ptsData.PD.CH,		USPF.ptsTots.PD.CH,		GetAchLink(USPF.data.PD.CH)},
+			{17, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.RO)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.WOO)),	USPF.ptsData.PD.WOO,	USPF.ptsTots.PD.WOO,	GetAchLink(USPF.data.PD.WOO)},
+			{18, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.RO)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.WRK)),	USPF.ptsData.PD.WRK,	USPF.ptsTots.PD.WRK,	GetAchLink(USPF.data.PD.WRK)},
+			{19, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.VV)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.VFW)),	USPF.ptsData.PD.VFW,	USPF.ptsTots.PD.VFW,	GetAchLink(USPF.data.PD.VFW)},
+			{20, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.VV)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.VNC)),	USPF.ptsData.PD.VNC,	USPF.ptsTots.PD.VNC,	GetAchLink(USPF.data.PD.VNC)},
+			{21, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.SU)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.SKW)),	USPF.ptsData.PD.SKW,	USPF.ptsTots.PD.SKW,	GetAchLink(USPF.data.PD.SKW)},
+			{22, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.SU)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.SSH)),	USPF.ptsData.PD.SSH,	USPF.ptsTots.PD.SSH,	GetAchLink(USPF.data.PD.SSH)},
+			{23, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.NE)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.OC)),	USPF.ptsData.PD.OC,		USPF.ptsTots.PD.OC,		GetAchLink(USPF.data.PD.OC)},
+			{24, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.NE)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.RN)),	USPF.ptsData.PD.RN,		USPF.ptsTots.PD.RN,		GetAchLink(USPF.data.PD.RN)},
+			{25, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.WS)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.LT)),	USPF.ptsData.PD.LT,		USPF.ptsTots.PD.LT,		GetAchLink(USPF.data.PD.LT)},
+			{26, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BGC)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.NK)),	USPF.ptsData.PD.NK,		USPF.ptsTots.PD.NK,		GetAchLink(USPF.data.PD.NK)},
+			{27, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BW)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.SH)),	USPF.ptsData.PD.SH,		USPF.ptsTots.PD.SH,		GetAchLink(USPF.data.PD.SH)},
+			{28, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BW)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.ZA)),	USPF.ptsData.PD.ZA,		USPF.ptsTots.PD.ZA,		GetAchLink(USPF.data.PD.ZA)},
 		},
 		PDGBE_T = strF("%s: %d/%d", GS(USPF_GUI_TOTAL), USPF.ptsData.PDTot, USPF.ptsTots.PDTot),
 		CharacterTot = strF("%s: %d/%d", GS(USPF_GUI_CHAR_TOTAL), USPF.ptsData.Tot, USPF.ptsTots.Tot),
@@ -780,7 +781,7 @@ local function USPF_CheckSavedVars(value)
 		--Write the character settings table.
 		USPF.sVar.settings[charId] = {}
 		USPF.sVar.settings[charId] = USPF_LTF:CopyTable(USPF.settings)
-		
+
 		--Write the character points data table.
 		USPF.sVar.ptsData[charId] = {}
 		USPF.sVar.ptsData[charId] = USPF_LTF:CopyTable(USPF.ptsData)
@@ -790,7 +791,7 @@ end
 
 local function USPF_SetLevelPoints()
 	USPF.ptsData.Level = math.floor(GetUnitLevel("player")/5) + math.floor(GetUnitLevel("player")/10) + (GetUnitLevel("player") - 1)
-	
+
 	--Update saved variables.
 	if(USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar])) then
 		USPF.sVar.ptsData[selectedChar].Level = USPF.ptsData.Level
@@ -802,49 +803,49 @@ local function USPF_SetQuestPoints()
 	for i=1, #USPF.data.MQ do
 		USPF.ptsData.MainQ = USPF.ptsData.MainQ + (IAchC(USPF.data.MQ[i][2]) and USPF.data.MQ[i][4] or 0)
 	end
-	
+
 	--Morrowind Only Character Quest Skill Points
 	USPF.ptsData.MWChar = ((GCQI(USPF.data.MO[1][1]) ~= "" or USPF.settings.MWC) and USPF.data.MO[1][4] or 0)
-	
+
 	--Summerset Only Character Quest Skill Points
 	USPF.ptsData.SUChar = ((GCQI(USPF.data.SO[1][1]) ~= "" or USPF.settings.SSC) and USPF.data.SO[1][4] or 0)
-	
+
 	--Elsweyr Only Character Quest Skill Points
 	USPF.ptsData.EWChar = ((GCQI(USPF.data.EO[1][1]) ~= "" or USPF.settings.EWC) and USPF.data.EO[1][4] or 0)
-  
+
   	--Greymoor Only Character Quest Skill Points
 	USPF.ptsData.GMChar = ((GCQI(USPF.data.GO[1][1]) ~= "" or USPF.settings.GMC) and USPF.data.GO[1][4] or 0)
 
   	--Blackwood Only Character Quest Skill Points
 	USPF.ptsData.BWChar = ((GCQI(USPF.data.BO[1][1]) ~= "" or USPF.settings.BWC) and USPF.data.BO[1][4] or 0)
-	
+
 	for k,_ in pairs(USPF.ptsData.ZQ) do
 		if(USPF.data[k] ~= nil) then
 			for i=1, #USPF.data[k] do
-				USPF.ptsData.ZQ[k] = USPF.ptsData.ZQ[k] + ((USPF.data[k][i][2] == 0 and (GCQI(USPF.data[k][i][1]) ~= "") or IAchC(USPF.data[k][i][2])) and USPF.data[k][i][4] or 0)
+				USPF.ptsData.ZQ[k] = USPF.ptsData.ZQ[k] + ((USPF.data[k][i][2] == 0 and (GCQI(USPF.data[k][i][1]) ~= "") or IAchC(USPF.data[k][i][2])) and 1 or 0)
 			end
 			USPF.ptsData.ZQTot = USPF.ptsData.ZQTot + USPF.ptsData.ZQ[k]
 		end
 	end
-	
+
 	--Group Dungeon Quest Skill Points
 	for k,_ in pairs(USPF.ptsData.GD) do
 		USPF.ptsData.GD[k] = (GCQI(USPF.data.GD[k][2]) ~= "" and 1 or 0)
 		USPF.ptsData.GDTot = USPF.ptsData.GDTot + USPF.ptsData.GD[k]
 	end
-	
+
 	--Update saved variables for all.
 	if(USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar])) then
 		USPF.sVar.ptsData[selectedChar].MainQ = USPF.ptsData.MainQ
 		USPF.sVar.ptsData[selectedChar].MWChar = USPF.ptsData.MWChar
 		USPF.sVar.ptsData[selectedChar].SUChar = USPF.ptsData.SUChar
 		USPF.sVar.ptsData[selectedChar].EWChar = USPF.ptsData.EWChar
-		USPF.sVar.ptsData[selectedChar].GMChar = USPF.ptsData.GMChar		
-		USPF.sVar.ptsData[selectedChar].BWChar = USPF.ptsData.BWChar		
+		USPF.sVar.ptsData[selectedChar].GMChar = USPF.ptsData.GMChar
+		USPF.sVar.ptsData[selectedChar].BWChar = USPF.ptsData.BWChar
 
 		USPF.sVar.ptsData[selectedChar].ZQ = USPF_LTF:CopyTable(USPF.ptsData.ZQ)
 		USPF.sVar.ptsData[selectedChar].GD = USPF_LTF:CopyTable(USPF.ptsData.GD)
-		
+
 		USPF.sVar.ptsData[selectedChar].ZQTot = USPF.ptsData.ZQTot
 		USPF.sVar.ptsData[selectedChar].GDTot = USPF.ptsData.GDTot
 	end
@@ -852,10 +853,10 @@ end
 
 local function USPF_SetPublicDungeonPoints()
 	for k,_ in pairs(USPF.ptsData.PD) do
-		USPF.ptsData.PD[k] = (IAchC(USPF.data.PD[k][2]) and 1 or 0)
+		USPF.ptsData.PD[k] = (IAchC(USPF.data.PD[k]) and 1 or 0)
 		USPF.ptsData.PDTot = USPF.ptsData.PDTot + USPF.ptsData.PD[k]
 	end
-	
+
 	if(USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar])) then
 		--Update saved variables.
 		USPF.sVar.ptsData[selectedChar].PD		= USPF_LTF:CopyTable(USPF.ptsData.PD)
@@ -865,19 +866,19 @@ end
 
 local function USPF_SetSkyshardPoints()
 	for k,_ in pairs(USPF.ptsData.SS) do
-		if(IAchC(USPF.data.SS[k][2])) then USPF.ptsData.SS[k] = GAchNCr(USPF.data.SS[k][2])
+		if(IAchC(USPF.data.SS[k])) then USPF.ptsData.SS[k] = GAchNCr(USPF.data.SS[k])
 		else
-			for i = 1, GAchNCr(USPF.data.SS[k][2]) do
-				local _, numCompleted = GAchCr(USPF.data.SS[k][2], i)
+			for i = 1, GAchNCr(USPF.data.SS[k]) do
+				local _, numCompleted = GAchCr(USPF.data.SS[k], i)
 				if(numCompleted > 0) then USPF.ptsData.SS[k] = USPF.ptsData.SS[k] + 1 end
 			end
 		end
 		USPF.ptsData.numSSTot = USPF.ptsData.numSSTot + USPF.ptsData.SS[k]
 	end
-	
+
 	--Calculate the total and round for points.
 	USPF.ptsData.SSTot = math.floor(USPF.ptsData.numSSTot/3)
-	
+
 	if(USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar])) then
 		--Update saved variables for all.
 		USPF.sVar.ptsData[selectedChar].SS			= USPF_LTF:CopyTable(USPF.ptsData.SS)
@@ -927,7 +928,7 @@ local function USPF_GetReduceAbility(skillType, skillLine, skillIndex)
 		val = ((skillIndex == 2 and skillType == enchantingSkillType and skillLine == enchantingSkillLine) and 1 or val)
 		val = ((skillIndex == 2 and skillType == provisionSkillType and skillLine == provisionSkillLine) and 1 or val)
 	end
-	
+
 	if skillType == SKILL_TYPE_ARMOR then -- first armor passive is now free, as is the second for light and heavy armor
 		val = (skillIndex == 2 and 1 or val)
 		val = ((skillIndex == 3 and skillLine == ARMORTYPE_LIGHT) and 1 or val)
@@ -935,7 +936,7 @@ local function USPF_GetReduceAbility(skillType, skillLine, skillIndex)
 	end
 
 	val = ((USPF_IsValidRacialLine(skillType, skillLine) and skillIndex == 1) and 1 or val)
-	
+
 	if skillType == SKILL_TYPE_GUILD then
 		local name, _, _, skillLineId = GetSkillLineInfo(skillType, skillLine)
 		val = (skillLineId == DARK_BROTHERHOOD and (skillIndex == 1 and 1 or val) or val)
@@ -949,10 +950,10 @@ local function USPF_GetSkillSpentPoints(skillType, skillLine, skillIndex)
 	local skills = USPF.cache.skillTypes[skillType].lines[skillLine].skills
 	local _, _, _, _, _, purchased, progressionIndex = GetSkillAbilityInfo(skillType, skillLine, skillIndex)
 	local spent, possible, reduction
-	
+
 	if not purchased then spent = 0 end
 	reduction = USPF_GetReduceAbility(skillType, skillLine, skillIndex)
-	
+
 	if progressionIndex then
 		local _, morph = GetAbilityProgressionInfo(progressionIndex)
 		if not spent then
@@ -987,7 +988,7 @@ local function USPF_GetLineSpentPoints(skillType, skillLine)
 			line.total = line.total + spent[1]
 			line.possible = line.possible + spent[2]
 		end
-		
+
 		return line.total
 	end
 	return 0
@@ -1006,7 +1007,7 @@ end
 local function USPF_GetTotSkillPoints()
 	USPF.cache.skillTypes = {}
 	USPF.cache.total = GetAvailableSkillPoints()
-	
+
 	for skillType = 1, GetNumSkillTypes() do USPF.cache.total = USPF.cache.total + USPF_GetTypeSpentPoints(skillType) end
 	return USPF.cache.total
 end
@@ -1023,7 +1024,7 @@ local function USPF_SetFoliumDiscognitumPoints()
 								USPF.ptsData.PDTot
 		USPF.ptsData.FolDis = (skillPoints == skillPointsDiff + 2 and 2 or 0)
 	end
-	
+
 	--Update saved variables.
 	if(USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar])) then
 		USPF.sVar.ptsData[selectedChar].FolDis = USPF.ptsData.FolDis
@@ -1032,7 +1033,7 @@ end
 
 local function USPF_SetAllianceWarRankPoints()
 	USPF.ptsData.PvPRank = (GetUnitAvARank("player") == nil and 0 or GetUnitAvARank("player"))
-	
+
 	--Update saved variables.
 	if(USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar])) then
 		USPF.sVar.ptsData[selectedChar].PvPRank = USPF.ptsData.PvPRank
@@ -1041,7 +1042,7 @@ end
 
 local function USPF_SetMaelArPoints()
 	USPF.ptsData.MaelAr = (IAchC(USPF.data.MAAch) and 1 or 0)
-	
+
 	--Update saved variables.
 	if(USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar])) then
 		USPF.sVar.ptsData[selectedChar].MaelAr = USPF.ptsData.MaelAr
@@ -1049,10 +1050,10 @@ local function USPF_SetMaelArPoints()
 end
 
 local function USPF_SetGeneralPoints()
-	USPF.ptsData.GenTot =	USPF.ptsData.Level + USPF.ptsData.MainQ + USPF.ptsData.FolDis + USPF.ptsData.MWChar + 
+	USPF.ptsData.GenTot =	USPF.ptsData.Level + USPF.ptsData.MainQ + USPF.ptsData.FolDis + USPF.ptsData.MWChar +
 							USPF.ptsData.SUChar + USPF.ptsData.EWChar + USPF.ptsData.GMChar + USPF.ptsData.BWChar +
 							USPF.ptsData.PvPRank + USPF.ptsData.MaelAr
-	
+
 	--Update saved variables.
 	if(USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar])) then
 		USPF.sVar.ptsData[selectedChar].GenTot = USPF.ptsData.GenTot
@@ -1062,7 +1063,7 @@ end
 local function USPF_SetTotPoints()
 	USPF.ptsData.Tot =	USPF.ptsData.GenTot + USPF.ptsData.ZQTot + USPF.ptsData.SSTot +
 						USPF.ptsData.GDTot + USPF.ptsData.PDTot
-	
+
 	--Update saved variables.
 	if(USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar])) then
 		USPF.sVar.ptsData[selectedChar].Tot = USPF.ptsData.Tot
@@ -1075,17 +1076,17 @@ end
 
 local function USPF_LoadData(charId)
 	sVarPtsData = USPF.sVar.ptsData[charId]
-	
+
 	if(USPF.sVar.ptsData[charId] == nil) then
 		--Write the character settings table.
 		USPF.sVar.settings[charId] = {}
 		USPF.sVar.settings[charId] = USPF_LTF:CopyTable(USPF.settings)
-		
+
 		--Write the character points data table.
 		USPF.sVar.ptsData[charId] = {}
 		USPF.sVar.ptsData[charId] = USPF_LTF:CopyTable(USPF.ptsData)
 	end
-	
+
 	questTooltips = {
 		WP	 = GS(USPF_QUEST_NONE),
 		AD0	 = GS(USPF_QUEST_NONE),
@@ -1134,7 +1135,7 @@ local function USPF_LoadData(charId)
 		TR   = GetQuestTooltipText("TR"),
 		BW   = GetQuestTooltipText("BW"),
 	}
-	
+
 	USPF.GUI = {
 		GSP = {
 			{ 1, GS(USPF_GUI_CHAR_LEVEL),	GetSV(sVarPtsData.Level),	USPF.ptsTots.Level,		GS(USPF_QUEST_NA)},
@@ -1242,34 +1243,34 @@ local function USPF_LoadData(charId)
 		},
 		GDQ_T = strF("%s: %d/%d", GS(USPF_GUI_TOTAL), sVarPtsData.GDTot, USPF.ptsTots.GDTot),
 		PDGBE = {
-			{ 1, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD1)),	GetSV(sVarPtsData.PD.AD1),	USPF.ptsTots.PD.AD1,	GetAchLink(USPF.data.PD.AD1[2])},
-			{ 2, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD2)),	GetSV(sVarPtsData.PD.AD2),	USPF.ptsTots.PD.AD2,	GetAchLink(USPF.data.PD.AD2[2])},
-			{ 3, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD3)),	GetSV(sVarPtsData.PD.AD3),	USPF.ptsTots.PD.AD3,	GetAchLink(USPF.data.PD.AD3[2])},
-			{ 4, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD4)),	GetSV(sVarPtsData.PD.AD4),	USPF.ptsTots.PD.AD4,	GetAchLink(USPF.data.PD.AD4[2])},
-			{ 5, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD5)),	GetSV(sVarPtsData.PD.AD5),	USPF.ptsTots.PD.AD5,	GetAchLink(USPF.data.PD.AD5[2])},
-			{ 6, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC1)),	GetSV(sVarPtsData.PD.DC1),	USPF.ptsTots.PD.DC1,	GetAchLink(USPF.data.PD.DC1[2])},
-			{ 7, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC2)),	GetSV(sVarPtsData.PD.DC2),	USPF.ptsTots.PD.DC2,	GetAchLink(USPF.data.PD.DC2[2])},
-			{ 8, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC3)),	GetSV(sVarPtsData.PD.DC3),	USPF.ptsTots.PD.DC3,	GetAchLink(USPF.data.PD.DC3[2])},
-			{ 9, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC4)),	GetSV(sVarPtsData.PD.DC4),	USPF.ptsTots.PD.DC4,	GetAchLink(USPF.data.PD.DC4[2])},
-			{10, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC5)),	GetSV(sVarPtsData.PD.DC5),	USPF.ptsTots.PD.DC5,	GetAchLink(USPF.data.PD.DC5[2])},
-			{11, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP1)),	GetSV(sVarPtsData.PD.EP1),	USPF.ptsTots.PD.EP1,	GetAchLink(USPF.data.PD.EP1[2])},
-			{12, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP2)),	GetSV(sVarPtsData.PD.EP2),	USPF.ptsTots.PD.EP2,	GetAchLink(USPF.data.PD.EP2[2])},
-			{13, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP3)),	GetSV(sVarPtsData.PD.EP3),	USPF.ptsTots.PD.EP3,	GetAchLink(USPF.data.PD.EP3[2])},
-			{14, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP4)),	GetSV(sVarPtsData.PD.EP4),	USPF.ptsTots.PD.EP4,	GetAchLink(USPF.data.PD.EP4[2])},
-			{15, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP5)),	GetSV(sVarPtsData.PD.EP5),	USPF.ptsTots.PD.EP5,	GetAchLink(USPF.data.PD.EP5[2])},
-			{16, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.CH)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.CH)),	GetSV(sVarPtsData.PD.CH),	USPF.ptsTots.PD.CH,		GetAchLink(USPF.data.PD.CH[2])},
-			{17, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.RO)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.WOO)),	GetSV(sVarPtsData.PD.WOO),	USPF.ptsTots.PD.WOO,	GetAchLink(USPF.data.PD.WOO[2])},
-			{18, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.RO)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.WRK)),	GetSV(sVarPtsData.PD.WRK),	USPF.ptsTots.PD.WRK,	GetAchLink(USPF.data.PD.WRK[2])},
-			{19, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.VV)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.VFW)),	GetSV(sVarPtsData.PD.VFW),	USPF.ptsTots.PD.VFW,	GetAchLink(USPF.data.PD.VFW[2])},
-			{20, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.VV)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.VNC)),	GetSV(sVarPtsData.PD.VNC),	USPF.ptsTots.PD.VNC,	GetAchLink(USPF.data.PD.VNC[2])},
-			{21, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.SU)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.SKW)),	GetSV(sVarPtsData.PD.SKW),	USPF.ptsTots.PD.SKW,	GetAchLink(USPF.data.PD.SKW[2])},
-			{22, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.SU)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.SSH)),	GetSV(sVarPtsData.PD.SSH),	USPF.ptsTots.PD.SSH,	GetAchLink(USPF.data.PD.SSH[2])},
-			{23, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.NE)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.OC)),	GetSV(sVarPtsData.PD.OC),	USPF.ptsTots.PD.OC,		GetAchLink(USPF.data.PD.OC[2])},
-			{24, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.NE)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.RN)),	GetSV(sVarPtsData.PD.RN),	USPF.ptsTots.PD.RN,		GetAchLink(USPF.data.PD.RN[2])},
-			{25, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.WS)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.LT)),	GetSV(sVarPtsData.PD.LT),	USPF.ptsTots.PD.LT,		GetAchLink(USPF.data.PD.LT[2])},
-			{26, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BGC)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.NK)),	GetSV(sVarPtsData.PD.NK),	USPF.ptsTots.PD.NK,		GetAchLink(USPF.data.PD.NK[2])},
-			{27, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BW)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.SH)),	GetSV(sVarPtsData.PD.SH),	USPF.ptsTots.PD.SH,		GetAchLink(USPF.data.PD.SH[2])},
-			{28, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BW)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.ZA)),	GetSV(sVarPtsData.PD.ZA),	USPF.ptsTots.PD.ZA,		GetAchLink(USPF.data.PD.ZA[2])},
+			{ 1, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD1)),	GetSV(sVarPtsData.PD.AD1),	USPF.ptsTots.PD.AD1,	GetAchLink(USPF.data.PD.AD1)},
+			{ 2, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD2)),	GetSV(sVarPtsData.PD.AD2),	USPF.ptsTots.PD.AD2,	GetAchLink(USPF.data.PD.AD2)},
+			{ 3, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD3)),	GetSV(sVarPtsData.PD.AD3),	USPF.ptsTots.PD.AD3,	GetAchLink(USPF.data.PD.AD3)},
+			{ 4, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD4)),	GetSV(sVarPtsData.PD.AD4),	USPF.ptsTots.PD.AD4,	GetAchLink(USPF.data.PD.AD4)},
+			{ 5, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD5)),	GetSV(sVarPtsData.PD.AD5),	USPF.ptsTots.PD.AD5,	GetAchLink(USPF.data.PD.AD5)},
+			{ 6, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC1)),	GetSV(sVarPtsData.PD.DC1),	USPF.ptsTots.PD.DC1,	GetAchLink(USPF.data.PD.DC1)},
+			{ 7, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC2)),	GetSV(sVarPtsData.PD.DC2),	USPF.ptsTots.PD.DC2,	GetAchLink(USPF.data.PD.DC2)},
+			{ 8, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC3)),	GetSV(sVarPtsData.PD.DC3),	USPF.ptsTots.PD.DC3,	GetAchLink(USPF.data.PD.DC3)},
+			{ 9, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC4)),	GetSV(sVarPtsData.PD.DC4),	USPF.ptsTots.PD.DC4,	GetAchLink(USPF.data.PD.DC4)},
+			{10, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC5)),	GetSV(sVarPtsData.PD.DC5),	USPF.ptsTots.PD.DC5,	GetAchLink(USPF.data.PD.DC5)},
+			{11, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP1)),	GetSV(sVarPtsData.PD.EP1),	USPF.ptsTots.PD.EP1,	GetAchLink(USPF.data.PD.EP1)},
+			{12, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP2)),	GetSV(sVarPtsData.PD.EP2),	USPF.ptsTots.PD.EP2,	GetAchLink(USPF.data.PD.EP2)},
+			{13, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP3)),	GetSV(sVarPtsData.PD.EP3),	USPF.ptsTots.PD.EP3,	GetAchLink(USPF.data.PD.EP3)},
+			{14, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP4)),	GetSV(sVarPtsData.PD.EP4),	USPF.ptsTots.PD.EP4,	GetAchLink(USPF.data.PD.EP4)},
+			{15, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP5)),	GetSV(sVarPtsData.PD.EP5),	USPF.ptsTots.PD.EP5,	GetAchLink(USPF.data.PD.EP5)},
+			{16, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.CH)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.CH)),	GetSV(sVarPtsData.PD.CH),	USPF.ptsTots.PD.CH,		GetAchLink(USPF.data.PD.CH)},
+			{17, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.RO)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.WOO)),	GetSV(sVarPtsData.PD.WOO),	USPF.ptsTots.PD.WOO,	GetAchLink(USPF.data.PD.WOO)},
+			{18, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.RO)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.WRK)),	GetSV(sVarPtsData.PD.WRK),	USPF.ptsTots.PD.WRK,	GetAchLink(USPF.data.PD.WRK)},
+			{19, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.VV)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.VFW)),	GetSV(sVarPtsData.PD.VFW),	USPF.ptsTots.PD.VFW,	GetAchLink(USPF.data.PD.VFW)},
+			{20, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.VV)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.VNC)),	GetSV(sVarPtsData.PD.VNC),	USPF.ptsTots.PD.VNC,	GetAchLink(USPF.data.PD.VNC)},
+			{21, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.SU)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.SKW)),	GetSV(sVarPtsData.PD.SKW),	USPF.ptsTots.PD.SKW,	GetAchLink(USPF.data.PD.SKW)},
+			{22, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.SU)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.SSH)),	GetSV(sVarPtsData.PD.SSH),	USPF.ptsTots.PD.SSH,	GetAchLink(USPF.data.PD.SSH)},
+			{23, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.NE)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.OC)),	GetSV(sVarPtsData.PD.OC),	USPF.ptsTots.PD.OC,		GetAchLink(USPF.data.PD.OC)},
+			{24, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.NE)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.RN)),	GetSV(sVarPtsData.PD.RN),	USPF.ptsTots.PD.RN,		GetAchLink(USPF.data.PD.RN)},
+			{25, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.WS)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.LT)),	GetSV(sVarPtsData.PD.LT),	USPF.ptsTots.PD.LT,		GetAchLink(USPF.data.PD.LT)},
+			{26, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BGC)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.NK)),	GetSV(sVarPtsData.PD.NK),	USPF.ptsTots.PD.NK,		GetAchLink(USPF.data.PD.NK)},
+			{27, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BW)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.SH)),	GetSV(sVarPtsData.PD.SH),	USPF.ptsTots.PD.SH,		GetAchLink(USPF.data.PD.SH)},
+			{28, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BW)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.ZA)),	GetSV(sVarPtsData.PD.ZA),	USPF.ptsTots.PD.ZA,		GetAchLink(USPF.data.PD.ZA)},
 		},
 		PDGBE_T = strF("%s: %d/%d", GS(USPF_GUI_TOTAL), sVarPtsData.PDTot, USPF.ptsTots.PDTot),
 		CharacterTot = strF("%s: %d/%d", GS(USPF_GUI_CHAR_TOTAL), sVarPtsData.Tot, USPF.ptsTots.Tot),
@@ -1280,37 +1281,37 @@ local function USPF_SetupData(charId)
 	if(charId == GCCId()) then
 		--Reset All Points to Zero.
 		USPF.ptsData = USPF_LTF:SimpleResetTable(USPF.ptsData, 0)
-		
+
 		--Update Level Points.
 		USPF_SetLevelPoints()
-		
+
 		--Update Quest Points.
 		USPF_SetQuestPoints()
-		
+
 		--Update Public Dungeon Points.
 		USPF_SetPublicDungeonPoints()
 
 		--Update Skyshard Points.
 		USPF_SetSkyshardPoints()
-		
+
 		--Update Alliance War Rank Points.
 		USPF_SetAllianceWarRankPoints()
-		
+
 		--Update MaelAr Arena Point.
 		USPF_SetMaelArPoints()
-		
+
 		--Update Folium Discognitum Points.
 		USPF_SetFoliumDiscognitumPoints()
-		
+
 		--Update General Points.
 		USPF_SetGeneralPoints()
-		
+
 		--Update Tot Points.
 		USPF_SetTotPoints()
-		
+
 		--Update the GUI Table.
 		USPF_UpdateGUITable()
-		
+
 		--Update the saved variables.
 		USPF_UpdateAllSavedVars()
 	else
@@ -1321,9 +1322,9 @@ end
 
 function USPF:UpdateDataLines()
 	local dataLines_GSP, dataLines_SQS, dataLines_GDQ, dataLines_PDGBE, tempTable = {},{},{},{},{}
-	
+
 	USPF_SetupData(selectedChar)
-	
+
 	for i = 1, #USPF.GUI.GSP do
 		table.insert(dataLines_GSP, {
 			source = USPF.GUI.GSP[i][2],
@@ -1332,7 +1333,7 @@ function USPF:UpdateDataLines()
 					strF("%s%d/%d|r", USPF_rgbToHex(USPF.settings.GSP.doneColor), USPF.GUI.GSP[i][3], USPF.GUI.GSP[i][4])))
 		})
 	end
-	
+
 	tempTable = USPF_LTF:SortTable(USPF.GUI.SQS, USPF.settings.SQS.sortCol)
 	for i = 1, #tempTable do
 		table.insert(dataLines_SQS, {
@@ -1347,7 +1348,7 @@ function USPF:UpdateDataLines()
 					strF("%s%d/%d|r", USPF_rgbToHex(USPF.settings.SQS.doneColorSS), tempTable[i][5], tempTable[i][6]))),
 		})
 	end
-	
+
 	tempTable = USPF_LTF:SortTable(USPF.GUI.GDQ, USPF.settings.GDQ.sortCol)
 	for i = 1, #tempTable do
 		table.insert(dataLines_GDQ, {
@@ -1356,7 +1357,7 @@ function USPF:UpdateDataLines()
 			progress = (tempTable[i][4] < tempTable[i][5] and strF("%s%d/%d|r", USPF_rgbToHex(USPF.settings.GDQ.needColor), tempTable[i][4], tempTable[i][5]) or strF("%s%d/%d|r", USPF_rgbToHex(USPF.settings.GDQ.doneColor), tempTable[i][4], tempTable[i][5])),
 		})
 	end
-	
+
 	tempTable = USPF_LTF:SortTable(USPF.GUI.PDGBE, USPF.settings.PDB.sortCol)
 	for i = 1, #tempTable do
 		table.insert(dataLines_PDGBE, {
@@ -1365,30 +1366,30 @@ function USPF:UpdateDataLines()
 			progress = (tempTable[i][4] < tempTable[i][5] and strF("%s%d/%d|r", USPF_rgbToHex(USPF.settings.PDB.needColor), tempTable[i][4], tempTable[i][5]) or strF("%s%d/%d|r", USPF_rgbToHex(USPF.settings.PDB.doneColor), tempTable[i][4], tempTable[i][5])),
 		})
 	end
-	
-	
+
+
 	USPF_GUI_Header_Title:SetText(GS(USPF_GUI_TITLE))
 	USPF_GUI_Body_GSP:SetText(GS(USPF_GUI_GSP))
 	USPF_GUI_Body_GSP_Source:SetText(GS(USPF_GUI_SOURCE))
 	USPF_GUI_Body_GSP_Progress:SetText(GS(USPF_GUI_PROGRESS))
-	
+
 	USPF_GUI_Body_SQS:SetText(GS(USPF_GUI_SQS))
 	USPF_GUI_Body_SQS_Z:SetText(GS(USPF_GUI_ZONE))
 	USPF_GUI_Body_SQS_SL:SetText(GS(USPF_GUI_STORYLINE))
 	USPF_GUI_Body_SQS_SS:SetText(GS(USPF_GUI_SKYSHARDS))
 	USPF_GUI_Body_SQS_Z_T:SetText(GS(USPF_GUI_TOTAL..":"))
-	
+
 	USPF_GUI_Body_GDQ:SetText(GS(USPF_GUI_GDQ))
 	USPF_GUI_Body_GDQ_Z:SetText(GS(USPF_GUI_ZONE))
 	USPF_GUI_Body_GDQ_D:SetText(GS(USPF_GUI_GROUP_DUNGEON))
 	USPF_GUI_Body_GDQ_P:SetText(GS(USPF_GUI_PROGRESS))
-	
+
 	USPF_GUI_Body_PDGBE:SetText(GS(USPF_GUI_PDB))
 	USPF_GUI_Body_PDGBE_Z:SetText(GS(USPF_GUI_ZONE))
 	USPF_GUI_Body_PDGBE_D:SetText(GS(USPF_GUI_PUBLIC_DUNGEON))
 	USPF_GUI_Body_PDGBE_P:SetText(GS(USPF_GUI_PROGRESS))
-	
-	
+
+
 	USPF_GUI_Body_GSP_ListHolder.dataLines = dataLines_GSP
 	USPF_GUI_Body_GSP_ListHolder:SetParent(USPF_GUI_Body)
 	USPF_GUI_Body_SQS_ListHolder.dataLines = dataLines_SQS
@@ -1397,20 +1398,20 @@ function USPF:UpdateDataLines()
 	USPF_GUI_Body_GDQ_ListHolder:SetParent(USPF_GUI_Body)
 	USPF_GUI_Body_PDGBE_ListHolder.dataLines = dataLines_PDGBE
 	USPF_GUI_Body_PDGBE_ListHolder:SetParent(USPF_GUI_Body)
-	
+
 	USPF_GUI_Body_GSP_T:SetText(USPF.GUI.GSP_T)
 	USPF_GUI_Body_SQS_SL_T:SetText(USPF.GUI.SQS_SL_T)
 	USPF_GUI_Body_SQS_SS_T:SetText(USPF.GUI.SQS_SS_T)
 	USPF_GUI_Body_GDQ_T:SetText(USPF.GUI.GDQ_T)
 	USPF_GUI_Body_PDGBE_T:SetText(USPF.GUI.PDGBE_T)
 	USPF_GUI_Footer_CharacterTotal:SetText(USPF.GUI.CharacterTot)
-	
+
 	USPF:InitializeDataLines()
 end
 
 function USPF:FillLine(currLine, currItem)
 	local cln, clsrc, clz, clq, clss, cld, clp, cisrc, ciz, ciq, ciss, cid, cip = currLine:GetParent():GetName(), currLine.source, currLine.zone, currLine.quests, currLine.skyshards, currLine.dungeon, currLine.progress, currItem.source, currItem.zone, currItem.quests, currItem.skyshards, currItem.dungeon, currItem.progress
-	
+
 	if currItem == nil then
 		if(cln == "USPF_GUI_Body_GSP_ListHolder") then
 			clsrc:SetText("")
@@ -1454,56 +1455,56 @@ function USPF:InitializeDataLines()
 		currLine = USPF_GUI_Body_GSP_ListHolder.lines[i]
 		currData = USPF_GUI_Body_GSP_ListHolder.dataLines[i]
 		USPF:FillLine(currLine, (currData ~= nil and currData or nil))
-		
+
 		if(USPF.GUI.GSP[i][5] ~= nil) then
 			-- tooltip text
 			USPF_GUI_Body_GSP_ListHolder.lines[i].data = {tooltipText = USPF.GUI.GSP[i][5]}
-			
+
 			-- tooltip handlers
 			USPF_GUI_Body_GSP_ListHolder.lines[i]:SetHandler("OnMouseEnter", ZO_Options_OnMouseEnter)
 			USPF_GUI_Body_GSP_ListHolder.lines[i]:SetHandler("OnMouseExit", ZO_Options_OnMouseExit)
 		end
 	end
-	
+
 	for i = 1, #USPF.GUI.SQS do
 		currLine = USPF_GUI_Body_SQS_ListHolder.lines[i]
 		currData = USPF_GUI_Body_SQS_ListHolder.dataLines[i]
 		USPF:FillLine(currLine, (currData ~= nil and currData or nil))
-		
+
 		if(USPF.GUI.SQS[i][7] ~= nil) then
 			-- tooltip text
 			USPF_GUI_Body_SQS_ListHolder.lines[i].data = {tooltipText = USPF.GUI.SQS[i][7]}
-			
+
 			-- tooltip handlers
 			USPF_GUI_Body_SQS_ListHolder.lines[i]:SetHandler("OnMouseEnter", ZO_Options_OnMouseEnter)
 			USPF_GUI_Body_SQS_ListHolder.lines[i]:SetHandler("OnMouseExit", ZO_Options_OnMouseExit)
 		end
 	end
-	
+
 	for i = 1, #USPF.GUI.GDQ do
 		currLine = USPF_GUI_Body_GDQ_ListHolder.lines[i]
 		currData = USPF_GUI_Body_GDQ_ListHolder.dataLines[i]
 		USPF:FillLine(currLine, (currData ~= nil and currData or nil))
-		
+
 		if(USPF.GUI.GDQ[i][6] ~= nil) then
 			-- tooltip text
 			USPF_GUI_Body_GDQ_ListHolder.lines[i].data = {tooltipText = USPF.GUI.GDQ[i][6]}
-			
+
 			-- tooltip handlers
 			USPF_GUI_Body_GDQ_ListHolder.lines[i]:SetHandler("OnMouseEnter", ZO_Options_OnMouseEnter)
 			USPF_GUI_Body_GDQ_ListHolder.lines[i]:SetHandler("OnMouseExit", ZO_Options_OnMouseExit)
 		end
 	end
-	
+
 	for i = 1, #USPF.GUI.PDGBE do
 		currLine = USPF_GUI_Body_PDGBE_ListHolder.lines[i]
 		currData = USPF_GUI_Body_PDGBE_ListHolder.dataLines[i]
 		USPF:FillLine(currLine, (currData ~= nil and currData or nil))
-		
+
 		if(USPF.GUI.PDGBE[i][6] ~= nil) then
 			-- tooltip text
 			USPF_GUI_Body_PDGBE_ListHolder.lines[i].data = {tooltipText = USPF.GUI.PDGBE[i][6]}
-			
+
 			-- tooltip handlers
 			USPF_GUI_Body_PDGBE_ListHolder.lines[i]:SetHandler("OnMouseEnter", ZO_Options_OnMouseEnter)
 			USPF_GUI_Body_PDGBE_ListHolder.lines[i]:SetHandler("OnMouseExit", ZO_Options_OnMouseExit)
@@ -1521,17 +1522,17 @@ end
 function USPF:CreateLine(i, USPF_predecessor, USPF_parent)
 	if(USPF_parent:GetName() == "USPF_GUI_Body_GSP_ListHolder") then
 		local USPF_record = CreateControlFromVirtual("USPF_GSP_Row_", USPF_parent, "USPF_GeneralTemplate", i)
-		
+
 		USPF_record.source = USPF_record:GetNamedChild("_Source")
 		USPF_record.progress = USPF_record:GetNamedChild("_Progress")
-		
+
 		USPF_record.source:SetFont(USPF.Options.Font.Fonts[USPF.settings.GSP.font].."|14")
 		USPF_record.progress:SetFont(USPF.Options.Font.Fonts[USPF.settings.GSP.font].."|14")
-		
+
 		USPF_record:SetHidden(false)
 		USPF_record:SetMouseEnabled(true)
 		USPF_record:SetHeight("18")
-		
+
 		if i == 1 then
 			USPF_record:SetAnchor(TOPLEFT, USPF_GUI_Body_GSP_ListHolder, TOPLEFT, 0, 0)
 			USPF_record:SetAnchor(TOPRIGHT, USPF_GUI_Body_GSP_ListHolder, TOPRIGHT, 0, 0)
@@ -1543,19 +1544,19 @@ function USPF:CreateLine(i, USPF_predecessor, USPF_parent)
 		return USPF_record
 	elseif(USPF_parent:GetName() == "USPF_GUI_Body_SQS_ListHolder") then
 		local USPF_record = CreateControlFromVirtual("USPF_SQS_Row_", USPF_parent, "USPF_SQSSTemplate", i)
-		
+
 		USPF_record.zone = USPF_record:GetNamedChild("_Zone")
 		USPF_record.quests = USPF_record:GetNamedChild("_Quests")
 		USPF_record.skyshards = USPF_record:GetNamedChild("_Skyshards")
-		
+
 		USPF_record.zone:SetFont(USPF.Options.Font.Fonts[USPF.settings.SQS.font].."|14")
 		USPF_record.quests:SetFont(USPF.Options.Font.Fonts[USPF.settings.SQS.font].."|14")
 		USPF_record.skyshards:SetFont(USPF.Options.Font.Fonts[USPF.settings.SQS.font].."|14")
-		
+
 		USPF_record:SetHidden(false)
 		USPF_record:SetMouseEnabled(true)
 		USPF_record:SetHeight("18")
-		
+
 		if i == 1 then
 			USPF_record:SetAnchor(TOPLEFT, USPF_GUI_Body_SQS_ListHolder, TOPLEFT, 0, 0)
 			USPF_record:SetAnchor(TOPRIGHT, USPF_GUI_Body_SQS_ListHolder, TOPRIGHT, 0, 0)
@@ -1567,19 +1568,19 @@ function USPF:CreateLine(i, USPF_predecessor, USPF_parent)
 		return USPF_record
 	elseif(USPF_parent:GetName() == "USPF_GUI_Body_GDQ_ListHolder") then
 		local USPF_record = CreateControlFromVirtual("USPF_GDQ_Row_", USPF_parent, "USPF_GDQTemplate", i)
-		
+
 		USPF_record.zone = USPF_record:GetNamedChild("_Zone")
 		USPF_record.dungeon = USPF_record:GetNamedChild("_Dungeon")
 		USPF_record.progress = USPF_record:GetNamedChild("_Progress")
-		
+
 		USPF_record.zone:SetFont(USPF.Options.Font.Fonts[USPF.settings.GDQ.font].."|14")
 		USPF_record.dungeon:SetFont(USPF.Options.Font.Fonts[USPF.settings.GDQ.font].."|14")
 		USPF_record.progress:SetFont(USPF.Options.Font.Fonts[USPF.settings.GDQ.font].."|14")
-		
+
 		USPF_record:SetHidden(false)
 		USPF_record:SetMouseEnabled(true)
 		USPF_record:SetHeight("18")
-		
+
 		if i == 1 then
 			USPF_record:SetAnchor(TOPLEFT, USPF_GUI_Body_GDQ_ListHolder, TOPLEFT, 0, 0)
 			USPF_record:SetAnchor(TOPRIGHT, USPF_GUI_Body_GDQ_ListHolder, TOPRIGHT, 0, 0)
@@ -1591,19 +1592,19 @@ function USPF:CreateLine(i, USPF_predecessor, USPF_parent)
 		return USPF_record
 	elseif(USPF_parent:GetName() == "USPF_GUI_Body_PDGBE_ListHolder") then
 		local USPF_record = CreateControlFromVirtual("USPF_PDGBE_Row_", USPF_parent, "USPF_PDGBETemplate", i)
-		
+
 		USPF_record.zone = USPF_record:GetNamedChild("_Zone")
 		USPF_record.dungeon = USPF_record:GetNamedChild("_Dungeon")
 		USPF_record.progress = USPF_record:GetNamedChild("_Progress")
-		
+
 		USPF_record.zone:SetFont(USPF.Options.Font.Fonts[USPF.settings.PDB.font].."|14")
 		USPF_record.dungeon:SetFont(USPF.Options.Font.Fonts[USPF.settings.PDB.font].."|14")
 		USPF_record.progress:SetFont(USPF.Options.Font.Fonts[USPF.settings.PDB.font].."|14")
-		
+
 		USPF_record:SetHidden(false)
 		USPF_record:SetMouseEnabled(true)
 		USPF_record:SetHeight("18")
-		
+
 		if i == 1 then
 			USPF_record:SetAnchor(TOPLEFT, USPF_GUI_Body_PDGBE_ListHolder, TOPLEFT, 0, 0)
 			USPF_record:SetAnchor(TOPRIGHT, USPF_GUI_Body_PDGBE_ListHolder, TOPRIGHT, 0, 0)
@@ -1620,11 +1621,11 @@ function USPF:CreateListHolders()
 	local USPF_predecessor = nil
 	USPF_GUI_Body_GSP_ListHolder.dataLines = {}
 	USPF_GUI_Body_GSP_ListHolder.lines = {}
-	for i = 1, #USPF.GUI.GSP do 
+	for i = 1, #USPF.GUI.GSP do
 		USPF_GUI_Body_GSP_ListHolder.lines[i] = USPF:CreateLine(i, USPF_predecessor, USPF_GUI_Body_GSP_ListHolder)
 		USPF_predecessor = USPF_GUI_Body_GSP_ListHolder.lines[i]
 	end
-	
+
 	USPF_predecessor = nil
 	USPF_GUI_Body_SQS_ListHolder.dataLines = {}
 	USPF_GUI_Body_SQS_ListHolder.lines = {}
@@ -1632,7 +1633,7 @@ function USPF:CreateListHolders()
 		USPF_GUI_Body_SQS_ListHolder.lines[i] = USPF:CreateLine(i, USPF_predecessor, USPF_GUI_Body_SQS_ListHolder)
 		USPF_predecessor = USPF_GUI_Body_SQS_ListHolder.lines[i]
 	end
-	
+
 	USPF_predecessor = nil
 	USPF_GUI_Body_GDQ_ListHolder.dataLines = {}
 	USPF_GUI_Body_GDQ_ListHolder.lines = {}
@@ -1640,7 +1641,7 @@ function USPF:CreateListHolders()
 		USPF_GUI_Body_GDQ_ListHolder.lines[i] = USPF:CreateLine(i, USPF_predecessor, USPF_GUI_Body_GDQ_ListHolder)
 		USPF_predecessor = USPF_GUI_Body_GDQ_ListHolder.lines[i]
 	end
-	
+
 	USPF_predecessor = nil
 	USPF_GUI_Body_PDGBE_ListHolder.dataLines = {}
 	USPF_GUI_Body_PDGBE_ListHolder.lines = {}
@@ -1648,7 +1649,7 @@ function USPF:CreateListHolders()
 		USPF_GUI_Body_PDGBE_ListHolder.lines[i] = USPF:CreateLine(i, USPF_predecessor, USPF_GUI_Body_PDGBE_ListHolder)
 		USPF_predecessor = USPF_GUI_Body_PDGBE_ListHolder.lines[i]
 	end
-	
+
 	USPF:UpdateDataLines()
 end
 
@@ -1665,60 +1666,60 @@ end
 function USPF:SetupValues()
 	--Reset All Points to Zero.
 	USPF.ptsData = USPF_LTF:SimpleResetTable(USPF.ptsData, 0)
-	
+
 	--Update Level Points.
 	USPF_SetLevelPoints()
-	
+
 	--Update Quest Points.
 	USPF_SetQuestPoints()
-	
+
 	--Update Public Dungeon Points.
 	USPF_SetPublicDungeonPoints()
 
 	--Update Skyshard Points.
 	USPF_SetSkyshardPoints()
-	
+
 	--Update Alliance War Rank Points.
 	USPF_SetAllianceWarRankPoints()
-	
+
 	--Update MaelAr Arena Point.
 	USPF_SetMaelArPoints()
-	
+
 	--Update Folium Discognitum Points.
 	USPF_SetFoliumDiscognitumPoints()
-	
+
 	--Update General Points.
 	USPF_SetGeneralPoints()
-	
+
 	--Update Tot Points.
 	USPF_SetTotPoints()
-	
+
 	--Update the GUI Table.
 	USPF_UpdateGUITable()
-	
+
 	--Set the window size and position.
 	USPF_GUI:ClearAnchors()
 	USPF_GUI:SetAnchor(CENTER, GuiRoot, CENTER, 0, 0)
 	USPF_GUI:SetHeight(USPF_GUI_Header:GetHeight() + #USPF.GUI.GDQ * 18 + USPF_GUI_Footer:GetHeight() + 18 + 76)
-	
+
 	--Add information to window.
 	USPF:CreateListHolders()
-	
+
 	USPF_GUI_Header:SetParent(USPF_GUI)
 	USPF_GUI_Body:SetParent(USPF_GUI)
 	USPF_GUI_Footer:SetParent(USPF_GUI)
-	
+
 	USPF_GUI_Body_GSP_ListHolder:SetParent(USPF_GUI_Body)
 	USPF_GUI_Body_SQS_ListHolder:SetParent(USPF_GUI_Body)
 	USPF_GUI_Body_GDQ_ListHolder:SetParent(USPF_GUI_Body)
 	USPF_GUI_Body_PDGBE_ListHolder:SetParent(USPF_GUI_Body)
-	
+
 	USPF_GUI_Header_Title:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|30")
 	USPF_GUI_Body_GSP:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|16")
 	USPF_GUI_Body_GSP_Source:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
 	USPF_GUI_Body_GSP_Progress:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
 	USPF_GUI_Body_GSP_T:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
-	
+
 	USPF_GUI_Body_SQS:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|16")
 	USPF_GUI_Body_SQS_Z:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
 	USPF_GUI_Body_SQS_SL:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
@@ -1726,19 +1727,19 @@ function USPF:SetupValues()
 	USPF_GUI_Body_SQS_Z_T:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
 	USPF_GUI_Body_SQS_SL_T:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
 	USPF_GUI_Body_SQS_SS_T:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
-	
+
 	USPF_GUI_Body_GDQ:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|16")
 	USPF_GUI_Body_GDQ_Z:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
 	USPF_GUI_Body_GDQ_D:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
 	USPF_GUI_Body_GDQ_P:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
 	USPF_GUI_Body_GDQ_T:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
-	
+
 	USPF_GUI_Body_PDGBE:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|16")
 	USPF_GUI_Body_PDGBE_Z:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
 	USPF_GUI_Body_PDGBE_D:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
 	USPF_GUI_Body_PDGBE_P:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
 	USPF_GUI_Body_PDGBE_T:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
-	
+
 	USPF_GUI_Footer_CharacterTotal:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|24")
 end
 
@@ -1760,22 +1761,22 @@ end
 local function USPF_LoadSettings(charId)
 	if(USPF_CheckSavedVars(USPF.sVar.settings[charId])) then
 		USPF.settings = USPF_LTF:CopyTable(USPF.sVar.settings[charId])
-		
+
 		if(USPF.settings.GSP.progColor == nil) then
 			USPF.settings.GSP.progColor = USPF.settings.GSP.progColor == nil and {1, 1, 1} or USPF.settings.GSP.progColor
 			USPF.sVar.settings[charId].GSP.progColor = USPF.settings.GSP.progColor
 		end
-		
+
 		if(USPF.settings.SQS.progColorSS == nil) then
 			USPF.settings.SQS.progColorSS = USPF.settings.SQS.progColorSS == nil and {0.7843, 0.3922, 0} or USPF.settings.SQS.progColorSS
 			USPF.sVar.settings[charId].SQS.progColorSS = USPF.settings.SQS.progColorSS
 		end
-		
+
 		if(USPF.settings.SQS.progColorZQ == nil) then
 			USPF.settings.SQS.progColorZQ = USPF.settings.SQS.progColorZQ == nil and {0.7843, 0.3922, 0} or USPF.settings.SQS.progColorZQ
 			USPF.sVar.settings[charId].SQS.progColorZQ = USPF.settings.SQS.progColorZQ
 		end
-		
+
 		USPF.settings.MWC = (USPF.sVar.settings[charId].SSC and false or USPF.sVar.settings[charId].MWC)
 		USPF.settings.SSC = (USPF.sVar.settings[charId].MWC and false or USPF.sVar.settings[charId].SSC)
 		USPF.sVar.settings[charId].MWC = (USPF.settings.SSC and false or USPF.settings.MWC)
@@ -1795,14 +1796,14 @@ end
 local function USPF_CreateCharList()
 	USPF_GUI_Header_CharList.comboBox = USPF_GUI_Header_CharList.comboBox or ZO_ComboBox_ObjectFromContainer(USPF_GUI_Header_CharList)
 	local USPF_comboBox = USPF_GUI_Header_CharList.comboBox
-	
+
 	-- tooltip text
 	USPF_GUI_Header_CharList.data = {tooltipText = "Select a character to view. You must have logged in on the selected character with this addon active for information to populate."}
-	
+
 	-- tooltip handlers
 	USPF_GUI_Header_CharList:SetHandler("OnMouseEnter", ZO_Options_OnMouseEnter)
 	USPF_GUI_Header_CharList:SetHandler("OnMouseExit", ZO_Options_OnMouseExit)
-	
+
 	local name, id = nil, nil
 	USPF.charNames = {}
 	USPF.charData = {}
@@ -1813,13 +1814,13 @@ local function USPF_CreateCharList()
 			charId = USPF.sVar.charInfo[k].charId,
 			charName = USPF.sVar.charInfo[k].charName,
 		}
-		
+
 		if(GCCId() == USPF.charData[k].charId) then
 			currentCharName = USPF.charData[k].charName
 			selectedChar = USPF.charData[k].charId
 		end
 	end
-	
+
 	function OnItemSelect(_, choiceText, choice)
 		USPF_SetSelectedChar(choiceText)
 		USPF:UpdateDataLines()
@@ -1827,7 +1828,7 @@ local function USPF_CreateCharList()
 	end
 
 	USPF_comboBox:SetSortsItems(false)
-	
+
 	for k,_ in ipairs(USPF.charNames) do
 		USPF_comboBox:AddItem(USPF_comboBox:CreateItemEntry(USPF.charNames[k], OnItemSelect))
 		if(USPF.charNames[k] == currentCharName) then
@@ -1849,7 +1850,7 @@ local function USPF_InitSetup()
 	local id, name, thisCharId = nil, nil, GCCId()
 	local firstRun = ((USPF.sVar.firstRun or USPF.sVar.numChars == 0 or USPF.sVar.charInfo[1] == nil) and true or false)
 	--local firstRun = ((USPF.sVar.firstRun or USPF.sVar.numChars == 0 or USPF.sVar.charInfo[1] == nil or USPF.sVar.settings[thisCharId] == nil or USPF.sVar.ptsData[thisCharId] == nil) and true or false)
-	
+
 	--If first run then setup the character table
 	if(firstRun) then
 		d(GS(USPF_MSG_INIT))
@@ -1857,36 +1858,36 @@ local function USPF_InitSetup()
 		for i = 1, GetNumCharacters() do
 			name, _, _, _, _, _, id, _ = GetCharacterInfo(i)
 			USPF.sVar.charInfo[i] = {charId = id, charName = zf("<<t:1>>", name),}
-			
+
 			--Write the character settings table.
 			USPF.sVar.settings[id] = {}
 			USPF.sVar.settings[id] = USPF_LTF:CopyTable(USPF.settings)
-			
+
 			--Write the character points data table.
 			USPF.sVar.ptsData[id] = {}
 			USPF.sVar.ptsData[id] = USPF_LTF:CopyTable(USPF.ptsData)
 		end
-		
+
 		--Show the welcome message.
 		d(GS(USPF_MSG_HELP))
-		
+
 		USPF.sVar.firstRun = false
 	end
-	
+
 	--Setup the character info table.
 	if(not firstRun) then USPF_UpdateCharList() end
-	
+
 	--Check for added characters.
 	for _,v in pairs(USPF.sVar.charInfo) do
 		if(not USPF_LTF:TableContains(USPF.sVar.settings, v.charId, true)) then
 			USPF.sVar.settings[v.charId] = USPF_LTF:CopyTable(USPF.settings)
 		end
-		
+
 		if(not USPF_LTF:TableContains(USPF.sVar.ptsData, v.charId, true)) then
 			USPF.sVar.ptsData[v.charId] = USPF_LTF:CopyTable(USPF.ptsData)
 		end
 	end
-	
+
 	--Check for removed characters.
 	for k,_ in pairs(USPF.sVar.settings) do
 		USPF.sVar.settings[k] = (USPF_LTF:TableContains(USPF.sVar.charInfo, k, false) and USPF.sVar.settings[k] or nil)
@@ -1894,7 +1895,7 @@ local function USPF_InitSetup()
 	for k,_ in pairs(USPF.sVar.ptsData) do
 		USPF.sVar.ptsData[k] = (USPF_LTF:TableContains(USPF.sVar.charInfo, k, false) and USPF.sVar.ptsData[k] or nil)
 	end
-	
+
 	--Create the character select box.
 	USPF_CreateCharList()
 end
@@ -1934,20 +1935,20 @@ end
 
 local function USPF_Initialized(eventCode, addonName)
 	if addonName ~= USPF.AddonName then return end
-	
+
 	local world = GetWorldName()
 	if(world == "NA Megaserver") then
 		USPF.sVar = ZO_SavedVars:NewAccountWide("USPF_Settings", USPF.version, nil, USPF.defaults)
 	else
 		USPF.sVar = ZO_SavedVars:NewAccountWide("USPF_Settings", USPF.version, world, USPF.defaults)
 	end
-	
+
 	--Run the startup routine.
 	USPF_InitSetup()
-	
+
 	--Create the keybind(s).
 	ZO_CreateStringId("SI_BINDING_NAME_USPF_TOGGLE", "Show Skill Point Finder")
-	
+
 	--Register the slash commands.
 	SLASH_COMMANDS["/uspf"] = function(keyWord, argument)
 		if(string.lower(keyWord) == "help") then
@@ -1960,18 +1961,18 @@ local function USPF_Initialized(eventCode, addonName)
 			USPF:BadSlash()
 		end
 	end
-	
+
 	local charId = GCCId()
-	
+
 	--Load the character settings.
 	USPF_LoadSettings(charId)
-	
+
 	--Create the options menu.
 	USPF:SetupMenu(charId)
-	
+
 	--Call startup routine.
 	USPF:SetupValues()
-	
+
 	--Create the event handlers.
 	EM:RegisterForEvent(USPF.AddonName, EVENT_SKILL_POINTS_CHANGED, USPF_SkillPointsUpdate)
 	EM:RegisterForEvent(USPF.AddonName, EVENT_QUEST_REMOVED, USPF_QuestRemoved)
@@ -1980,7 +1981,7 @@ local function USPF_Initialized(eventCode, addonName)
 	--EM:RegisterForEvent(USPF.AddonName, EVENT_ACHIEVEMENT_UPDATED, USPF_AchUpdate)
 	EM:RegisterForEvent(USPF.AddonName, EVENT_PLAYER_ACTIVATED, USPF_PlayerActivated)
 	EM:RegisterForEvent(USPF.AddonName, EVENT_PLAYER_DEACTIVATED, USPF_PlayerDeactivated)
-	
+
 	--Kill the initial event handler.
 	EM:UnregisterForEvent(USPF.AddonName, EVENT_ADD_ON_LOADED)
 end

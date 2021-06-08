@@ -535,23 +535,6 @@ local function USPF_UpdateAllSavedVars()
 	USPF.sVar.ptsData[selectedChar] = USPF_LTF:CopyTable(USPF.ptsData)
 end
 
-local function USPF_ResetSelectedCharacter()
-	local currentCharId = GCCId()
-	if selectedChar ~= currentCharId then
-		USPF_GUI_Header_CharList.comboBox = USPF_GUI_Header_CharList.comboBox or ZO_ComboBox_ObjectFromContainer(USPF_GUI_Header_CharList)
-		local USPF_comboBox = USPF_GUI_Header_CharList.comboBox
-
-		for k,_ in ipairs(USPF.charData) do
-			if currentCharId == USPF.charData[k].charId then
-				currentCharName = USPF.charData[k].charName
-				selectedChar = USPF.charData[k].charId
-				USPF_comboBox:SetSelectedItem(currentCharName)
-			end
-		end
-	end
-	USPF_SetupData(currentCharId)
-end
-
 local function FormatQuestName(questName, completed)
 	return completed and "|l0:1:0:-25%:2:ffffff|l"..questName.."|l" or questName
 end
@@ -1663,6 +1646,24 @@ local function USPF_InitSetup()
 	--Create the character select box.
 	USPF_CreateCharList()
 end
+
+local function USPF_ResetSelectedCharacter()
+	local currentCharId = GCCId()
+	if selectedChar ~= currentCharId then
+		USPF_GUI_Header_CharList.comboBox = USPF_GUI_Header_CharList.comboBox or ZO_ComboBox_ObjectFromContainer(USPF_GUI_Header_CharList)
+		local USPF_comboBox = USPF_GUI_Header_CharList.comboBox
+
+		for k,_ in ipairs(USPF.charData) do
+			if currentCharId == USPF.charData[k].charId then
+				currentCharName = USPF.charData[k].charName
+				selectedChar = USPF.charData[k].charId
+				USPF_comboBox:SetSelectedItem(currentCharName)
+			end
+		end
+	end
+	USPF_SetupData(currentCharId)
+end
+
 
 local function USPF_SkillPointsUpdate(eventCode, pointsBefore, pointsNow, partialPointsBefore, partialPointsNow)
 	USPF_ResetSelectedCharacter()

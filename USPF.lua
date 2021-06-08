@@ -6,14 +6,12 @@ USPF.cache = {}
 USPF.GUI = {}
 local selectedChar = GetCurrentCharacterId()
 local currentCharName = nil
-local EM = EVENT_MANAGER
 local GZNBId, GCCId, GCQI = GetZoneNameById, GetCurrentCharacterId, GetCompletedQuestInfo
 local IAchC, GAchNCr, GAchCr = IsAchievementComplete, GetAchievementNumCriteria, GetAchievementCriterion
 local GS, zf, strF = GetString, zo_strformat, string.format
-local _
 
 local USPF_LTF = LibTableFunctions
-if (not USPF_LTF) then return end
+if not USPF_LTF then return end
 
 USPF.settings = {
 	title = {font = "ProseAntique",},
@@ -285,50 +283,50 @@ USPF.data = {
 		{4188,  337},
 	},
 	GD = {
-		BC1 = { 1, 4107},
-		BC2 = { 2, 4597},
-		EH1 = { 3, 4336},
-		EH2 = { 4, 4675},
-		CA1 = { 5, 4778},
-		CA2 = { 6, 5120},
-		TI  = { 7, 4538},
-		SW  = { 8, 4733},
-		SC1 = { 9, 4054},
-		SC2 = {10, 4555},
-		WS1 = {11, 4246},
-		WS2 = {12, 4813},
-		CH1 = {13, 4379},
-		CH2 = {14, 5113},
-		VF  = {15, 4432},
-		BH  = {16, 4589},
-		FG1 = {17, 3993},
-		FG2 = {18, 4303},
-		DC1 = {19, 4145},
-		DC2 = {20, 4641},
-		AC  = {21, 4202},
-		DK  = {22, 4346},
-		BC  = {23, 4469},
-		VM  = {24, 4822},
-		ICP = {25, 5136},
-		WGT = {26, 5342},
-		CS  = {27, 5702},
-		RM  = {28, 5403},
-		BF  = {29, 5889},
-		FH  = {30, 5891},
-		FL  = {31, 6064},
-		SP  = {32, 6065},
-		MHK = {33, 6186},
-		MOS = {34, 6188},
-		DoM = {35, 6251},
-		FV  = {36, 6249},
-		LM  = {37, 6351},
-		MF  = {38, 6349},
-		IR  = {39, 6414},
-		UG  = {40, 6416},
-		SG  = {41, 6505},
-		CT  = {42, 6507},
-		BDV = {43, 6576},
-		TC  = {44, 6578},
+		BC1 = 4107,
+		BC2 = 4597,
+		EH1 = 4336,
+		EH2 = 4675,
+		CA1 = 4778,
+		CA2 = 5120,
+		TI  = 4538,
+		SW  = 4733,
+		SC1 = 4054,
+		SC2 = 4555,
+		WS1 = 4246,
+		WS2 = 4813,
+		CH1 = 4379,
+		CH2 = 5113,
+		VF  = 4432,
+		BH  = 4589,
+		FG1 = 3993,
+		FG2 = 4303,
+		DC1 = 4145,
+		DC2 = 4641,
+		AC  = 4202,
+		DK  = 4346,
+		BC  = 4469,
+		VM  = 4822,
+		ICP = 5136,
+		WGT = 5342,
+		CS  = 5702,
+		RM  = 5403,
+		BF  = 5889,
+		FH  = 5891,
+		FL  = 6064,
+		SP  = 6065,
+		MHK = 6186,
+		MOS = 6188,
+		DoM = 6251,
+		FV  = 6249,
+		LM  = 6351,
+		MF  = 6349,
+		IR  = 6414,
+		UG  = 6416,
+		SG  = 6505,
+		CT  = 6507,
+		BDV = 6576,
+		TC  = 6578,
 	},
 	IC = {	--1175
 		{5482, 1175},
@@ -516,73 +514,73 @@ USPF.data = {
 }
 
 
-local function USPF_RedText(text)	return "|cFF0000"..tostring(text).."|r" end
-local function USPF_GreenText(text)	return "|c00FF00"..tostring(text).."|r" end
-local function USPF_BlueText(text)	return "|c0000FF"..tostring(text).."|r" end
-
 local function USPF_rgbToHex(rgb)
 	local hexStr = '|c'
 	for _, v in pairs(rgb) do
 		local hex = ''
 		local tmpV = math.floor((255 * v) + 0.5)
-		while(tmpV > 0) do
+		while tmpV > 0 do
 			local idx = math.fmod(tmpV, 16) + 1
 			tmpV = math.floor(tmpV / 16)
 			hex = string.sub('0123456789ABCDEF', idx, idx) .. hex
 		end
-		hex = (string.len(hex) == 0 and '00' or (string.len(hex) == 1 and '0' .. hex or hex))
+		hex = string.len(hex) == 0 and '00' or (string.len(hex) == 1 and '0' .. hex or hex)
 		hexStr = hexStr .. hex
 	end
 	return hexStr
 end
 
 local function USPF_UpdateAllSavedVars()
-	if(USPF.sVar.ptsData[selectedChar] == nil) then USPF.sVar.ptsData[selectedChar] = {} end
+	if USPF.sVar.ptsData[selectedChar] == nil then USPF.sVar.ptsData[selectedChar] = {} end
 	USPF.sVar.ptsData[selectedChar] = USPF_LTF:CopyTable(USPF.ptsData)
 end
 
 local function USPF_ResetSelectedCharacter()
-	if(selectedChar ~= GCCId()) then
+	local currentCharId = GCCId()
+	if selectedChar ~= currentCharId then
 		USPF_GUI_Header_CharList.comboBox = USPF_GUI_Header_CharList.comboBox or ZO_ComboBox_ObjectFromContainer(USPF_GUI_Header_CharList)
 		local USPF_comboBox = USPF_GUI_Header_CharList.comboBox
 
-		local name, id = nil, nil
 		for k,_ in ipairs(USPF.charData) do
-			name, _, _, _, _, _, id, _ = GetCharacterInfo(k)
-			if(GCCId() == USPF.charData[k].charId) then
+			if currentCharId == USPF.charData[k].charId then
 				currentCharName = USPF.charData[k].charName
 				selectedChar = USPF.charData[k].charId
 				USPF_comboBox:SetSelectedItem(currentCharName)
 			end
 		end
 	end
+	USPF_SetupData(currentCharId)
+end
+
+local function FormatQuestName(questName, completed)
+	return completed and "|l0:1:0:-25%:2:ffffff|l"..questName.."|l" or questName
 end
 
 local function GetQuestTooltipText(zone)
 	quests = ""
+	local isCurrentCharacter = GCCId() == selectedChar
 	for i = 1, #USPF.data[zone] do
 		local questName = GetQuestName(USPF.data[zone][i][1])
-		quests = quests..(selectedChar == GCCId() and (USPF.data[zone][i][2] == 0 and GCQI(USPF.data[zone][i][1]) ~= "" or IAchC(USPF.data[zone][i][2]))
-					and "|l0:1:0:-25%:2:ffffff|l"..questName.."|l"
-					or questName)..(i < #USPF.data[zone] and "\n" or "")
+        local earned = USPF.data[zone][i][2] == 0 and GCQI(USPF.data[zone][i][1]) ~= "" or IAchC(USPF.data[zone][i][2])
+		quests = quests..FormatQuestName(questName, isCurrentCharacter and earned)..(i < #USPF.data[zone] and "\n" or "")
 	end
 	return quests
 end
 
 local function GetGDQuestTooltipText(dungeon)
-	local questName = GetQuestName(USPF.data.GD[dungeon][2])
-	if(selectedChar == GCCId() and GCQI(USPF.data.GD[dungeon][2]) ~= "") then
-		return "|l0:1:0:-25%:2:ffffff|l"..questName.."|l"
-	else
-		return questName
-	end
+	local questName = GetQuestName(USPF.data.GD[dungeon])
+    return FormatQuestName(questName, selectedChar == GCCId() and GCQI(USPF.data.GD[dungeon]) ~= "")
 end
 
 local function GetAchLink(achId)
 	return GetAchievementLink(achId, LINK_TYPE_ACHIEVEMENT)
 end
 
-local function USPF_UpdateGUITable()
+local function GetSV(value)
+	return  value ~= nil and value or 0
+end
+
+local function USPF_UpdateGUITable(sVarPtsData)
 	questTooltips = {
 		WP	 = GS(USPF_QUEST_NONE),
 		AD0	 = GS(USPF_QUEST_NONE),
@@ -629,509 +627,6 @@ local function USPF_UpdateGUITable()
 		WS   = GetQuestTooltipText("WS"),
 		GO   = GetQuestTooltipText("GO"),
 		BO   = GetQuestTooltipText("BO"),
-		TR   = GetQuestTooltipText("TR"),
-		BW   = GetQuestTooltipText("BW"),
-	}
-
-	USPF.GUI = {
-		GSP = {
-			{ 1, GS(USPF_GUI_CHAR_LEVEL),	USPF.ptsData.Level,		USPF.ptsTots.Level,		GS(USPF_QUEST_NA)},
-			{ 2, GS(USPF_GUI_MAIN_QUEST),	USPF.ptsData.MainQ,		USPF.ptsTots.MainQ,		questTooltips.MQ},
-			{ 3, GS(USPF_GUI_FOLIUM),		USPF.ptsData.FolDis,	USPF.ptsTots.FolDis,	GS(USPF_QUEST_NA)},
-			{ 4, GS(USPF_GUI_MW_CHAR),		USPF.ptsData.MWChar,	USPF.ptsTots.MWChar,	questTooltips.MO},
-			{ 5, GS(USPF_GUI_SU_CHAR),		USPF.ptsData.SUChar,	USPF.ptsTots.SUChar,	questTooltips.SO},
-			{ 6, GS(USPF_GUI_EW_CHAR),		USPF.ptsData.EWChar,	USPF.ptsTots.EWChar,	questTooltips.EO},
-			{ 7, GS(USPF_GUI_GM_CHAR),		USPF.ptsData.GMChar,	USPF.ptsTots.GMChar,	questTooltips.GO},
-			{ 8, GS(USPF_GUI_BW_CHAR),		USPF.ptsData.BWChar,	USPF.ptsTots.BWChar,	questTooltips.BO},
-			{ 9, GS(USPF_GUI_AVA_RANK),		USPF.ptsData.PvPRank,	USPF.ptsTots.PvPRank,	GS(USPF_QUEST_NA)},
-			{10, GS(USPF_GUI_MAEL_ARENA),	USPF.ptsData.MaelAr,	USPF.ptsTots.MaelAr,	GS(USPF_QUEST_NA)},
-		},
-		GSP_T = strF("%s: %d/%d", GS(USPF_GUI_TOTAL), USPF.ptsData.GenTot, USPF.ptsTots.GenTot),
-		SQS = {
-			{ 1, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.WP)),						USPF.ptsData.ZQ.WP,		USPF.ptsTots.ZQ.WP,		USPF.ptsData.SS.MQ,		USPF.ptsTots.SS.MQ,		questTooltips.WP},
-			{ 2, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.AD0)),						USPF.ptsData.ZQ.AD0,	USPF.ptsTots.ZQ.AD0,	USPF.ptsData.SS.AD0,	USPF.ptsTots.SS.AD0,	questTooltips.AD0},
-			{ 3, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.AD1)),						USPF.ptsData.ZQ.AD1,	USPF.ptsTots.ZQ.AD1,	USPF.ptsData.SS.AD1,	USPF.ptsTots.SS.AD1,	questTooltips.AD1},
-			{ 4, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.AD2)),						USPF.ptsData.ZQ.AD2,	USPF.ptsTots.ZQ.AD2,	USPF.ptsData.SS.AD2,	USPF.ptsTots.SS.AD2,	questTooltips.AD2},
-			{ 5, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.AD3)),						USPF.ptsData.ZQ.AD3,	USPF.ptsTots.ZQ.AD3,	USPF.ptsData.SS.AD3,	USPF.ptsTots.SS.AD3,	questTooltips.AD3},
-			{ 6, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.AD4)),						USPF.ptsData.ZQ.AD4,	USPF.ptsTots.ZQ.AD4,	USPF.ptsData.SS.AD4,	USPF.ptsTots.SS.AD4,	questTooltips.AD4},
-			{ 7, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.AD5)),						USPF.ptsData.ZQ.AD5,	USPF.ptsTots.ZQ.AD5,	USPF.ptsData.SS.AD5,	USPF.ptsTots.SS.AD5,	questTooltips.AD5},
-			{ 8, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.DC0B)),						USPF.ptsData.ZQ.DC0b,	USPF.ptsTots.ZQ.DC0b,	USPF.ptsData.SS.DC0b,	USPF.ptsTots.SS.DC0b,	questTooltips.DC0b},
-			{ 9, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.DC0A)),						USPF.ptsData.ZQ.DC0a,	USPF.ptsTots.ZQ.DC0a,	USPF.ptsData.SS.DC0a,	USPF.ptsTots.SS.DC0a,	questTooltips.DC0a},
-			{10, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.DC1)),						USPF.ptsData.ZQ.DC1,	USPF.ptsTots.ZQ.DC1,	USPF.ptsData.SS.DC1,	USPF.ptsTots.SS.DC1,	questTooltips.DC1},
-			{11, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.DC2)),						USPF.ptsData.ZQ.DC2,	USPF.ptsTots.ZQ.DC2,	USPF.ptsData.SS.DC2,	USPF.ptsTots.SS.DC2,	questTooltips.DC2},
-			{12, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.DC3)),						USPF.ptsData.ZQ.DC3,	USPF.ptsTots.ZQ.DC3,	USPF.ptsData.SS.DC3,	USPF.ptsTots.SS.DC3,	questTooltips.DC3},
-			{13, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.DC4)),						USPF.ptsData.ZQ.DC4,	USPF.ptsTots.ZQ.DC4,	USPF.ptsData.SS.DC4,	USPF.ptsTots.SS.DC4,	questTooltips.DC4},
-			{14, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.DC5)),						USPF.ptsData.ZQ.DC5,	USPF.ptsTots.ZQ.DC5,	USPF.ptsData.SS.DC5,	USPF.ptsTots.SS.DC5,	questTooltips.DC5},
-			{15, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.EP0B)),						USPF.ptsData.ZQ.EP0b,	USPF.ptsTots.ZQ.EP0b,	USPF.ptsData.SS.EP0b,	USPF.ptsTots.SS.EP0b,	questTooltips.EP0b},
-			{16, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.EP0A)),						USPF.ptsData.ZQ.EP0a,	USPF.ptsTots.ZQ.EP0a,	USPF.ptsData.SS.EP0a,	USPF.ptsTots.SS.EP0a,	questTooltips.EP0a},
-			{17, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.EP1)),						USPF.ptsData.ZQ.EP1,	USPF.ptsTots.ZQ.EP1,	USPF.ptsData.SS.EP1,	USPF.ptsTots.SS.EP1,	questTooltips.EP1},
-			{18, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.EP2)),						USPF.ptsData.ZQ.EP2,	USPF.ptsTots.ZQ.EP2,	USPF.ptsData.SS.EP2,	USPF.ptsTots.SS.EP2,	questTooltips.EP2},
-			{19, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.EP3)),						USPF.ptsData.ZQ.EP3,	USPF.ptsTots.ZQ.EP3,	USPF.ptsData.SS.EP3,	USPF.ptsTots.SS.EP3,	questTooltips.EP3},
-			{20, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.EP4)),						USPF.ptsData.ZQ.EP4,	USPF.ptsTots.ZQ.EP4,	USPF.ptsData.SS.EP4,	USPF.ptsTots.SS.EP4,	questTooltips.EP4},
-			{21, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.EP5)),						USPF.ptsData.ZQ.EP5,	USPF.ptsTots.ZQ.EP5,	USPF.ptsData.SS.EP5,	USPF.ptsTots.SS.EP5,	questTooltips.EP5},
-			{22, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.CH)),						USPF.ptsData.ZQ.CH,		USPF.ptsTots.ZQ.CH,		USPF.ptsData.SS.CH,		USPF.ptsTots.SS.CH,		questTooltips.CH},
-			{23, zf("<<C:1>> <<2>>",	GZNBId(USPF.data.ZId.ZN.CAD), "AD"),				USPF.ptsData.ZQ.CAD,	USPF.ptsTots.ZQ.CAD,	USPF.ptsData.SS.CAD,	USPF.ptsTots.SS.CAD,	questTooltips.CAD},
-			{24, zf("<<C:1>> <<2>>",	GZNBId(USPF.data.ZId.ZN.CDC), "DC"),				USPF.ptsData.ZQ.CDC,	USPF.ptsTots.ZQ.CDC,	USPF.ptsData.SS.CDC,	USPF.ptsTots.SS.CDC,	questTooltips.CDC},
-			{25, zf("<<C:1>> <<2>>",	GZNBId(USPF.data.ZId.ZN.CEP), "EP"),				USPF.ptsData.ZQ.CEP,	USPF.ptsTots.ZQ.CEP,	USPF.ptsData.SS.CEP,	USPF.ptsTots.SS.CEP,	questTooltips.CEP},
-			{26, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.CMT)),						USPF.ptsData.ZQ.CMT,	USPF.ptsTots.ZQ.CMT,	USPF.ptsData.SS.CMT,	USPF.ptsTots.SS.CMT,	questTooltips.CMT},
-			{27, zf("<<C:1>> <<C:2>>",	GS(USPF_GUI_ZN_LCL), GZNBId(USPF.data.ZId.ZN.CL)),	USPF.ptsData.ZQ.LCL,	USPF.ptsTots.ZQ.LCL,	USPF.ptsData.SS.LCL,	USPF.ptsTots.SS.LCL,	questTooltips.LCL},
-			{28, zf("<<C:1>> <<C:2>>",	GS(USPF_GUI_ZN_UCL), GZNBId(USPF.data.ZId.ZN.CL)),	USPF.ptsData.ZQ.UCL,	USPF.ptsTots.ZQ.UCL,	USPF.ptsData.SS.UCL,	USPF.ptsTots.SS.UCL,	questTooltips.UCL},
-			{29, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.IC)),						USPF.ptsData.ZQ.IC,		USPF.ptsTots.ZQ.IC,		USPF.ptsData.SS.IC,		USPF.ptsTots.SS.IC,		questTooltips.IC},
-			{30, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.RO)),						USPF.ptsData.ZQ.RO,		USPF.ptsTots.ZQ.RO,		USPF.ptsData.SS.WR,		USPF.ptsTots.SS.WR,		questTooltips.RO},
-			{31, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.HB)),						USPF.ptsData.ZQ.TG,		USPF.ptsTots.ZQ.TG,		USPF.ptsData.SS.HB,		USPF.ptsTots.SS.HB,		questTooltips.TG},
-			{32, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.GC)),						USPF.ptsData.ZQ.DB,		USPF.ptsTots.ZQ.DB,		USPF.ptsData.SS.GC,		USPF.ptsTots.SS.GC,		questTooltips.DB},
-			{33, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.VV)),						USPF.ptsData.ZQ.MW,		USPF.ptsTots.ZQ.MW,		USPF.ptsData.SS.VV,		USPF.ptsTots.SS.VV,		questTooltips.MW},
-			{34, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.CC)),						USPF.ptsData.ZQ.CC,		USPF.ptsTots.ZQ.CC,		USPF.ptsData.SS.CC,		USPF.ptsTots.SS.CC,		questTooltips.CC},
-			{35, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.SU)),						USPF.ptsData.ZQ.SU,		USPF.ptsTots.ZQ.SU,		USPF.ptsData.SS.SU,		USPF.ptsTots.SS.SU,		questTooltips.SU},
-			{36, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.MM)),						USPF.ptsData.ZQ.MM,		USPF.ptsTots.ZQ.MM,		USPF.ptsData.SS.MM,		USPF.ptsTots.SS.MM,		questTooltips.MM},
-			{37, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.NE)),						USPF.ptsData.ZQ.NE,		USPF.ptsTots.ZQ.NE,		USPF.ptsData.SS.NE,		USPF.ptsTots.SS.NE,		questTooltips.NE},
-			{38, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.SE)),						USPF.ptsData.ZQ.SE,		USPF.ptsTots.ZQ.SE,		USPF.ptsData.SS.SE,		USPF.ptsTots.SS.SE,		questTooltips.SE},
-			{39, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.WS)),						USPF.ptsData.ZQ.WS,		USPF.ptsTots.ZQ.WS,		USPF.ptsData.SS.WS,		USPF.ptsTots.SS.WS,		questTooltips.WS},
-			{40, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.TR)),						USPF.ptsData.ZQ.TR,		USPF.ptsTots.ZQ.TR,		USPF.ptsData.SS.TR,		USPF.ptsTots.SS.TR,		questTooltips.TR},
-			{41, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.BW)),						USPF.ptsData.ZQ.BW,		USPF.ptsTots.ZQ.BW,		USPF.ptsData.SS.BW,		USPF.ptsTots.SS.BW,		questTooltips.BW},
-		},
-		SQS_SL_T = strF("%d/%d", USPF.ptsData.ZQTot, USPF.ptsTots.ZQTot),
-		SQS_SS_T = strF("%d/%d", USPF.ptsData.SSTot, USPF.ptsTots.SSTot),
-		GDQ = {
-			{ 1, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.BC1)),	USPF.ptsData.GD.BC1,	USPF.ptsTots.GD.BC1,	GetGDQuestTooltipText("BC1")},
-			{ 2, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.BC2)),	USPF.ptsData.GD.BC2,	USPF.ptsTots.GD.BC2,	GetGDQuestTooltipText("BC2")},
-			{ 3, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.EH1)),	USPF.ptsData.GD.EH1,	USPF.ptsTots.GD.EH1,	GetGDQuestTooltipText("EH1")},
-			{ 4, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.EH2)),	USPF.ptsData.GD.EH2,	USPF.ptsTots.GD.EH2,	GetGDQuestTooltipText("EH2")},
-			{ 5, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.CA1)),	USPF.ptsData.GD.CA1,	USPF.ptsTots.GD.CA1,	GetGDQuestTooltipText("CA1")},
-			{ 6, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.CA2)),	USPF.ptsData.GD.CA2,	USPF.ptsTots.GD.CA2,	GetGDQuestTooltipText("CA2")},
-			{ 7, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.TI)),	USPF.ptsData.GD.TI,		USPF.ptsTots.GD.TI,		GetGDQuestTooltipText("TI")},
-			{ 8, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.SW)),	USPF.ptsData.GD.SW,		USPF.ptsTots.GD.SW,		GetGDQuestTooltipText("SW")},
-			{ 9, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.SC1)),	USPF.ptsData.GD.SC1,	USPF.ptsTots.GD.SC1,	GetGDQuestTooltipText("SC1")},
-			{10, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.SC2)),	USPF.ptsData.GD.SC2,	USPF.ptsTots.GD.SC2,	GetGDQuestTooltipText("SC2")},
-			{11, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.WS1)),	USPF.ptsData.GD.WS1,	USPF.ptsTots.GD.WS1,	GetGDQuestTooltipText("WS1")},
-			{12, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.WS2)),	USPF.ptsData.GD.WS2,	USPF.ptsTots.GD.WS2,	GetGDQuestTooltipText("WS2")},
-			{13, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.CH1)),	USPF.ptsData.GD.CH1,	USPF.ptsTots.GD.CH1,	GetGDQuestTooltipText("CH1")},
-			{14, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.CH2)),	USPF.ptsData.GD.CH2,	USPF.ptsTots.GD.CH2,	GetGDQuestTooltipText("CH2")},
-			{15, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.VF)),	USPF.ptsData.GD.VF,		USPF.ptsTots.GD.VF,		GetGDQuestTooltipText("VF")},
-			{16, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.BH)),	USPF.ptsData.GD.BH,		USPF.ptsTots.GD.BH,		GetGDQuestTooltipText("BH")},
-			{17, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.FG1)),	USPF.ptsData.GD.FG1,	USPF.ptsTots.GD.FG1,	GetGDQuestTooltipText("FG1")},
-			{18, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.FG2)),	USPF.ptsData.GD.FG2,	USPF.ptsTots.GD.FG2,	GetGDQuestTooltipText("FG2")},
-			{19, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.DC1)),	USPF.ptsData.GD.DC1,	USPF.ptsTots.GD.DC1,	GetGDQuestTooltipText("DC1")},
-			{20, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.DC2)),	USPF.ptsData.GD.DC2,	USPF.ptsTots.GD.DC2,	GetGDQuestTooltipText("DC2")},
-			{21, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.AC)),	USPF.ptsData.GD.AC,		USPF.ptsTots.GD.AC,		GetGDQuestTooltipText("AC")},
-			{22, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.DK)),	USPF.ptsData.GD.DK,		USPF.ptsTots.GD.DK,		GetGDQuestTooltipText("DK")},
-			{23, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.BC)),	USPF.ptsData.GD.BC,		USPF.ptsTots.GD.BC,		GetGDQuestTooltipText("BC")},
-			{24, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.CH)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.VM)),	USPF.ptsData.GD.VM,		USPF.ptsTots.GD.VM,		GetGDQuestTooltipText("VM")},
-			{25, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.CYD)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.ICP)),	USPF.ptsData.GD.ICP,	USPF.ptsTots.GD.ICP,	GetGDQuestTooltipText("ICP")},
-			{26, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.CYD)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.WGT)),	USPF.ptsData.GD.WGT,	USPF.ptsTots.GD.WGT,	GetGDQuestTooltipText("WGT")},
-			{27, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.CS)),	USPF.ptsData.GD.CS,		USPF.ptsTots.GD.CS,		GetGDQuestTooltipText("CS")},
-			{28, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.RM)),	USPF.ptsData.GD.RM,		USPF.ptsTots.GD.RM,		GetGDQuestTooltipText("RM")},
-			{29, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.CL)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.BF)),	USPF.ptsData.GD.BF,		USPF.ptsTots.GD.BF,		GetGDQuestTooltipText("BF")},
-			{30, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.CL)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.FH)),	USPF.ptsData.GD.FH,		USPF.ptsTots.GD.FH,		GetGDQuestTooltipText("FH")},
-			{31, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.FL)),	USPF.ptsData.GD.FL,		USPF.ptsTots.GD.FL,		GetGDQuestTooltipText("FL")},
-			{32, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.SP)),	USPF.ptsData.GD.SP,		USPF.ptsTots.GD.SP,		GetGDQuestTooltipText("SP")},
-			{33, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.MHK)),	USPF.ptsData.GD.MHK,	USPF.ptsTots.GD.MHK,	GetGDQuestTooltipText("MHK")},
-			{34, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.MOS)),	USPF.ptsData.GD.MOS,	USPF.ptsTots.GD.MOS,	GetGDQuestTooltipText("MOS")},
-			{35, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.GC)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.DoM)),	USPF.ptsData.GD.DoM,	USPF.ptsTots.GD.DoM,	GetGDQuestTooltipText("DoM")},
-			{36, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.FV)),	USPF.ptsData.GD.FV,		USPF.ptsTots.GD.FV,		GetGDQuestTooltipText("FV")},
-			{37, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.LM)),	USPF.ptsData.GD.LM,		USPF.ptsTots.GD.LM,		GetGDQuestTooltipText("LM")},
-			{38, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.NE)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.MF)),	USPF.ptsData.GD.MF,		USPF.ptsTots.GD.MF,		GetGDQuestTooltipText("MF")},
-			{39, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.RO)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.IR)),	USPF.ptsData.GD.IR,		USPF.ptsTots.GD.IR,		GetGDQuestTooltipText("IR")},
-			{40, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.UG)),	USPF.ptsData.GD.UG,		USPF.ptsTots.GD.UG,		GetGDQuestTooltipText("UG")},
-			{41, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BGC)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.SG)),	USPF.ptsData.GD.SG,		USPF.ptsTots.GD.SG,		GetGDQuestTooltipText("SG")},
-			{42, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.WS)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.CT)),	USPF.ptsData.GD.CT,		USPF.ptsTots.GD.CT,		GetGDQuestTooltipText("CT")},
-			{43, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.GC)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.BDV)),	USPF.ptsData.GD.BDV,	USPF.ptsTots.GD.BDV,	GetGDQuestTooltipText("BDV")},
-			{44, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.TC)),	USPF.ptsData.GD.TC,		USPF.ptsTots.GD.TC,		GetGDQuestTooltipText("TC")},
-		},
-		GDQ_T = strF("%s: %d/%d", GS(USPF_GUI_TOTAL), USPF.ptsData.GDTot, USPF.ptsTots.GDTot),
-		PDGBE = {
-			{ 1, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD1)),	USPF.ptsData.PD.AD1,	USPF.ptsTots.PD.AD1,	GetAchLink(USPF.data.PD.AD1)},
-			{ 2, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD2)),	USPF.ptsData.PD.AD2,	USPF.ptsTots.PD.AD2,	GetAchLink(USPF.data.PD.AD2)},
-			{ 3, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD3)),	USPF.ptsData.PD.AD3,	USPF.ptsTots.PD.AD3,	GetAchLink(USPF.data.PD.AD3)},
-			{ 4, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD4)),	USPF.ptsData.PD.AD4,	USPF.ptsTots.PD.AD4,	GetAchLink(USPF.data.PD.AD4)},
-			{ 5, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD5)),	USPF.ptsData.PD.AD5,	USPF.ptsTots.PD.AD5,	GetAchLink(USPF.data.PD.AD5)},
-			{ 6, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC1)),	USPF.ptsData.PD.DC1,	USPF.ptsTots.PD.DC1,	GetAchLink(USPF.data.PD.DC1)},
-			{ 7, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC2)),	USPF.ptsData.PD.DC2,	USPF.ptsTots.PD.DC2,	GetAchLink(USPF.data.PD.DC2)},
-			{ 8, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC3)),	USPF.ptsData.PD.DC3,	USPF.ptsTots.PD.DC3,	GetAchLink(USPF.data.PD.DC3)},
-			{ 9, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC4)),	USPF.ptsData.PD.DC4,	USPF.ptsTots.PD.DC4,	GetAchLink(USPF.data.PD.DC4)},
-			{10, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC5)),	USPF.ptsData.PD.DC5,	USPF.ptsTots.PD.DC5,	GetAchLink(USPF.data.PD.DC5)},
-			{11, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP1)),	USPF.ptsData.PD.EP1,	USPF.ptsTots.PD.EP1,	GetAchLink(USPF.data.PD.EP1)},
-			{12, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP2)),	USPF.ptsData.PD.EP2,	USPF.ptsTots.PD.EP2,	GetAchLink(USPF.data.PD.EP2)},
-			{13, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP3)),	USPF.ptsData.PD.EP3,	USPF.ptsTots.PD.EP3,	GetAchLink(USPF.data.PD.EP3)},
-			{14, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP4)),	USPF.ptsData.PD.EP4,	USPF.ptsTots.PD.EP4,	GetAchLink(USPF.data.PD.EP4)},
-			{15, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP5)),	USPF.ptsData.PD.EP5,	USPF.ptsTots.PD.EP5,	GetAchLink(USPF.data.PD.EP5)},
-			{16, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.CH)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.CH)),	USPF.ptsData.PD.CH,		USPF.ptsTots.PD.CH,		GetAchLink(USPF.data.PD.CH)},
-			{17, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.RO)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.WOO)),	USPF.ptsData.PD.WOO,	USPF.ptsTots.PD.WOO,	GetAchLink(USPF.data.PD.WOO)},
-			{18, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.RO)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.WRK)),	USPF.ptsData.PD.WRK,	USPF.ptsTots.PD.WRK,	GetAchLink(USPF.data.PD.WRK)},
-			{19, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.VV)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.VFW)),	USPF.ptsData.PD.VFW,	USPF.ptsTots.PD.VFW,	GetAchLink(USPF.data.PD.VFW)},
-			{20, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.VV)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.VNC)),	USPF.ptsData.PD.VNC,	USPF.ptsTots.PD.VNC,	GetAchLink(USPF.data.PD.VNC)},
-			{21, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.SU)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.SKW)),	USPF.ptsData.PD.SKW,	USPF.ptsTots.PD.SKW,	GetAchLink(USPF.data.PD.SKW)},
-			{22, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.SU)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.SSH)),	USPF.ptsData.PD.SSH,	USPF.ptsTots.PD.SSH,	GetAchLink(USPF.data.PD.SSH)},
-			{23, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.NE)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.OC)),	USPF.ptsData.PD.OC,		USPF.ptsTots.PD.OC,		GetAchLink(USPF.data.PD.OC)},
-			{24, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.NE)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.RN)),	USPF.ptsData.PD.RN,		USPF.ptsTots.PD.RN,		GetAchLink(USPF.data.PD.RN)},
-			{25, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.WS)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.LT)),	USPF.ptsData.PD.LT,		USPF.ptsTots.PD.LT,		GetAchLink(USPF.data.PD.LT)},
-			{26, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BGC)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.NK)),	USPF.ptsData.PD.NK,		USPF.ptsTots.PD.NK,		GetAchLink(USPF.data.PD.NK)},
-			{27, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BW)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.SH)),	USPF.ptsData.PD.SH,		USPF.ptsTots.PD.SH,		GetAchLink(USPF.data.PD.SH)},
-			{28, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BW)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.ZA)),	USPF.ptsData.PD.ZA,		USPF.ptsTots.PD.ZA,		GetAchLink(USPF.data.PD.ZA)},
-		},
-		PDGBE_T = strF("%s: %d/%d", GS(USPF_GUI_TOTAL), USPF.ptsData.PDTot, USPF.ptsTots.PDTot),
-		CharacterTot = strF("%s: %d/%d", GS(USPF_GUI_CHAR_TOTAL), USPF.ptsData.Tot, USPF.ptsTots.Tot),
-	}
-end
-
-local function USPF_CheckSavedVars(value)
-	local charId = GCCId()
-	if(selectedChar ~= charId) then return false end
-	if(value == nil) then
-		--Write the character settings table.
-		USPF.sVar.settings[charId] = {}
-		USPF.sVar.settings[charId] = USPF_LTF:CopyTable(USPF.settings)
-
-		--Write the character points data table.
-		USPF.sVar.ptsData[charId] = {}
-		USPF.sVar.ptsData[charId] = USPF_LTF:CopyTable(USPF.ptsData)
-	end
-	return true
-end
-
-local function USPF_SetLevelPoints()
-	USPF.ptsData.Level = math.floor(GetUnitLevel("player")/5) + math.floor(GetUnitLevel("player")/10) + (GetUnitLevel("player") - 1)
-
-	--Update saved variables.
-	if(USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar])) then
-		USPF.sVar.ptsData[selectedChar].Level = USPF.ptsData.Level
-	end
-end
-
-local function USPF_SetQuestPoints()
-	--Main Quest Skill Points
-	for i=1, #USPF.data.MQ do
-		USPF.ptsData.MainQ = USPF.ptsData.MainQ + (IAchC(USPF.data.MQ[i][2]) and USPF.data.MQ[i][4] or 0)
-	end
-
-	--Morrowind Only Character Quest Skill Points
-	USPF.ptsData.MWChar = ((GCQI(USPF.data.MO[1][1]) ~= "" or USPF.settings.MWC) and USPF.data.MO[1][4] or 0)
-
-	--Summerset Only Character Quest Skill Points
-	USPF.ptsData.SUChar = ((GCQI(USPF.data.SO[1][1]) ~= "" or USPF.settings.SSC) and USPF.data.SO[1][4] or 0)
-
-	--Elsweyr Only Character Quest Skill Points
-	USPF.ptsData.EWChar = ((GCQI(USPF.data.EO[1][1]) ~= "" or USPF.settings.EWC) and USPF.data.EO[1][4] or 0)
-
-  	--Greymoor Only Character Quest Skill Points
-	USPF.ptsData.GMChar = ((GCQI(USPF.data.GO[1][1]) ~= "" or USPF.settings.GMC) and USPF.data.GO[1][4] or 0)
-
-  	--Blackwood Only Character Quest Skill Points
-	USPF.ptsData.BWChar = ((GCQI(USPF.data.BO[1][1]) ~= "" or USPF.settings.BWC) and USPF.data.BO[1][4] or 0)
-
-	for k,_ in pairs(USPF.ptsData.ZQ) do
-		if(USPF.data[k] ~= nil) then
-			for i=1, #USPF.data[k] do
-				USPF.ptsData.ZQ[k] = USPF.ptsData.ZQ[k] + ((USPF.data[k][i][2] == 0 and (GCQI(USPF.data[k][i][1]) ~= "") or IAchC(USPF.data[k][i][2])) and 1 or 0)
-			end
-			USPF.ptsData.ZQTot = USPF.ptsData.ZQTot + USPF.ptsData.ZQ[k]
-		end
-	end
-
-	--Group Dungeon Quest Skill Points
-	for k,_ in pairs(USPF.ptsData.GD) do
-		USPF.ptsData.GD[k] = (GCQI(USPF.data.GD[k][2]) ~= "" and 1 or 0)
-		USPF.ptsData.GDTot = USPF.ptsData.GDTot + USPF.ptsData.GD[k]
-	end
-
-	--Update saved variables for all.
-	if(USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar])) then
-		USPF.sVar.ptsData[selectedChar].MainQ = USPF.ptsData.MainQ
-		USPF.sVar.ptsData[selectedChar].MWChar = USPF.ptsData.MWChar
-		USPF.sVar.ptsData[selectedChar].SUChar = USPF.ptsData.SUChar
-		USPF.sVar.ptsData[selectedChar].EWChar = USPF.ptsData.EWChar
-		USPF.sVar.ptsData[selectedChar].GMChar = USPF.ptsData.GMChar
-		USPF.sVar.ptsData[selectedChar].BWChar = USPF.ptsData.BWChar
-
-		USPF.sVar.ptsData[selectedChar].ZQ = USPF_LTF:CopyTable(USPF.ptsData.ZQ)
-		USPF.sVar.ptsData[selectedChar].GD = USPF_LTF:CopyTable(USPF.ptsData.GD)
-
-		USPF.sVar.ptsData[selectedChar].ZQTot = USPF.ptsData.ZQTot
-		USPF.sVar.ptsData[selectedChar].GDTot = USPF.ptsData.GDTot
-	end
-end
-
-local function USPF_SetPublicDungeonPoints()
-	for k,_ in pairs(USPF.ptsData.PD) do
-		USPF.ptsData.PD[k] = (IAchC(USPF.data.PD[k]) and 1 or 0)
-		USPF.ptsData.PDTot = USPF.ptsData.PDTot + USPF.ptsData.PD[k]
-	end
-
-	if(USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar])) then
-		--Update saved variables.
-		USPF.sVar.ptsData[selectedChar].PD		= USPF_LTF:CopyTable(USPF.ptsData.PD)
-		USPF.sVar.ptsData[selectedChar].PDTot	= USPF.ptsData.PDTot
-	end
-end
-
-local function USPF_SetSkyshardPoints()
-	for k,_ in pairs(USPF.ptsData.SS) do
-		if(IAchC(USPF.data.SS[k])) then USPF.ptsData.SS[k] = GAchNCr(USPF.data.SS[k])
-		else
-			for i = 1, GAchNCr(USPF.data.SS[k]) do
-				local _, numCompleted = GAchCr(USPF.data.SS[k], i)
-				if(numCompleted > 0) then USPF.ptsData.SS[k] = USPF.ptsData.SS[k] + 1 end
-			end
-		end
-		USPF.ptsData.numSSTot = USPF.ptsData.numSSTot + USPF.ptsData.SS[k]
-	end
-
-	--Calculate the total and round for points.
-	USPF.ptsData.SSTot = math.floor(USPF.ptsData.numSSTot/3)
-
-	if(USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar])) then
-		--Update saved variables for all.
-		USPF.sVar.ptsData[selectedChar].SS			= USPF_LTF:CopyTable(USPF.ptsData.SS)
-		USPF.sVar.ptsData[selectedChar].numSSTot	= USPF.ptsData.numSSTot
-		USPF.sVar.ptsData[selectedChar].SSTot		= USPF.ptsData.SSTot
-	end
-end
-
---Temporary fix for ZOS' 4.3.7 bug.
---EsoUI/Ingame/Skills/SkillsDataManager.lua:1202: attempt to index a nil value
-function USPF_GetCraftingSkillLineIndices(tradeskillType)
-	local skillLineData = SKILLS_DATA_MANAGER:GetCraftingSkillLineData(tradeskillType)
-	if skillLineData then
-		return skillLineData:GetIndices()
-	end
-	return 0, 0, 0
-end
-
-local enchantingSkillType, enchantingSkillLine = USPF_GetCraftingSkillLineIndices(CRAFTING_TYPE_ENCHANTING)
-local provisionSkillType, provisionSkillLine = USPF_GetCraftingSkillLineIndices(CRAFTING_TYPE_PROVISIONING)
-local DARK_BROTHERHOOD, FIGHTERS_GUILD, MAGES_GUILD, THIEVES_GUILD, UNDAUNTED, SOUL_MAGIC, LEGERDEMAIN, PSIJIC_ORDER = 118, 45, 44, 117, 55, 72, 111, 130
-local WEREWOLF, VAMPIRE, SCRYING, EXCAVATION = 50, 51, 155, 157
-
-local function USPF_IsValidRacialLine(skillType, skillLine)
-	if (skillType == SKILL_TYPE_RACIAL) then
-		local _, _, _, skillLineId = GetSkillLineInfo(skillType, skillLine)
-		return skillLineId == USPF.data.racialLineIds[GetUnitRaceId("player")]
-	end
-	return false
-end
-
-local function USPF_GetReduceAbility(skillType, skillLine, skillIndex)
-	local val = 0
-	if skillType == SKILL_TYPE_WORLD then
-		local name, _, _, skillLineId = GetSkillLineInfo(skillType, skillLine)
-		val = ((skillLineId == SOUL_MAGIC and skillIndex == 2) and 1 or val) -- Soul Magic - Soul Trap
-		val = ((skillLineId == SCRYING and skillIndex == 1) and 1 or val) -- Scrying - Scry
-		val = ((skillLineId == SCRYING and skillIndex == 2) and 1 or val) -- Scrying - Antiquarian Insight
-		val = ((skillLineId == EXCAVATION and skillIndex == 1) and 1 or val) -- Excavation - Hand Brush
-		val = ((skillLineId == EXCAVATION and skillIndex == 2) and 1 or val) -- Excavation - Augur
-		val = ((skillLineId == VAMPIRE and skillIndex == 7) and 1 or val) -- Vampire - Feed
-		val = ((skillLineId == WEREWOLF and skillIndex == 1) and 1 or val) -- Werewolf - Transformation
-		val = ((skillLineId == WEREWOLF and skillIndex == 7) and 1 or val) -- Werewolf - Devour
-	end
-	if skillType == SKILL_TYPE_TRADESKILL then
-		val = (skillIndex == 1 and 1 or val)
-		val = ((skillIndex == 2 and skillType == enchantingSkillType and skillLine == enchantingSkillLine) and 1 or val)
-		val = ((skillIndex == 2 and skillType == provisionSkillType and skillLine == provisionSkillLine) and 1 or val)
-	end
-
-	if skillType == SKILL_TYPE_ARMOR then -- first armor passive is now free, as is the second for light and heavy armor
-		val = (skillIndex == 2 and 1 or val)
-		val = ((skillIndex == 3 and skillLine == ARMORTYPE_LIGHT) and 1 or val)
-		val = ((skillIndex == 3 and skillLine == ARMORTYPE_HEAVY) and 1 or val)
-	end
-
-	val = ((USPF_IsValidRacialLine(skillType, skillLine) and skillIndex == 1) and 1 or val)
-
-	if skillType == SKILL_TYPE_GUILD then
-		local name, _, _, skillLineId = GetSkillLineInfo(skillType, skillLine)
-		val = (skillLineId == DARK_BROTHERHOOD and (skillIndex == 1 and 1 or val) or val)
-		val = (skillLineId == THIEVES_GUILD and (skillIndex == 1 and 1 or val) or val)
-		val = (skillLineId == PSIJIC_ORDER and (skillIndex == 7 and 1 or val) or val)
-	end
-	return val
-end
-
-local function USPF_GetSkillSpentPoints(skillType, skillLine, skillIndex)
-	local skills = USPF.cache.skillTypes[skillType].lines[skillLine].skills
-	local _, _, _, _, _, purchased, progressionIndex = GetSkillAbilityInfo(skillType, skillLine, skillIndex)
-	local spent, possible, reduction
-
-	if not purchased then spent = 0 end
-	reduction = USPF_GetReduceAbility(skillType, skillLine, skillIndex)
-
-	if progressionIndex then
-		local _, morph = GetAbilityProgressionInfo(progressionIndex)
-		if not spent then
-			spent = (morph > 0 and (2 - reduction) or (1 - reduction))
-		end
-		possible = 2 - reduction
-	else
-		local currentLevel, maxLevel = GetSkillAbilityUpgradeInfo(skillType, skillLine, skillIndex)
-		if currentLevel then
-			if not spent then spent = currentLevel - reduction end
-			possible = maxLevel - reduction
-		else
-			if not spent then spent = 1 - reduction end
-			possible = 1 - reduction
-		end
-	end
-	skills[skillIndex] = {spent, possible}
-	return skills[skillIndex]
-end
-
-local function USPF_GetLineSpentPoints(skillType, skillLine)
-	if(skillType ~= SKILL_TYPE_RACIAL or USPF_IsValidRacialLine(skillType, skillLine)) then
-		USPF.cache.skillTypes[skillType].lines[skillLine] = {}
-		local line = USPF.cache.skillTypes[skillType].lines[skillLine]
-		line.skills = {}
-		line.total = 0
-		line.possible = 0
-		local numSkillAbilities = GetNumSkillAbilities(skillType, skillLine)
-		local spent
-		for ability = 1, numSkillAbilities do
-			spent = USPF_GetSkillSpentPoints(skillType, skillLine, ability)
-			line.total = line.total + spent[1]
-			line.possible = line.possible + spent[2]
-		end
-
-		return line.total
-	end
-	return 0
-end
-
-local function USPF_GetTypeSpentPoints(skillTypeId)
-	USPF.cache.skillTypes[skillTypeId] = {}
-	local skillType = USPF.cache.skillTypes[skillTypeId]
-	skillType.lines = {}
-	skillType.total = 0
-	local numSkillLines = GetNumSkillLines(skillTypeId)
-	for skillLine = 1, numSkillLines do skillType.total = skillType.total + USPF_GetLineSpentPoints(skillTypeId, skillLine) end
-	return skillType.total
-end
-
-local function USPF_GetTotSkillPoints()
-	USPF.cache.skillTypes = {}
-	USPF.cache.total = GetAvailableSkillPoints()
-
-	for skillType = 1, GetNumSkillTypes() do USPF.cache.total = USPF.cache.total + USPF_GetTypeSpentPoints(skillType) end
-	return USPF.cache.total
-end
-
-local function USPF_SetFoliumDiscognitumPoints()
-	if(USPF.settings.FD.override) then
-		USPF.ptsData.FolDis = (USPF.settings.FD.charHasFD and 2 or 0)
-	else
-		local skillPoints = USPF_GetTotSkillPoints()
-		local skillPointsDiff =	USPF.ptsData.Level + USPF.ptsData.MainQ + USPF.ptsData.MWChar +
-								USPF.ptsData.SUChar + USPF.ptsData.EWChar + USPF.ptsData.GMChar +
-								USPF.ptsData.BWChar + USPF.ptsData.PvPRank + USPF.ptsData.MaelAr +
-								USPF.ptsData.ZQTot + USPF.ptsData.SSTot + USPF.ptsData.GDTot +
-								USPF.ptsData.PDTot
-		USPF.ptsData.FolDis = (skillPoints == skillPointsDiff + 2 and 2 or 0)
-	end
-
-	--Update saved variables.
-	if(USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar])) then
-		USPF.sVar.ptsData[selectedChar].FolDis = USPF.ptsData.FolDis
-	end
-end
-
-local function USPF_SetAllianceWarRankPoints()
-	USPF.ptsData.PvPRank = (GetUnitAvARank("player") == nil and 0 or GetUnitAvARank("player"))
-
-	--Update saved variables.
-	if(USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar])) then
-		USPF.sVar.ptsData[selectedChar].PvPRank = USPF.ptsData.PvPRank
-	end
-end
-
-local function USPF_SetMaelArPoints()
-	USPF.ptsData.MaelAr = (IAchC(USPF.data.MAAch) and 1 or 0)
-
-	--Update saved variables.
-	if(USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar])) then
-		USPF.sVar.ptsData[selectedChar].MaelAr = USPF.ptsData.MaelAr
-	end
-end
-
-local function USPF_SetGeneralPoints()
-	USPF.ptsData.GenTot =	USPF.ptsData.Level + USPF.ptsData.MainQ + USPF.ptsData.FolDis + USPF.ptsData.MWChar +
-							USPF.ptsData.SUChar + USPF.ptsData.EWChar + USPF.ptsData.GMChar + USPF.ptsData.BWChar +
-							USPF.ptsData.PvPRank + USPF.ptsData.MaelAr
-
-	--Update saved variables.
-	if(USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar])) then
-		USPF.sVar.ptsData[selectedChar].GenTot = USPF.ptsData.GenTot
-	end
-end
-
-local function USPF_SetTotPoints()
-	USPF.ptsData.Tot =	USPF.ptsData.GenTot + USPF.ptsData.ZQTot + USPF.ptsData.SSTot +
-						USPF.ptsData.GDTot + USPF.ptsData.PDTot
-
-	--Update saved variables.
-	if(USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar])) then
-		USPF.sVar.ptsData[selectedChar].Tot = USPF.ptsData.Tot
-	end
-end
-
-local function GetSV(value)
-	return  value ~= nil and value or 0
-end
-
-local function USPF_LoadData(charId)
-	sVarPtsData = USPF.sVar.ptsData[charId]
-
-	if(USPF.sVar.ptsData[charId] == nil) then
-		--Write the character settings table.
-		USPF.sVar.settings[charId] = {}
-		USPF.sVar.settings[charId] = USPF_LTF:CopyTable(USPF.settings)
-
-		--Write the character points data table.
-		USPF.sVar.ptsData[charId] = {}
-		USPF.sVar.ptsData[charId] = USPF_LTF:CopyTable(USPF.ptsData)
-	end
-
-	questTooltips = {
-		WP	 = GS(USPF_QUEST_NONE),
-		AD0	 = GS(USPF_QUEST_NONE),
-		AD1  = GetQuestTooltipText("AD1"),
-		AD2  = GetQuestTooltipText("AD2"),
-		AD3  = GetQuestTooltipText("AD3"),
-		AD4  = GetQuestTooltipText("AD4"),
-		AD5  = GetQuestTooltipText("AD5"),
-		CC   = GetQuestTooltipText("CC"),
-		CH   = GetQuestTooltipText("CH"),
-		CAD	 = GS(USPF_QUEST_NONE),
-		CDC	 = GS(USPF_QUEST_NONE),
-		CEP	 = GS(USPF_QUEST_NONE),
-		CMT	 = GS(USPF_QUEST_NONE),
-		DB   = GetQuestTooltipText("DB"),
-		DC0a = GS(USPF_QUEST_NONE),
-		DC0b = GS(USPF_QUEST_NONE),
-		DC1	 = GetQuestTooltipText("DC1"),
-		DC2	 = GetQuestTooltipText("DC2"),
-		DC3	 = GetQuestTooltipText("DC3"),
-		DC4	 = GetQuestTooltipText("DC4"),
-		DC5	 = GetQuestTooltipText("DC5"),
-		EO	 = GetQuestTooltipText("EO"),
-		EP0a = GS(USPF_QUEST_NONE),
-		EP0b = GS(USPF_QUEST_NONE),
-		EP1	 = GetQuestTooltipText("EP1"),
-		EP2	 = GetQuestTooltipText("EP2"),
-		EP3	 = GetQuestTooltipText("EP3"),
-		EP4	 = GetQuestTooltipText("EP4"),
-		EP5	 = GetQuestTooltipText("EP5"),
-		IC	 = GetQuestTooltipText("IC"),
-		LCL	 = GS(USPF_QUEST_NONE),
-		UCL	 = GS(USPF_QUEST_NONE),
-		MM	 = GetQuestTooltipText("MM"),
-		MO	 = GetQuestTooltipText("MO"),
-		MW	 = GetQuestTooltipText("MW"),
-		MQ	 = GetQuestTooltipText("MQ"),
-		NE	 = GetQuestTooltipText("NE"),
-		RO	 = GetQuestTooltipText("RO"),
-		SE	 = GetQuestTooltipText("SE"),
-		SO	 = GetQuestTooltipText("SO"),
-		TG	 = GetQuestTooltipText("TG"),
-		SU	 = GetQuestTooltipText("SU"),
-		WS   = GetQuestTooltipText("WS"),
-		GO   = GetQuestTooltipText("GO"),
 		TR   = GetQuestTooltipText("TR"),
 		BW   = GetQuestTooltipText("BW"),
 	}
@@ -1196,50 +691,50 @@ local function USPF_LoadData(charId)
 		SQS_SL_T = strF("%d/%d", sVarPtsData.ZQTot, USPF.ptsTots.ZQTot),
 		SQS_SS_T = strF("%d/%d", sVarPtsData.SSTot, USPF.ptsTots.SSTot),
 		GDQ = {
-			{ 1, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.BC1)),	GetSV(sVarPtsData.GD.BC1),	USPF.ptsTots.GD.BC1,	USPF.data.GD.BC1[4]},
-			{ 2, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.BC2)),	GetSV(sVarPtsData.GD.BC2),	USPF.ptsTots.GD.BC2,	USPF.data.GD.BC2[4]},
-			{ 3, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.EH1)),	GetSV(sVarPtsData.GD.EH1),	USPF.ptsTots.GD.EH1,	USPF.data.GD.EH1[4]},
-			{ 4, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.EH2)),	GetSV(sVarPtsData.GD.EH2),	USPF.ptsTots.GD.EH2,	USPF.data.GD.EH2[4]},
-			{ 5, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.CA1)),	GetSV(sVarPtsData.GD.CA1),	USPF.ptsTots.GD.CA1,	USPF.data.GD.CA1[4]},
-			{ 6, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.CA2)),	GetSV(sVarPtsData.GD.CA2),	USPF.ptsTots.GD.CA2,	USPF.data.GD.CA2[4]},
-			{ 7, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.TI)),	GetSV(sVarPtsData.GD.TI),	USPF.ptsTots.GD.TI,		USPF.data.GD.TI[4]},
-			{ 8, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.SW)),	GetSV(sVarPtsData.GD.SW),	USPF.ptsTots.GD.SW,		USPF.data.GD.SW[4]},
-			{ 9, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.SC1)),	GetSV(sVarPtsData.GD.SC1),	USPF.ptsTots.GD.SC1,	USPF.data.GD.SC1[4]},
-			{10, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.SC2)),	GetSV(sVarPtsData.GD.SC2),	USPF.ptsTots.GD.SC2,	USPF.data.GD.SC2[4]},
-			{11, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.WS1)),	GetSV(sVarPtsData.GD.WS1),	USPF.ptsTots.GD.WS1,	USPF.data.GD.WS1[4]},
-			{12, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.WS2)),	GetSV(sVarPtsData.GD.WS2),	USPF.ptsTots.GD.WS2,	USPF.data.GD.WS2[4]},
-			{13, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.CH1)),	GetSV(sVarPtsData.GD.CH1),	USPF.ptsTots.GD.CH1,	USPF.data.GD.CH1[4]},
-			{14, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.CH2)),	GetSV(sVarPtsData.GD.CH2),	USPF.ptsTots.GD.CH2,	USPF.data.GD.CH2[4]},
-			{15, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.VF)),	GetSV(sVarPtsData.GD.VF),	USPF.ptsTots.GD.VF,		USPF.data.GD.VF[4]},
-			{16, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.BH)),	GetSV(sVarPtsData.GD.BH),	USPF.ptsTots.GD.BH,		USPF.data.GD.BH[4]},
-			{17, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.FG1)),	GetSV(sVarPtsData.GD.FG1),	USPF.ptsTots.GD.FG1,	USPF.data.GD.FG1[4]},
-			{18, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.FG2)),	GetSV(sVarPtsData.GD.FG2),	USPF.ptsTots.GD.FG2,	USPF.data.GD.FG2[4]},
-			{19, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.DC1)),	GetSV(sVarPtsData.GD.DC1),	USPF.ptsTots.GD.DC1,	USPF.data.GD.DC1[4]},
-			{20, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.DC2)),	GetSV(sVarPtsData.GD.DC2),	USPF.ptsTots.GD.DC2,	USPF.data.GD.DC2[4]},
-			{21, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.AC)),	GetSV(sVarPtsData.GD.AC),	USPF.ptsTots.GD.AC,		USPF.data.GD.AC[4]},
-			{22, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.DK)),	GetSV(sVarPtsData.GD.DK),	USPF.ptsTots.GD.DK,		USPF.data.GD.DK[4]},
-			{23, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.BC)),	GetSV(sVarPtsData.GD.BC),	USPF.ptsTots.GD.BC,		USPF.data.GD.BC[4]},
-			{24, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.CH)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.VM)),	GetSV(sVarPtsData.GD.VM),	USPF.ptsTots.GD.VM,		USPF.data.GD.VM[4]},
-			{25, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.CYD)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.ICP)),	GetSV(sVarPtsData.GD.ICP),	USPF.ptsTots.GD.ICP,	USPF.data.GD.ICP[4]},
-			{26, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.CYD)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.WGT)),	GetSV(sVarPtsData.GD.WGT),	USPF.ptsTots.GD.WGT,	USPF.data.GD.WGT[4]},
-			{27, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.CS)),	GetSV(sVarPtsData.GD.CS),	USPF.ptsTots.GD.CS,		USPF.data.GD.CS[4]},
-			{28, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.RM)),	GetSV(sVarPtsData.GD.RM),	USPF.ptsTots.GD.RM,		USPF.data.GD.RM[4]},
-			{29, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.CL)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.BF)),	GetSV(sVarPtsData.GD.BF),	USPF.ptsTots.GD.BF,		USPF.data.GD.BF[4]},
-			{30, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.CL)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.FH)),	GetSV(sVarPtsData.GD.FH),	USPF.ptsTots.GD.FH,		USPF.data.GD.FH[4]},
-			{31, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.FL)),	GetSV(sVarPtsData.GD.FL),	USPF.ptsTots.GD.FL,		USPF.data.GD.FL[4]},
-			{32, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.SP)),	GetSV(sVarPtsData.GD.SP),	USPF.ptsTots.GD.SP,		USPF.data.GD.SP[4]},
-			{33, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.MHK)),	GetSV(sVarPtsData.GD.MHK),	USPF.ptsTots.GD.MHK,	USPF.data.GD.MHK[4]},
-			{34, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.MOS)),	GetSV(sVarPtsData.GD.MOS),	USPF.ptsTots.GD.MOS,	USPF.data.GD.MOS[4]},
-			{35, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.GC)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.DoM)),	GetSV(sVarPtsData.GD.DoM),	USPF.ptsTots.GD.DoM,	USPF.data.GD.DoM[4]},
-			{36, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.FV)),	GetSV(sVarPtsData.GD.FV),	USPF.ptsTots.GD.FV,		USPF.data.GD.FV[4]},
-			{37, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.LM)),	GetSV(sVarPtsData.GD.LM),	USPF.ptsTots.GD.LM,		USPF.data.GD.LM[4]},
-			{38, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.NE)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.MF)),	GetSV(sVarPtsData.GD.MF),	USPF.ptsTots.GD.MF,		USPF.data.GD.MF[4]},
-			{39, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.RO)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.IR)),	GetSV(sVarPtsData.GD.IR),	USPF.ptsTots.GD.IR,		USPF.data.GD.IR[4]},
-			{40, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.UG)),	GetSV(sVarPtsData.GD.UG),	USPF.ptsTots.GD.UG,		USPF.data.GD.UG[4]},
-			{41, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BGC)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.SG)),	GetSV(sVarPtsData.GD.SG),	USPF.ptsTots.GD.SG,		USPF.data.GD.SG[4]},
-			{42, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.WS)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.CT)),	GetSV(sVarPtsData.GD.CT),	USPF.ptsTots.GD.CT,		USPF.data.GD.CT[4]},
-			{43, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.GC)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.BDV)),	GetSV(sVarPtsData.GD.BDV),	USPF.ptsTots.GD.BDV,	USPF.data.GD.BDV[4]},
-			{44, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.TC)),	GetSV(sVarPtsData.GD.TC),	USPF.ptsTots.GD.TC,		USPF.data.GD.TC[4]},
+			{ 1, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.BC1)),	GetSV(sVarPtsData.GD.BC1),	USPF.ptsTots.GD.BC1,	GetGDQuestTooltipText("BC1")},
+			{ 2, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.BC2)),	GetSV(sVarPtsData.GD.BC2),	USPF.ptsTots.GD.BC2,	GetGDQuestTooltipText("BC2")},
+			{ 3, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.EH1)),	GetSV(sVarPtsData.GD.EH1),	USPF.ptsTots.GD.EH1,	GetGDQuestTooltipText("EH1")},
+			{ 4, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.EH2)),	GetSV(sVarPtsData.GD.EH2),	USPF.ptsTots.GD.EH2,	GetGDQuestTooltipText("EH2")},
+			{ 5, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.CA1)),	GetSV(sVarPtsData.GD.CA1),	USPF.ptsTots.GD.CA1,	GetGDQuestTooltipText("CA1")},
+			{ 6, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.CA2)),	GetSV(sVarPtsData.GD.CA2),	USPF.ptsTots.GD.CA2,	GetGDQuestTooltipText("CA2")},
+			{ 7, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.TI)),	GetSV(sVarPtsData.GD.TI),	USPF.ptsTots.GD.TI,		GetGDQuestTooltipText("TI")},
+			{ 8, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.SW)),	GetSV(sVarPtsData.GD.SW),	USPF.ptsTots.GD.SW,		GetGDQuestTooltipText("SW")},
+			{ 9, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.SC1)),	GetSV(sVarPtsData.GD.SC1),	USPF.ptsTots.GD.SC1,	GetGDQuestTooltipText("SC1")},
+			{10, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.SC2)),	GetSV(sVarPtsData.GD.SC2),	USPF.ptsTots.GD.SC2,	GetGDQuestTooltipText("SC2")},
+			{11, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.WS1)),	GetSV(sVarPtsData.GD.WS1),	USPF.ptsTots.GD.WS1,	GetGDQuestTooltipText("WS1")},
+			{12, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.WS2)),	GetSV(sVarPtsData.GD.WS2),	USPF.ptsTots.GD.WS2,	GetGDQuestTooltipText("WS2")},
+			{13, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.CH1)),	GetSV(sVarPtsData.GD.CH1),	USPF.ptsTots.GD.CH1,	GetGDQuestTooltipText("CH1")},
+			{14, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.CH2)),	GetSV(sVarPtsData.GD.CH2),	USPF.ptsTots.GD.CH2,	GetGDQuestTooltipText("CH2")},
+			{15, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.VF)),	GetSV(sVarPtsData.GD.VF),	USPF.ptsTots.GD.VF,		GetGDQuestTooltipText("VF")},
+			{16, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.BH)),	GetSV(sVarPtsData.GD.BH),	USPF.ptsTots.GD.BH,		GetGDQuestTooltipText("BH")},
+			{17, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.FG1)),	GetSV(sVarPtsData.GD.FG1),	USPF.ptsTots.GD.FG1,	GetGDQuestTooltipText("FG1")},
+			{18, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.FG2)),	GetSV(sVarPtsData.GD.FG2),	USPF.ptsTots.GD.FG2,	GetGDQuestTooltipText("FG2")},
+			{19, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.DC1)),	GetSV(sVarPtsData.GD.DC1),	USPF.ptsTots.GD.DC1,	GetGDQuestTooltipText("DC1")},
+			{20, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.DC2)),	GetSV(sVarPtsData.GD.DC2),	USPF.ptsTots.GD.DC2,	GetGDQuestTooltipText("DC2")},
+			{21, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.AC)),	GetSV(sVarPtsData.GD.AC),	USPF.ptsTots.GD.AC,		GetGDQuestTooltipText("AC")},
+			{22, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.DK)),	GetSV(sVarPtsData.GD.DK),	USPF.ptsTots.GD.DK,		GetGDQuestTooltipText("DK")},
+			{23, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.BC)),	GetSV(sVarPtsData.GD.BC),	USPF.ptsTots.GD.BC,		GetGDQuestTooltipText("BC")},
+			{24, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.CH)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.VM)),	GetSV(sVarPtsData.GD.VM),	USPF.ptsTots.GD.VM,		GetGDQuestTooltipText("VM")},
+			{25, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.CYD)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.ICP)),	GetSV(sVarPtsData.GD.ICP),	USPF.ptsTots.GD.ICP,	GetGDQuestTooltipText("ICP")},
+			{26, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.CYD)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.WGT)),	GetSV(sVarPtsData.GD.WGT),	USPF.ptsTots.GD.WGT,	GetGDQuestTooltipText("WGT")},
+			{27, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.CS)),	GetSV(sVarPtsData.GD.CS),	USPF.ptsTots.GD.CS,		GetGDQuestTooltipText("CS")},
+			{28, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.RM)),	GetSV(sVarPtsData.GD.RM),	USPF.ptsTots.GD.RM,		GetGDQuestTooltipText("RM")},
+			{29, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.CL)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.BF)),	GetSV(sVarPtsData.GD.BF),	USPF.ptsTots.GD.BF,		GetGDQuestTooltipText("BF")},
+			{30, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.CL)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.FH)),	GetSV(sVarPtsData.GD.FH),	USPF.ptsTots.GD.FH,		GetGDQuestTooltipText("FH")},
+			{31, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.FL)),	GetSV(sVarPtsData.GD.FL),	USPF.ptsTots.GD.FL,		GetGDQuestTooltipText("FL")},
+			{32, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.SP)),	GetSV(sVarPtsData.GD.SP),	USPF.ptsTots.GD.SP,		GetGDQuestTooltipText("SP")},
+			{33, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.MHK)),	GetSV(sVarPtsData.GD.MHK),	USPF.ptsTots.GD.MHK,	GetGDQuestTooltipText("MHK")},
+			{34, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.MOS)),	GetSV(sVarPtsData.GD.MOS),	USPF.ptsTots.GD.MOS,	GetGDQuestTooltipText("MOS")},
+			{35, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.GC)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.DoM)),	GetSV(sVarPtsData.GD.DoM),	USPF.ptsTots.GD.DoM,	GetGDQuestTooltipText("DoM")},
+			{36, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.FV)),	GetSV(sVarPtsData.GD.FV),	USPF.ptsTots.GD.FV,		GetGDQuestTooltipText("FV")},
+			{37, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.LM)),	GetSV(sVarPtsData.GD.LM),	USPF.ptsTots.GD.LM,		GetGDQuestTooltipText("LM")},
+			{38, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.NE)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.MF)),	GetSV(sVarPtsData.GD.MF),	USPF.ptsTots.GD.MF,		GetGDQuestTooltipText("MF")},
+			{39, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.RO)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.IR)),	GetSV(sVarPtsData.GD.IR),	USPF.ptsTots.GD.IR,		GetGDQuestTooltipText("IR")},
+			{40, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.UG)),	GetSV(sVarPtsData.GD.UG),	USPF.ptsTots.GD.UG,		GetGDQuestTooltipText("UG")},
+			{41, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BGC)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.SG)),	GetSV(sVarPtsData.GD.SG),	USPF.ptsTots.GD.SG,		GetGDQuestTooltipText("SG")},
+			{42, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.WS)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.CT)),	GetSV(sVarPtsData.GD.CT),	USPF.ptsTots.GD.CT,		GetGDQuestTooltipText("CT")},
+			{43, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.GC)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.BDV)),	GetSV(sVarPtsData.GD.BDV),	USPF.ptsTots.GD.BDV,	GetGDQuestTooltipText("BDV")},
+			{44, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.TC)),	GetSV(sVarPtsData.GD.TC),	USPF.ptsTots.GD.TC,		GetGDQuestTooltipText("TC")},
 		},
 		GDQ_T = strF("%s: %d/%d", GS(USPF_GUI_TOTAL), sVarPtsData.GDTot, USPF.ptsTots.GDTot),
 		PDGBE = {
@@ -1277,8 +772,267 @@ local function USPF_LoadData(charId)
 	}
 end
 
+local function USPF_CheckSavedVars(value)
+	local charId = GCCId()
+	if selectedChar ~= charId then return false end
+	if value == nil then
+		--Write the character settings table.
+		USPF.sVar.settings[charId] = {}
+		USPF.sVar.settings[charId] = USPF_LTF:CopyTable(USPF.settings)
+
+		--Write the character points data table.
+		USPF.sVar.ptsData[charId] = {}
+		USPF.sVar.ptsData[charId] = USPF_LTF:CopyTable(USPF.ptsData)
+	end
+	return true
+end
+
+local function USPF_SetLevelPoints()
+	USPF.ptsData.Level = math.floor(GetUnitLevel("player")/5) + math.floor(GetUnitLevel("player")/10) + (GetUnitLevel("player") - 1)
+
+	--Update saved variables.
+	if USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar]) then
+		USPF.sVar.ptsData[selectedChar].Level = USPF.ptsData.Level
+	end
+end
+
+local function USPF_SetQuestPoints()
+	--Main Quest Skill Points
+	for i=1, #USPF.data.MQ do
+		USPF.ptsData.MainQ = USPF.ptsData.MainQ + (IAchC(USPF.data.MQ[i][2]) and 1 or 0)
+	end
+
+	--Morrowind Only Character Quest Skill Points
+	USPF.ptsData.MWChar = (GCQI(USPF.data.MO[1][1]) ~= "" or USPF.settings.MWC) and 1 or 0
+
+	--Summerset Only Character Quest Skill Points
+	USPF.ptsData.SUChar = (GCQI(USPF.data.SO[1][1]) ~= "" or USPF.settings.SSC) and 1 or 0
+
+	--Elsweyr Only Character Quest Skill Points
+	USPF.ptsData.EWChar = (GCQI(USPF.data.EO[1][1]) ~= "" or USPF.settings.EWC) and 1 or 0
+
+	--Greymoor Only Character Quest Skill Points
+	USPF.ptsData.GMChar = (GCQI(USPF.data.GO[1][1]) ~= "" or USPF.settings.GMC) and 1 or 0
+
+	--Blackwood Only Character Quest Skill Points
+	USPF.ptsData.BWChar = (GCQI(USPF.data.BO[1][1]) ~= "" or USPF.settings.BWC) and 1 or 0
+
+	for k,_ in pairs(USPF.ptsData.ZQ) do
+		if USPF.data[k] ~= nil then
+			for i=1, #USPF.data[k] do
+				USPF.ptsData.ZQ[k] = USPF.ptsData.ZQ[k] + ((USPF.data[k][i][2] == 0 and (GCQI(USPF.data[k][i][1]) ~= "") or IAchC(USPF.data[k][i][2])) and 1 or 0)
+			end
+			USPF.ptsData.ZQTot = USPF.ptsData.ZQTot + USPF.ptsData.ZQ[k]
+		end
+	end
+
+	--Group Dungeon Quest Skill Points
+	for k,_ in pairs(USPF.ptsData.GD) do
+		USPF.ptsData.GD[k] = GCQI(USPF.data.GD[k]) ~= "" and 1 or 0
+		USPF.ptsData.GDTot = USPF.ptsData.GDTot + USPF.ptsData.GD[k]
+	end
+
+	--Update saved variables for all.
+	if USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar]) then
+		USPF.sVar.ptsData[selectedChar].MainQ = USPF.ptsData.MainQ
+		USPF.sVar.ptsData[selectedChar].MWChar = USPF.ptsData.MWChar
+		USPF.sVar.ptsData[selectedChar].SUChar = USPF.ptsData.SUChar
+		USPF.sVar.ptsData[selectedChar].EWChar = USPF.ptsData.EWChar
+		USPF.sVar.ptsData[selectedChar].GMChar = USPF.ptsData.GMChar
+		USPF.sVar.ptsData[selectedChar].BWChar = USPF.ptsData.BWChar
+
+		USPF.sVar.ptsData[selectedChar].ZQ = USPF_LTF:CopyTable(USPF.ptsData.ZQ)
+		USPF.sVar.ptsData[selectedChar].GD = USPF_LTF:CopyTable(USPF.ptsData.GD)
+
+		USPF.sVar.ptsData[selectedChar].ZQTot = USPF.ptsData.ZQTot
+		USPF.sVar.ptsData[selectedChar].GDTot = USPF.ptsData.GDTot
+	end
+end
+
+local function USPF_SetPublicDungeonPoints()
+	for k,_ in pairs(USPF.ptsData.PD) do
+		USPF.ptsData.PD[k] = IAchC(USPF.data.PD[k]) and 1 or 0
+		USPF.ptsData.PDTot = USPF.ptsData.PDTot + USPF.ptsData.PD[k]
+	end
+
+	if USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar]) then
+		--Update saved variables.
+		USPF.sVar.ptsData[selectedChar].PD		= USPF_LTF:CopyTable(USPF.ptsData.PD)
+		USPF.sVar.ptsData[selectedChar].PDTot	= USPF.ptsData.PDTot
+	end
+end
+
+local function USPF_SetSkyshardPoints()
+	for k,_ in pairs(USPF.ptsData.SS) do
+		if IAchC(USPF.data.SS[k]) then USPF.ptsData.SS[k] = GAchNCr(USPF.data.SS[k])
+		else
+			for i = 1, GAchNCr(USPF.data.SS[k]) do
+				local _, numCompleted = GAchCr(USPF.data.SS[k], i)
+				if numCompleted > 0 then USPF.ptsData.SS[k] = USPF.ptsData.SS[k] + 1 end
+			end
+		end
+		USPF.ptsData.numSSTot = USPF.ptsData.numSSTot + USPF.ptsData.SS[k]
+	end
+
+	--Calculate the total and round for points.
+	USPF.ptsData.SSTot = math.floor(USPF.ptsData.numSSTot/3)
+
+	if USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar]) then
+		--Update saved variables for all.
+		USPF.sVar.ptsData[selectedChar].SS			= USPF_LTF:CopyTable(USPF.ptsData.SS)
+		USPF.sVar.ptsData[selectedChar].numSSTot	= USPF.ptsData.numSSTot
+		USPF.sVar.ptsData[selectedChar].SSTot		= USPF.ptsData.SSTot
+	end
+end
+
+local function USPF_IsValidRacialLine(skillType, skillLine)
+	if skillType == SKILL_TYPE_RACIAL then
+		local _, _, _, skillLineId = GetSkillLineInfo(skillType, skillLine)
+		return skillLineId == USPF.data.racialLineIds[GetUnitRaceId("player")]
+	end
+	return false
+end
+
+local function USPF_GetSkillSpentPoints(skillType, skillLine, skillIndex)
+	local skills = USPF.cache.skillTypes[skillType].lines[skillLine].skills
+	local _, _, _, _, _, purchased, progressionIndex = GetSkillAbilityInfo(skillType, skillLine, skillIndex)
+	local spent, possible, reduction
+
+	if not purchased then spent = 0 end
+	reduction = IsSkillAbilityAutoGrant(skillType, skillLine, skillIndex) and 1 or 0
+
+	if progressionIndex then
+		local _, morph = GetAbilityProgressionInfo(progressionIndex)
+		if not spent then
+			spent = morph > 0 and (2 - reduction) or (1 - reduction)
+		end
+		possible = 2 - reduction
+	else
+		local currentLevel, maxLevel = GetSkillAbilityUpgradeInfo(skillType, skillLine, skillIndex)
+		if currentLevel then
+			if not spent then spent = currentLevel - reduction end
+			possible = maxLevel - reduction
+		else
+			if not spent then spent = 1 - reduction end
+			possible = 1 - reduction
+		end
+	end
+	skills[skillIndex] = {spent, possible}
+	return skills[skillIndex]
+end
+
+local function USPF_GetLineSpentPoints(skillType, skillLine)
+	if skillType ~= SKILL_TYPE_RACIAL or USPF_IsValidRacialLine(skillType, skillLine) then
+		USPF.cache.skillTypes[skillType].lines[skillLine] = {}
+		local line = USPF.cache.skillTypes[skillType].lines[skillLine]
+		line.skills = {}
+		line.total = 0
+		line.possible = 0
+		local numSkillAbilities = GetNumSkillAbilities(skillType, skillLine)
+		for ability = 1, numSkillAbilities do
+			local spent = USPF_GetSkillSpentPoints(skillType, skillLine, ability)
+			line.total = line.total + spent[1]
+			line.possible = line.possible + spent[2]
+		end
+
+		return line.total
+	end
+	return 0
+end
+
+local function USPF_GetTypeSpentPoints(skillTypeId)
+	USPF.cache.skillTypes[skillTypeId] = {}
+	local skillType = USPF.cache.skillTypes[skillTypeId]
+	skillType.lines = {}
+	skillType.total = 0
+	local numSkillLines = GetNumSkillLines(skillTypeId)
+	for skillLine = 1, numSkillLines do skillType.total = skillType.total + USPF_GetLineSpentPoints(skillTypeId, skillLine) end
+	return skillType.total
+end
+
+local function USPF_GetTotSkillPoints()
+	USPF.cache.skillTypes = {}
+	USPF.cache.total = GetAvailableSkillPoints()
+
+	for skillType = 1, GetNumSkillTypes() do USPF.cache.total = USPF.cache.total + USPF_GetTypeSpentPoints(skillType) end
+	return USPF.cache.total
+end
+
+local function USPF_SetFoliumDiscognitumPoints()
+	if USPF.settings.FD.override then
+		USPF.ptsData.FolDis = USPF.settings.FD.charHasFD and 2 or 0
+	else
+		local skillPoints = USPF_GetTotSkillPoints()
+		local skillPointsDiff =	USPF.ptsData.Level + USPF.ptsData.MainQ + USPF.ptsData.MWChar +
+								USPF.ptsData.SUChar + USPF.ptsData.EWChar + USPF.ptsData.GMChar +
+								USPF.ptsData.BWChar + USPF.ptsData.PvPRank + USPF.ptsData.MaelAr +
+								USPF.ptsData.ZQTot + USPF.ptsData.SSTot + USPF.ptsData.GDTot +
+								USPF.ptsData.PDTot
+		USPF.ptsData.FolDis = skillPoints == skillPointsDiff + 2 and 2 or 0
+	end
+
+	--Update saved variables.
+	if USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar]) then
+		USPF.sVar.ptsData[selectedChar].FolDis = USPF.ptsData.FolDis
+	end
+end
+
+local function USPF_SetAllianceWarRankPoints()
+	USPF.ptsData.PvPRank = GetUnitAvARank("player") == nil and 0 or GetUnitAvARank("player")
+
+	--Update saved variables.
+	if USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar]) then
+		USPF.sVar.ptsData[selectedChar].PvPRank = USPF.ptsData.PvPRank
+	end
+end
+
+local function USPF_SetMaelArPoints()
+	USPF.ptsData.MaelAr = IAchC(USPF.data.MAAch) and 1 or 0
+
+	--Update saved variables.
+	if USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar]) then
+		USPF.sVar.ptsData[selectedChar].MaelAr = USPF.ptsData.MaelAr
+	end
+end
+
+local function USPF_SetGeneralPoints()
+	USPF.ptsData.GenTot =	USPF.ptsData.Level + USPF.ptsData.MainQ + USPF.ptsData.FolDis + USPF.ptsData.MWChar +
+							USPF.ptsData.SUChar + USPF.ptsData.EWChar + USPF.ptsData.GMChar + USPF.ptsData.BWChar +
+							USPF.ptsData.PvPRank + USPF.ptsData.MaelAr
+
+	--Update saved variables.
+	if USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar]) then
+		USPF.sVar.ptsData[selectedChar].GenTot = USPF.ptsData.GenTot
+	end
+end
+
+local function USPF_SetTotPoints()
+	USPF.ptsData.Tot =	USPF.ptsData.GenTot + USPF.ptsData.ZQTot + USPF.ptsData.SSTot +
+						USPF.ptsData.GDTot + USPF.ptsData.PDTot
+
+	--Update saved variables.
+	if USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar]) then
+		USPF.sVar.ptsData[selectedChar].Tot = USPF.ptsData.Tot
+	end
+end
+
+local function USPF_LoadData(charId)
+	sVarPtsData = USPF.sVar.ptsData[charId]
+
+	if USPF.sVar.ptsData[charId] == nil then
+		--Write the character settings table.
+		USPF.sVar.settings[charId] = {}
+		USPF.sVar.settings[charId] = USPF_LTF:CopyTable(USPF.settings)
+
+		--Write the character points data table.
+		USPF.sVar.ptsData[charId] = {}
+		USPF.sVar.ptsData[charId] = USPF_LTF:CopyTable(USPF.ptsData)
+	end
+	USPF_UpdateGUITable(sVarPtsData)
+end
+
 local function USPF_SetupData(charId)
-	if(charId == GCCId()) then
+	if charId == GCCId() then
 		--Reset All Points to Zero.
 		USPF.ptsData = USPF_LTF:SimpleResetTable(USPF.ptsData, 0)
 
@@ -1310,7 +1064,7 @@ local function USPF_SetupData(charId)
 		USPF_SetTotPoints()
 
 		--Update the GUI Table.
-		USPF_UpdateGUITable()
+		USPF_UpdateGUITable(USPF.ptsData)
 
 		--Update the saved variables.
 		USPF_UpdateAllSavedVars()
@@ -1320,32 +1074,61 @@ local function USPF_SetupData(charId)
 	end
 end
 
+local function USPF_FormatProgress(current, total, colors)
+    if total == 0 then return "-" end
+	local color
+	if current == 0 then
+		color = colors.need
+	elseif current == total then
+		color = colors.done
+	else
+		color = colors.progress
+	end
+	return strF("%s%d/%d|r", color, current, total)
+end
+
 function USPF:UpdateDataLines()
-	local dataLines_GSP, dataLines_SQS, dataLines_GDQ, dataLines_PDGBE, tempTable = {},{},{},{},{}
+	local dataLines_GSP, dataLines_SQS, dataLines_GDQ, dataLines_PDGBE= {},{},{},{}
 
 	USPF_SetupData(selectedChar)
+
+	local GSP_Color = {
+		need = USPF_rgbToHex(USPF.settings.GSP.needColor),
+		progress = USPF_rgbToHex(USPF.settings.GSP.progColor),
+		done = USPF_rgbToHex(USPF.settings.GSP.doneColor)
+	}
+	local SQS_ColorZQ = {
+		need =USPF_rgbToHex(USPF.settings.SQS.needColorZQ),
+		progress = USPF_rgbToHex(USPF.settings.SQS.progColorZQ),
+		done = USPF_rgbToHex(USPF.settings.SQS.doneColorZQ)
+	}
+	local SQS_ColorSS = {
+		need = USPF_rgbToHex(USPF.settings.SQS.needColorSS),
+		progress = USPF_rgbToHex(USPF.settings.SQS.progColorSS),
+		done = USPF_rgbToHex(USPF.settings.SQS.doneColorSS)
+	}
+	local GDQ_Color = {
+		need = USPF_rgbToHex(USPF.settings.GDQ.needColor),
+		done = USPF_rgbToHex(USPF.settings.GDQ.doneColor)
+	}
+	local PDB_Color = {
+		need = USPF_rgbToHex(USPF.settings.PDB.needColor),
+		done = USPF_rgbToHex(USPF.settings.PDB.doneColor)
+	}
 
 	for i = 1, #USPF.GUI.GSP do
 		table.insert(dataLines_GSP, {
 			source = USPF.GUI.GSP[i][2],
-			progress = (USPF.GUI.GSP[i][3] == 0 and strF("%s%d/%d|r", USPF_rgbToHex(USPF.settings.GSP.needColor), USPF.GUI.GSP[i][3], USPF.GUI.GSP[i][4]) or
-				(USPF.GUI.GSP[i][3] < USPF.GUI.GSP[i][4] and strF("%s%d/%d|r", USPF_rgbToHex(USPF.settings.GSP.progColor == nil and USPF.settings.GSP.progColor or USPF.settings.GSP.progColor), USPF.GUI.GSP[i][3], USPF.GUI.GSP[i][4]) or
-					strF("%s%d/%d|r", USPF_rgbToHex(USPF.settings.GSP.doneColor), USPF.GUI.GSP[i][3], USPF.GUI.GSP[i][4])))
+			progress = USPF_FormatProgress(USPF.GUI.GSP[i][3], USPF.GUI.GSP[i][4], GSP_Color)
 		})
 	end
 
-	tempTable = USPF_LTF:SortTable(USPF.GUI.SQS, USPF.settings.SQS.sortCol)
+	local tempTable = USPF_LTF:SortTable(USPF.GUI.SQS, USPF.settings.SQS.sortCol)
 	for i = 1, #tempTable do
 		table.insert(dataLines_SQS, {
 			zone = tempTable[i][2],
-			quests = (tempTable[i][4] > 0
-				and (tempTable[i][3] == 0 and strF("%s%d/%d|r", USPF_rgbToHex(USPF.settings.SQS.needColorZQ), tempTable[i][3], tempTable[i][4]) or
-					(tempTable[i][3] < tempTable[i][4] and strF("%s%d/%d|r", USPF_rgbToHex(USPF.settings.SQS.progColorZQ), tempTable[i][3], tempTable[i][4]) or
-						strF("%s%d/%d|r", USPF_rgbToHex(USPF.settings.SQS.doneColorZQ), tempTable[i][3], tempTable[i][4])))
-				or "-"),
-			skyshards = (tempTable[i][5] == 0 and strF("%s%d/%d|r", USPF_rgbToHex(USPF.settings.SQS.needColorSS), tempTable[i][5], tempTable[i][6]) or
-				(tempTable[i][5] < tempTable[i][6] and strF("%s%d/%d|r", USPF_rgbToHex(USPF.settings.SQS.progColorSS), tempTable[i][5], tempTable[i][6]) or
-					strF("%s%d/%d|r", USPF_rgbToHex(USPF.settings.SQS.doneColorSS), tempTable[i][5], tempTable[i][6]))),
+			quests = USPF_FormatProgress(tempTable[i][3], tempTable[i][4], SQS_ColorZQ),
+			skyshards = USPF_FormatProgress(tempTable[i][5], tempTable[i][6], SQS_ColorSS),
 		})
 	end
 
@@ -1354,7 +1137,7 @@ function USPF:UpdateDataLines()
 		table.insert(dataLines_GDQ, {
 			zone = tempTable[i][2],
 			dungeon = tempTable[i][3],
-			progress = (tempTable[i][4] < tempTable[i][5] and strF("%s%d/%d|r", USPF_rgbToHex(USPF.settings.GDQ.needColor), tempTable[i][4], tempTable[i][5]) or strF("%s%d/%d|r", USPF_rgbToHex(USPF.settings.GDQ.doneColor), tempTable[i][4], tempTable[i][5])),
+			progress = USPF_FormatProgress(tempTable[i][4], tempTable[i][5], GDQ_Color),
 		})
 	end
 
@@ -1363,7 +1146,7 @@ function USPF:UpdateDataLines()
 		table.insert(dataLines_PDGBE, {
 			zone = tempTable[i][2],
 			dungeon = tempTable[i][3],
-			progress = (tempTable[i][4] < tempTable[i][5] and strF("%s%d/%d|r", USPF_rgbToHex(USPF.settings.PDB.needColor), tempTable[i][4], tempTable[i][5]) or strF("%s%d/%d|r", USPF_rgbToHex(USPF.settings.PDB.doneColor), tempTable[i][4], tempTable[i][5])),
+			progress = USPF_FormatProgress(tempTable[i][4], tempTable[i][5], PDB_Color),
 		})
 	end
 
@@ -1377,7 +1160,7 @@ function USPF:UpdateDataLines()
 	USPF_GUI_Body_SQS_Z:SetText(GS(USPF_GUI_ZONE))
 	USPF_GUI_Body_SQS_SL:SetText(GS(USPF_GUI_STORYLINE))
 	USPF_GUI_Body_SQS_SS:SetText(GS(USPF_GUI_SKYSHARDS))
-	USPF_GUI_Body_SQS_Z_T:SetText(GS(USPF_GUI_TOTAL..":"))
+	USPF_GUI_Body_SQS_Z_T:SetText(GS(USPF_GUI_TOTAL)..":")
 
 	USPF_GUI_Body_GDQ:SetText(GS(USPF_GUI_GDQ))
 	USPF_GUI_Body_GDQ_Z:SetText(GS(USPF_GUI_ZONE))
@@ -1410,41 +1193,41 @@ function USPF:UpdateDataLines()
 end
 
 function USPF:FillLine(currLine, currItem)
-	local cln, clsrc, clz, clq, clss, cld, clp, cisrc, ciz, ciq, ciss, cid, cip = currLine:GetParent():GetName(), currLine.source, currLine.zone, currLine.quests, currLine.skyshards, currLine.dungeon, currLine.progress, currItem.source, currItem.zone, currItem.quests, currItem.skyshards, currItem.dungeon, currItem.progress
+	local cln, clsrc, clz, clq, clss, cld, clp = currLine:GetParent():GetName(), currLine.source, currLine.zone, currLine.quests, currLine.skyshards, currLine.dungeon, currLine.progress
 
 	if currItem == nil then
-		if(cln == "USPF_GUI_Body_GSP_ListHolder") then
+		if cln == "USPF_GUI_Body_GSP_ListHolder" then
 			clsrc:SetText("")
 			clp:SetText("")
-		elseif(cln == "USPF_GUI_Body_SQS_ListHolder") then
+		elseif cln == "USPF_GUI_Body_SQS_ListHolder" then
 			clz:SetText("")
 			clq:SetText("")
 			clss:SetText("")
-		elseif(cln == "USPF_GUI_Body_GDQ_ListHolder") then
+		elseif cln == "USPF_GUI_Body_GDQ_ListHolder" then
 			clz:SetText("")
 			cld:SetText("")
 			clp:SetText("")
-		elseif(cln == "USPF_GUI_Body_PDGBE_ListHolder") then
+		elseif cln == "USPF_GUI_Body_PDGBE_ListHolder" then
 			clz:SetText("")
 			cld:SetText("")
 			clp:SetText("")
 		end
 	else
-		if(cln == "USPF_GUI_Body_GSP_ListHolder") then
-			clsrc:SetText(cisrc)
-			clp:SetText(cip)
-		elseif(cln == "USPF_GUI_Body_SQS_ListHolder") then
-			clz:SetText(ciz)
-			clq:SetText(ciq)
-			clss:SetText(ciss)
-		elseif(cln == "USPF_GUI_Body_GDQ_ListHolder") then
-			clz:SetText(ciz)
-			cld:SetText(cid)
-			clp:SetText(cip)
-		elseif(cln == "USPF_GUI_Body_PDGBE_ListHolder") then
-			clz:SetText(ciz)
-			cld:SetText(cid)
-			clp:SetText(cip)
+		if cln == "USPF_GUI_Body_GSP_ListHolder" then
+			clsrc:SetText(currItem.source)
+			clp:SetText(currItem.progress)
+		elseif cln == "USPF_GUI_Body_SQS_ListHolder" then
+			clz:SetText(currItem.zone)
+			clq:SetText(currItem.quests)
+			clss:SetText(currItem.skyshards)
+		elseif cln == "USPF_GUI_Body_GDQ_ListHolder" then
+			clz:SetText(currItem.zone)
+			cld:SetText(currItem.dungeon)
+			clp:SetText(currItem.progress)
+		elseif cln == "USPF_GUI_Body_PDGBE_ListHolder" then
+			clz:SetText(currItem.zone)
+			cld:SetText(currItem.dungeon)
+			clp:SetText(currItem.progress)
 		end
 	end
 end
@@ -1454,9 +1237,9 @@ function USPF:InitializeDataLines()
 	for i = 1, #USPF.GUI.GSP do
 		currLine = USPF_GUI_Body_GSP_ListHolder.lines[i]
 		currData = USPF_GUI_Body_GSP_ListHolder.dataLines[i]
-		USPF:FillLine(currLine, (currData ~= nil and currData or nil))
+		USPF:FillLine(currLine, currData)
 
-		if(USPF.GUI.GSP[i][5] ~= nil) then
+		if USPF.GUI.GSP[i][5] ~= nil then
 			-- tooltip text
 			USPF_GUI_Body_GSP_ListHolder.lines[i].data = {tooltipText = USPF.GUI.GSP[i][5]}
 
@@ -1469,9 +1252,9 @@ function USPF:InitializeDataLines()
 	for i = 1, #USPF.GUI.SQS do
 		currLine = USPF_GUI_Body_SQS_ListHolder.lines[i]
 		currData = USPF_GUI_Body_SQS_ListHolder.dataLines[i]
-		USPF:FillLine(currLine, (currData ~= nil and currData or nil))
+		USPF:FillLine(currLine, currData)
 
-		if(USPF.GUI.SQS[i][7] ~= nil) then
+		if USPF.GUI.SQS[i][7] ~= nil then
 			-- tooltip text
 			USPF_GUI_Body_SQS_ListHolder.lines[i].data = {tooltipText = USPF.GUI.SQS[i][7]}
 
@@ -1484,9 +1267,9 @@ function USPF:InitializeDataLines()
 	for i = 1, #USPF.GUI.GDQ do
 		currLine = USPF_GUI_Body_GDQ_ListHolder.lines[i]
 		currData = USPF_GUI_Body_GDQ_ListHolder.dataLines[i]
-		USPF:FillLine(currLine, (currData ~= nil and currData or nil))
+		USPF:FillLine(currLine, currData)
 
-		if(USPF.GUI.GDQ[i][6] ~= nil) then
+		if USPF.GUI.GDQ[i][6] ~= nil then
 			-- tooltip text
 			USPF_GUI_Body_GDQ_ListHolder.lines[i].data = {tooltipText = USPF.GUI.GDQ[i][6]}
 
@@ -1499,9 +1282,9 @@ function USPF:InitializeDataLines()
 	for i = 1, #USPF.GUI.PDGBE do
 		currLine = USPF_GUI_Body_PDGBE_ListHolder.lines[i]
 		currData = USPF_GUI_Body_PDGBE_ListHolder.dataLines[i]
-		USPF:FillLine(currLine, (currData ~= nil and currData or nil))
+		USPF:FillLine(currLine, currData)
 
-		if(USPF.GUI.PDGBE[i][6] ~= nil) then
+		if USPF.GUI.PDGBE[i][6] ~= nil then
 			-- tooltip text
 			USPF_GUI_Body_PDGBE_ListHolder.lines[i].data = {tooltipText = USPF.GUI.PDGBE[i][6]}
 
@@ -1514,13 +1297,13 @@ end
 
 function USPF:ToggleWindow()
 	USPF.active = not USPF.active
-	if(USPF.active) then USPF:UpdateDataLines() end
+	if USPF.active then USPF:UpdateDataLines() end
 	USPF_GUI:SetHidden(not USPF.active)
 end
 
 
 function USPF:CreateLine(i, USPF_predecessor, USPF_parent)
-	if(USPF_parent:GetName() == "USPF_GUI_Body_GSP_ListHolder") then
+	if USPF_parent:GetName() == "USPF_GUI_Body_GSP_ListHolder" then
 		local USPF_record = CreateControlFromVirtual("USPF_GSP_Row_", USPF_parent, "USPF_GeneralTemplate", i)
 
 		USPF_record.source = USPF_record:GetNamedChild("_Source")
@@ -1542,7 +1325,7 @@ function USPF:CreateLine(i, USPF_predecessor, USPF_parent)
 		end
 		USPF_record:SetParent(USPF_GUI_Body_GSP_ListHolder)
 		return USPF_record
-	elseif(USPF_parent:GetName() == "USPF_GUI_Body_SQS_ListHolder") then
+	elseif USPF_parent:GetName() == "USPF_GUI_Body_SQS_ListHolder" then
 		local USPF_record = CreateControlFromVirtual("USPF_SQS_Row_", USPF_parent, "USPF_SQSSTemplate", i)
 
 		USPF_record.zone = USPF_record:GetNamedChild("_Zone")
@@ -1566,7 +1349,7 @@ function USPF:CreateLine(i, USPF_predecessor, USPF_parent)
 		end
 		USPF_record:SetParent(USPF_GUI_Body_SQS_ListHolder)
 		return USPF_record
-	elseif(USPF_parent:GetName() == "USPF_GUI_Body_GDQ_ListHolder") then
+	elseif USPF_parent:GetName() == "USPF_GUI_Body_GDQ_ListHolder" then
 		local USPF_record = CreateControlFromVirtual("USPF_GDQ_Row_", USPF_parent, "USPF_GDQTemplate", i)
 
 		USPF_record.zone = USPF_record:GetNamedChild("_Zone")
@@ -1590,7 +1373,7 @@ function USPF:CreateLine(i, USPF_predecessor, USPF_parent)
 		end
 		USPF_record:SetParent(USPF_GUI_Body_GDQ_ListHolder)
 		return USPF_record
-	elseif(USPF_parent:GetName() == "USPF_GUI_Body_PDGBE_ListHolder") then
+	elseif USPF_parent:GetName() == "USPF_GUI_Body_PDGBE_ListHolder" then
 		local USPF_record = CreateControlFromVirtual("USPF_PDGBE_Row_", USPF_parent, "USPF_PDGBETemplate", i)
 
 		USPF_record.zone = USPF_record:GetNamedChild("_Zone")
@@ -1653,16 +1436,6 @@ function USPF:CreateListHolders()
 	USPF:UpdateDataLines()
 end
 
-local function USPF_UpdateDataTable()
-	USPF:SetupValues()
-	USPF_GUI_Body_GSP_T:SetText(strF("%s: %d/%d", GS(USPF_GUI_TOTAL), USPF.ptsData.GenTot, USPF.ptsTots.GenTot))
-	USPF_GUI_Body_SQS_SL_T:SetText(strF("%d/%d", USPF.ptsData.ZQTot, USPF.ptsTots.ZQTot))
-	USPF_GUI_Body_SQS_SS_T:SetText(strF("%d/%d", USPF.ptsData.SSTot, USPF.ptsTots.SSTot))
-	USPF_GUI_Body_GDQ_T:SetText(strF("%s: %d/%d", GS(USPF_GUI_TOTAL), USPF.ptsData.GDTot, USPF.ptsTots.GDTot))
-	USPF_GUI_Body_PDGBE_T:SetText(strF("%s: %d/%d", GS(USPF_GUI_TOTAL), USPF.ptsData.PDTot, USPF.ptsTots.PDTot))
-	USPF_GUI_Footer_CharacterTotal:SetText(strF("%s: %d/%d", GS(USPF_GUI_CHAR_TOTAL), USPF.ptsData.Tot, USPF.ptsTots.Tot))
-end
-
 function USPF:SetupValues()
 	--Reset All Points to Zero.
 	USPF.ptsData = USPF_LTF:SimpleResetTable(USPF.ptsData, 0)
@@ -1695,7 +1468,7 @@ function USPF:SetupValues()
 	USPF_SetTotPoints()
 
 	--Update the GUI Table.
-	USPF_UpdateGUITable()
+	USPF_UpdateGUITable(USPF.ptsData)
 
 	--Set the window size and position.
 	USPF_GUI:ClearAnchors()
@@ -1754,39 +1527,35 @@ function USPF:BadSlash()
 	d(strF(GS(USPF_MSG_CMD_OPTION), (USPF.active and GS(USPF_MSG_DEACTVATE) or GS(USPF_MSG_ACTIVATE))))
 end
 
-function USPF:TestHarness()
-	d(GS(USPF_MSG_HACK))
-end
-
 local function USPF_LoadSettings(charId)
-	if(USPF_CheckSavedVars(USPF.sVar.settings[charId])) then
+	if USPF_CheckSavedVars(USPF.sVar.settings[charId]) then
 		USPF.settings = USPF_LTF:CopyTable(USPF.sVar.settings[charId])
 
-		if(USPF.settings.GSP.progColor == nil) then
-			USPF.settings.GSP.progColor = USPF.settings.GSP.progColor == nil and {1, 1, 1} or USPF.settings.GSP.progColor
+		if USPF.settings.GSP.progColor == nil then
+			USPF.settings.GSP.progColor = {1, 1, 1}
 			USPF.sVar.settings[charId].GSP.progColor = USPF.settings.GSP.progColor
 		end
 
-		if(USPF.settings.SQS.progColorSS == nil) then
-			USPF.settings.SQS.progColorSS = USPF.settings.SQS.progColorSS == nil and {0.7843, 0.3922, 0} or USPF.settings.SQS.progColorSS
+		if USPF.settings.SQS.progColorSS == nil then
+			USPF.settings.SQS.progColorSS = {0.7843, 0.3922, 0}
 			USPF.sVar.settings[charId].SQS.progColorSS = USPF.settings.SQS.progColorSS
 		end
 
-		if(USPF.settings.SQS.progColorZQ == nil) then
-			USPF.settings.SQS.progColorZQ = USPF.settings.SQS.progColorZQ == nil and {0.7843, 0.3922, 0} or USPF.settings.SQS.progColorZQ
+		if USPF.settings.SQS.progColorZQ == nil then
+			USPF.settings.SQS.progColorZQ = {0.7843, 0.3922, 0}
 			USPF.sVar.settings[charId].SQS.progColorZQ = USPF.settings.SQS.progColorZQ
 		end
 
-		USPF.settings.MWC = (USPF.sVar.settings[charId].SSC and false or USPF.sVar.settings[charId].MWC)
-		USPF.settings.SSC = (USPF.sVar.settings[charId].MWC and false or USPF.sVar.settings[charId].SSC)
-		USPF.sVar.settings[charId].MWC = (USPF.settings.SSC and false or USPF.settings.MWC)
-		USPF.sVar.settings[charId].SSC = (USPF.settings.MWC and false or USPF.settings.SSC)
+		USPF.settings.MWC = USPF.sVar.settings[charId].SSC and false or USPF.sVar.settings[charId].MWC
+		USPF.settings.SSC = USPF.sVar.settings[charId].MWC and false or USPF.sVar.settings[charId].SSC
+		USPF.sVar.settings[charId].MWC = USPF.settings.SSC and false or USPF.settings.MWC
+		USPF.sVar.settings[charId].SSC = USPF.settings.MWC and false or USPF.settings.SSC
 	end
 end
 
 local function USPF_SetSelectedChar(charName)
 	for i = 1, #USPF.charData do
-		if(charName == USPF.charData[i].charName) then
+		if charName == USPF.charData[i].charName then
 			selectedChar = USPF.charData[i].charId
 			break
 		end
@@ -1804,18 +1573,16 @@ local function USPF_CreateCharList()
 	USPF_GUI_Header_CharList:SetHandler("OnMouseEnter", ZO_Options_OnMouseEnter)
 	USPF_GUI_Header_CharList:SetHandler("OnMouseExit", ZO_Options_OnMouseExit)
 
-	local name, id = nil, nil
 	USPF.charNames = {}
 	USPF.charData = {}
 	for k,_ in ipairs(USPF.sVar.charInfo) do
-		name, _, _, _, _, _, id, _ = GetCharacterInfo(k)
 		USPF.charNames[k] = USPF.sVar.charInfo[k].charName
 		USPF.charData[k] = {
 			charId = USPF.sVar.charInfo[k].charId,
 			charName = USPF.sVar.charInfo[k].charName,
 		}
 
-		if(GCCId() == USPF.charData[k].charId) then
+		if GCCId() == USPF.charData[k].charId then
 			currentCharName = USPF.charData[k].charName
 			selectedChar = USPF.charData[k].charId
 		end
@@ -1831,7 +1598,7 @@ local function USPF_CreateCharList()
 
 	for k,_ in ipairs(USPF.charNames) do
 		USPF_comboBox:AddItem(USPF_comboBox:CreateItemEntry(USPF.charNames[k], OnItemSelect))
-		if(USPF.charNames[k] == currentCharName) then
+		if USPF.charNames[k] == currentCharName then
 			USPF_comboBox:SetSelectedItem(USPF.charNames[k])
 		end
 	end
@@ -1839,24 +1606,21 @@ end
 
 local function USPF_UpdateCharList()
 	USPF.sVar.charInfo = {}
-	local id, name
 	for i = 1, GetNumCharacters() do
-		name, _, _, _, _, _, id, _ = GetCharacterInfo(i)
+		local name, _, _, _, _, _, id, _ = GetCharacterInfo(i)
 		USPF.sVar.charInfo[i] = {charId = id, charName = zf("<<t:1>>", name),}
 	end
 end
 
 local function USPF_InitSetup()
-	local id, name, thisCharId = nil, nil, GCCId()
-	local firstRun = ((USPF.sVar.firstRun or USPF.sVar.numChars == 0 or USPF.sVar.charInfo[1] == nil) and true or false)
-	--local firstRun = ((USPF.sVar.firstRun or USPF.sVar.numChars == 0 or USPF.sVar.charInfo[1] == nil or USPF.sVar.settings[thisCharId] == nil or USPF.sVar.ptsData[thisCharId] == nil) and true or false)
+	local firstRun = USPF.sVar.firstRun or USPF.sVar.numChars == 0 or USPF.sVar.charInfo[1] == nil
 
 	--If first run then setup the character table
-	if(firstRun) then
+	if firstRun then
 		d(GS(USPF_MSG_INIT))
 		USPF.sVar.numChars = GetNumCharacters()
 		for i = 1, GetNumCharacters() do
-			name, _, _, _, _, _, id, _ = GetCharacterInfo(i)
+			local name, _, _, _, _, _, id, _ = GetCharacterInfo(i)
 			USPF.sVar.charInfo[i] = {charId = id, charName = zf("<<t:1>>", name),}
 
 			--Write the character settings table.
@@ -1875,25 +1639,25 @@ local function USPF_InitSetup()
 	end
 
 	--Setup the character info table.
-	if(not firstRun) then USPF_UpdateCharList() end
+	if not firstRun then USPF_UpdateCharList() end
 
 	--Check for added characters.
 	for _,v in pairs(USPF.sVar.charInfo) do
-		if(not USPF_LTF:TableContains(USPF.sVar.settings, v.charId, true)) then
+		if not USPF_LTF:TableContains(USPF.sVar.settings, v.charId, true) then
 			USPF.sVar.settings[v.charId] = USPF_LTF:CopyTable(USPF.settings)
 		end
 
-		if(not USPF_LTF:TableContains(USPF.sVar.ptsData, v.charId, true)) then
+		if not USPF_LTF:TableContains(USPF.sVar.ptsData, v.charId, true) then
 			USPF.sVar.ptsData[v.charId] = USPF_LTF:CopyTable(USPF.ptsData)
 		end
 	end
 
 	--Check for removed characters.
 	for k,_ in pairs(USPF.sVar.settings) do
-		USPF.sVar.settings[k] = (USPF_LTF:TableContains(USPF.sVar.charInfo, k, false) and USPF.sVar.settings[k] or nil)
+		USPF.sVar.settings[k] = USPF_LTF:TableContains(USPF.sVar.charInfo, k, false) and USPF.sVar.settings[k] or nil
 	end
 	for k,_ in pairs(USPF.sVar.ptsData) do
-		USPF.sVar.ptsData[k] = (USPF_LTF:TableContains(USPF.sVar.charInfo, k, false) and USPF.sVar.ptsData[k] or nil)
+		USPF.sVar.ptsData[k] = USPF_LTF:TableContains(USPF.sVar.charInfo, k, false) and USPF.sVar.ptsData[k] or nil
 	end
 
 	--Create the character select box.
@@ -1902,42 +1666,33 @@ end
 
 local function USPF_SkillPointsUpdate(eventCode, pointsBefore, pointsNow, partialPointsBefore, partialPointsNow)
 	USPF_ResetSelectedCharacter()
-	USPF_SetupData(GCCId())
 end
 
 local function USPF_QuestRemoved(eventCode, isCompleted, journalIndex, questName, zoneIndex, poiIndex, questID)
-	if(isCompleted) then USPF_ResetSelectedCharacter(); USPF_SetupData(GCCId()) end
+	if isCompleted then USPF_ResetSelectedCharacter() end
 end
 
 local function USPF_LevelUp(eventCode, unitTag, level)
-	if(unitTag == 'player') then USPF_ResetSelectedCharacter(); USPF_SetupData(GCCId()) end
+	if unitTag == 'player' then USPF_ResetSelectedCharacter() end
 end
 
 local function USPF_AchComplete(eventCode, name, points, id, link)
 	USPF_ResetSelectedCharacter()
-	USPF_SetupData(GCCId())
-end
-
-local function USPF_AchUpdate(eventCode, id)
-	USPF_ResetSelectedCharacter()
-	USPF_SetupData(GCCId())
 end
 
 local function USPF_PlayerActivated(eventCode)
 	USPF_ResetSelectedCharacter()
-	USPF_SetupData(GCCId())
 end
 
 local function USPF_PlayerDeactivated(eventCode)
 	USPF_ResetSelectedCharacter()
-	USPF_SetupData(GCCId())
 end
 
 local function USPF_Initialized(eventCode, addonName)
 	if addonName ~= USPF.AddonName then return end
 
 	local world = GetWorldName()
-	if(world == "NA Megaserver") then
+	if world == "NA Megaserver" then
 		USPF.sVar = ZO_SavedVars:NewAccountWide("USPF_Settings", USPF.version, nil, USPF.defaults)
 	else
 		USPF.sVar = ZO_SavedVars:NewAccountWide("USPF_Settings", USPF.version, world, USPF.defaults)
@@ -1951,12 +1706,10 @@ local function USPF_Initialized(eventCode, addonName)
 
 	--Register the slash commands.
 	SLASH_COMMANDS["/uspf"] = function(keyWord, argument)
-		if(string.lower(keyWord) == "help") then
+		if string.lower(keyWord) == "help" then
 			USPF:HelpSlash()
-		elseif(keyWord == "") then
+		elseif keyWord == "" then
 			USPF:ToggleWindow()
-		elseif(string.lower(keyWord) == "test") then
-			USPF:TestHarness()
 		else
 			USPF:BadSlash()
 		end
@@ -1974,17 +1727,16 @@ local function USPF_Initialized(eventCode, addonName)
 	USPF:SetupValues()
 
 	--Create the event handlers.
-	EM:RegisterForEvent(USPF.AddonName, EVENT_SKILL_POINTS_CHANGED, USPF_SkillPointsUpdate)
-	EM:RegisterForEvent(USPF.AddonName, EVENT_QUEST_REMOVED, USPF_QuestRemoved)
-	EM:RegisterForEvent(USPF.AddonName, EVENT_LEVEL_UPDATE, USPF_LevelUp)
-	EM:RegisterForEvent(USPF.AddonName, EVENT_ACHIEVEMENT_AWARDED, USPF_AchComplete)
-	--EM:RegisterForEvent(USPF.AddonName, EVENT_ACHIEVEMENT_UPDATED, USPF_AchUpdate)
-	EM:RegisterForEvent(USPF.AddonName, EVENT_PLAYER_ACTIVATED, USPF_PlayerActivated)
-	EM:RegisterForEvent(USPF.AddonName, EVENT_PLAYER_DEACTIVATED, USPF_PlayerDeactivated)
+	EVENT_MANAGER:RegisterForEvent(USPF.AddonName, EVENT_SKILL_POINTS_CHANGED, USPF_SkillPointsUpdate)
+	EVENT_MANAGER:RegisterForEvent(USPF.AddonName, EVENT_QUEST_REMOVED, USPF_QuestRemoved)
+	EVENT_MANAGER:RegisterForEvent(USPF.AddonName, EVENT_LEVEL_UPDATE, USPF_LevelUp)
+	EVENT_MANAGER:RegisterForEvent(USPF.AddonName, EVENT_ACHIEVEMENT_AWARDED, USPF_AchComplete)
+	EVENT_MANAGER:RegisterForEvent(USPF.AddonName, EVENT_PLAYER_ACTIVATED, USPF_PlayerActivated)
+	EVENT_MANAGER:RegisterForEvent(USPF.AddonName, EVENT_PLAYER_DEACTIVATED, USPF_PlayerDeactivated)
 
 	--Kill the initial event handler.
-	EM:UnregisterForEvent(USPF.AddonName, EVENT_ADD_ON_LOADED)
+	EVENT_MANAGER:UnregisterForEvent(USPF.AddonName, EVENT_ADD_ON_LOADED)
 end
 
 --Register initialization event.
-EM:RegisterForEvent(USPF.AddonName, EVENT_ADD_ON_LOADED, USPF_Initialized)
+EVENT_MANAGER:RegisterForEvent(USPF.AddonName, EVENT_ADD_ON_LOADED, USPF_Initialized)

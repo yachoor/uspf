@@ -113,8 +113,6 @@ local strings = {
 	USPF_MSG_ACTIVATE	= "activate",
 	USPF_MSG_DEACTVATE	= "deactivate",
 	
-	USPF_MSG_HACK		= "I see you've been hacking my code. There's nothing to see here! Move along.",
-	
 	USPF_MSG_INIT		= "Running USPF for the first time!",
 	USPF_MSG_HELP		= "USPF Activated!",
 	

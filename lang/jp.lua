@@ -107,8 +107,6 @@ SafeAddString(USPF_MSG_CMD_OPTION,						"    /uspf - アドオンを%sにする�
 SafeAddString(USPF_MSG_ACTIVATE,						"アクティブ")
 SafeAddString(USPF_MSG_DEACTVATE,						"無効")
 
-SafeAddString(USPF_MSG_HACK,							"あなたが私のコードをハッキングしているのが分かります。ここには何も見えません！一緒に移動。")
-
 SafeAddString(USPF_MSG_INIT,							"USPFの初回実行！")
 SafeAddString(USPF_MSG_HELP,							"USPF：私は英語だけを話します。したがって、私はゲームファイルとGoogle翻訳から自分の翻訳を取得する必要があります。改善される可能性のある翻訳が見つかったら教えてください。 @fritzOSU03 N/A")
 

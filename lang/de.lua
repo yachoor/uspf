@@ -107,8 +107,6 @@ SafeAddString(USPF_MSG_CMD_OPTION,						"    /uspf - Um das Addon zu %s. Dies ka
 SafeAddString(USPF_MSG_ACTIVATE,						"aktivieren")
 SafeAddString(USPF_MSG_DEACTVATE,						"deaktivieren")
 
-SafeAddString(USPF_MSG_HACK,							"Ich sehe, du hast meinen Code gehackt. Hier gibt es nichts zu sehen! Weiter machen.")
-
 SafeAddString(USPF_MSG_INIT,							"USPF zum ersten Mal laufen!")
 SafeAddString(USPF_MSG_HELP,							"USPF: Ich spreche nur Englisch. Daher muss ich meine Übersetzungen aus den Spieldateien und aus Google Translate beziehen. Bitte lassen Sie es mich wissen, wenn Sie eine Übersetzung finden, die verbessert werden kann. @fritzOSU03 N/A")
 

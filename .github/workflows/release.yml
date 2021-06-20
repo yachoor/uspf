@@ -1,0 +1,29 @@
+name: Release
+
+on:
+  push:
+    tags: [ '*' ]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Get version
+        id: get_version
+        run: echo ::set-output name=RELEASE_VERSION::${GITHUB_REF#refs/*/}
+
+      - name: Zip release
+        run: 7z a ${{ github.workspace }}/USPF-${{ steps.get_version.outputs.RELEASE_VERSION }}.zip ${{ github.workspace }}/USPF
+
+      - name: Release
+        uses: docker://antonyurchenko/git-release:v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CHANGELOG_FILE: USPF/CHANGELOG.md
+        with:
+          args: USPF-${{ steps.get_version.outputs.RELEASE_VERSION }}.zip

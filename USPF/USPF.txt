@@ -1,7 +1,7 @@
 ## Title: Urich's Skill Point Finder
 ## Author: Onigar,Originally Urich
-## Version: 6.0.2
-## AddOnVersion: 60002
+## Version: 6.0.3
+## AddOnVersion: 60003
 ## APIVersion: 100035
 ## SavedVariables: USPF_Settings
 ## DependsOn: LibAddonMenu-2.0 LibTableFunctions-1.0

@@ -564,7 +564,7 @@ local function GetSV(value)
 end
 
 local function USPF_UpdateGUITable(sVarPtsData)
-	questTooltips = {
+	local questTooltips = {
 		WP	 = GS(USPF_QUEST_NONE),
 		AD0	 = GS(USPF_QUEST_NONE),
 		AD1  = GetQuestTooltipText("AD1"),
@@ -771,7 +771,8 @@ local function USPF_CheckSavedVars(value)
 end
 
 local function USPF_SetLevelPoints()
-	USPF.ptsData.Level = math.floor(GetUnitLevel("player")/5) + math.floor(GetUnitLevel("player")/10) + (GetUnitLevel("player") - 1)
+    local level = GetUnitLevel("player")
+	USPF.ptsData.Level = math.floor(level/5) + math.floor(level/10) + (level - 1)
 
 	--Update saved variables.
 	if USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar]) then

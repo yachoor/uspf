@@ -516,7 +516,6 @@ USPF.data = {
 
 local function USPF_RedText(text)	return "|cFF0000"..tostring(text).."|r" end
 local function USPF_GreenText(text)	return "|c00FF00"..tostring(text).."|r" end
-local function USPF_BlueText(text)	return "|c0000FF"..tostring(text).."|r" end
 
 local function USPF_rgbToHex(rgb)
 	local hexStr = '|c'
@@ -543,73 +542,70 @@ local function FormatQuestName(questName, completed)
 	return completed and "|l0:1:0:-25%:2:ffffff|l"..questName.."|l" or questName
 end
 
-local function GetQuestTooltipText(zone)
-	quests = ""
-	local isCurrentCharacter = GCCId() == selectedChar
-	for i = 1, #USPF.data[zone] do
-		local questName = GetQuestName(USPF.data[zone][i][1])
-        local earned = USPF.data[zone][i][2] == 0 and GCQI(USPF.data[zone][i][1]) ~= "" or IAchC(USPF.data[zone][i][2])
-		quests = quests..FormatQuestName(questName, isCurrentCharacter and earned)..(i < #USPF.data[zone] and "\n" or "")
+local function ColorCompletion(text, completed)
+	if completed then
+		return USPF_GreenText(text)
+	else
+		return USPF_RedText(text)
 	end
-	return quests
 end
 
+local function GetQuestTooltipText(zone)
+	local quests = {}
+	local isCurrentCharacter = GCCId() == selectedChar
+	for _, zoneData in ipairs(USPF.data[zone]) do
+		local questName = GetQuestName(zoneData[1])
+		local earned = zoneData[2] == 0 and GCQI(zoneData[1]) ~= "" or IAchC(zoneData[2])
+		table.insert(quests, FormatQuestName(questName, isCurrentCharacter and earned))
+	end
+	return table.concat(quests, "\n")
+end
+
+local function GetMainQuestTooltip()
+	local function FormatProgress(points, total)
+		return ColorCompletion(points .."/".. total, points ~= "?" and points >= total)
+	end
+	local quests = {}
+	for _, char in ipairs(USPF.charData) do
+		local charPointsData = USPF.sVar.ptsData[char.charId]
+		local questPoints = charPointsData.MainQ or "?"
+		local questTotal = USPF.ptsTots.MainQ
+		table.insert(quests, FormatProgress(questPoints, questTotal) .. "  " .. char.charName)
+	end
+	return table.concat(quests, "\n")
+end
 
 local function GetZoneTooltipText(zone)
-	quests = ""
+    local function FormatProgress(points, total)
+        return ColorCompletion(points .."/".. total, points ~= "?" and points >= total)
+	end
+	local quests = {}
 	local zone2 = zone
 	if zone == "TG" then zone2 = "HB" end -- different zone names for quests and skyshards in savedVars :-/
-	if zone == "WP" then zone2 = "MQ" end -- different zone names for quests and skyshards in savedVars :-/
 	if zone == "RO" then zone2 = "WR" end -- different zone names for quests and skyshards in savedVars :-/
 	if zone == "DB" then zone2 = "GC" end -- different zone names for quests and skyshards in savedVars :-/
 	if zone == "MW" then zone2 = "VV" end -- different zone names for quests and skyshards in savedVars :-/
-	for i = 1,#USPF.charData do
-		local val1 = 0
-		local tot1 = 0
-		if zone == "MQ" then
-			val1 = USPF.sVar.ptsData[USPF.charData[i].charId]["MainQ"]
-			tot1 = USPF.ptsTots.MainQ
-		else
-			tot1 = USPF.ptsTots["ZQ"][zone]
-		end
-		if USPF.sVar.ptsData[USPF.charData[i].charId]["ZQ"][zone] ~= nil then 
-			val1 = USPF.sVar.ptsData[USPF.charData[i].charId]["ZQ"][zone]
-		end
-		local val2 = USPF.sVar.ptsData[USPF.charData[i].charId]["SS"][zone2]
-		local tot2 = USPF.ptsTots["SS"][zone2]		
-		if val1 == nil then val1 = "?" end -- new dlc; alts might not have updated savedvars yet
-		if val2 == nil then val2 = "?"; val1 = "?" end -- new dlc; alts might not have updated savedvars yet
-		if val1 == "?" or val1 < tot1 then
-			quests = quests.."\n"..USPF_RedText(val1.."/"..tot1).."  "
-		else
-			quests = quests.."\n"..USPF_GreenText(val1.."/"..tot1).."  "
-		end
-		if val2 == "?" or val2 < tot2 then
-			quests = quests..USPF_RedText(val2.."/"..tot2).."  "
-		else
-			quests = quests..USPF_GreenText(val2.."/"..tot2).."  "
-		end
-		quests = quests..USPF.charData[i].charName 
+	for _, char in ipairs(USPF.charData) do
+		local charPointsData = USPF.sVar.ptsData[char.charId]
+		local questPoints = charPointsData.ZQ[zone] or "?"
+		local questTotal = USPF.ptsTots.ZQ[zone] or 0
+		local skyShardPoints = charPointsData.SS[zone2] or "?"
+		local skyShardTotal = USPF.ptsTots.SS[zone2]
+		local txt = questTotal ~= 0 and FormatProgress(questPoints, questTotal) .. "  " or ""
+		table.insert(quests, txt .. FormatProgress(skyShardPoints, skyShardTotal) .. "  " .. char.charName)
 	end
-	return quests
+	return table.concat(quests, "\n")
 end
-
 
 local function GetGDQuestTooltipText(dungeon)
 	local questName = GetQuestName(USPF.data.GD[dungeon])
-	local txt = FormatQuestName(questName, selectedChar == GCCId() and GCQI(USPF.data.GD[dungeon]) ~= "").."\n\n"
-	for i = 1,#USPF.charData do
-		local val = USPF.sVar.ptsData[USPF.charData[i].charId]["GD"][dungeon]
-		if val == nil then val = "?" end -- new dlc; alts might not have updated savedvars yet
-		if val == 1 then
-			txt = txt.."\n"..USPF_GreenText(USPF.charData[i].charName)
-		else
-			txt = txt.."\n"..USPF_RedText(USPF.charData[i].charName)
-		end
+	local list = {FormatQuestName(questName, selectedChar == GCCId() and GCQI(USPF.data.GD[dungeon]) ~= "").."\n"}
+	for _, char in ipairs(USPF.charData) do
+		local val = USPF.sVar.ptsData[char.charId].GD[dungeon]
+		table.insert(list, ColorCompletion(char.charName, val == 1))
 	end
-	return txt
+	return table.concat(list, "\n")
 end
-
 
 local function GetAchLink(achId)
 	return GetAchievementLink(achId, LINK_TYPE_ACHIEVEMENT)
@@ -620,120 +616,77 @@ local function GetSV(value)
 end
 
 local function GetPDTooltipText(pdung)
-
-	local txt = GetAchLink(USPF.data["PD"][pdung]).."\n\n"
-	for i = 1,#USPF.charData do
-		local val = USPF.sVar.ptsData[USPF.charData[i].charId]["PD"][pdung]
-		if val == nil then val = "?" end -- new dlc; alts might not have updated savedvars yet
-		if val == 1 then
-			txt = txt.."\n"..USPF_GreenText(USPF.charData[i].charName)
-		else
-			txt = txt.."\n"..USPF_RedText(USPF.charData[i].charName)
-		end
+	local list = { GetAchLink(USPF.data.PD[pdung]) .. "\n" }
+	for _, char in ipairs(USPF.charData) do
+		local val = USPF.sVar.ptsData[char.charId].PD[pdung]
+		table.insert(list, ColorCompletion(char.charName, val == 1))
 	end
-	return txt
+	return table.concat(list, "\n")
 end
-
 
 local function getTooltipCharacterTotal()
-
-	local txt = ""
-	for i = 1,#USPF.charData do
-		local val1 = USPF.sVar.ptsData[USPF.charData[i].charId]["Tot"]
-		local val2 = USPF.sVar.ptsData[USPF.charData[i].charId]["Unassigned"]
-		if val2 == nil then val2 = "?" end  -- alts might not have updated savedvars yet
-		if val == USPF.ptsTots["Tot"] then
-			txt = txt.."\n"..USPF_GreenText(val1).."  ("..val2..")  "..USPF.charData[i].charName
-		else
-			txt = txt.."\n"..USPF_RedText(val1).."  ("..val2..")  "..USPF.charData[i].charName
-		end
+	local list = {}
+	for _, char in ipairs(USPF.charData) do
+		local total = USPF.sVar.ptsData[char.charId].Tot
+		local unassigned = USPF.sVar.ptsData[char.charId].Unassigned or "?"
+		table.insert(list, ColorCompletion(total, total == USPF.ptsTots.Tot) .. "  (" .. unassigned .. ")  " .. char.charName)
 	end
-	return txt
+	return table.concat(list, "\n")
 end
 
-
 local function getTooltipPDTotal()
-
-	local txt = ""
-	for i = 1,#USPF.charData do
-		local val = USPF.sVar.ptsData[USPF.charData[i].charId]["PDTot"]
-		if val == USPF.ptsTots["PDTot"] then
-			txt = txt.."\n"..USPF_GreenText(val).."  "..USPF.charData[i].charName
-		else
-			txt = txt.."\n"..USPF_RedText(val).."  "..USPF.charData[i].charName
-		end
+	local list = {}
+	for _, char in ipairs(USPF.charData) do
+		local total = USPF.sVar.ptsData[char.charId].PDTot
+		table.insert(list, ColorCompletion(total, total == USPF.ptsTots.PDTot) .. "  " .. char.charName)
 	end
-	return txt
+	return table.concat(list, "\n")
 end
 
 local function getTooltipZoneTotal()
-
-	local txt = ""
-	for i = 1,#USPF.charData do
-		local val1 = USPF.sVar.ptsData[USPF.charData[i].charId]["ZQTot"]
-		local val2 = USPF.sVar.ptsData[USPF.charData[i].charId]["SSTot"]
-		if val1 == USPF.ptsTots["ZQTot"] then
-			txt = txt.."\n"..USPF_GreenText(val1).."  "
-		else
-			txt = txt.."\n"..USPF_RedText(val1).."  "
-		end
-		if val2  == USPF.ptsTots["SSTot"] then
-			txt = txt..USPF_GreenText(val2).."  "..USPF.charData[i].charName
-		else
-			txt = txt..USPF_RedText(val2).."  "..USPF.charData[i].charName
-		end
+	local list = {}
+	for _, char in ipairs(USPF.charData) do
+		local questTotal = USPF.sVar.ptsData[char.charId].ZQTot
+		local skyShardTotal = USPF.sVar.ptsData[char.charId].SSTot
+		table.insert(list, ColorCompletion(questTotal, questTotal == USPF.ptsTots.ZQTot) .. "  " ..
+				ColorCompletion(skyShardTotal, skyShardTotal == USPF.ptsTots.SSTot) .. "  " .. char.charName)
 	end
-	return txt
+	return table.concat(list, "\n")
 end
 
 local function getTooltipGDTotal()
-
-	local txt = ""
-	for i = 1,#USPF.charData do
-		local val = USPF.sVar.ptsData[USPF.charData[i].charId]["GDTot"]
-		if val == USPF.ptsTots["GDTot"] then
-			txt = txt.."\n"..USPF_GreenText(val).."  "..USPF.charData[i].charName
-		else
-			txt = txt.."\n"..USPF_RedText(val).."  "..USPF.charData[i].charName
-		end
+	local list = {}
+	for _, char in ipairs(USPF.charData) do
+		local dungeonTotal = USPF.sVar.ptsData[char.charId].GDTot
+		table.insert(list, ColorCompletion(dungeonTotal, dungeonTotal == USPF.ptsTots.GDTot) .. "  " .. char.charName)
 	end
-	return txt
+	return table.concat(list, "\n")
 end
 
 
 local function getTooltipPvPRank()
-
-	local txt = ""
-	for i = 1,#USPF.charData do
-		local val = USPF.sVar.ptsData[USPF.charData[i].charId]["PvPRank"]
-		if val == USPF.ptsTots["PvPRank"] then
-			txt = txt.."\n"..USPF_GreenText(val).."  "..USPF.charData[i].charName
-		else
-			txt = txt.."\n"..USPF_RedText(val).."  "..USPF.charData[i].charName
-		end
+	local list = {}
+	for _, char in ipairs(USPF.charData) do
+		local val = USPF.sVar.ptsData[char.charId].PvPRank
+		table.insert(list, ColorCompletion(val, val == USPF.ptsTots.PvPRank) .. "  " .. char.charName)
 	end
-	return txt
+	return table.concat(list, "\n")
 end
 
 
 local function getTooltipMaelstrom()
-
-	local txt = ""
-	for i = 1,#USPF.charData do
-		local val = USPF.sVar.ptsData[USPF.charData[i].charId]["MaelAr"]
-		if val == 1 then
-			txt = txt.."\n"..USPF_GreenText(val).."  "..USPF.charData[i].charName
-		else
-			txt = txt.."\n"..USPF_RedText(val).."  "..USPF.charData[i].charName
-		end
+	local list = {}
+	for _, char in ipairs(USPF.charData) do
+		local val = USPF.sVar.ptsData[char.charId].MaelAr
+		table.insert(list, ColorCompletion(val, val == 1) .. "  " .. char.charName)
 	end
-	return txt
+	return table.concat(list, "\n")
 end
 
 
 local function USPF_UpdateGUITable(sVarPtsData)
 	local questTooltips = {
-		WP	 = GS(USPF_QUEST_NONE).."\n\n"..GetZoneTooltipText("WP"),
+		WP	 = GS(USPF_QUEST_NONE).."\n\n"..GetZoneTooltipText("MQ"),
 		AD0	 = GS(USPF_QUEST_NONE).."\n\n"..GetZoneTooltipText("AD0"),
 		AD1  = GetQuestTooltipText("AD1").."\n\n"..GetZoneTooltipText("AD1"),
 		AD2  = GetQuestTooltipText("AD2").."\n\n"..GetZoneTooltipText("AD2"),
@@ -768,7 +721,7 @@ local function USPF_UpdateGUITable(sVarPtsData)
 		MM	 = GetQuestTooltipText("MM").."\n\n"..GetZoneTooltipText("MM"),
 		MO	 = GetQuestTooltipText("MO"),
 		MW	 = GetQuestTooltipText("MW").."\n\n"..GetZoneTooltipText("MW"),
-		MQ	 = GetQuestTooltipText("MQ").."\n\n"..GetZoneTooltipText("MQ"),
+		MQ	 = GetQuestTooltipText("MQ").."\n\n"..GetMainQuestTooltip(),
 		NE	 = GetQuestTooltipText("NE").."\n\n"..GetZoneTooltipText("NE"),
 		RO	 = GetQuestTooltipText("RO").."\n\n"..GetZoneTooltipText("RO"),
 		SE	 = GetQuestTooltipText("SE").."\n\n"..GetZoneTooltipText("SE"),
@@ -919,7 +872,7 @@ local function USPF_UpdateGUITable(sVarPtsData)
 			{28, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BW)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.ZA)),	GetSV(sVarPtsData.PD.ZA),		USPF.ptsTots.PD.ZA,		GetPDTooltipText("ZA")},
 		},
 		PDGBE_T = strF("%s: %d/%d", GS(USPF_GUI_TOTAL), sVarPtsData.PDTot, USPF.ptsTots.PDTot),
-		CharacterTot = strF("%s: %d/%d (%d unassigned)", GS(USPF_GUI_CHAR_TOTAL), sVarPtsData.Tot, USPF.ptsTots.Tot, sVarPtsData.Unassigned ),
+		CharacterTot = strF("%s: %d/%d (%s unassigned)", GS(USPF_GUI_CHAR_TOTAL), sVarPtsData.Tot, USPF.ptsTots.Tot, sVarPtsData.Unassigned and tostring(sVarPtsData.Unassigned) or "?"),
 	}
 end
 
@@ -939,7 +892,7 @@ local function USPF_CheckSavedVars(value)
 end
 
 local function USPF_SetLevelPoints()
-    local level = GetUnitLevel("player")
+	local level = GetUnitLevel("player")
 	USPF.ptsData.Level = math.floor(level/5) + math.floor(level/10) + (level - 1)
 
 	--Update saved variables.
@@ -1149,7 +1102,7 @@ end
 
 local function USPF_SetUnassigned()
 	USPF.ptsData.Unassigned = GetAvailableSkillPoints()
-	
+
 	--Update saved variables.
 	if(USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar])) then
 		USPF.sVar.ptsData[selectedChar].Unassigned = USPF.ptsData.Unassigned
@@ -1217,7 +1170,7 @@ local function USPF_SetupData(charId)
 
 		--Update Unassigned Skillpoints
 		USPF_SetUnassigned()
-		
+
 		--Update Folium Discognitum Points.
 		USPF_SetFoliumDiscognitumPoints()
 
@@ -1239,7 +1192,7 @@ local function USPF_SetupData(charId)
 end
 
 local function USPF_FormatProgress(current, total, colors)
-    if total == 0 then return "-" end
+	if total == 0 then return "-" end
 	local color
 	if current == 0 then
 		color = colors.need
@@ -1351,7 +1304,7 @@ function USPF:UpdateDataLines()
 	USPF_GUI_Body_PDGBE_ListHolder:SetParent(USPF_GUI_Body)
 
 	USPF_GUI_Body_GSP_T:SetText(USPF.GUI.GSP_T)
-	
+
 	USPF_GUI_Body_SQS_SL_T:SetText(USPF.GUI.SQS_SL_T)
 	USPF_GUI_Body_SQS_SL_T.data = {tooltipText = getTooltipZoneTotal()}
 	USPF_GUI_Body_SQS_SL_T:SetMouseEnabled(true)

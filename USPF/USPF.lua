@@ -1131,7 +1131,7 @@ local function USPF_SetTotPoints()
 end
 
 local function USPF_LoadData(charId)
-	sVarPtsData = USPF.sVar.ptsData[charId]
+	local sVarPtsData = USPF.sVar.ptsData[charId]
 
 	if USPF.sVar.ptsData[charId] == nil then
 		--Write the character settings table.

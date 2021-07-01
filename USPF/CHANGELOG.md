@@ -1,14 +1,26 @@
 # Changelog
 
-## [6.0.3] - 2021-06-20
+## [6.1.0] - 2021-06-30
+
+### Added
+
+- Fancy-pants tooltips that display condensed info for all the characters (remosito)
+- Unspent skill point info (remosito)
 
 ### Fixed
 
-- Minion confusing this addon for original - adding changelog to package should make enough difference
+- Don't mark Black Drake Villa as done when actual completion for the character is not yet known
+
+
+## [6.0.3] - 2021-06-20
 
 ### Added
 
 - Automatic building of release package to avoid problems with creating bad one in a hurry
+
+### Fixed
+
+- Minion confusing this addon for original - adding changelog to package should make enough difference
 
 
 ## [6.0.2] - 2021-06-08
@@ -20,15 +32,15 @@
 
 ## [6.0.1] - 2021-06-08
 
+### Removed
+
+- Some unnecessary/duplicated code
+
 ### Fixed
 
 - Main quest skill point not being counted
 - Quest tooltips not being updated when choosing different character
 - Possibly an issue with folium discognitum detection on emperor characters
-
-### Removed
-
-- Some unnecessary/duplicated code
 
 
 ## [6.0.0] - 2021-06-06
@@ -78,6 +90,7 @@
 - Support for Markarth - The Reach questline and skyshards
 
 
+[6.1.0]: https://github.com/yachoor/uspf/compare/6.0.3...6.1.0
 [6.0.3]: https://github.com/yachoor/uspf/compare/6.0.2...6.0.3
 [6.0.2]: https://github.com/yachoor/uspf/compare/6.0.1...6.0.2
 [6.0.1]: https://github.com/yachoor/uspf/compare/6.0.0...6.0.1

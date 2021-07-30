@@ -1,5 +1,11 @@
 # Changelog
 
+## [6.2.0] - 2021-07-30
+
+### Added
+
+- Support for Waking Flame DLC - Red Petal Bastion and The Dread Cellar dungeons (@MuMuQ)
+
 ## [6.1.0] - 2021-06-30
 
 ### Added

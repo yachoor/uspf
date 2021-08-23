@@ -1,10 +1,11 @@
 # Changelog
 
-## [6.2.0] - 2021-07-30
+## [6.2.0] - 2021-08-23
 
 ### Added
 
 - Support for Waking Flame DLC - Red Petal Bastion and The Dread Cellar dungeons (@MuMuQ)
+
 
 ## [6.1.0] - 2021-06-30
 
@@ -96,6 +97,7 @@
 - Support for Markarth - The Reach questline and skyshards
 
 
+[6.2.0]: https://github.com/yachoor/uspf/compare/6.1.0...6.2.0
 [6.1.0]: https://github.com/yachoor/uspf/compare/6.0.3...6.1.0
 [6.0.3]: https://github.com/yachoor/uspf/compare/6.0.2...6.0.3
 [6.0.2]: https://github.com/yachoor/uspf/compare/6.0.1...6.0.2

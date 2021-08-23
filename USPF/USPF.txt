@@ -2,7 +2,7 @@
 ## Author: Yachoor, Originally Urich & Onigar
 ## Version: 6.2.0
 ## AddOnVersion: 60200
-## APIVersion: 100036 101031
+## APIVersion: 101031
 ## SavedVariables: USPF_Settings
 ## DependsOn: LibAddonMenu-2.0 LibTableFunctions-1.0
 ## 

@@ -90,6 +90,7 @@ SafeAddString(USPF_GUI_DUNGEON_NAME,					"Nom du Donjon")
 
 SafeAddString(USPF_GUI_TOTAL,							"Total")
 SafeAddString(USPF_GUI_CHAR_TOTAL,						"Total des Caractères")
+SafeAddString(USPF_GUI_UNASSIGNED,						"non attribué")
 
 
 SafeAddString(SI_BINDING_NAME_USPF_TOGGLE,				"Afficher/masquer la fenêtre USPF.")

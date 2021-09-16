@@ -141,7 +141,7 @@ function USPF:SetupMenu(charId)
 				--Select the GSP Row Color - Not Done
 				{
 					type = "colorpicker",
-					name = "General - Not Done",
+					name = GetString(USPF_SETTINGS_COLOR_GSP_NOT_DONE),
 					getFunc = function() return USPF.sVar.settings[charId].GSP.needColor[1], USPF.sVar.settings[charId].GSP.needColor[2], USPF.sVar.settings[charId].GSP.needColor[3] end,
 					setFunc = function(r,g,b) USPF.sVar.settings[charId].GSP.needColor = {r, g, b}; USPF.settings.GSP.needColor = {r, g, b} end,
 					tooltip = GetString(USPF_SETTINGS_COLOR_DESC_NOT_DONE),

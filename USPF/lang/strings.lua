@@ -97,6 +97,7 @@ local strings = {
 	
 	USPF_GUI_TOTAL		= "Total",
 	USPF_GUI_CHAR_TOTAL	= "Character Total",
+	USPF_GUI_UNASSIGNED	= "unassigned",
 	
 	
 	SI_BINDING_NAME_USPF_TOGGLE = "Show/Hide the USPF window.",

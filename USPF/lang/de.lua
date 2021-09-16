@@ -90,6 +90,7 @@ SafeAddString(USPF_GUI_DUNGEON_NAME,					"Verlies Name")
 
 SafeAddString(USPF_GUI_TOTAL,							"Gesamt")
 SafeAddString(USPF_GUI_CHAR_TOTAL,						"Charakter Insgesamt")
+SafeAddString(USPF_GUI_UNASSIGNED,						"nicht zugewiesen")
 
 
 SafeAddString(SI_BINDING_NAME_USPF_TOGGLE,				"Ein- / Ausblenden des USPF-Fensters")

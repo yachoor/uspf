@@ -876,7 +876,7 @@ local function USPF_UpdateGUITable(sVarPtsData)
 			{28, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BW)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.ZA)),	GetSV(sVarPtsData.PD.ZA),		USPF.ptsTots.PD.ZA,		GetPDTooltipText("ZA")},
 		},
 		PDGBE_T = strF("%s: %d/%d", GS(USPF_GUI_TOTAL), sVarPtsData.PDTot, USPF.ptsTots.PDTot),
-		CharacterTot = strF("%s: %d/%d (%s unassigned)", GS(USPF_GUI_CHAR_TOTAL), sVarPtsData.Tot, USPF.ptsTots.Tot, sVarPtsData.Unassigned and tostring(sVarPtsData.Unassigned) or "?"),
+		CharacterTot = strF("%s: %d/%d (%s %s)", GS(USPF_GUI_CHAR_TOTAL), sVarPtsData.Tot, USPF.ptsTots.Tot, sVarPtsData.Unassigned and tostring(sVarPtsData.Unassigned) or "?", GS(USPF_GUI_UNASSIGNED)),
 	}
 end
 

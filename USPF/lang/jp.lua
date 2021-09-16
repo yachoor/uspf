@@ -90,6 +90,7 @@ SafeAddString(USPF_GUI_DUNGEON_NAME,					"ダンジョンネーム")
 
 SafeAddString(USPF_GUI_TOTAL,							"合計")
 SafeAddString(USPF_GUI_CHAR_TOTAL,						"文字合計")
+SafeAddString(USPF_GUI_UNASSIGNED,						"未割り当て")
 
 
 SafeAddString(SI_BINDING_NAME_USPF_TOGGLE,				"ウィンドウを表示/非表示にします。")

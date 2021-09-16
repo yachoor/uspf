@@ -99,6 +99,7 @@ SafeAddString(USPF_GUI_DUNGEON_NAME, "Название подземелья")
 
 SafeAddString(USPF_GUI_TOTAL, "Получено")
 SafeAddString(USPF_GUI_CHAR_TOTAL, "Персонажем получено")
+SafeAddString(USPF_GUI_UNASSIGNED, "неназначенный")
 
 
 SafeAddString(SI_BINDING_NAME_USPF_TOGGLE, "Показать/скрыть окно USPF.")

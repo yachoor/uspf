@@ -157,7 +157,7 @@
 								<Dimensions x="200" y="18"/>
 								<Anchor point="TOPLEFT" relativeTo="$(parent)_GSP_Source" relativePoint="TOPRIGHT" offsetX="0" offsetY="0"/>
 							</Label>
-							<Line name="$(parent)_GSP_L" color="FFCCCCCC" thickness="1" pixelRoundingEnabled="true">
+							<Line name="$(parent)_GSP_L" color="FFCCCCCC" thickness="1.5" pixelRoundingEnabled="true">
 								<Anchor point="TOPLEFT" relativeTo="$(parent)_GSP_Source" relativePoint="BOTTOMLEFT" offsetX="3" offsetY="0"/>
 								<Anchor point="TOPRIGHT" relativeTo="$(parent)_GSP_Progress" relativePoint="BOTTOMRIGHT" offsetX="-5" offsetY="0"/>
 							</Line>
@@ -169,7 +169,7 @@
 							</Control>
 							
 							
-							<Line name="$(parent)_GSP_L1" color="FFCCCCCC" thickness="1" pixelRoundingEnabled="true">
+							<Line name="$(parent)_GSP_L1" color="FFCCCCCC" thickness="1.5" pixelRoundingEnabled="true">
 								<Anchor point="TOPLEFT" relativeTo="$(parent)_GSP_ListHolder" relativePoint="BOTTOMLEFT" offsetX="3" offsetY="0"/>
 								<Anchor point="TOPRIGHT" relativeTo="$(parent)_GSP_ListHolder" relativePoint="BOTTOMRIGHT" offsetX="-5" offsetY="0"/>
 							</Line>
@@ -198,7 +198,7 @@
 								<Dimensions x="75" y="18"/>
 								<Anchor point="TOPLEFT" relativeTo="$(parent)_SQS_SL" relativePoint="TOPRIGHT" offsetX="0" offsetY="0"/>
 							</Label>
-							<Line name="$(parent)_SQS_L" color="FFCCCCCC" thickness="1" pixelRoundingEnabled="true">
+							<Line name="$(parent)_SQS_L" color="FFCCCCCC" thickness="1.5" pixelRoundingEnabled="true">
 								<Anchor point="TOPLEFT" relativeTo="$(parent)_SQS_Z" relativePoint="BOTTOMLEFT" offsetX="3" offsetY="0"/>
 								<Anchor point="TOPRIGHT" relativeTo="$(parent)_SQS_SS" relativePoint="BOTTOMRIGHT" offsetX="-5" offsetY="0"/>
 							</Line>
@@ -210,7 +210,7 @@
 							</Control>
 							
 							
-							<Line name="$(parent)_SQS_L1" color="FFCCCCCC" thickness="1" pixelRoundingEnabled="true">
+							<Line name="$(parent)_SQS_L1" color="FFCCCCCC" thickness="1.5" pixelRoundingEnabled="true">
 								<Anchor point="TOPLEFT" relativeTo="$(parent)_SQS_ListHolder" relativePoint="BOTTOMLEFT" offsetX="3" offsetY="0"/>
 								<Anchor point="TOPRIGHT" relativeTo="$(parent)_SQS_ListHolder" relativePoint="BOTTOMRIGHT" offsetX="-5" offsetY="0"/>
 							</Line>
@@ -248,7 +248,7 @@
 								<Dimensions x="75" y="18"/>
 								<Anchor point="TOPLEFT" relativeTo="$(parent)_GDQ_D" relativePoint="TOPRIGHT" offsetX="0" offsetY="0"/>
 							</Label>
-							<Line name="$(parent)_GDQ_L" color="FFCCCCCC" thickness="1" pixelRoundingEnabled="true">
+							<Line name="$(parent)_GDQ_L" color="FFCCCCCC" thickness="1.5" pixelRoundingEnabled="true">
 								<Anchor point="TOPLEFT" relativeTo="$(parent)_GDQ_Z" relativePoint="BOTTOMLEFT" offsetX="3" offsetY="0"/>
 								<Anchor point="TOPRIGHT" relativeTo="$(parent)_GDQ_P" relativePoint="BOTTOMRIGHT" offsetX="-5" offsetY="0"/>
 							</Line>
@@ -260,7 +260,7 @@
 							</Control>
 							
 							
-							<Line name="$(parent)_GDQ_L1" color="FFCCCCCC" thickness="1" pixelRoundingEnabled="true">
+							<Line name="$(parent)_GDQ_L1" color="FFCCCCCC" thickness="1.5" pixelRoundingEnabled="true">
 								<Anchor point="TOPLEFT" relativeTo="$(parent)_GDQ_ListHolder" relativePoint="BOTTOMLEFT" offsetX="3" offsetY="0"/>
 								<Anchor point="TOPRIGHT" relativeTo="$(parent)_GDQ_ListHolder" relativePoint="BOTTOMRIGHT" offsetX="-5" offsetY="0"/>
 							</Line>
@@ -290,7 +290,7 @@
 								<Dimensions x="75" y="18"/>
 								<Anchor point="TOPLEFT" relativeTo="$(parent)_PDGBE_D" relativePoint="TOPRIGHT" offsetX="0" offsetY="0"/>
 							</Label>
-							<Line name="$(parent)_PGDBE_L" color="FFCCCCCC" thickness="1" pixelRoundingEnabled="true">
+							<Line name="$(parent)_PGDBE_L" color="FFCCCCCC" thickness="1.5" pixelRoundingEnabled="true">
 								<Anchor point="TOPLEFT" relativeTo="$(parent)_PDGBE_Z" relativePoint="BOTTOMLEFT" offsetX="3" offsetY="0"/>
 								<Anchor point="TOPRIGHT" relativeTo="$(parent)_PDGBE_P" relativePoint="BOTTOMRIGHT" offsetX="-3" offsetY="0"/>
 							</Line>
@@ -302,7 +302,7 @@
 							</Control>
 							
 							
-							<Line name="$(parent)_PGDBE_L1" color="FFCCCCCC" thickness="1" pixelRoundingEnabled="true">
+							<Line name="$(parent)_PGDBE_L1" color="FFCCCCCC" thickness="1.5" pixelRoundingEnabled="true">
 								<Anchor point="TOPLEFT" relativeTo="$(parent)_PDGBE_ListHolder" relativePoint="BOTTOMLEFT" offsetX="3" offsetY="0"/>
 								<Anchor point="TOPRIGHT" relativeTo="$(parent)_PDGBE_ListHolder" relativePoint="BOTTOMRIGHT" offsetX="-5" offsetY="0"/>
 							</Line>

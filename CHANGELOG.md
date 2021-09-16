@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.2.1] - 2021-09-16
+
+### Added
+
+- Russian translation by K1nor
+
+
 ## [6.2.0] - 2021-08-23
 
 ### Added
@@ -97,6 +104,7 @@
 - Support for Markarth - The Reach questline and skyshards
 
 
+[6.2.1]: https://github.com/yachoor/uspf/compare/6.2.0...6.2.1
 [6.2.0]: https://github.com/yachoor/uspf/compare/6.1.0...6.2.0
 [6.1.0]: https://github.com/yachoor/uspf/compare/6.0.3...6.1.0
 [6.0.3]: https://github.com/yachoor/uspf/compare/6.0.2...6.0.3

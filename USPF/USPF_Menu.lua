@@ -45,7 +45,7 @@ function USPF:SetupMenu(charId)
 		displayName = ADDON_NAME.." Settings",
 		author = ADDON_AUTHOR,
 		version = ADDON_VERSION,
-		website = "https://www.esoui.com/downloads/info3089-UrichsSkillPointFinderUpdated.html",
+		website = "https://www.esoui.com/downloads/info1863-UrichsSkillPointFinder.html",
 		slashCommand = "/uspfmenu",
 		registerForRefresh = true,
 		registerForDefaults = true,

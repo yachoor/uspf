@@ -71,7 +71,7 @@ SafeAddString(USPF_SETTINGS_OVERRIDE_BWC_SET_DESC, "Эта настройка п
 
 
 SafeAddString(USPF_GUI_CHAR_LEVEL, "Уровень персонажа")
-SafeAddString(USPF_GUI_MAIN_QUEST, "Главная сюжетная линия")
+SafeAddString(USPF_GUI_MAIN_QUEST, "Основная сюжетная линия")
 SafeAddString(USPF_GUI_FOLIUM, "Folium Discognitum")
 SafeAddString(USPF_GUI_MW_CHAR, "Обучение Морровинда")
 SafeAddString(USPF_GUI_SU_CHAR, "Обучение Саммерсета")
@@ -91,15 +91,15 @@ SafeAddString(USPF_GUI_PDB, "Боссы групповых событий отк
 SafeAddString(USPF_GUI_SOURCE, "Источник")
 SafeAddString(USPF_GUI_PROGRESS, "Прогресс")
 SafeAddString(USPF_GUI_ZONE, "Область")
-SafeAddString(USPF_GUI_STORYLINE, "Сюжетная линия")
-SafeAddString(USPF_GUI_SKYSHARDS, "Небесные осколки")
+SafeAddString(USPF_GUI_STORYLINE, "Сюжетка")
+SafeAddString(USPF_GUI_SKYSHARDS, "Осколки")
 SafeAddString(USPF_GUI_GROUP_DUNGEON, "Групповое подземелье")
 SafeAddString(USPF_GUI_PUBLIC_DUNGEON, "Открытое подземелье")
 SafeAddString(USPF_GUI_DUNGEON_NAME, "Название подземелья")
 
 SafeAddString(USPF_GUI_TOTAL, "Получено")
-SafeAddString(USPF_GUI_CHAR_TOTAL, "Персонажем получено")
-SafeAddString(USPF_GUI_UNASSIGNED, "неназначенный")
+SafeAddString(USPF_GUI_CHAR_TOTAL, "Всего очков навыков получено персонажем")
+SafeAddString(USPF_GUI_UNASSIGNED, "из них сейчас можно использовать")
 
 
 SafeAddString(SI_BINDING_NAME_USPF_TOGGLE, "Показать/скрыть окно USPF.")
@@ -117,7 +117,7 @@ SafeAddString(USPF_MSG_CMD_OPTION, "    /uspf - Запуск окна модиф
 SafeAddString(USPF_MSG_ACTIVATE, "включить")
 SafeAddString(USPF_MSG_DEACTVATE, "выключить")
 
-SafeAddString(USPF_MSG_INIT, "Запуск USPF впервые!")
+SafeAddString(USPF_MSG_INIT, "Первый запуск USPF!")
 SafeAddString(USPF_MSG_HELP, "USPF Включен!")
 
 SafeAddString(USPF_QUEST_NA, "Эти очки навыков даются не за задание.")

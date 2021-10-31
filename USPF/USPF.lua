@@ -1771,7 +1771,7 @@ local function USPF_UpdateCharList()
 	USPF.sVar.charInfo = {}
 	for i = 1, GetNumCharacters() do
 		local name, _, _, _, _, _, id, _ = GetCharacterInfo(i)
-		USPF.sVar.charInfo[i] = {charId = id, charName = zf("<<t:1>>", name),}
+		USPF.sVar.charInfo[i] = {charId = id, charName = zf("<<1>>", name),}
 	end
 end
 
@@ -1784,7 +1784,7 @@ local function USPF_InitSetup()
 		USPF.sVar.numChars = GetNumCharacters()
 		for i = 1, GetNumCharacters() do
 			local name, _, _, _, _, _, id, _ = GetCharacterInfo(i)
-			USPF.sVar.charInfo[i] = {charId = id, charName = zf("<<t:1>>", name),}
+			USPF.sVar.charInfo[i] = {charId = id, charName = zf("<<1>>", name),}
 
 			--Write the character settings table.
 			USPF.sVar.settings[id] = {}

@@ -1,4 +1,15 @@
 # Changelog
+## [6.3.0] - 2021-10-31
+
+### Added
+
+- Support for The Deadlands DLC - new questlines and skyshards
+
+### Fixed
+
+- Russian translation improvements (K1nor)
+- Character names are no longer capitalised
+
 
 ## [6.2.1] - 2021-09-16
 
@@ -104,6 +115,7 @@
 - Support for Markarth - The Reach questline and skyshards
 
 
+[6.3.0]: https://github.com/yachoor/uspf/compare/6.2.1...6.3.0
 [6.2.1]: https://github.com/yachoor/uspf/compare/6.2.0...6.2.1
 [6.2.0]: https://github.com/yachoor/uspf/compare/6.1.0...6.2.0
 [6.1.0]: https://github.com/yachoor/uspf/compare/6.0.3...6.1.0

@@ -449,48 +449,49 @@ USPF.data = {
 		ZA  = 2995,
 	},
 	SS = {
-		MQ	 = 2521,
-		AD0	 =  431,
-		AD1	 =  695,
-		AD2	 =  682,
-		AD3	 =  683,
-		AD4	 =  684,
-		AD5	 =  685,
-		DC0a =  408,
-		DC0b =  407,
-		DC1	 =  409,
-		DC2	 =  515,
-		DC3	 =  554,
-		DC4	 =  556,
-		DC5	 =  557,
-		EP0a =  405,
-		EP0b =  398,
-		EP1	 =  397,
-		EP2	 =  547,
-		EP3	 =  687,
-		EP4	 =  688,
-		EP5	 =  689,
-		CH	 =  686,
-		CAD	 =  694,
-		CDC	 =  693,
-		CEP	 =  692,
-		CMT	 =  748,
-		LCL	 =  727,
-		UCL	 =  912,
-		IC	 = 1160,
-		WR	 = 1320,
-		HB	 = 1347,
-		GC	 = 1342,
-		VV	 = 1843,
-		CC	 = 1844,
-		SU	 = 1845,
-		MM	 = 2291,
-		NE	 = 2461,
-		SE	 = 2562,
-		WS	 = 2687,
-		TR	 = 2857,
-		BW	 = 2982,
-		TD	 = 3140,
+		-- First skyshard ID, count
+		MQ   = {259,  1},
+		AD0  = { 87,  6},
+		AD1  = { 93, 16},
+		AD2  = {109, 16},
+		AD3  = {125, 16},
+		AD4  = {141, 16},
+		AD5  = {157, 16},
+		DC0a = {173,  3},
+		DC0b = {176,  3},
+		DC1  = {179, 16},
+		DC2  = {195, 16},
+		DC3  = {211, 16},
+		DC4  = {227, 16},
+		DC5  = {243, 16},
+		EP0a = {  1,  3},
+		EP0b = {  4,  3},
+		EP1  = {  7, 16},
+		EP2  = { 23, 16},
+		EP3  = { 39, 16},
+		EP4  = { 55, 16},
+		EP5  = { 71, 16},
+		CH   = {260, 16},
+		CAD  = {306, 15},
+		CDC  = {291, 15},
+		CEP  = {276, 15},
+		CMT  = {321,  1},
+		LCL  = {322, 12},
+		UCL  = {334,  6},
+		IC   = {340, 13},
+		WR   = {353, 17},
+		HB   = {370,  6},
+		GC   = {376,  6},
+		VV   = {382, 18},
+		CC   = {400,  6},
+		SU   = {406, 18},
+		MM   = {424,  6},
+		NE   = {430, 18},
+		SE   = {448,  6},
+		WS   = {454, 18},
+		TR   = {472,  6},
+		BW   = {478, 18},
+		TD   = {496,  6}
 	},
 	racialLineIds = {
 		--RaceId	SkillLineId	Race
@@ -967,12 +968,11 @@ end
 
 local function USPF_SetSkyshardPoints()
 	for k,_ in pairs(USPF.ptsData.SS) do
-		if IAchC(USPF.data.SS[k]) then USPF.ptsData.SS[k] = GAchNCr(USPF.data.SS[k])
-		else
-			for i = 1, GAchNCr(USPF.data.SS[k]) do
-				local _, numCompleted = GAchCr(USPF.data.SS[k], i)
-				if numCompleted > 0 then USPF.ptsData.SS[k] = USPF.ptsData.SS[k] + 1 end
-			end
+        local v = USPF.data.SS[k]
+		for i=v[1], v[1] + v[2] - 1 do
+            if GetSkyshardDiscoveryStatus(i) == SKYSHARD_DISCOVERY_STATUS_ACQUIRED then
+                USPF.ptsData.SS[k] = USPF.ptsData.SS[k] + 1
+            end
 		end
 		USPF.ptsData.numSSTot = USPF.ptsData.numSSTot + USPF.ptsData.SS[k]
 	end

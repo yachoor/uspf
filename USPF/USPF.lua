@@ -1248,6 +1248,7 @@ function USPF:UpdateDataLines()
 			zone = tempTable[i][2],
 			quests = USPF_FormatProgress(tempTable[i][3], tempTable[i][4], SQS_ColorZQ),
 			skyshards = USPF_FormatProgress(tempTable[i][5], tempTable[i][6], SQS_ColorSS),
+			tooltip = tempTable[i][7]
 		})
 	end
 
@@ -1257,6 +1258,7 @@ function USPF:UpdateDataLines()
 			zone = tempTable[i][2],
 			dungeon = tempTable[i][3],
 			progress = USPF_FormatProgress(tempTable[i][4], tempTable[i][5], GDQ_Color),
+			tooltip = tempTable[i][6]
 		})
 	end
 
@@ -1266,6 +1268,7 @@ function USPF:UpdateDataLines()
 			zone = tempTable[i][2],
 			dungeon = tempTable[i][3],
 			progress = USPF_FormatProgress(tempTable[i][4], tempTable[i][5], PDB_Color),
+			tooltip = tempTable[i][6]
 		})
 	end
 
@@ -1401,9 +1404,9 @@ function USPF:InitializeDataLines()
 		currData = USPF_GUI_Body_SQS_ListHolder.dataLines[i]
 		USPF:FillLine(currLine, currData)
 
-		if USPF.GUI.SQS[i][7] ~= nil then
+		if currData.tooltip ~= nil then
 			-- tooltip text
-			USPF_GUI_Body_SQS_ListHolder.lines[i].data = {tooltipText = USPF.GUI.SQS[i][7]}
+			USPF_GUI_Body_SQS_ListHolder.lines[i].data = {tooltipText = currData.tooltip}
 
 			-- tooltip handlers
 			USPF_GUI_Body_SQS_ListHolder.lines[i]:SetHandler("OnMouseEnter", ZO_Options_OnMouseEnter)
@@ -1416,9 +1419,9 @@ function USPF:InitializeDataLines()
 		currData = USPF_GUI_Body_GDQ_ListHolder.dataLines[i]
 		USPF:FillLine(currLine, currData)
 
-		if USPF.GUI.GDQ[i][6] ~= nil then
+		if currData.tooltip ~= nil then
 			-- tooltip text
-			USPF_GUI_Body_GDQ_ListHolder.lines[i].data = {tooltipText = USPF.GUI.GDQ[i][6]}
+			USPF_GUI_Body_GDQ_ListHolder.lines[i].data = {tooltipText = currData.tooltip}
 
 			-- tooltip handlers
 			USPF_GUI_Body_GDQ_ListHolder.lines[i]:SetHandler("OnMouseEnter", ZO_Options_OnMouseEnter)
@@ -1431,9 +1434,9 @@ function USPF:InitializeDataLines()
 		currData = USPF_GUI_Body_PDGBE_ListHolder.dataLines[i]
 		USPF:FillLine(currLine, currData)
 
-		if USPF.GUI.PDGBE[i][6] ~= nil then
+		if currData.tooltip ~= nil then
 			-- tooltip text
-			USPF_GUI_Body_PDGBE_ListHolder.lines[i].data = {tooltipText = USPF.GUI.PDGBE[i][6]}
+			USPF_GUI_Body_PDGBE_ListHolder.lines[i].data = {tooltipText = currData.tooltip}
 
 			-- tooltip handlers
 			USPF_GUI_Body_PDGBE_ListHolder.lines[i]:SetHandler("OnMouseEnter", ZO_Options_OnMouseEnter)

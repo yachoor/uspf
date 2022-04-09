@@ -1448,7 +1448,7 @@ end
 function USPF:ToggleWindow()
 	USPF.active = not USPF.active
 	if USPF.active then USPF:UpdateDataLines() end
-	USPF_GUI:SetHidden(not USPF.active)
+	SCENE_MANAGER:ToggleTopLevel(USPF_GUI)
 end
 
 
@@ -1893,6 +1893,8 @@ local function USPF_Initialized(eventCode, addonName)
 
 	--Call startup routine.
 	USPF:SetupValues()
+
+	SCENE_MANAGER:RegisterTopLevel(USPF_GUI, locksUIMode)
 
 	--Create the event handlers.
 	EVENT_MANAGER:RegisterForEvent(USPF.AddonName, EVENT_SKILL_POINTS_CHANGED, USPF_SkillPointsUpdate)

@@ -1,4 +1,15 @@
 # Changelog
+## [6.4.1] - 2022-04-09
+
+### Added
+
+- Switch to cursor mode when showing addon window
+
+### Fixed
+
+- Swapped Stros M'Kai with Betnikh and Bleakrock Isle with Bal Foyen skyshards
+
+
 ## [6.4.0] - 2022-02-14
 
 ### Added
@@ -127,6 +138,7 @@
 - Support for Markarth - The Reach questline and skyshards
 
 
+[6.4.1]: https://github.com/yachoor/uspf/compare/6.4.0...6.4.1
 [6.4.0]: https://github.com/yachoor/uspf/compare/6.3.0...6.4.0
 [6.3.0]: https://github.com/yachoor/uspf/compare/6.2.1...6.3.0
 [6.2.1]: https://github.com/yachoor/uspf/compare/6.2.0...6.2.1

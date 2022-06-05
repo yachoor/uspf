@@ -1,4 +1,13 @@
 # Changelog
+## [6.5.0] - 2022-06-05
+
+### Added
+
+- Support for High Isle chapter - skill points:
+* 3 from main quest line
+* 6 from skyshard
+* 2 from public dungeons
+
 ## [6.4.1] - 2022-04-09
 
 ### Added
@@ -138,6 +147,7 @@
 - Support for Markarth - The Reach questline and skyshards
 
 
+[6.5.0]: https://github.com/yachoor/uspf/compare/6.4.1...6.5.0
 [6.4.1]: https://github.com/yachoor/uspf/compare/6.4.0...6.4.1
 [6.4.0]: https://github.com/yachoor/uspf/compare/6.3.0...6.4.0
 [6.3.0]: https://github.com/yachoor/uspf/compare/6.2.1...6.3.0

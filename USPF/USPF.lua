@@ -101,7 +101,7 @@ USPF.ptsData = {
 }
 
 USPF.ptsTots = {	--Tot and GenTot are 494 and 129 because you can't do more than one DLC tutorial.
-	Tot		= 507, GenTot = 129, ZQTot	= 127, numSSTot	= 519, SSTot  = 173,
+	Tot		= 509, GenTot = 129, ZQTot	= 129, numSSTot	= 519, SSTot  = 173,
 	GDTot	=  48, PDTot  =  30, Level	=  64, MainQ	=  11, FolDis =   2,
 	MWChar	=   1, SUChar =   1, EWChar	=   1, GMChar	=   1, BWChar =   1,
 	PvPRank	=  50, MaelAr =   1,
@@ -111,7 +111,7 @@ USPF.ptsTots = {	--Tot and GenTot are 494 and 129 because you can't do more than
 		EP2 = 3, EP3 = 3, EP4 =  3, EP5 = 3, CH  = 3, CAD  = 0, CDC  = 0, CEP  = 0,
 		CMT = 0, LCL = 0, UCL =  0, CC  = 8, DB  = 8, IC   = 1, MW   = 3, RO   = 3,
 		TG  = 6, SU  = 3, MM  =  7, NE  = 3, WP  = 0, SE   = 9, WS   = 3, TR   = 9,
-		BW  = 3, TD  = 9, HI  =  3,
+		BW  = 3, TD  = 9, HI  =  5,
 	},
 	SS = {
 		AD0  = 6,  AD1 = 16, AD2 = 16, AD3 = 16, AD4 = 16, AD5 = 16, DC0a = 3,
@@ -425,6 +425,9 @@ USPF.data = {
 		6753, -- Peaople of Import
 		6765, -- To Catch a Magus
 		6781, -- A Chance for Peace
+		6762, -- Buried at the Bay - PD quest
+		6768, -- Blood, Books, and Steel - PD quest
+		
 	},
 	PD = {
 		AD1 =  468,

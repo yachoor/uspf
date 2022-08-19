@@ -1,4 +1,11 @@
 # Changelog
+## [6.6.0] - 2022-08-19
+
+### Added
+
+- Support for Lost Depths DLC - 2 new dungeons
+
+
 ## [6.5.1] - 2022-06-16
 
 ### Added
@@ -154,6 +161,7 @@
 - Support for Markarth - The Reach questline and skyshards
 
 
+[6.6.0]: https://github.com/yachoor/uspf/compare/6.5.1...6.6.0
 [6.5.1]: https://github.com/yachoor/uspf/compare/6.5.0...6.5.1
 [6.5.0]: https://github.com/yachoor/uspf/compare/6.4.1...6.5.0
 [6.4.1]: https://github.com/yachoor/uspf/compare/6.4.0...6.4.1

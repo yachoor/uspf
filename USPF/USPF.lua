@@ -74,7 +74,7 @@ USPF.ptsData = {
 		EP2 = 0, EP3 = 0, EP4 = 0, EP5 = 0, CH  = 0, CAD  = 0, CDC  = 0, CEP  = 0,
 		CMT = 0, LCL = 0, UCL = 0, CC  = 0, DB  = 0, IC   = 0, MW   = 0, RO   = 0,
 		TG  = 0, SU  = 0, MM  = 0, NE  = 0, WP  = 0, SE   = 0, WS   = 0, TR   = 0,
-		BW  = 0, TD  = 0, HI  = 0,
+		BW  = 0, TD  = 0, HI  = 0, GY  = 0,
 	},
 	SS = {
 		AD0 = 0, AD1 = 0, AD2 = 0, AD3 = 0, AD4 = 0, AD5  = 0, DC0a = 0, DC0b = 0,
@@ -82,7 +82,7 @@ USPF.ptsData = {
 		EP2 = 0, EP3 = 0, EP4 = 0, EP5 = 0, CH  = 0, CAD  = 0, CDC  = 0, CEP  = 0,
 		CMT = 0, LCL = 0, UCL = 0, IC  = 0, WR  = 0, HB   = 0, GC   = 0, VV   = 0,
 		CC  = 0, MQ  = 0, SU  = 0, MM  = 0, NE  = 0, SE   = 0, WS   = 0, TR   = 0,
-		BW  = 0, TD  = 0, HI  = 0,
+		BW  = 0, TD  = 0, HI  = 0, GY  = 0,
 	},
 	GD = {
 		BC1 = 0, BC2 = 0, EH1 = 0, EH2 = 0, CA1 = 0, CA2 = 0, TI = 0, SW = 0,
@@ -102,7 +102,7 @@ USPF.ptsData = {
 }
 
 USPF.ptsTots = {	--Tot and GenTot are 494 and 129 because you can't do more than one DLC tutorial.
-	Tot		= 511, GenTot = 129, ZQTot	= 129, numSSTot	= 519, SSTot  = 173,
+	Tot		= 522, GenTot = 129, ZQTot	= 138, numSSTot	= 525, SSTot  = 175,
 	GDTot	=  50, PDTot  =  30, Level	=  64, MainQ	=  11, FolDis =   2,
 	MWChar	=   1, SUChar =   1, EWChar	=   1, GMChar	=   1, BWChar =   1,
 	PvPRank	=  50, MaelAr =   1,
@@ -112,7 +112,7 @@ USPF.ptsTots = {	--Tot and GenTot are 494 and 129 because you can't do more than
 		EP2 = 3, EP3 = 3, EP4 =  3, EP5 = 3, CH  = 3, CAD  = 0, CDC  = 0, CEP  = 0,
 		CMT = 0, LCL = 0, UCL =  0, CC  = 8, DB  = 8, IC   = 1, MW   = 3, RO   = 3,
 		TG  = 6, SU  = 3, MM  =  7, NE  = 3, WP  = 0, SE   = 9, WS   = 3, TR   = 9,
-		BW  = 3, TD  = 9, HI  =  5,
+		BW  = 3, TD  = 9, HI  =  5, GY  = 9
 	},
 	SS = {
 		AD0  = 6,  AD1 = 16, AD2 = 16, AD3 = 16, AD4 = 16, AD5 = 16, DC0a = 3,
@@ -121,7 +121,7 @@ USPF.ptsTots = {	--Tot and GenTot are 494 and 129 because you can't do more than
 		CAD  = 15, CDC = 15, CEP = 15, CMT = 1,  LCL = 12, UCL = 6,  IC   = 13,
 		WR   = 17, HB  = 6,  GC  = 6,  VV  = 18, CC  = 6,  MQ  = 1,  SU   = 18,
 		MM   = 6,  NE  = 18, SE  = 6,  WS  = 18, TR  = 6,  BW  = 18, TD   = 6,
-		HI   = 18,
+		HI   = 18, GY = 6
 	},
 	GD = {
 		BC1 = 1, BC2 = 1, EH1 = 1, EH2 = 1, CA1 = 1, CA2 = 1, TI = 1, SW = 1,
@@ -149,7 +149,7 @@ local tempZId = {
 		CEP  =  181, CMT  =  181, CL   =  888, LCL =  888, UCL = 888, IC  =  584,
 		RO   =  684, HB   =  816, GC   =  823, VV  =  849, CC  = 980, SU  = 1011,
 		MM   =  726, NE   = 1086, WP   =  586, SE  = 1133, WS = 1160, BGC = 1161,
-		TR   = 1207, BW   = 1261, TD   = 1286, HI  = 1318,
+		TR   = 1207, BW   = 1261, TD   = 1286, HI  = 1318, GY = 1383
 	},
 	GDN = {
 		BC1 =  380, BC2 =  935, EH1 =  126, EH2 =  931, CA1 =  176, CA2 =  681,
@@ -434,6 +434,9 @@ USPF.data = {
 		6768, -- Blood, Books, and Steel - PD quest
 		
 	},
+	GY = {
+
+	},
 	PD = {
 		AD1 =  468,
 		AD2 =  470,
@@ -510,7 +513,8 @@ USPF.data = {
 		TR   = {472,  6},
 		BW   = {478, 18},
 		TD   = {496,  6},
-		HI   = {504, 18}
+		HI   = {504, 18},
+		GY   = {522,  6},
 	},
 	racialLineIds = {
 		--RaceId	SkillLineId	Race
@@ -749,6 +753,7 @@ local function USPF_UpdateGUITable(sVarPtsData)
 		BW   = GetQuestTooltipText("BW").."\n\n"..GetZoneTooltipText("BW"),
 		TD   = GetQuestTooltipText("TD").."\n\n"..GetZoneTooltipText("TD"),
 		HI   = GetQuestTooltipText("HI").."\n\n"..GetZoneTooltipText("HI"),
+		GY   = GetQuestTooltipText("GY").."\n\n"..GetZoneTooltipText("GY"),
 	}
 
 	USPF.GUI = {
@@ -809,6 +814,7 @@ local function USPF_UpdateGUITable(sVarPtsData)
 			{41, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.BW)),						GetSV(sVarPtsData.ZQ.BW),	USPF.ptsTots.ZQ.BW,		GetSV(sVarPtsData.SS.BW),	USPF.ptsTots.SS.BW,		questTooltips.BW},
 			{42, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.TD)),						GetSV(sVarPtsData.ZQ.TD),	USPF.ptsTots.ZQ.TD,		GetSV(sVarPtsData.SS.TD),	USPF.ptsTots.SS.TD,		questTooltips.TD},
 			{43, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.HI)),						GetSV(sVarPtsData.ZQ.HI),	USPF.ptsTots.ZQ.HI,		GetSV(sVarPtsData.SS.HI),	USPF.ptsTots.SS.HI,		questTooltips.HI},
+			{44, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.GY)),						GetSV(sVarPtsData.ZQ.GY),	USPF.ptsTots.ZQ.GY,		GetSV(sVarPtsData.SS.GY),	USPF.ptsTots.SS.GY,		questTooltips.GY},
 		},
 		SQS_SL_T = strF("%d/%d", sVarPtsData.ZQTot, USPF.ptsTots.ZQTot),
 		SQS_SS_T = strF("%d/%d", sVarPtsData.SSTot, USPF.ptsTots.SSTot),

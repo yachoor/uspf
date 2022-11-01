@@ -435,7 +435,15 @@ USPF.data = {
 		
 	},
 	GY = {
-
+		6849, -- A Sea of Troubles - MQ 1
+		6850, -- Tides of Ruin - MQ 2
+		6855, -- Seeds of Destruction - MQ 3
+		6859, -- City Under Siege - MQ 4
+		6852, -- The Dream of Kasorayn - MQ 5
+		6853, -- Guardian of Y'ffelon - MQ 6
+		6847, -- The Hidden Lord - Epilogue 1
+		6848, -- The Ivy Throne - Epilogue 2
+		6894, -- And Now, Perhaps, Peace - Epilogue 3
 	},
 	PD = {
 		AD1 =  468,

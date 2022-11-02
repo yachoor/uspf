@@ -1,4 +1,18 @@
 # Changelog
+## [6.7.0] - 2022-11-02
+
+### Added
+
+- Support for Firesong DLC (by MuMuQ) - skill points:
+* 6 from main quest
+* 3 from chapter epilogue
+* 2 from skyshards
+
+### Fixed
+
+- incorrect skill point quests for Deshaan (thx for reporting AntonShan)
+
+
 ## [6.6.0] - 2022-08-19
 
 ### Added
@@ -161,6 +175,7 @@
 - Support for Markarth - The Reach questline and skyshards
 
 
+[6.7.0]: https://github.com/yachoor/uspf/compare/6.6.0...6.7.0
 [6.6.0]: https://github.com/yachoor/uspf/compare/6.5.1...6.6.0
 [6.5.1]: https://github.com/yachoor/uspf/compare/6.5.0...6.5.1
 [6.5.0]: https://github.com/yachoor/uspf/compare/6.4.1...6.5.0

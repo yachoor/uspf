@@ -1,4 +1,11 @@
 # Changelog
+## [6.7.1] - 2022-12-03
+
+### Added
+
+- Chinese translation (justjavac)
+
+
 ## [6.7.0] - 2022-11-02
 
 ### Added
@@ -175,6 +182,7 @@
 - Support for Markarth - The Reach questline and skyshards
 
 
+[6.7.1]: https://github.com/yachoor/uspf/compare/6.7.0...6.7.1
 [6.7.0]: https://github.com/yachoor/uspf/compare/6.6.0...6.7.0
 [6.6.0]: https://github.com/yachoor/uspf/compare/6.5.1...6.6.0
 [6.5.1]: https://github.com/yachoor/uspf/compare/6.5.0...6.5.1

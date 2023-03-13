@@ -1,4 +1,11 @@
 # Changelog
+## [6.8.0] - 2023-03-13
+
+### Added
+
+- Support for Scribes of Fate DLC - 2 new dungeons
+
+
 ## [6.7.1] - 2022-12-03
 
 ### Added
@@ -182,6 +189,7 @@
 - Support for Markarth - The Reach questline and skyshards
 
 
+[6.8.0]: https://github.com/yachoor/uspf/compare/6.7.1...6.8.0
 [6.7.1]: https://github.com/yachoor/uspf/compare/6.7.0...6.7.1
 [6.7.0]: https://github.com/yachoor/uspf/compare/6.6.0...6.7.0
 [6.6.0]: https://github.com/yachoor/uspf/compare/6.5.1...6.6.0

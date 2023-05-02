@@ -74,7 +74,7 @@ USPF.ptsData = {
 		EP2 = 0, EP3 = 0, EP4 = 0, EP5 = 0, CH  = 0, CAD  = 0, CDC  = 0, CEP  = 0,
 		CMT = 0, LCL = 0, UCL = 0, CC  = 0, DB  = 0, IC   = 0, MW   = 0, RO   = 0,
 		TG  = 0, SU  = 0, MM  = 0, NE  = 0, WP  = 0, SE   = 0, WS   = 0, TR   = 0,
-		BW  = 0, TD  = 0, HI  = 0, GY  = 0,
+		BW  = 0, TD  = 0, HI  = 0, GY  = 0, AP  = 0,
 	},
 	SS = {
 		AD0 = 0, AD1 = 0, AD2 = 0, AD3 = 0, AD4 = 0, AD5  = 0, DC0a = 0, DC0b = 0,
@@ -82,7 +82,7 @@ USPF.ptsData = {
 		EP2 = 0, EP3 = 0, EP4 = 0, EP5 = 0, CH  = 0, CAD  = 0, CDC  = 0, CEP  = 0,
 		CMT = 0, LCL = 0, UCL = 0, IC  = 0, WR  = 0, HB   = 0, GC   = 0, VV   = 0,
 		CC  = 0, MQ  = 0, SU  = 0, MM  = 0, NE  = 0, SE   = 0, WS   = 0, TR   = 0,
-		BW  = 0, TD  = 0, HI  = 0, GY  = 0,
+		BW  = 0, TD  = 0, HI  = 0, GY  = 0, AP  = 0,
 	},
 	GD = {
 		BC1 = 0, BC2 = 0, EH1 = 0, EH2 = 0, CA1 = 0, CA2 = 0, TI = 0, SW = 0,
@@ -97,13 +97,13 @@ USPF.ptsData = {
 		AD1 = 0, AD2 = 0, AD3 = 0, AD4 = 0, AD5 = 0, DC1 = 0, DC2 = 0, DC3 = 0,
 		DC4 = 0, DC5 = 0, EP1 = 0, EP2 = 0, EP3 = 0, EP4 = 0, EP5 = 0, CH  = 0,
 		VFW = 0, VNC = 0, WOO = 0, WRK = 0, SKW = 0, SSH = 0, RN  = 0, OC  = 0,
-		LT  = 0, NK  = 0, SH  = 0, ZA  = 0, GHB = 0, SCC = 0,
+		LT  = 0, NK  = 0, SH  = 0, ZA  = 0, GHB = 0, SCC = 0, GO  = 0, TU  = 0,
 	},
 }
 
 USPF.ptsTots = {	--Tot and GenTot are 494 and 129 because you can't do more than one DLC tutorial.
-	Tot		= 524, GenTot = 129, ZQTot	= 138, numSSTot	= 525, SSTot  = 175,
-	GDTot	=  52, PDTot  =  30, Level	=  64, MainQ	=  11, FolDis =   2,
+	Tot		= 541, GenTot = 129, ZQTot	= 147, numSSTot	= 543, SSTot  = 181,
+	GDTot	=  52, PDTot  =  32, Level	=  64, MainQ	=  11, FolDis =   2,
 	MWChar	=   1, SUChar =   1, EWChar	=   1, GMChar	=   1, BWChar =   1,
 	PvPRank	=  50, MaelAr =   1,
 	ZQ = {
@@ -112,7 +112,7 @@ USPF.ptsTots = {	--Tot and GenTot are 494 and 129 because you can't do more than
 		EP2 = 3, EP3 = 3, EP4 =  3, EP5 = 3, CH  = 3, CAD  = 0, CDC  = 0, CEP  = 0,
 		CMT = 0, LCL = 0, UCL =  0, CC  = 8, DB  = 8, IC   = 1, MW   = 3, RO   = 3,
 		TG  = 6, SU  = 3, MM  =  7, NE  = 3, WP  = 0, SE   = 9, WS   = 3, TR   = 9,
-		BW  = 3, TD  = 9, HI  =  5, GY  = 9
+		BW  = 3, TD  = 9, HI  =  5, GY  = 9, AP  = 9,
 	},
 	SS = {
 		AD0  = 6,  AD1 = 16, AD2 = 16, AD3 = 16, AD4 = 16, AD5 = 16, DC0a = 3,
@@ -121,7 +121,7 @@ USPF.ptsTots = {	--Tot and GenTot are 494 and 129 because you can't do more than
 		CAD  = 15, CDC = 15, CEP = 15, CMT = 1,  LCL = 12, UCL = 6,  IC   = 13,
 		WR   = 17, HB  = 6,  GC  = 6,  VV  = 18, CC  = 6,  MQ  = 1,  SU   = 18,
 		MM   = 6,  NE  = 18, SE  = 6,  WS  = 18, TR  = 6,  BW  = 18, TD   = 6,
-		HI   = 18, GY = 6
+		HI   = 18, GY  = 6,  AP  = 18,
 	},
 	GD = {
 		BC1 = 1, BC2 = 1, EH1 = 1, EH2 = 1, CA1 = 1, CA2 = 1, TI = 1, SW = 1,
@@ -136,7 +136,7 @@ USPF.ptsTots = {	--Tot and GenTot are 494 and 129 because you can't do more than
 		AD1 = 1, AD2 = 1, AD3 = 1, AD4 = 1, AD5 = 1, DC1 = 1, DC2 = 1, DC3 = 1,
 		DC4 = 1, DC5 = 1, EP1 = 1, EP2 = 1, EP3 = 1, EP4 = 1, EP5 = 1, CH  = 1,
 		VFW = 1, VNC = 1, WOO = 1, WRK = 1, SKW = 1, SSH = 1, RN  = 1, OC  = 1,
-		LT  = 1, NK  = 1, SH  = 1, ZA  = 1, GHB = 1, SCC = 1,
+		LT  = 1, NK  = 1, SH  = 1, ZA  = 1, GHB = 1, SCC = 1, GO  = 1, TU  = 1,
 	},
 }
 
@@ -149,7 +149,7 @@ local tempZId = {
 		CEP  =  181, CMT  =  181, CL   =  888, LCL =  888, UCL = 888, IC  =  584,
 		RO   =  684, HB   =  816, GC   =  823, VV  =  849, CC  = 980, SU  = 1011,
 		MM   =  726, NE   = 1086, WP   =  586, SE  = 1133, WS = 1160, BGC = 1161,
-		TR   = 1207, BW   = 1261, TD   = 1286, HI  = 1318, GY = 1383
+		TR   = 1207, BW   = 1261, TD   = 1286, HI  = 1318, GY = 1383, AP  = 1413,
 	},
 	GDN = {
 		BC1 =  380, BC2 =  935, EH1 =  126, EH2 =  931, CA1 =  176, CA2 =  681,
@@ -168,6 +168,7 @@ local tempZId = {
 		EP3 =  134, EP4 =  339, EP5 =  341, CH  =  557, WOO =  706, WRK =  705,
 		VFW =  919, VNC =  918, SKW = 1020, SSH = 1021, RN  = 1089, OC  = 1090,
 		LT  = 1186, NK  = 1187, SH  = 1260, ZA  = 1259, GHB = 1338, SCC = 1337,
+		GO  = 1415, TU  = 1416,
 	},
 }
 
@@ -447,6 +448,17 @@ USPF.data = {
 		6848, -- The Ivy Throne - Epilogue 2
 		6894, -- And Now, Perhaps, Peace - Epilogue 3
 	},
+    AP = {
+		6971, -- Fate's Proxy
+		6972, -- Keeper Of the Fate
+		6973, -- Spirit Of Fate
+		6974, -- Fate's Lost dream
+		6975, -- A Hidden Fate
+		6976, -- Conclave of Fate
+		7025, -- A Calamity of Fate
+		6991, -- An Unhealthy Fate
+		6977, -- Chronicle of Fate
+    },
 	PD = {
 		AD1 =  468,
 		AD2 =  470,
@@ -478,6 +490,8 @@ USPF.data = {
 		ZA  = 2995,
 		GHB = 3281,
 		SCC = 3283,
+		GO  = 3658,
+		TU  = 3657,
 	},
 	SS = {
 		-- First skyshard ID, count
@@ -525,6 +539,7 @@ USPF.data = {
 		TD   = {496,  6},
 		HI   = {504, 18},
 		GY   = {522,  6},
+		AP   = {528, 18},
 	},
 	racialLineIds = {
 		--RaceId	SkillLineId	Race
@@ -764,6 +779,7 @@ local function USPF_UpdateGUITable(sVarPtsData)
 		TD   = GetQuestTooltipText("TD").."\n\n"..GetZoneTooltipText("TD"),
 		HI   = GetQuestTooltipText("HI").."\n\n"..GetZoneTooltipText("HI"),
 		GY   = GetQuestTooltipText("GY").."\n\n"..GetZoneTooltipText("GY"),
+		AP   = GetQuestTooltipText("AP").."\n\n"..GetZoneTooltipText("AP"),
 	}
 
 	USPF.GUI = {
@@ -825,6 +841,7 @@ local function USPF_UpdateGUITable(sVarPtsData)
 			{42, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.TD)),						GetSV(sVarPtsData.ZQ.TD),	USPF.ptsTots.ZQ.TD,		GetSV(sVarPtsData.SS.TD),	USPF.ptsTots.SS.TD,		questTooltips.TD},
 			{43, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.HI)),						GetSV(sVarPtsData.ZQ.HI),	USPF.ptsTots.ZQ.HI,		GetSV(sVarPtsData.SS.HI),	USPF.ptsTots.SS.HI,		questTooltips.HI},
 			{44, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.GY)),						GetSV(sVarPtsData.ZQ.GY),	USPF.ptsTots.ZQ.GY,		GetSV(sVarPtsData.SS.GY),	USPF.ptsTots.SS.GY,		questTooltips.GY},
+			{45, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.AP)),						GetSV(sVarPtsData.ZQ.AP),	USPF.ptsTots.ZQ.AP,		GetSV(sVarPtsData.SS.AP),	USPF.ptsTots.SS.AP,		questTooltips.AP},
 		},
 		SQS_SL_T = strF("%d/%d", sVarPtsData.ZQTot, USPF.ptsTots.ZQTot),
 		SQS_SS_T = strF("%d/%d", sVarPtsData.SSTot, USPF.ptsTots.SSTot),
@@ -914,6 +931,8 @@ local function USPF_UpdateGUITable(sVarPtsData)
 			{28, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BW)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.ZA)),	GetSV(sVarPtsData.PD.ZA),		USPF.ptsTots.PD.ZA,		GetPDTooltipText("ZA")},
 			{29, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.HI)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.GHB)),	GetSV(sVarPtsData.PD.GHB),		USPF.ptsTots.PD.GHB,		GetPDTooltipText("GHB")},
 			{30, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.HI)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.SCC)),	GetSV(sVarPtsData.PD.SCC),		USPF.ptsTots.PD.SCC,		GetPDTooltipText("SCC")},
+			{31, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AP)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.GO)),	GetSV(sVarPtsData.PD.GO),		USPF.ptsTots.PD.GO,		GetPDTooltipText("GO")},
+			{32, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AP)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.TU)),	GetSV(sVarPtsData.PD.TU),		USPF.ptsTots.PD.TU,		GetPDTooltipText("TU")},
 		},
 		PDGBE_T = strF("%s: %d/%d", GS(USPF_GUI_TOTAL), sVarPtsData.PDTot, USPF.ptsTots.PDTot),
 		CharacterTot = strF("%s: %d/%d (%s %s)", GS(USPF_GUI_CHAR_TOTAL), sVarPtsData.Tot, USPF.ptsTots.Tot, sVarPtsData.Unassigned and tostring(sVarPtsData.Unassigned) or "?", GS(USPF_GUI_UNASSIGNED)),

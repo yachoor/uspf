@@ -1,4 +1,14 @@
 # Changelog
+## [6.9.0] - 2023-06-05
+
+### Added
+
+- Support for Necrom chapter - new skillpoints:
+* 9 from main quest
+* 2 from public dungeons
+* 6 from skyshards
+
+
 ## [6.8.0] - 2023-03-13
 
 ### Added
@@ -189,6 +199,7 @@
 - Support for Markarth - The Reach questline and skyshards
 
 
+[6.9.0]: https://github.com/yachoor/uspf/compare/6.8.0...6.9.0
 [6.8.0]: https://github.com/yachoor/uspf/compare/6.7.1...6.8.0
 [6.7.1]: https://github.com/yachoor/uspf/compare/6.7.0...6.7.1
 [6.7.0]: https://github.com/yachoor/uspf/compare/6.6.0...6.7.0

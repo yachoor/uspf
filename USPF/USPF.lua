@@ -67,7 +67,7 @@ USPF.ptsData = {
 	Tot	= 0, GenTot	= 0, ZQTot	= 0, numSSTot	= 0, SSTot	= 0,
 	GDTot	= 0, PDTot	= 0, Level	= 0, MainQ	= 0, FolDis	= 0,
 	MWChar	= 0, SUChar	= 0, EWChar	= 0, GMChar	= 0, BWChar = 0,
-	PvPRank	= 0, MaelAr	= 0, Unassigned = nil,
+	PvPRank	= 0, MaelAr	= 0, EndlArch	= 0, Unassigned = nil,
 	ZQ = {
 		AD0 = 0, AD1 = 0, AD2 = 0, AD3 = 0, AD4 = 0, AD5  = 0, DC0a = 0, DC0b = 0,
 		DC1 = 0, DC2 = 0, DC3 = 0, DC4 = 0, DC5 = 0, EP0a = 0, EP0b = 0, EP1  = 0,
@@ -102,10 +102,10 @@ USPF.ptsData = {
 }
 
 USPF.ptsTots = {	--Tot and GenTot are 494 and 129 because you can't do more than one DLC tutorial.
-	Tot		= 541, GenTot = 129, ZQTot	= 147, numSSTot	= 543, SSTot  = 181,
+	Tot		= 542, GenTot = 130, ZQTot	= 147, numSSTot	= 543, SSTot  = 181,
 	GDTot	=  52, PDTot  =  32, Level	=  64, MainQ	=  11, FolDis =   2,
 	MWChar	=   1, SUChar =   1, EWChar	=   1, GMChar	=   1, BWChar =   1,
-	PvPRank	=  50, MaelAr =   1,
+	PvPRank	=  50, MaelAr =   1, EndlArch	=   1,
 	ZQ = {
 		AD0 = 0, AD1 = 3, AD2 =  3, AD3 = 3, AD4 = 3, AD5  = 3, DC0a = 0, DC0b = 0,
 		DC1 = 4, DC2 = 3, DC3 =  3, DC4 = 3, DC5 = 3, EP0a = 0, EP0b = 0, EP1  = 3,
@@ -150,6 +150,7 @@ local tempZId = {
 		RO   =  684, HB   =  816, GC   =  823, VV  =  849, CC  = 980, SU  = 1011,
 		MM   =  726, NE   = 1086, WP   =  586, SE  = 1133, WS = 1160, BGC = 1161,
 		TR   = 1207, BW   = 1261, TD   = 1286, HI  = 1318, GY = 1383, AP  = 1413,
+		EA   = 1436,
 	},
 	GDN = {
 		BC1 =  380, BC2 =  935, EH1 =  126, EH2 =  931, CA1 =  176, CA2 =  681,
@@ -160,7 +161,7 @@ local tempZId = {
 		FL  = 1009, SP  = 1010, MHK = 1052, MOS = 1055, DoM = 1081, FV  = 1080,
 		LM  = 1123, MF  = 1122, IR  = 1152, UG  = 1153, SG  = 1197, CT  = 1201,
 		BDV = 1228, TC  = 1229, RPB = 1267, TDC = 1268, CA  = 1301, SR  = 1302,
-		ERE = 1360, GD  = 1361, BS  = 1389, SH =  1390, 
+		ERE = 1360, GD  = 1361, BS  = 1389, SH =  1390,
 	},
 	PDN = {
 		AD1 =  486, AD2 =  124, AD3 =  137, AD4 =  138, AD5 =  487, DC1 =  284,
@@ -402,6 +403,7 @@ USPF.data = {
 	},
 	GO = { 6455 },
 	BO = { 6646 },
+	EA = { 7061 },
 	TR = {
 		6550,
 		6551,
@@ -435,7 +437,6 @@ USPF.data = {
 		6781, -- A Chance for Peace
 		6762, -- Buried at the Bay - PD quest
 		6768, -- Blood, Books, and Steel - PD quest
-		
 	},
 	GY = {
 		6849, -- A Sea of Troubles - MQ 1
@@ -773,6 +774,7 @@ local function USPF_UpdateGUITable(sVarPtsData)
 		SU	 = GetQuestTooltipText("SU").."\n\n"..GetZoneTooltipText("SU"),
 		WS   = GetQuestTooltipText("WS").."\n\n"..GetZoneTooltipText("WS"),
 		GO   = GetQuestTooltipText("GO"),
+		EA   = GetQuestTooltipText("EA"),
 		BO   = GetQuestTooltipText("BO"),
 		TR   = GetQuestTooltipText("TR").."\n\n"..GetZoneTooltipText("TR"),
 		BW   = GetQuestTooltipText("BW").."\n\n"..GetZoneTooltipText("BW"),
@@ -794,6 +796,7 @@ local function USPF_UpdateGUITable(sVarPtsData)
 			{ 8, GS(USPF_GUI_BW_CHAR),		GetSV(sVarPtsData.BWChar),	USPF.ptsTots.BWChar,	questTooltips.BO},
 			{ 9, GS(USPF_GUI_AVA_RANK),		GetSV(sVarPtsData.PvPRank),	USPF.ptsTots.PvPRank,	getTooltipPvPRank()},
 			{10, GS(USPF_GUI_MAEL_ARENA),	GetSV(sVarPtsData.MaelAr),	USPF.ptsTots.MaelAr,	getTooltipMaelstrom()},
+			{11, GZNBId(USPF.data.ZId.ZN.EA),	GetSV(sVarPtsData.EndlArch),	USPF.ptsTots.EndlArch,	questTooltips.EA},
 		},
 		GSP_T = strF("%s: %d/%d", GS(USPF_GUI_TOTAL), sVarPtsData.GenTot, USPF.ptsTots.GenTot),
 		SQS = {
@@ -985,6 +988,8 @@ local function USPF_SetQuestPoints()
 	--Blackwood Only Character Quest Skill Points
 	USPF.ptsData.BWChar = (GCQI(USPF.data.BO[1]) ~= "" or USPF.settings.BWC) and 1 or 0
 
+	USPF.ptsData.EndlArch = (GCQI(USPF.data.EA[1]) ~= "") and 1 or 0
+
 	for k,_ in pairs(USPF.ptsData.ZQ) do
 		if USPF.data[k] ~= nil then
 			for i=1, #USPF.data[k] do
@@ -1008,6 +1013,7 @@ local function USPF_SetQuestPoints()
 		USPF.sVar.ptsData[selectedChar].EWChar = USPF.ptsData.EWChar
 		USPF.sVar.ptsData[selectedChar].GMChar = USPF.ptsData.GMChar
 		USPF.sVar.ptsData[selectedChar].BWChar = USPF.ptsData.BWChar
+		USPF.sVar.ptsData[selectedChar].EndlArch = USPF.ptsData.EndlArch
 
 		USPF.sVar.ptsData[selectedChar].ZQ = USPF_LTF:CopyTable(USPF.ptsData.ZQ)
 		USPF.sVar.ptsData[selectedChar].GD = USPF_LTF:CopyTable(USPF.ptsData.GD)
@@ -1133,8 +1139,8 @@ local function USPF_SetFoliumDiscognitumPoints()
 		local skillPointsDiff =	USPF.ptsData.Level + USPF.ptsData.MainQ + USPF.ptsData.MWChar +
 								USPF.ptsData.SUChar + USPF.ptsData.EWChar + USPF.ptsData.GMChar +
 								USPF.ptsData.BWChar + USPF.ptsData.PvPRank + USPF.ptsData.MaelAr +
-								USPF.ptsData.ZQTot + USPF.ptsData.SSTot + USPF.ptsData.GDTot +
-								USPF.ptsData.PDTot
+								USPF.ptsData.EndlArch + USPF.ptsData.ZQTot + USPF.ptsData.SSTot +
+								USPF.ptsData.GDTot + USPF.ptsData.PDTot
 		USPF.ptsData.FolDis = skillPoints == skillPointsDiff + 2 and 2 or 0
 	end
 
@@ -1174,7 +1180,7 @@ end
 local function USPF_SetGeneralPoints()
 	USPF.ptsData.GenTot =	USPF.ptsData.Level + USPF.ptsData.MainQ + USPF.ptsData.FolDis + USPF.ptsData.MWChar +
 							USPF.ptsData.SUChar + USPF.ptsData.EWChar + USPF.ptsData.GMChar + USPF.ptsData.BWChar +
-							USPF.ptsData.PvPRank + USPF.ptsData.MaelAr
+							USPF.ptsData.PvPRank + USPF.ptsData.MaelAr + USPF.ptsData.EndlArch
 
 	--Update saved variables.
 	if USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar]) then

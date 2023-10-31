@@ -1,4 +1,11 @@
 # Changelog
+## [6.10.0] - 2023-11-31
+
+### Added
+
+- Endless Archive quest skill point
+
+
 ## [6.9.0] - 2023-06-05
 
 ### Added
@@ -199,6 +206,7 @@
 - Support for Markarth - The Reach questline and skyshards
 
 
+[6.10.0]: https://github.com/yachoor/uspf/compare/6.9.0...6.10.0
 [6.9.0]: https://github.com/yachoor/uspf/compare/6.8.0...6.9.0
 [6.8.0]: https://github.com/yachoor/uspf/compare/6.7.1...6.8.0
 [6.7.1]: https://github.com/yachoor/uspf/compare/6.7.0...6.7.1

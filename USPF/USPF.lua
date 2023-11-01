@@ -796,7 +796,7 @@ local function USPF_UpdateGUITable(sVarPtsData)
 			{ 8, GS(USPF_GUI_BW_CHAR),		GetSV(sVarPtsData.BWChar),	USPF.ptsTots.BWChar,	questTooltips.BO},
 			{ 9, GS(USPF_GUI_AVA_RANK),		GetSV(sVarPtsData.PvPRank),	USPF.ptsTots.PvPRank,	getTooltipPvPRank()},
 			{10, GS(USPF_GUI_MAEL_ARENA),	GetSV(sVarPtsData.MaelAr),	USPF.ptsTots.MaelAr,	getTooltipMaelstrom()},
-			{11, GZNBId(USPF.data.ZId.ZN.EA),	GetSV(sVarPtsData.EndlArch),	USPF.ptsTots.EndlArch,	questTooltips.EA},
+			{11, zf("<<t:1>>", GZNBId(USPF.data.ZId.ZN.EA)),	GetSV(sVarPtsData.EndlArch),	USPF.ptsTots.EndlArch,	questTooltips.EA},
 		},
 		GSP_T = strF("%s: %d/%d", GS(USPF_GUI_TOTAL), sVarPtsData.GenTot, USPF.ptsTots.GenTot),
 		SQS = {

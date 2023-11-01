@@ -1,5 +1,13 @@
 # Changelog
-## [6.10.0] - 2023-11-31
+
+## [6.10.1] - 2023-11-01
+
+### Fixed
+
+- Display of Endless Archive name in languages other than english
+
+
+## [6.10.0] - 2023-10-31
 
 ### Added
 
@@ -206,6 +214,7 @@
 - Support for Markarth - The Reach questline and skyshards
 
 
+[6.10.1]: https://github.com/yachoor/uspf/compare/6.10.0...6.10.1
 [6.10.0]: https://github.com/yachoor/uspf/compare/6.9.0...6.10.0
 [6.9.0]: https://github.com/yachoor/uspf/compare/6.8.0...6.9.0
 [6.8.0]: https://github.com/yachoor/uspf/compare/6.7.1...6.8.0

@@ -55,8 +55,6 @@ USPF.settings = {
 }
 
 USPF.defaults = {
-	firstRun = true,
-	numChars = 0,
 	charInfo = {},
 	settings = {},
 	ptsData = {},
@@ -1820,61 +1818,38 @@ local function USPF_CreateCharList()
 	end
 end
 
-local function USPF_UpdateCharList()
-	USPF.sVar.charInfo = {}
+local function USPF_InitSetup()
+	local charIdKnown = {}
 	for i = 1, GetNumCharacters() do
 		local name, _, _, _, _, _, id, _ = GetCharacterInfo(i)
-		USPF.sVar.charInfo[i] = {charId = id, charName = zf("<<1>>", name),}
+		charIdKnown[id] = {idx = i, name = name}
 	end
-end
 
-local function USPF_InitSetup()
-	local firstRun = USPF.sVar.firstRun or USPF.sVar.numChars == 0 or USPF.sVar.charInfo[1] == nil
-
-	--If first run then setup the character table
-	if firstRun then
-		d(GS(USPF_MSG_INIT))
-		USPF.sVar.numChars = GetNumCharacters()
-		for i = 1, GetNumCharacters() do
-			local name, _, _, _, _, _, id, _ = GetCharacterInfo(i)
-			USPF.sVar.charInfo[i] = {charId = id, charName = zf("<<1>>", name),}
-
-			--Write the character settings table.
-			USPF.sVar.settings[id] = {}
-			USPF.sVar.settings[id] = USPF_LTF:CopyTable(USPF.settings)
-
-			--Write the character points data table.
-			USPF.sVar.ptsData[id] = {}
-			USPF.sVar.ptsData[id] = USPF_LTF:CopyTable(USPF.ptsData)
-		end
-
-		--Show the welcome message.
-		d(GS(USPF_MSG_HELP))
-
-		USPF.sVar.firstRun = false
-	end
+	local id = GCCId()
 
 	--Setup the character info table.
-	if not firstRun then USPF_UpdateCharList() end
-
-	--Check for added characters.
-	for _,v in pairs(USPF.sVar.charInfo) do
-		if not USPF_LTF:TableContains(USPF.sVar.settings, v.charId, true) then
-			USPF.sVar.settings[v.charId] = USPF_LTF:CopyTable(USPF.settings)
+	local newChar = true
+	for k,v in pairs(USPF.sVar.charInfo) do
+		if v.charId == id then
+			v.charName = zf("<<1>>", charIdKnown[id].name)
+			newChar = false
 		end
-
-		if not USPF_LTF:TableContains(USPF.sVar.ptsData, v.charId, true) then
-			USPF.sVar.ptsData[v.charId] = USPF_LTF:CopyTable(USPF.ptsData)
+		if not charIdKnown[v.charId] then
+			USPF.sVar.charInfo[k] = nil
+			USPF.sVar.settings[v.charId] = nil
+			USPF.sVar.ptsData[v.charId] = nil
 		end
 	end
 
-	--Check for removed characters.
-	for k,_ in pairs(USPF.sVar.settings) do
-		USPF.sVar.settings[k] = USPF_LTF:TableContains(USPF.sVar.charInfo, k, false) and USPF.sVar.settings[k] or nil
+	-- Add new char (at the end)
+	if newChar then
+		table.insert(USPF.sVar.charInfo, {charId = id, charName = zf("<<1>>", charIdKnown[id].name)})
+		USPF.sVar.settings[id] = USPF_LTF:CopyTable(USPF.settings)
+		USPF.sVar.ptsData[id] = USPF_LTF:CopyTable(USPF.ptsData)
 	end
-	for k,_ in pairs(USPF.sVar.ptsData) do
-		USPF.sVar.ptsData[k] = USPF_LTF:TableContains(USPF.sVar.charInfo, k, false) and USPF.sVar.ptsData[k] or nil
-	end
+
+	-- Reorder so characters are always in original order
+	table.sort(USPF.sVar.charInfo, function (c1, c2) return charIdKnown[c1.charId].idx < charIdKnown[c2.charId].idx end)
 
 	--Create the character select box.
 	USPF_CreateCharList()

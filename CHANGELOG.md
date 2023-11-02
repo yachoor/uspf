@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.0] - 2023-11-02
+
+### Changed
+
+- Addon will no longer register characters until logging in with them (so you can disable it on some characters to not track them)
+
+
 ## [6.10.1] - 2023-11-01
 
 ### Fixed
@@ -214,6 +221,7 @@
 - Support for Markarth - The Reach questline and skyshards
 
 
+[7.0.0]: https://github.com/yachoor/uspf/compare/6.10.1...7.0.0
 [6.10.1]: https://github.com/yachoor/uspf/compare/6.10.0...6.10.1
 [6.10.0]: https://github.com/yachoor/uspf/compare/6.9.0...6.10.0
 [6.9.0]: https://github.com/yachoor/uspf/compare/6.8.0...6.9.0

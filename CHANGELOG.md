@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.1] - 2023-11-15
+
+### Added
+
+- Endless Archive character completion tooltip
+
+
 ## [7.0.0] - 2023-11-02
 
 ### Changed
@@ -221,6 +228,7 @@
 - Support for Markarth - The Reach questline and skyshards
 
 
+[7.0.1]: https://github.com/yachoor/uspf/compare/7.0.0...7.0.1
 [7.0.0]: https://github.com/yachoor/uspf/compare/6.10.1...7.0.0
 [6.10.1]: https://github.com/yachoor/uspf/compare/6.10.0...6.10.1
 [6.10.0]: https://github.com/yachoor/uspf/compare/6.9.0...6.10.0

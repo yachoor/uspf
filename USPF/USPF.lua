@@ -725,6 +725,15 @@ local function getTooltipMaelstrom()
 	return table.concat(list, "\n")
 end
 
+local function getTooltipEndlessArchive()
+	local list = {}
+	for _, char in ipairs(USPF.charData) do
+		local val = USPF.sVar.ptsData[char.charId].EndlArch
+		table.insert(list, ColorCompletion(val, val == 1) .. "  " .. char.charName)
+	end
+	return table.concat(list, "\n")
+end
+
 
 local function USPF_UpdateGUITable(sVarPtsData)
 	local questTooltips = {
@@ -772,7 +781,7 @@ local function USPF_UpdateGUITable(sVarPtsData)
 		SU	 = GetQuestTooltipText("SU").."\n\n"..GetZoneTooltipText("SU"),
 		WS   = GetQuestTooltipText("WS").."\n\n"..GetZoneTooltipText("WS"),
 		GO   = GetQuestTooltipText("GO"),
-		EA   = GetQuestTooltipText("EA"),
+		EA   = GetQuestTooltipText("EA").."\n\n"..getTooltipEndlessArchive(),
 		BO   = GetQuestTooltipText("BO"),
 		TR   = GetQuestTooltipText("TR").."\n\n"..GetZoneTooltipText("TR"),
 		BW   = GetQuestTooltipText("BW").."\n\n"..GetZoneTooltipText("BW"),

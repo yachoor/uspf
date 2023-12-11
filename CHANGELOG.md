@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.0.2] - 2023-12-11
+
+### Fixed
+
+- Lua error when deleting characters other than last
+- GUI warning about bad use of resizeToFitDescendents (thx Baertram)
+
+
 ## [7.0.1] - 2023-11-15
 
 ### Added
@@ -228,6 +236,7 @@
 - Support for Markarth - The Reach questline and skyshards
 
 
+[7.0.2]: https://github.com/yachoor/uspf/compare/7.0.1...7.0.2
 [7.0.1]: https://github.com/yachoor/uspf/compare/7.0.0...7.0.1
 [7.0.0]: https://github.com/yachoor/uspf/compare/6.10.1...7.0.0
 [6.10.1]: https://github.com/yachoor/uspf/compare/6.10.0...6.10.1

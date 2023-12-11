@@ -2,7 +2,7 @@ if USPF == nil then USPF = {} end
 
 local ADDON_NAME = GetString(USPF_GUI_TITLE)
 local ADDON_AUTHOR = "Urich"
-local ADDON_VERSION = "7.0.1"
+local ADDON_VERSION = "7.0.2"
 
 USPF.Options = {
 	Font = {
@@ -38,7 +38,7 @@ USPF.Options = {
 function USPF:SetupMenu(charId)
 	local USPF_LAM2 = LibAddonMenu2
 	if (not USPF_LAM2) then return end
-	
+
 	USPF.panelData = {
 		type = "panel",
 		name = ADDON_NAME,
@@ -52,14 +52,14 @@ function USPF:SetupMenu(charId)
 		resetFunc = function() print("USPF settings reset to default.") end,
 	}
 	USPF_LAM2:RegisterAddonPanel(ADDON_NAME, USPF.panelData)
-	
+
 	USPF.optionsTable = {
 		--Create the Font Options Header
 		{
 			type = "submenu",
 			name = "|cFF0000"..GetString(USPF_SETTINGS_FONT_TITLE).."|r",
 			controls = {
-				
+
 				--Select the Section Title/Footer Fonts
 				{
 					type = "dropdown",
@@ -71,7 +71,7 @@ function USPF:SetupMenu(charId)
 					width = "full",
 					warning = GetString(USPF_SETTINGS_RELOAD_WARNING),
 				},
-				
+
 				--Select the GSP Row Font
 				{
 					type = "dropdown",
@@ -83,7 +83,7 @@ function USPF:SetupMenu(charId)
 					width = "half",
 					warning = GetString(USPF_SETTINGS_RELOAD_WARNING),
 				},
-				
+
 				--Select the SQS Row Font
 				{
 					type = "dropdown",
@@ -95,7 +95,7 @@ function USPF:SetupMenu(charId)
 					width = "half",
 					warning = GetString(USPF_SETTINGS_RELOAD_WARNING),
 				},
-				
+
 				--Select the GDQ Row Font
 				{
 					type = "dropdown",
@@ -107,7 +107,7 @@ function USPF:SetupMenu(charId)
 					width = "half",
 					warning = GetString(USPF_SETTINGS_RELOAD_WARNING),
 				},
-				
+
 				--Select the PDB Row Font
 				{
 					type = "dropdown",
@@ -121,13 +121,13 @@ function USPF:SetupMenu(charId)
 				},
 			},
 		},
-		
+
 		--Create the Color Options Header
 		{
 			type = "submenu",
 			name = "|cFF0000"..GetString(USPF_SETTINGS_COLOR_TITLE).."|r",
 			controls = {
-				
+
 				--Select the GSP Row Color - Done
 				{
 					type = "colorpicker",
@@ -137,7 +137,7 @@ function USPF:SetupMenu(charId)
 					tooltip = GetString(USPF_SETTINGS_COLOR_DESC_DONE),
 					width = "half",
 				},
-				
+
 				--Select the GSP Row Color - Not Done
 				{
 					type = "colorpicker",
@@ -147,7 +147,7 @@ function USPF:SetupMenu(charId)
 					tooltip = GetString(USPF_SETTINGS_COLOR_DESC_NOT_DONE),
 					width = "half",
 				},
-				
+
 				--Select the GSP Row Color - In Progress
 				{
 					type = "colorpicker",
@@ -157,14 +157,14 @@ function USPF:SetupMenu(charId)
 					tooltip = GetString(USPF_SETTINGS_COLOR_DESC_PROG),
 					width = "half",
 				},
-				
+
 				{
 					type = "divider",
 					width = "full",
 					--height = 10, (optional)
 					--alpha = 0.25, (optional)
 				},
-				
+
 				--Select the SQS_Z Row Color - Done
 				{
 					type = "colorpicker",
@@ -174,7 +174,7 @@ function USPF:SetupMenu(charId)
 					setFunc = function(r,g,b) USPF.sVar.settings[charId].SQS.doneColorZQ = {r, g, b}; USPF.settings.SQS.doneColorZQ = {r, g, b} end,
 					width = "half",
 				},
-				
+
 				--Select the SQS_Z Row Color - Not Done
 				{
 					type = "colorpicker",
@@ -184,7 +184,7 @@ function USPF:SetupMenu(charId)
 					setFunc = function(r,g,b) USPF.sVar.settings[charId].SQS.needColorZQ = {r, g, b}; USPF.settings.SQS.needColorZQ = {r, g, b} end,
 					width = "half",
 				},
-				
+
 				--Select the SQS_Z Row Color - In Progress
 				{
 					type = "colorpicker",
@@ -194,14 +194,14 @@ function USPF:SetupMenu(charId)
 					setFunc = function(r,g,b) USPF.sVar.settings[charId].SQS.progColorZQ = {r, g, b}; USPF.settings.SQS.progColorZQ = {r, g, b} end,
 					width = "half",
 				},
-				
+
 				{
 					type = "divider",
 					width = "full",
 					--height = 10, (optional)
 					--alpha = 0.25, (optional)
 				},
-				
+
 				--Select the SQS_S Row Color - Done
 				{
 					type = "colorpicker",
@@ -211,7 +211,7 @@ function USPF:SetupMenu(charId)
 					setFunc = function(r,g,b) USPF.sVar.settings[charId].SQS.doneColorSS = {r, g, b}; USPF.settings.SQS.doneColorSS = {r, g, b} end,
 					width = "half",
 				},
-				
+
 				--Select the SQS_S Row Color - Not Done
 				{
 					type = "colorpicker",
@@ -221,7 +221,7 @@ function USPF:SetupMenu(charId)
 					setFunc = function(r,g,b) USPF.sVar.settings[charId].SQS.needColorSS = {r, g, b}; USPF.settings.SQS.needColorSS = {r, g, b} end,
 					width = "half",
 				},
-				
+
 				--Select the SQS_S Row Color - In Progress
 				{
 					type = "colorpicker",
@@ -231,14 +231,14 @@ function USPF:SetupMenu(charId)
 					setFunc = function(r,g,b) USPF.sVar.settings[charId].SQS.progColorSS = {r, g, b}; USPF.settings.SQS.progColorSS = {r, g, b} end,
 					width = "half",
 				},
-				
+
 				{
 					type = "divider",
 					width = "full",
 					--height = 10, (optional)
 					--alpha = 0.25, (optional)
 				},
-				
+
 				--Select the GDQ Row Color - Done
 				{
 					type = "colorpicker",
@@ -248,7 +248,7 @@ function USPF:SetupMenu(charId)
 					setFunc = function(r,g,b) USPF.sVar.settings[charId].GDQ.doneColor = {r, g, b}; USPF.settings.GDQ.doneColor = {r, g, b} end,
 					width = "half",
 				},
-				
+
 				--Select the GDQ Row Color - Not Done
 				{
 					type = "colorpicker",
@@ -258,14 +258,14 @@ function USPF:SetupMenu(charId)
 					setFunc = function(r,g,b) USPF.sVar.settings[charId].GDQ.needColor = {r, g, b}; USPF.settings.GDQ.needColor = {r, g, b} end,
 					width = "half",
 				},
-				
+
 				{
 					type = "divider",
 					width = "full",
 					--height = 10, (optional)
 					--alpha = 0.25, (optional)
 				},
-				
+
 				--Select the PDQ Row Color - Done
 				{
 					type = "colorpicker",
@@ -275,7 +275,7 @@ function USPF:SetupMenu(charId)
 					setFunc = function(r,g,b) USPF.sVar.settings[charId].PDB.doneColor = {r, g, b}; USPF.settings.PDB.doneColor = {r, g, b} end,
 					width = "half",
 				},
-				
+
 				--Select the PDQ Row Color - Not Done
 				{
 					type = "colorpicker",
@@ -287,13 +287,13 @@ function USPF:SetupMenu(charId)
 				},
 			},
 		},
-		
+
 		--Create the Sort Options Header
 		{
 			type = "submenu",
 			name = "|cFF0000"..GetString(USPF_SETTINGS_SORT_TITLE).."|r",
 			controls = {
-				
+
 				--Select the Storyline Quest/Skyshard Table Sort
 				{
 					type = "dropdown",
@@ -304,7 +304,7 @@ function USPF:SetupMenu(charId)
 					tooltip = GetString(USPF_SETTINGS_SORT_SQS_DESC),
 					width = "half",
 				},
-				
+
 				--Select the Group Dungeon Table Sort
 				{
 					type = "dropdown",
@@ -315,7 +315,7 @@ function USPF:SetupMenu(charId)
 					tooltip = GetString(USPF_SETTINGS_SORT_GDQ_DESC),
 					width = "half",
 				},
-				
+
 				--Select the Storyline Quest/Skyshard Table Sort
 				{
 					type = "dropdown",
@@ -328,13 +328,13 @@ function USPF:SetupMenu(charId)
 				},
 			},
 		},
-		
+
 		--Create the Override Options Header
 		{
 			type = "submenu",
 			name = "|cFF0000"..GetString(USPF_SETTINGS_OVERRIDE_TITLE).."|r",
 			controls = {
-				
+
 				--Enable/Disable Folium Discognitum Override
 				{
 					type = "checkbox",
@@ -345,7 +345,7 @@ function USPF:SetupMenu(charId)
 					width = "full", -- or "half" (optional)
 					warning = GetString(USPF_SETTINGS_OVERRIDE_WARN),
 				},
-				
+
 				--Character Has Folium Discognitum True/False
 				{
 					type = "checkbox",
@@ -356,7 +356,7 @@ function USPF:SetupMenu(charId)
 					width = "full", -- or "half" (optional)
 					warning = GetString(USPF_SETTINGS_OVERRIDE_WARN),
 				},
-				
+
 				--Character Has Morrowind Broken Bonds Skill Point True/False
 				{
 					type = "checkbox",
@@ -367,7 +367,7 @@ function USPF:SetupMenu(charId)
 					width = "full", -- or "half" (optional)
 					warning = GetString(USPF_SETTINGS_OVERRIDE_WARN),
 				},
-				
+
 				--Character Has Summerset The Mind Trap Skill Point True/False
 				{
 					type = "checkbox",
@@ -378,7 +378,7 @@ function USPF:SetupMenu(charId)
 					width = "full", -- or "half" (optional)
 					warning = GetString(USPF_SETTINGS_OVERRIDE_WARN),
 				},
-				
+
 				--Character Has Elsweyr Bright Moons, Warm Sands Skill Point True/False
 				{
 					type = "checkbox",
@@ -412,6 +412,6 @@ function USPF:SetupMenu(charId)
 			},
 		},
 	}
-	
+
 	USPF_LAM2:RegisterOptionControls(ADDON_NAME, USPF.optionsTable)
 end

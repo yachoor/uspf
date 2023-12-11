@@ -8,20 +8,20 @@
 					<AnchorFill />
 					<TextureCoords left="0" right="1" top="0" bottom=".8125" />
 				</Texture>
-				
+
 				<Label name="$(parent)_Source" font="$(MEDIUM_FONT)|14" horizontalAlignment="CENTER" verticalAlignment="CENTER">
 					<Dimensions x="200" y="18"/>
 					<Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" />
 				</Label>
-				
+
 				<Label name="$(parent)_Progress" font="$(MEDIUM_FONT)|14" horizontalAlignment="CENTER" verticalAlignment="CENTER">
 					<Dimensions x="200" y="18" />
 					<Anchor point="TOPLEFT" relativeTo="$(parent)_Source" relativePoint="TOPRIGHT" offsetX="0" offsetY="0"/>
 				</Label>
 			</Controls>
 		</Control>
-		
-		
+
+
 		<Control name="USPF_SQSSTemplate" virtual="true">
 			<Dimensions x="300" y="18" />
 
@@ -30,27 +30,27 @@
 					<AnchorFill />
 					<TextureCoords left="0" right="1" top="0" bottom=".8125" />
 				</Texture>
-				
+
 				<Label name="$(parent)_Zone" font="$(MEDIUM_FONT)|14" horizontalAlignment="CENTER" verticalAlignment="CENTER">
 					<Dimensions x="150" y="18"/>
 					<Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" />
 				</Label>
-				
+
 				<Label name="$(parent)_Skyshards" font="$(MEDIUM_FONT)|14" horizontalAlignment="CENTER" verticalAlignment="CENTER">
 					<Dimensions x="75" y="18" />
 					<Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT" offsetX="0" offsetY="0"/>
 				</Label>
-				
+
 				<Label name="$(parent)_Quests" font="$(MEDIUM_FONT)|14" horizontalAlignment="CENTER" verticalAlignment="CENTER">
 					<Dimensions y="18" />
 					<Anchor point="TOPLEFT" relativeTo="$(parent)_Zone" relativePoint="TOPRIGHT" offsetX="0" offsetY="0"/>
 					<Anchor point="TOPRIGHT" relativeTo="$(parent)_Skyshards" relativePoint="TOPLEFT" offsetX="0" offsetY="0"/>
 				</Label>
-				
+
 			</Controls>
 		</Control>
-		
-		
+
+
 		<Control name="USPF_GDQTemplate" virtual="true">
 			<Dimensions x="350" y="18" />
 
@@ -59,27 +59,27 @@
 					<AnchorFill />
 					<TextureCoords left="0" right="1" top="0" bottom=".8125" />
 				</Texture>
-				
+
 				<Label name="$(parent)_Zone" font="$(MEDIUM_FONT)|14" horizontalAlignment="CENTER" verticalAlignment="CENTER">
 					<Dimensions x="125" y="18"/>
 					<Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" />
 				</Label>
-				
+
 				<Label name="$(parent)_Progress" font="$(MEDIUM_FONT)|14" horizontalAlignment="CENTER" verticalAlignment="CENTER">
 					<Dimensions x="75" y="18" />
 					<Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT" offsetX="0" offsetY="0"/>
 				</Label>
-				
+
 				<Label name="$(parent)_Dungeon" font="$(MEDIUM_FONT)|14" horizontalAlignment="CENTER" verticalAlignment="CENTER">
 					<Dimensions y="18" />
 					<Anchor point="TOPLEFT" relativeTo="$(parent)_Zone" relativePoint="TOPRIGHT" offsetX="0" offsetY="0"/>
 					<Anchor point="TOPRIGHT" relativeTo="$(parent)_Progress" relativePoint="TOPLEFT" offsetX="0" offsetY="0"/>
 				</Label>
-				
+
 			</Controls>
 		</Control>
-		
-		
+
+
 		<Control name="USPF_PDGBETemplate" virtual="true">
 			<Dimensions x="400" y="18" />
 
@@ -88,39 +88,39 @@
 					<AnchorFill />
 					<TextureCoords left="0" right="1" top="0" bottom=".8125" />
 				</Texture>
-				
+
 				<Label name="$(parent)_Zone" font="$(MEDIUM_FONT)|14" horizontalAlignment="CENTER" verticalAlignment="CENTER">
 					<Dimensions x="140" y="18"/>
 					<Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" />
 				</Label>
-				
+
 				<Label name="$(parent)_Progress" font="$(MEDIUM_FONT)|14" horizontalAlignment="CENTER" verticalAlignment="CENTER">
 					<Dimensions x="75" y="18" />
 					<Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT" offsetX="0" offsetY="0"/>
 				</Label>
-				
+
 				<Label name="$(parent)_Dungeon" font="$(MEDIUM_FONT)|14" horizontalAlignment="CENTER" verticalAlignment="CENTER">
 					<Dimensions y="18" />
 					<Anchor point="TOPLEFT" relativeTo="$(parent)_Zone" relativePoint="TOPRIGHT" offsetX="0" offsetY="0"/>
 					<Anchor point="TOPRIGHT" relativeTo="$(parent)_Progress" relativePoint="TOPLEFT" offsetX="0" offsetY="0"/>
 				</Label>
-				
+
 			</Controls>
 		</Control>
-		
-		
+
+
 		<TopLevelControl name="USPF_GUI" mouseEnabled="true" movable="true" hidden="true" allowBringToTop="true" tier="HIGH">
 			<Dimensions x="1078" y="750"/>
 			<Anchor point="CENTER" relativeTo="GuiRoot" relativePoint="CENTER" offsetX="0" offsetY="0" />
-			
+
 			<Controls>
 				<Backdrop name="$(parent)_BG" inherits="ZO_DefaultBackdrop" centerColor="FFFFFFFF"></Backdrop>
-				
-				<Control name="$(parent)_Header" hidden="false" resizeToFitDescendents="true">
+
+				<Control name="$(parent)_Header" hidden="false" resizeToFitConstraints="X">
 					<Dimensions y="30"/>
 					<Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="0" offsetY="0"/>
 					<Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT" offsetX="0" offsetY="0"/>
-					
+
 					<Controls>
 						<Button name="$(parent)_Hide">
 							<Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT" offsetX="-3" offsetY="3"/>
@@ -139,11 +139,11 @@
                         </Control>
 					</Controls>
 				</Control>
-				
+
 				<Control name="$(parent)_Body" hidden="false" resizeToFitDescendents="true">
 					<Anchor point="TOPLEFT" relativeTo="$(parent)_Header" relativePoint="BOTTOMLEFT" offsetX="2" offsetY="12"/>
 					<Anchor point="TOPRIGHT" relativeTo="$(parent)_Header" relativePoint="BOTTOMRIGHT" offsetX="0" offsetY="12"/>
-					
+
 					<Controls>
 						<Label name="$(parent)_GSP" font="$(ANTIQUE_FONT)|16" text="General Skill Points" horizontalAlignment="CENTER" verticalAlignment="BOTTOM">
 							<Dimensions x="400" y="24"/>
@@ -161,14 +161,14 @@
 								<Anchor point="TOPLEFT" relativeTo="$(parent)_GSP_Source" relativePoint="BOTTOMLEFT" offsetX="3" offsetY="0"/>
 								<Anchor point="TOPRIGHT" relativeTo="$(parent)_GSP_Progress" relativePoint="BOTTOMRIGHT" offsetX="-5" offsetY="0"/>
 							</Line>
-							
-							
+
+
 							<Control name="$(parent)_GSP_ListHolder" resizeToFitDescendents="true">
 								<Anchor point="TOPLEFT" relativeTo="$(parent)_GSP_L" relativePoint="BOTTOMLEFT" offsetX="-3" offsetY="0" />
 								<Anchor point="TOPRIGHT" relativeTo="$(parent)_GSP_L" relativePoint="BOTTOMRIGHT" offsetX="5" offsetY="0" />
 							</Control>
-							
-							
+
+
 							<Line name="$(parent)_GSP_L1" color="FFCCCCCC" thickness="1.5" pixelRoundingEnabled="true">
 								<Anchor point="TOPLEFT" relativeTo="$(parent)_GSP_ListHolder" relativePoint="BOTTOMLEFT" offsetX="3" offsetY="0"/>
 								<Anchor point="TOPRIGHT" relativeTo="$(parent)_GSP_ListHolder" relativePoint="BOTTOMRIGHT" offsetX="-5" offsetY="0"/>
@@ -181,7 +181,7 @@
 							<Anchor point="TOPLEFT" relativeTo="$(parent)_GSP" relativePoint="TOPLEFT" offsetX="0" offsetY="0"/>
 							<Anchor point="BOTTOMRIGHT" relativeTo="$(parent)_GSP_T" relativePoint="BOTTOMRIGHT" offsetX="0" offsetY="6"/>
 						</Backdrop>
-						
+
 						<Label name="$(parent)_SQS" font="$(ANTIQUE_FONT)|16" text="Storyline Quests & Skyshards" horizontalAlignment="CENTER" verticalAlignment="BOTTOM">
 							<Dimensions x="300" y="24"/>
 							<Anchor point="TOPLEFT" relativeTo="$(parent)_GSP" relativePoint="TOPRIGHT" offsetX="12" offsetY="0"/>
@@ -202,14 +202,14 @@
 								<Anchor point="TOPLEFT" relativeTo="$(parent)_SQS_Z" relativePoint="BOTTOMLEFT" offsetX="3" offsetY="0"/>
 								<Anchor point="TOPRIGHT" relativeTo="$(parent)_SQS_SS" relativePoint="BOTTOMRIGHT" offsetX="-5" offsetY="0"/>
 							</Line>
-							
-							
+
+
 							<Control name="$(parent)_SQS_ListHolder" resizeToFitDescendents="true">
 								<Anchor point="TOPLEFT" relativeTo="$(parent)_SQS_L" relativePoint="BOTTOMLEFT" offsetX="-3" offsetY="0" />
 								<Anchor point="TOPRIGHT" relativeTo="$(parent)_SQS_L" relativePoint="BOTTOMRIGHT" offsetX="5" offsetY="0" />
 							</Control>
-							
-							
+
+
 							<Line name="$(parent)_SQS_L1" color="FFCCCCCC" thickness="1.5" pixelRoundingEnabled="true">
 								<Anchor point="TOPLEFT" relativeTo="$(parent)_SQS_ListHolder" relativePoint="BOTTOMLEFT" offsetX="3" offsetY="0"/>
 								<Anchor point="TOPRIGHT" relativeTo="$(parent)_SQS_ListHolder" relativePoint="BOTTOMRIGHT" offsetX="-5" offsetY="0"/>
@@ -230,8 +230,8 @@
 							<Anchor point="TOPLEFT" relativeTo="$(parent)_SQS" relativePoint="TOPLEFT" offsetX="0" offsetY="0"/>
 							<Anchor point="BOTTOMRIGHT" relativeTo="$(parent)_SQS_SS_T" relativePoint="BOTTOMRIGHT" offsetX="0" offsetY="6"/>
 						</Backdrop>
-							
-						
+
+
 						<Label name="$(parent)_GDQ" font="$(ANTIQUE_FONT)|16" text="Group Dungeon Quests" horizontalAlignment="CENTER" verticalAlignment="BOTTOM">
 							<Dimensions x="350" y="24"/>
 							<Anchor point="TOPLEFT" relativeTo="$(parent)_SQS" relativePoint="TOPRIGHT" offsetX="12" offsetY="0"/>
@@ -252,14 +252,14 @@
 								<Anchor point="TOPLEFT" relativeTo="$(parent)_GDQ_Z" relativePoint="BOTTOMLEFT" offsetX="3" offsetY="0"/>
 								<Anchor point="TOPRIGHT" relativeTo="$(parent)_GDQ_P" relativePoint="BOTTOMRIGHT" offsetX="-5" offsetY="0"/>
 							</Line>
-							
-							
+
+
 							<Control name="$(parent)_GDQ_ListHolder" resizeToFitDescendents="true">
 								<Anchor point="TOPLEFT" relativeTo="$(parent)_GDQ_L" relativePoint="BOTTOMLEFT" offsetX="-3" offsetY="0" />
 								<Anchor point="TOPRIGHT" relativeTo="$(parent)_GDQ_L" relativePoint="BOTTOMRIGHT" offsetX="5" offsetY="0" />
 							</Control>
-							
-							
+
+
 							<Line name="$(parent)_GDQ_L1" color="FFCCCCCC" thickness="1.5" pixelRoundingEnabled="true">
 								<Anchor point="TOPLEFT" relativeTo="$(parent)_GDQ_ListHolder" relativePoint="BOTTOMLEFT" offsetX="3" offsetY="0"/>
 								<Anchor point="TOPRIGHT" relativeTo="$(parent)_GDQ_ListHolder" relativePoint="BOTTOMRIGHT" offsetX="-5" offsetY="0"/>
@@ -272,8 +272,8 @@
 							<Anchor point="TOPLEFT" relativeTo="$(parent)_GDQ" relativePoint="TOPLEFT" offsetX="0" offsetY="0"/>
 							<Anchor point="BOTTOMRIGHT" relativeTo="$(parent)_GDQ_T" relativePoint="BOTTOMRIGHT" offsetX="0" offsetY="6"/>
 						</Backdrop>
-							
-						
+
+
 						<Label name="$(parent)_PDGBE" font="$(ANTIQUE_FONT)|16" text="Public Dungeon Group Boss Events" horizontalAlignment="CENTER" verticalAlignment="BOTTOM">
 							<Dimensions x="400" y="24"/>
 							<Anchor point="TOPLEFT" relativeTo="$(parent)_GSP_T" relativePoint="BOTTOMLEFT" offsetX="0" offsetY="18"/>
@@ -294,14 +294,14 @@
 								<Anchor point="TOPLEFT" relativeTo="$(parent)_PDGBE_Z" relativePoint="BOTTOMLEFT" offsetX="3" offsetY="0"/>
 								<Anchor point="TOPRIGHT" relativeTo="$(parent)_PDGBE_P" relativePoint="BOTTOMRIGHT" offsetX="-3" offsetY="0"/>
 							</Line>
-							
-							
+
+
 							<Control name="$(parent)_PDGBE_ListHolder" resizeToFitDescendents="true">
 								<Anchor point="TOPLEFT" relativeTo="$(parent)_PGDBE_L" relativePoint="BOTTOMLEFT" offsetX="-3" offsetY="0" />
 								<Anchor point="TOPRIGHT" relativeTo="$(parent)_PGDBE_L" relativePoint="BOTTOMRIGHT" offsetX="5" offsetY="0" />
 							</Control>
-							
-							
+
+
 							<Line name="$(parent)_PGDBE_L1" color="FFCCCCCC" thickness="1.5" pixelRoundingEnabled="true">
 								<Anchor point="TOPLEFT" relativeTo="$(parent)_PDGBE_ListHolder" relativePoint="BOTTOMLEFT" offsetX="3" offsetY="0"/>
 								<Anchor point="TOPRIGHT" relativeTo="$(parent)_PDGBE_ListHolder" relativePoint="BOTTOMRIGHT" offsetX="-5" offsetY="0"/>
@@ -314,14 +314,14 @@
 							<Anchor point="TOPLEFT" relativeTo="$(parent)_PDGBE" relativePoint="TOPLEFT" offsetX="0" offsetY="0"/>
 							<Anchor point="BOTTOMRIGHT" relativeTo="$(parent)_PDGBE_T" relativePoint="BOTTOMRIGHT" offsetX="0" offsetY="6"/>
 						</Backdrop>
-						
+
 					</Controls>
 				</Control>
-				
+
 				<Control name="$(parent)_Footer" hidden="false" resizeToFitDescendents="true">
 					<Anchor point="TOPLEFT" relativeTo="$(parent)_Body" relativePoint="BOTTOMLEFT" offsetX="0" offsetY="12"/>
 					<Anchor point="TOPRIGHT" relativeTo="$(parent)_Body" relativePoint="BOTTOMRIGHT" offsetX="0" offsetY="12"/>
-					
+
 					<Controls>
 						<Label name="$(parent)_CharacterTotal" font="$(ANTIQUE_FONT)|24" text="" horizontalAlignment="CENTER" verticalAlignment="CENTER">
 							<Dimensions y="48"/>
@@ -334,7 +334,7 @@
 						</Backdrop>
 					</Controls>
 				</Control>
-				
+
 			</Controls>
 		</TopLevelControl>
 	</Controls>

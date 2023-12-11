@@ -1838,17 +1838,20 @@ local function USPF_InitSetup()
 
 	--Setup the character info table.
 	local newChar = true
+	local newCharInfo = {}
 	for k,v in pairs(USPF.sVar.charInfo) do
 		if v.charId == id then
 			v.charName = zf("<<1>>", charIdKnown[id].name)
 			newChar = false
 		end
-		if not charIdKnown[v.charId] then
-			USPF.sVar.charInfo[k] = nil
+		if charIdKnown[v.charId] then
+			newCharInfo[#newCharInfo + 1] = v
+		else
 			USPF.sVar.settings[v.charId] = nil
 			USPF.sVar.ptsData[v.charId] = nil
 		end
 	end
+	USPF.sVar.charInfo = newCharInfo
 
 	-- Add new char (at the end)
 	if newChar then

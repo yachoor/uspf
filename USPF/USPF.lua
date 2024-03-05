@@ -7,7 +7,7 @@ USPF.GUI = {}
 local selectedChar = GetCurrentCharacterId()
 local currentCharName = nil
 local GZNBId, GCCId, GCQI = GetZoneNameById, GetCurrentCharacterId, GetCompletedQuestInfo
-local IAchC, GAchNCr, GAchCr = IsAchievementComplete, GetAchievementNumCriteria, GetAchievementCriterion
+local IAchC = IsAchievementComplete
 local GS, zf, strF = GetString, zo_strformat, string.format
 
 local USPF_LTF = LibTableFunctions
@@ -1283,6 +1283,16 @@ local function USPF_FormatProgress(current, total, colors)
 	return strF("%s%d/%d|r", color, current, total)
 end
 
+local function USPF_UpdateListData(control, data)
+	local dataList = ZO_ScrollList_GetDataList(control)
+	ZO_ScrollList_Clear(control)
+	for _, entry in ipairs(data) do
+		table.insert(dataList, ZO_ScrollList_CreateDataEntry(1, entry))
+	end
+	ZO_ScrollList_Commit(control)
+	control:SetHeight(18 * #data)
+end
+
 function USPF:UpdateDataLines()
 	local dataLines_GSP, dataLines_SQS, dataLines_GDQ, dataLines_PDGBE= {},{},{},{}
 
@@ -1315,7 +1325,8 @@ function USPF:UpdateDataLines()
 	for i = 1, #USPF.GUI.GSP do
 		table.insert(dataLines_GSP, {
 			source = USPF.GUI.GSP[i][2],
-			progress = USPF_FormatProgress(USPF.GUI.GSP[i][3], USPF.GUI.GSP[i][4], GSP_Color)
+			progress = USPF_FormatProgress(USPF.GUI.GSP[i][3], USPF.GUI.GSP[i][4], GSP_Color),
+			tooltipText = USPF.GUI.GSP[i][5]
 		})
 	end
 
@@ -1325,7 +1336,7 @@ function USPF:UpdateDataLines()
 			zone = tempTable[i][2],
 			quests = USPF_FormatProgress(tempTable[i][3], tempTable[i][4], SQS_ColorZQ),
 			skyshards = USPF_FormatProgress(tempTable[i][5], tempTable[i][6], SQS_ColorSS),
-			tooltip = tempTable[i][7]
+			tooltipText = tempTable[i][7]
 		})
 	end
 
@@ -1335,7 +1346,7 @@ function USPF:UpdateDataLines()
 			zone = tempTable[i][2],
 			dungeon = tempTable[i][3],
 			progress = USPF_FormatProgress(tempTable[i][4], tempTable[i][5], GDQ_Color),
-			tooltip = tempTable[i][6]
+			tooltipText = tempTable[i][6]
 		})
 	end
 
@@ -1345,322 +1356,40 @@ function USPF:UpdateDataLines()
 			zone = tempTable[i][2],
 			dungeon = tempTable[i][3],
 			progress = USPF_FormatProgress(tempTable[i][4], tempTable[i][5], PDB_Color),
-			tooltip = tempTable[i][6]
+			tooltipText = tempTable[i][6]
 		})
 	end
 
 
-	USPF_GUI_Header_Title:SetText(GS(USPF_GUI_TITLE))
-	USPF_GUI_Body_GSP:SetText(GS(USPF_GUI_GSP))
-	USPF_GUI_Body_GSP_Source:SetText(GS(USPF_GUI_SOURCE))
-	USPF_GUI_Body_GSP_Progress:SetText(GS(USPF_GUI_PROGRESS))
-
-	USPF_GUI_Body_SQS:SetText(GS(USPF_GUI_SQS))
-	USPF_GUI_Body_SQS_Z:SetText(GS(USPF_GUI_ZONE))
-	USPF_GUI_Body_SQS_SL:SetText(GS(USPF_GUI_STORYLINE))
-	USPF_GUI_Body_SQS_SS:SetText(GS(USPF_GUI_SKYSHARDS))
-	USPF_GUI_Body_SQS_Z_T:SetText(GS(USPF_GUI_TOTAL)..":")
 	USPF_GUI_Body_SQS_Z_T.data = {tooltipText = getTooltipZoneTotal()}
-	USPF_GUI_Body_SQS_Z_T:SetMouseEnabled(true)
-	USPF_GUI_Body_SQS_Z_T:SetHandler("OnMouseEnter", ZO_Options_OnMouseEnter)
-	USPF_GUI_Body_SQS_Z_T:SetHandler("OnMouseExit", ZO_Options_OnMouseExit)
 
-	USPF_GUI_Body_GDQ:SetText(GS(USPF_GUI_GDQ))
-	USPF_GUI_Body_GDQ_Z:SetText(GS(USPF_GUI_ZONE))
-	USPF_GUI_Body_GDQ_D:SetText(GS(USPF_GUI_GROUP_DUNGEON))
-	USPF_GUI_Body_GDQ_P:SetText(GS(USPF_GUI_PROGRESS))
-
-	USPF_GUI_Body_PDGBE:SetText(GS(USPF_GUI_PDB))
-	USPF_GUI_Body_PDGBE_Z:SetText(GS(USPF_GUI_ZONE))
-	USPF_GUI_Body_PDGBE_D:SetText(GS(USPF_GUI_PUBLIC_DUNGEON))
-	USPF_GUI_Body_PDGBE_P:SetText(GS(USPF_GUI_PROGRESS))
-
-
-	USPF_GUI_Body_GSP_ListHolder.dataLines = dataLines_GSP
-	USPF_GUI_Body_GSP_ListHolder:SetParent(USPF_GUI_Body)
-	USPF_GUI_Body_SQS_ListHolder.dataLines = dataLines_SQS
-	USPF_GUI_Body_SQS_ListHolder:SetParent(USPF_GUI_Body)
-	USPF_GUI_Body_GDQ_ListHolder.dataLines = dataLines_GDQ
-	USPF_GUI_Body_GDQ_ListHolder:SetParent(USPF_GUI_Body)
-	USPF_GUI_Body_PDGBE_ListHolder.dataLines = dataLines_PDGBE
-	USPF_GUI_Body_PDGBE_ListHolder:SetParent(USPF_GUI_Body)
-
+	USPF_UpdateListData(USPF_GUI_Body_GSP_ListHolder, dataLines_GSP)
+	USPF_UpdateListData(USPF_GUI_Body_SQS_ListHolder, dataLines_SQS)
+	USPF_UpdateListData(USPF_GUI_Body_GDQ_ListHolder, dataLines_GDQ)
+	USPF_UpdateListData(USPF_GUI_Body_PDGBE_ListHolder, dataLines_PDGBE)
+	
 	USPF_GUI_Body_GSP_T:SetText(USPF.GUI.GSP_T)
 
 	USPF_GUI_Body_SQS_SL_T:SetText(USPF.GUI.SQS_SL_T)
 	USPF_GUI_Body_SQS_SL_T.data = {tooltipText = getTooltipZoneTotal()}
-	USPF_GUI_Body_SQS_SL_T:SetMouseEnabled(true)
-	USPF_GUI_Body_SQS_SL_T:SetHandler("OnMouseEnter", ZO_Options_OnMouseEnter)
-	USPF_GUI_Body_SQS_SL_T:SetHandler("OnMouseExit", ZO_Options_OnMouseExit)
 
 	USPF_GUI_Body_SQS_SS_T:SetText(USPF.GUI.SQS_SS_T)
 	USPF_GUI_Body_SQS_SS_T.data = {tooltipText = getTooltipZoneTotal()}
-	USPF_GUI_Body_SQS_SS_T:SetMouseEnabled(true)
-	USPF_GUI_Body_SQS_SS_T:SetHandler("OnMouseEnter", ZO_Options_OnMouseEnter)
-	USPF_GUI_Body_SQS_SS_T:SetHandler("OnMouseExit", ZO_Options_OnMouseExit)
 
 	USPF_GUI_Body_GDQ_T:SetText(USPF.GUI.GDQ_T)
 	USPF_GUI_Body_GDQ_T.data = {tooltipText = getTooltipGDTotal()}
-	USPF_GUI_Body_GDQ_T:SetMouseEnabled(true)
-	USPF_GUI_Body_GDQ_T:SetHandler("OnMouseEnter", ZO_Options_OnMouseEnter)
-	USPF_GUI_Body_GDQ_T:SetHandler("OnMouseExit", ZO_Options_OnMouseExit)
 
 	USPF_GUI_Body_PDGBE_T:SetText(USPF.GUI.PDGBE_T)
 	USPF_GUI_Body_PDGBE_T.data = {tooltipText = getTooltipPDTotal()}
-	USPF_GUI_Body_PDGBE_T:SetMouseEnabled(true)
-	USPF_GUI_Body_PDGBE_T:SetHandler("OnMouseEnter", ZO_Options_OnMouseEnter)
-	USPF_GUI_Body_PDGBE_T:SetHandler("OnMouseExit", ZO_Options_OnMouseExit)
 
 	USPF_GUI_Footer_CharacterTotal:SetText(USPF.GUI.CharacterTot)
 	USPF_GUI_Footer_CharacterTotal.data = {tooltipText = getTooltipCharacterTotal()}
-	USPF_GUI_Footer_CharacterTotal:SetMouseEnabled(true)
-	USPF_GUI_Footer_CharacterTotal:SetHandler("OnMouseEnter", ZO_Options_OnMouseEnter)
-	USPF_GUI_Footer_CharacterTotal:SetHandler("OnMouseExit", ZO_Options_OnMouseExit)
-	USPF:InitializeDataLines()
-end
-
-function USPF:FillLine(currLine, currItem)
-	local cln, clsrc, clz, clq, clss, cld, clp = currLine:GetParent():GetName(), currLine.source, currLine.zone, currLine.quests, currLine.skyshards, currLine.dungeon, currLine.progress
-
-	if currItem == nil then
-		if cln == "USPF_GUI_Body_GSP_ListHolder" then
-			clsrc:SetText("")
-			clp:SetText("")
-		elseif cln == "USPF_GUI_Body_SQS_ListHolder" then
-			clz:SetText("")
-			clq:SetText("")
-			clss:SetText("")
-		elseif cln == "USPF_GUI_Body_GDQ_ListHolder" then
-			clz:SetText("")
-			cld:SetText("")
-			clp:SetText("")
-		elseif cln == "USPF_GUI_Body_PDGBE_ListHolder" then
-			clz:SetText("")
-			cld:SetText("")
-			clp:SetText("")
-		end
-	else
-		if cln == "USPF_GUI_Body_GSP_ListHolder" then
-			clsrc:SetText(currItem.source)
-			clp:SetText(currItem.progress)
-		elseif cln == "USPF_GUI_Body_SQS_ListHolder" then
-			clz:SetText(currItem.zone)
-			clq:SetText(currItem.quests)
-			clss:SetText(currItem.skyshards)
-		elseif cln == "USPF_GUI_Body_GDQ_ListHolder" then
-			clz:SetText(currItem.zone)
-			cld:SetText(currItem.dungeon)
-			clp:SetText(currItem.progress)
-		elseif cln == "USPF_GUI_Body_PDGBE_ListHolder" then
-			clz:SetText(currItem.zone)
-			cld:SetText(currItem.dungeon)
-			clp:SetText(currItem.progress)
-		end
-	end
-end
-
-function USPF:InitializeDataLines()
-	local currLine, currData
-	for i = 1, #USPF.GUI.GSP do
-		currLine = USPF_GUI_Body_GSP_ListHolder.lines[i]
-		currData = USPF_GUI_Body_GSP_ListHolder.dataLines[i]
-		USPF:FillLine(currLine, currData)
-
-		if USPF.GUI.GSP[i][5] ~= nil then
-			-- tooltip text
-			USPF_GUI_Body_GSP_ListHolder.lines[i].data = {tooltipText = USPF.GUI.GSP[i][5]}
-
-			-- tooltip handlers
-			USPF_GUI_Body_GSP_ListHolder.lines[i]:SetHandler("OnMouseEnter", ZO_Options_OnMouseEnter)
-			USPF_GUI_Body_GSP_ListHolder.lines[i]:SetHandler("OnMouseExit", ZO_Options_OnMouseExit)
-		end
-	end
-
-	for i = 1, #USPF.GUI.SQS do
-		currLine = USPF_GUI_Body_SQS_ListHolder.lines[i]
-		currData = USPF_GUI_Body_SQS_ListHolder.dataLines[i]
-		USPF:FillLine(currLine, currData)
-
-		if currData.tooltip ~= nil then
-			-- tooltip text
-			USPF_GUI_Body_SQS_ListHolder.lines[i].data = {tooltipText = currData.tooltip}
-
-			-- tooltip handlers
-			USPF_GUI_Body_SQS_ListHolder.lines[i]:SetHandler("OnMouseEnter", ZO_Options_OnMouseEnter)
-			USPF_GUI_Body_SQS_ListHolder.lines[i]:SetHandler("OnMouseExit", ZO_Options_OnMouseExit)
-		end
-	end
-
-	for i = 1, #USPF.GUI.GDQ do
-		currLine = USPF_GUI_Body_GDQ_ListHolder.lines[i]
-		currData = USPF_GUI_Body_GDQ_ListHolder.dataLines[i]
-		USPF:FillLine(currLine, currData)
-
-		if currData.tooltip ~= nil then
-			-- tooltip text
-			USPF_GUI_Body_GDQ_ListHolder.lines[i].data = {tooltipText = currData.tooltip}
-
-			-- tooltip handlers
-			USPF_GUI_Body_GDQ_ListHolder.lines[i]:SetHandler("OnMouseEnter", ZO_Options_OnMouseEnter)
-			USPF_GUI_Body_GDQ_ListHolder.lines[i]:SetHandler("OnMouseExit", ZO_Options_OnMouseExit)
-		end
-	end
-
-	for i = 1, #USPF.GUI.PDGBE do
-		currLine = USPF_GUI_Body_PDGBE_ListHolder.lines[i]
-		currData = USPF_GUI_Body_PDGBE_ListHolder.dataLines[i]
-		USPF:FillLine(currLine, currData)
-
-		if currData.tooltip ~= nil then
-			-- tooltip text
-			USPF_GUI_Body_PDGBE_ListHolder.lines[i].data = {tooltipText = currData.tooltip}
-
-			-- tooltip handlers
-			USPF_GUI_Body_PDGBE_ListHolder.lines[i]:SetHandler("OnMouseEnter", ZO_Options_OnMouseEnter)
-			USPF_GUI_Body_PDGBE_ListHolder.lines[i]:SetHandler("OnMouseExit", ZO_Options_OnMouseExit)
-		end
-	end
 end
 
 function USPF:ToggleWindow()
 	USPF.active = not USPF.active
 	if USPF.active then USPF:UpdateDataLines() end
 	SCENE_MANAGER:ToggleTopLevel(USPF_GUI)
-end
-
-
-function USPF:CreateLine(i, USPF_predecessor, USPF_parent)
-	if USPF_parent:GetName() == "USPF_GUI_Body_GSP_ListHolder" then
-		local USPF_record = CreateControlFromVirtual("USPF_GSP_Row_", USPF_parent, "USPF_GeneralTemplate", i)
-
-		USPF_record.source = USPF_record:GetNamedChild("_Source")
-		USPF_record.progress = USPF_record:GetNamedChild("_Progress")
-
-		USPF_record.source:SetFont(USPF.Options.Font.Fonts[USPF.settings.GSP.font].."|14")
-		USPF_record.progress:SetFont(USPF.Options.Font.Fonts[USPF.settings.GSP.font].."|14")
-
-		USPF_record:SetHidden(false)
-		USPF_record:SetMouseEnabled(true)
-		USPF_record:SetHeight("18")
-
-		if i == 1 then
-			USPF_record:SetAnchor(TOPLEFT, USPF_GUI_Body_GSP_ListHolder, TOPLEFT, 0, 0)
-			USPF_record:SetAnchor(TOPRIGHT, USPF_GUI_Body_GSP_ListHolder, TOPRIGHT, 0, 0)
-		else
-			USPF_record:SetAnchor(TOPLEFT, USPF_predecessor, BOTTOMLEFT, 0, USPF_GUI_Body_GSP_ListHolder.rowHeight)
-			USPF_record:SetAnchor(TOPRIGHT, USPF_predecessor, BOTTOMRIGHT, 0, USPF_GUI_Body_GSP_ListHolder.rowHeight)
-		end
-		USPF_record:SetParent(USPF_GUI_Body_GSP_ListHolder)
-		return USPF_record
-	elseif USPF_parent:GetName() == "USPF_GUI_Body_SQS_ListHolder" then
-		local USPF_record = CreateControlFromVirtual("USPF_SQS_Row_", USPF_parent, "USPF_SQSSTemplate", i)
-
-		USPF_record.zone = USPF_record:GetNamedChild("_Zone")
-		USPF_record.quests = USPF_record:GetNamedChild("_Quests")
-		USPF_record.skyshards = USPF_record:GetNamedChild("_Skyshards")
-
-		USPF_record.zone:SetFont(USPF.Options.Font.Fonts[USPF.settings.SQS.font].."|14")
-		USPF_record.quests:SetFont(USPF.Options.Font.Fonts[USPF.settings.SQS.font].."|14")
-		USPF_record.skyshards:SetFont(USPF.Options.Font.Fonts[USPF.settings.SQS.font].."|14")
-
-		USPF_record:SetHidden(false)
-		USPF_record:SetMouseEnabled(true)
-		USPF_record:SetHeight("18")
-
-		if i == 1 then
-			USPF_record:SetAnchor(TOPLEFT, USPF_GUI_Body_SQS_ListHolder, TOPLEFT, 0, 0)
-			USPF_record:SetAnchor(TOPRIGHT, USPF_GUI_Body_SQS_ListHolder, TOPRIGHT, 0, 0)
-		else
-			USPF_record:SetAnchor(TOPLEFT, USPF_predecessor, BOTTOMLEFT, 0, USPF_GUI_Body_SQS_ListHolder.rowHeight)
-			USPF_record:SetAnchor(TOPRIGHT, USPF_predecessor, BOTTOMRIGHT, 0, USPF_GUI_Body_SQS_ListHolder.rowHeight)
-		end
-		USPF_record:SetParent(USPF_GUI_Body_SQS_ListHolder)
-		return USPF_record
-	elseif USPF_parent:GetName() == "USPF_GUI_Body_GDQ_ListHolder" then
-		local USPF_record = CreateControlFromVirtual("USPF_GDQ_Row_", USPF_parent, "USPF_GDQTemplate", i)
-
-		USPF_record.zone = USPF_record:GetNamedChild("_Zone")
-		USPF_record.dungeon = USPF_record:GetNamedChild("_Dungeon")
-		USPF_record.progress = USPF_record:GetNamedChild("_Progress")
-
-		USPF_record.zone:SetFont(USPF.Options.Font.Fonts[USPF.settings.GDQ.font].."|14")
-		USPF_record.dungeon:SetFont(USPF.Options.Font.Fonts[USPF.settings.GDQ.font].."|14")
-		USPF_record.progress:SetFont(USPF.Options.Font.Fonts[USPF.settings.GDQ.font].."|14")
-
-		USPF_record:SetHidden(false)
-		USPF_record:SetMouseEnabled(true)
-		USPF_record:SetHeight("18")
-
-		if i == 1 then
-			USPF_record:SetAnchor(TOPLEFT, USPF_GUI_Body_GDQ_ListHolder, TOPLEFT, 0, 0)
-			USPF_record:SetAnchor(TOPRIGHT, USPF_GUI_Body_GDQ_ListHolder, TOPRIGHT, 0, 0)
-		else
-			USPF_record:SetAnchor(TOPLEFT, USPF_predecessor, BOTTOMLEFT, 0, USPF_GUI_Body_GDQ_ListHolder.rowHeight)
-			USPF_record:SetAnchor(TOPRIGHT, USPF_predecessor, BOTTOMRIGHT, 0, USPF_GUI_Body_GDQ_ListHolder.rowHeight)
-		end
-		USPF_record:SetParent(USPF_GUI_Body_GDQ_ListHolder)
-		return USPF_record
-	elseif USPF_parent:GetName() == "USPF_GUI_Body_PDGBE_ListHolder" then
-		local USPF_record = CreateControlFromVirtual("USPF_PDGBE_Row_", USPF_parent, "USPF_PDGBETemplate", i)
-
-		USPF_record.zone = USPF_record:GetNamedChild("_Zone")
-		USPF_record.dungeon = USPF_record:GetNamedChild("_Dungeon")
-		USPF_record.progress = USPF_record:GetNamedChild("_Progress")
-
-		USPF_record.zone:SetFont(USPF.Options.Font.Fonts[USPF.settings.PDB.font].."|14")
-		USPF_record.dungeon:SetFont(USPF.Options.Font.Fonts[USPF.settings.PDB.font].."|14")
-		USPF_record.progress:SetFont(USPF.Options.Font.Fonts[USPF.settings.PDB.font].."|14")
-
-		USPF_record:SetHidden(false)
-		USPF_record:SetMouseEnabled(true)
-		USPF_record:SetHeight("18")
-
-		if i == 1 then
-			USPF_record:SetAnchor(TOPLEFT, USPF_GUI_Body_PDGBE_ListHolder, TOPLEFT, 0, 0)
-			USPF_record:SetAnchor(TOPRIGHT, USPF_GUI_Body_PDGBE_ListHolder, TOPRIGHT, 0, 0)
-		else
-			USPF_record:SetAnchor(TOPLEFT, USPF_predecessor, BOTTOMLEFT, 0, USPF_GUI_Body_PDGBE_ListHolder.rowHeight)
-			USPF_record:SetAnchor(TOPRIGHT, USPF_predecessor, BOTTOMRIGHT, 0, USPF_GUI_Body_PDGBE_ListHolder.rowHeight)
-		end
-		USPF_record:SetParent(USPF_GUI_Body_PDGBE_ListHolder)
-		return USPF_record
-	end
-end
-
-function USPF:CreateListHolders()
-	local USPF_predecessor = nil
-	USPF_GUI_Body_GSP_ListHolder.dataLines = {}
-	USPF_GUI_Body_GSP_ListHolder.lines = {}
-	for i = 1, #USPF.GUI.GSP do
-		USPF_GUI_Body_GSP_ListHolder.lines[i] = USPF:CreateLine(i, USPF_predecessor, USPF_GUI_Body_GSP_ListHolder)
-		USPF_predecessor = USPF_GUI_Body_GSP_ListHolder.lines[i]
-	end
-
-	USPF_predecessor = nil
-	USPF_GUI_Body_SQS_ListHolder.dataLines = {}
-	USPF_GUI_Body_SQS_ListHolder.lines = {}
-	for i = 1, #USPF.GUI.SQS do
-		USPF_GUI_Body_SQS_ListHolder.lines[i] = USPF:CreateLine(i, USPF_predecessor, USPF_GUI_Body_SQS_ListHolder)
-		USPF_predecessor = USPF_GUI_Body_SQS_ListHolder.lines[i]
-	end
-
-	USPF_predecessor = nil
-	USPF_GUI_Body_GDQ_ListHolder.dataLines = {}
-	USPF_GUI_Body_GDQ_ListHolder.lines = {}
-	for i = 1, #USPF.GUI.GDQ do
-		USPF_GUI_Body_GDQ_ListHolder.lines[i] = USPF:CreateLine(i, USPF_predecessor, USPF_GUI_Body_GDQ_ListHolder)
-		USPF_predecessor = USPF_GUI_Body_GDQ_ListHolder.lines[i]
-	end
-
-	USPF_predecessor = nil
-	USPF_GUI_Body_PDGBE_ListHolder.dataLines = {}
-	USPF_GUI_Body_PDGBE_ListHolder.lines = {}
-	for i = 1, #USPF.GUI.PDGBE do
-		USPF_GUI_Body_PDGBE_ListHolder.lines[i] = USPF:CreateLine(i, USPF_predecessor, USPF_GUI_Body_PDGBE_ListHolder)
-		USPF_predecessor = USPF_GUI_Body_PDGBE_ListHolder.lines[i]
-	end
-
-	USPF:UpdateDataLines()
 end
 
 function USPF:SetupValues()
@@ -1703,44 +1432,77 @@ function USPF:SetupValues()
 	USPF_GUI:SetHeight(USPF_GUI_Header:GetHeight() + #USPF.GUI.GDQ * 18 + USPF_GUI_Footer:GetHeight() + 18 + 76)
 
 	--Add information to window.
-	USPF:CreateListHolders()
+	local titleFont = USPF.Options.Font.Fonts[USPF.settings.title.font]
+	local smallFont = titleFont.."|14"
 
-	USPF_GUI_Header:SetParent(USPF_GUI)
-	USPF_GUI_Body:SetParent(USPF_GUI)
-	USPF_GUI_Footer:SetParent(USPF_GUI)
+	USPF_GUI_Header_Title:SetFont(titleFont.."|30")
+	USPF_GUI_Body_GSP:SetFont(titleFont.."|16")
+	USPF_GUI_Body_GSP_Source:SetFont(smallFont)
+	USPF_GUI_Body_GSP_Progress:SetFont(smallFont)
+	USPF_GUI_Body_GSP_T:SetFont(smallFont)
 
-	USPF_GUI_Body_GSP_ListHolder:SetParent(USPF_GUI_Body)
-	USPF_GUI_Body_SQS_ListHolder:SetParent(USPF_GUI_Body)
-	USPF_GUI_Body_GDQ_ListHolder:SetParent(USPF_GUI_Body)
-	USPF_GUI_Body_PDGBE_ListHolder:SetParent(USPF_GUI_Body)
+	USPF_GUI_Body_SQS:SetFont(titleFont.."|16")
+	USPF_GUI_Body_SQS_Z:SetFont(smallFont)
+	USPF_GUI_Body_SQS_SL:SetFont(smallFont)
+	USPF_GUI_Body_SQS_SS:SetFont(smallFont)
+	USPF_GUI_Body_SQS_Z_T:SetFont(smallFont)
+	USPF_GUI_Body_SQS_SL_T:SetFont(smallFont)
+	USPF_GUI_Body_SQS_SS_T:SetFont(smallFont)
 
-	USPF_GUI_Header_Title:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|30")
-	USPF_GUI_Body_GSP:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|16")
-	USPF_GUI_Body_GSP_Source:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
-	USPF_GUI_Body_GSP_Progress:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
-	USPF_GUI_Body_GSP_T:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
+	USPF_GUI_Body_GDQ:SetFont(titleFont.."|16")
+	USPF_GUI_Body_GDQ_Z:SetFont(smallFont)
+	USPF_GUI_Body_GDQ_D:SetFont(smallFont)
+	USPF_GUI_Body_GDQ_P:SetFont(smallFont)
+	USPF_GUI_Body_GDQ_T:SetFont(smallFont)
 
-	USPF_GUI_Body_SQS:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|16")
-	USPF_GUI_Body_SQS_Z:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
-	USPF_GUI_Body_SQS_SL:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
-	USPF_GUI_Body_SQS_SS:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
-	USPF_GUI_Body_SQS_Z_T:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
-	USPF_GUI_Body_SQS_SL_T:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
-	USPF_GUI_Body_SQS_SS_T:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
+	USPF_GUI_Body_PDGBE:SetFont(titleFont.."|16")
+	USPF_GUI_Body_PDGBE_Z:SetFont(smallFont)
+	USPF_GUI_Body_PDGBE_D:SetFont(smallFont)
+	USPF_GUI_Body_PDGBE_P:SetFont(smallFont)
+	USPF_GUI_Body_PDGBE_T:SetFont(smallFont)
 
-	USPF_GUI_Body_GDQ:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|16")
-	USPF_GUI_Body_GDQ_Z:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
-	USPF_GUI_Body_GDQ_D:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
-	USPF_GUI_Body_GDQ_P:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
-	USPF_GUI_Body_GDQ_T:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
+	USPF_GUI_Footer_CharacterTotal:SetFont(titleFont.."|24")
 
-	USPF_GUI_Body_PDGBE:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|16")
-	USPF_GUI_Body_PDGBE_Z:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
-	USPF_GUI_Body_PDGBE_D:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
-	USPF_GUI_Body_PDGBE_P:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
-	USPF_GUI_Body_PDGBE_T:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|14")
+	ZO_ScrollList_AddDataType(USPF_GUI_Body_SQS_ListHolder, 1, "USPF_SQSSTemplate", 18, function(control, data) self:SetupSqsItem(control, data) end)
+	ZO_ScrollList_AddDataType(USPF_GUI_Body_GDQ_ListHolder, 1, "USPF_GDQTemplate", 18, function(control, data) self:SetupGdqItem(control, data, USPF.Options.Font.Fonts[USPF.settings.GDQ.font].."|14") end)
+	ZO_ScrollList_AddDataType(USPF_GUI_Body_PDGBE_ListHolder, 1, "USPF_PDGBETemplate", 18, function(control, data) self:SetupGdqItem(control, data, USPF.Options.Font.Fonts[USPF.settings.PDB.font].."|14") end)
+	ZO_ScrollList_AddDataType(USPF_GUI_Body_GSP_ListHolder, 1, "USPF_GeneralTemplate", 18, function(control, data) self:SetupGeneralItem(control, data) end)
+end
 
-	USPF_GUI_Footer_CharacterTotal:SetFont(USPF.Options.Font.Fonts[USPF.settings.title.font].."|24")
+function USPF:SetupSqsItem(control, data)
+	control.data = data
+	local zone = control:GetNamedChild("_Zone")
+	local ss = control:GetNamedChild("_Skyshards")
+	local quests = control:GetNamedChild("_Quests")
+	zone:SetFont(USPF.Options.Font.Fonts[USPF.settings.SQS.font].."|14")
+	quests:SetFont(USPF.Options.Font.Fonts[USPF.settings.SQS.font].."|14")
+	ss:SetFont(USPF.Options.Font.Fonts[USPF.settings.SQS.font].."|14")
+	zone:SetText(data.zone)
+	ss:SetText(data.skyshards)
+	quests:SetText(data.quests)
+end
+
+function USPF:SetupGdqItem(control, data, font)
+	control.data = data
+	local zone = control:GetNamedChild("_Zone")
+	local progress = control:GetNamedChild("_Progress")
+	local dungeon = control:GetNamedChild("_Dungeon")
+	zone:SetFont(font)
+	dungeon:SetFont(font)
+	progress:SetFont(font)
+	zone:SetText(data.zone)
+	progress:SetText(data.progress)
+	dungeon:SetText(data.dungeon)
+end
+
+function USPF:SetupGeneralItem(control, data)
+	control.data = data
+	local source = control:GetNamedChild("_Source")
+	local progress = control:GetNamedChild("_Progress")
+	source:SetFont(USPF.Options.Font.Fonts[USPF.settings.GSP.font].."|14")
+	progress:SetFont(USPF.Options.Font.Fonts[USPF.settings.GSP.font].."|14")
+	source:SetText(data.source)
+	progress:SetText(data.progress)
 end
 
 function USPF:HelpSlash()
@@ -1795,10 +1557,6 @@ local function USPF_CreateCharList()
 
 	-- tooltip text
 	USPF_GUI_Header_CharList.data = {tooltipText = "Select a character to view. You must have logged in on the selected character with this addon active for information to populate."}
-
-	-- tooltip handlers
-	USPF_GUI_Header_CharList:SetHandler("OnMouseEnter", ZO_Options_OnMouseEnter)
-	USPF_GUI_Header_CharList:SetHandler("OnMouseExit", ZO_Options_OnMouseExit)
 
 	USPF.charNames = {}
 	USPF.charData = {}

@@ -13,6 +13,9 @@ local GS, zf, strF = GetString, zo_strformat, string.format
 local USPF_LTF = LibTableFunctions
 if not USPF_LTF then return end
 
+local USPF_LIST_DATA_TYPE = 1
+local USPF_LIST_SEPARATOR_TYPE = 2
+
 USPF.settings = {
 	title = {font = "ProseAntique",},
 	GSP = {
@@ -1286,11 +1289,14 @@ end
 local function USPF_UpdateListData(control, data)
 	local dataList = ZO_ScrollList_GetDataList(control)
 	ZO_ScrollList_Clear(control)
-	for _, entry in ipairs(data) do
-		table.insert(dataList, ZO_ScrollList_CreateDataEntry(1, entry))
+	table.insert(dataList, ZO_ScrollList_CreateDataEntry(USPF_LIST_DATA_TYPE, data[1])) -- header
+	table.insert(dataList, ZO_ScrollList_CreateDataEntry(USPF_LIST_SEPARATOR_TYPE, {}))
+	for i = 2, #data do
+		table.insert(dataList, ZO_ScrollList_CreateDataEntry(USPF_LIST_DATA_TYPE, data[i]))
 	end
+	table.insert(dataList, ZO_ScrollList_CreateDataEntry(USPF_LIST_SEPARATOR_TYPE, {}))
 	ZO_ScrollList_Commit(control)
-	control:SetHeight(18 * #data)
+	control:SetHeight(18 * #data + 4)
 end
 
 function USPF:UpdateDataLines()
@@ -1322,6 +1328,7 @@ function USPF:UpdateDataLines()
 		done = USPF_rgbToHex(USPF.settings.PDB.doneColor)
 	}
 
+	table.insert(dataLines_GSP, { header = true, source = GS(USPF_GUI_SOURCE), progress = GS(USPF_GUI_PROGRESS) })
 	for i = 1, #USPF.GUI.GSP do
 		table.insert(dataLines_GSP, {
 			source = USPF.GUI.GSP[i][2],
@@ -1330,6 +1337,12 @@ function USPF:UpdateDataLines()
 		})
 	end
 
+	table.insert(dataLines_SQS, {
+		header = true,
+		zone = GS(USPF_GUI_ZONE),
+		quests = GS(USPF_GUI_STORYLINE),
+		skyshards = GS(USPF_GUI_SKYSHARDS)
+	})
 	local tempTable = USPF_LTF:SortTable(USPF.GUI.SQS, USPF.settings.SQS.sortCol)
 	for i = 1, #tempTable do
 		table.insert(dataLines_SQS, {
@@ -1340,6 +1353,12 @@ function USPF:UpdateDataLines()
 		})
 	end
 
+	table.insert(dataLines_GDQ, {
+		header = true,
+		zone = GS(USPF_GUI_ZONE),
+		dungeon = GS(USPF_GUI_GROUP_DUNGEON),
+		progress = GS(USPF_GUI_PROGRESS)
+	})
 	tempTable = USPF_LTF:SortTable(USPF.GUI.GDQ, USPF.settings.GDQ.sortCol)
 	for i = 1, #tempTable do
 		table.insert(dataLines_GDQ, {
@@ -1351,6 +1370,12 @@ function USPF:UpdateDataLines()
 	end
 
 	tempTable = USPF_LTF:SortTable(USPF.GUI.PDGBE, USPF.settings.PDB.sortCol)
+	table.insert(dataLines_PDGBE, {
+		header = true,
+		zone = GS(USPF_GUI_ZONE),
+		dungeon = GS(USPF_GUI_PUBLIC_DUNGEON),
+		progress = GS(USPF_GUI_PROGRESS)
+	})
 	for i = 1, #tempTable do
 		table.insert(dataLines_PDGBE, {
 			zone = tempTable[i][2],
@@ -1391,6 +1416,7 @@ function USPF:ToggleWindow()
 	if USPF.active then USPF:UpdateDataLines() end
 	SCENE_MANAGER:ToggleTopLevel(USPF_GUI)
 end
+
 
 function USPF:SetupValues()
 	--Reset All Points to Zero.
@@ -1437,36 +1463,29 @@ function USPF:SetupValues()
 
 	USPF_GUI_Header_Title:SetFont(titleFont.."|30")
 	USPF_GUI_Body_GSP:SetFont(titleFont.."|16")
-	USPF_GUI_Body_GSP_Source:SetFont(smallFont)
-	USPF_GUI_Body_GSP_Progress:SetFont(smallFont)
 	USPF_GUI_Body_GSP_T:SetFont(smallFont)
 
 	USPF_GUI_Body_SQS:SetFont(titleFont.."|16")
-	USPF_GUI_Body_SQS_Z:SetFont(smallFont)
-	USPF_GUI_Body_SQS_SL:SetFont(smallFont)
-	USPF_GUI_Body_SQS_SS:SetFont(smallFont)
 	USPF_GUI_Body_SQS_Z_T:SetFont(smallFont)
 	USPF_GUI_Body_SQS_SL_T:SetFont(smallFont)
 	USPF_GUI_Body_SQS_SS_T:SetFont(smallFont)
 
 	USPF_GUI_Body_GDQ:SetFont(titleFont.."|16")
-	USPF_GUI_Body_GDQ_Z:SetFont(smallFont)
-	USPF_GUI_Body_GDQ_D:SetFont(smallFont)
-	USPF_GUI_Body_GDQ_P:SetFont(smallFont)
 	USPF_GUI_Body_GDQ_T:SetFont(smallFont)
 
 	USPF_GUI_Body_PDGBE:SetFont(titleFont.."|16")
-	USPF_GUI_Body_PDGBE_Z:SetFont(smallFont)
-	USPF_GUI_Body_PDGBE_D:SetFont(smallFont)
-	USPF_GUI_Body_PDGBE_P:SetFont(smallFont)
 	USPF_GUI_Body_PDGBE_T:SetFont(smallFont)
 
 	USPF_GUI_Footer_CharacterTotal:SetFont(titleFont.."|24")
 
-	ZO_ScrollList_AddDataType(USPF_GUI_Body_SQS_ListHolder, 1, "USPF_SQSSTemplate", 18, function(control, data) self:SetupSqsItem(control, data) end)
-	ZO_ScrollList_AddDataType(USPF_GUI_Body_GDQ_ListHolder, 1, "USPF_GDQTemplate", 18, function(control, data) self:SetupGdqItem(control, data, USPF.Options.Font.Fonts[USPF.settings.GDQ.font].."|14") end)
-	ZO_ScrollList_AddDataType(USPF_GUI_Body_PDGBE_ListHolder, 1, "USPF_PDGBETemplate", 18, function(control, data) self:SetupGdqItem(control, data, USPF.Options.Font.Fonts[USPF.settings.PDB.font].."|14") end)
-	ZO_ScrollList_AddDataType(USPF_GUI_Body_GSP_ListHolder, 1, "USPF_GeneralTemplate", 18, function(control, data) self:SetupGeneralItem(control, data) end)
+	ZO_ScrollList_AddDataType(USPF_GUI_Body_SQS_ListHolder, USPF_LIST_DATA_TYPE, "USPF_SQSSTemplate", 18, function(control, data) self:SetupSqsItem(control, data) end)
+	ZO_ScrollList_AddDataType(USPF_GUI_Body_SQS_ListHolder, USPF_LIST_SEPARATOR_TYPE, "USPF_ListSeparator", 2, function(control, data) end)
+	ZO_ScrollList_AddDataType(USPF_GUI_Body_GDQ_ListHolder, USPF_LIST_DATA_TYPE, "USPF_GDQTemplate", 18, function(control, data) self:SetupGdqItem(control, data, USPF.settings.GDQ.font) end)
+	ZO_ScrollList_AddDataType(USPF_GUI_Body_GDQ_ListHolder, USPF_LIST_SEPARATOR_TYPE, "USPF_ListSeparator", 2, function(control, data) end)
+	ZO_ScrollList_AddDataType(USPF_GUI_Body_PDGBE_ListHolder, USPF_LIST_DATA_TYPE, "USPF_PDGBETemplate", 18, function(control, data) self:SetupGdqItem(control, data, USPF.settings.PDB.font) end)
+	ZO_ScrollList_AddDataType(USPF_GUI_Body_PDGBE_ListHolder, USPF_LIST_SEPARATOR_TYPE, "USPF_ListSeparator", 2, function(control, data) end)
+	ZO_ScrollList_AddDataType(USPF_GUI_Body_GSP_ListHolder, USPF_LIST_DATA_TYPE, "USPF_GeneralTemplate", 18, function(control, data) self:SetupGeneralItem(control, data) end)
+	ZO_ScrollList_AddDataType(USPF_GUI_Body_GSP_ListHolder, USPF_LIST_SEPARATOR_TYPE, "USPF_ListSeparator", 2, function(control, data) end)
 end
 
 function USPF:SetupSqsItem(control, data)
@@ -1474,19 +1493,24 @@ function USPF:SetupSqsItem(control, data)
 	local zone = control:GetNamedChild("_Zone")
 	local ss = control:GetNamedChild("_Skyshards")
 	local quests = control:GetNamedChild("_Quests")
-	zone:SetFont(USPF.Options.Font.Fonts[USPF.settings.SQS.font].."|14")
-	quests:SetFont(USPF.Options.Font.Fonts[USPF.settings.SQS.font].."|14")
-	ss:SetFont(USPF.Options.Font.Fonts[USPF.settings.SQS.font].."|14")
+	local fontName = data.header and USPF.settings.title.font or USPF.settings.SQS.font
+	local font = USPF.Options.Font.Fonts[fontName] .. "|14"
+
+	zone:SetFont(font)
+	quests:SetFont(font)
+	ss:SetFont(font)
 	zone:SetText(data.zone)
 	ss:SetText(data.skyshards)
 	quests:SetText(data.quests)
 end
 
-function USPF:SetupGdqItem(control, data, font)
+function USPF:SetupGdqItem(control, data, entryFontName)
 	control.data = data
 	local zone = control:GetNamedChild("_Zone")
 	local progress = control:GetNamedChild("_Progress")
 	local dungeon = control:GetNamedChild("_Dungeon")
+	local fontName = data.header and USPF.settings.title.font or entryFontName
+	local font = USPF.Options.Font.Fonts[fontName] .. "|14"
 	zone:SetFont(font)
 	dungeon:SetFont(font)
 	progress:SetFont(font)
@@ -1499,8 +1523,10 @@ function USPF:SetupGeneralItem(control, data)
 	control.data = data
 	local source = control:GetNamedChild("_Source")
 	local progress = control:GetNamedChild("_Progress")
-	source:SetFont(USPF.Options.Font.Fonts[USPF.settings.GSP.font].."|14")
-	progress:SetFont(USPF.Options.Font.Fonts[USPF.settings.GSP.font].."|14")
+	local fontName = data.header and USPF.settings.title.font or USPF.settings.GSP.font
+	local font = USPF.Options.Font.Fonts[fontName] .. "|14"
+	source:SetFont(font)
+	progress:SetFont(font)
 	source:SetText(data.source)
 	progress:SetText(data.progress)
 end

@@ -110,10 +110,17 @@
 					<Anchor point="TOPLEFT" relativeTo="$(parent)_Zone" relativePoint="TOPRIGHT" offsetX="0" offsetY="0" />
 					<Anchor point="TOPRIGHT" relativeTo="$(parent)_Progress" relativePoint="TOPLEFT" offsetX="0" offsetY="0" />
 				</Label>
-
 			</Controls>
 		</Control>
 
+		<Control name="USPF_ListSeparator" virtual="true">
+			<Controls>
+				<Line name="$(parent)_Line" color="FFCCCCCC" thickness="2" pixelRoundingEnabled="true">
+					<Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="3" offsetY="0" />
+					<Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT" offsetX="-5" offsetY="0" />
+				</Line>
+			</Controls>
+		</Control>
 
 		<TopLevelControl name="USPF_GUI" mouseEnabled="true" movable="true" hidden="true" allowBringToTop="true" tier="HIGH">
 			<Dimensions x="1078" y="750" />
@@ -155,33 +162,14 @@
 							<Dimensions x="400" y="24" />
 							<Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="0" offsetY="3" />
 						</Label>
-						<Label name="$(parent)_GSP_Source" font="$(ANTIQUE_FONT)|14" text="USPF_GUI_SOURCE" horizontalAlignment="CENTER" verticalAlignment="CENTER">
-							<Dimensions x="200" y="18" />
-							<Anchor point="TOPLEFT" relativeTo="$(parent)_GSP" relativePoint="BOTTOMLEFT" offsetX="0" offsetY="0" />
-						</Label>
-						<Label name="$(parent)_GSP_Progress" font="$(ANTIQUE_FONT)|14" text="USPF_GUI_PROGRESS" horizontalAlignment="CENTER" verticalAlignment="CENTER">
-							<Dimensions x="200" y="18" />
-							<Anchor point="TOPLEFT" relativeTo="$(parent)_GSP_Source" relativePoint="TOPRIGHT" offsetX="0" offsetY="0" />
-						</Label>
-						<Line name="$(parent)_GSP_L" color="FFCCCCCC" thickness="1.5" pixelRoundingEnabled="true">
-							<Anchor point="TOPLEFT" relativeTo="$(parent)_GSP_Source" relativePoint="BOTTOMLEFT" offsetX="3" offsetY="0" />
-							<Anchor point="TOPRIGHT" relativeTo="$(parent)_GSP_Progress" relativePoint="BOTTOMRIGHT" offsetX="-5" offsetY="0" />
-						</Line>
-
-
 						<Control name="$(parent)_GSP_ListHolder" inherits="ZO_ScrollList" resizeToFitDescendents="true">
-							<Anchor point="TOPLEFT" relativeTo="$(parent)_GSP_L" relativePoint="BOTTOMLEFT" offsetX="-3" offsetY="0" />
-							<Anchor point="TOPRIGHT" relativeTo="$(parent)_GSP_L" relativePoint="BOTTOMRIGHT" offsetX="21" offsetY="0" />
+							<Anchor point="TOPLEFT" relativeTo="$(parent)_GSP" relativePoint="BOTTOMLEFT" offsetX="0" offsetY="0" />
+							<Anchor point="TOPRIGHT" relativeTo="$(parent)_GSP" relativePoint="BOTTOMRIGHT" offsetX="16" offsetY="0" />
 						</Control>
 
-
-						<Line name="$(parent)_GSP_L1" color="FFCCCCCC" thickness="1.5" pixelRoundingEnabled="true">
-							<Anchor point="TOPLEFT" relativeTo="$(parent)_GSP_ListHolder" relativePoint="BOTTOMLEFT" offsetX="3" offsetY="0" />
-							<Anchor point="TOPRIGHT" relativeTo="$(parent)_GSP_ListHolder" relativePoint="BOTTOMRIGHT" offsetX="-21" offsetY="0" />
-						</Line>
 						<Label name="$(parent)_GSP_T" font="$(ANTIQUE_FONT)|14" text="" horizontalAlignment="CENTER" verticalAlignment="CENTER">
 							<Dimensions x="400" y="18" />
-							<Anchor point="TOPLEFT" relativeTo="$(parent)_GSP_L1" relativePoint="BOTTOMLEFT" offsetX="-3" offsetY="0" />
+							<Anchor point="TOPLEFT" relativeTo="$(parent)_GSP_ListHolder" relativePoint="BOTTOMLEFT" offsetX="0" offsetY="0" />
 						</Label>
 						<Backdrop name="$(parent)_BG_GSP" inherits="ZO_DefaultBackdrop" centerColor="FF000000">
 							<Anchor point="TOPLEFT" relativeTo="$(parent)_GSP" relativePoint="TOPLEFT" offsetX="0" offsetY="0" />
@@ -192,37 +180,14 @@
 							<Dimensions x="300" y="24" />
 							<Anchor point="TOPLEFT" relativeTo="$(parent)_GSP" relativePoint="TOPRIGHT" offsetX="12" offsetY="0" />
 						</Label>
-						<Label name="$(parent)_SQS_Z" font="$(ANTIQUE_FONT)|14" text="USPF_GUI_ZONE" horizontalAlignment="CENTER" verticalAlignment="CENTER">
-							<Dimensions x="150" y="18" />
-							<Anchor point="TOPLEFT" relativeTo="$(parent)_SQS" relativePoint="BOTTOMLEFT" offsetX="0" offsetY="0" />
-						</Label>
-						<Label name="$(parent)_SQS_SL" font="$(ANTIQUE_FONT)|14" text="USPF_GUI_STORYLINE" horizontalAlignment="CENTER" verticalAlignment="CENTER">
-							<Dimensions x="75" y="18" />
-							<Anchor point="TOPLEFT" relativeTo="$(parent)_SQS_Z" relativePoint="TOPRIGHT" offsetX="0" offsetY="0" />
-						</Label>
-						<Label name="$(parent)_SQS_SS" font="$(ANTIQUE_FONT)|14" text="USPF_GUI_SKYSHARDS" horizontalAlignment="CENTER" verticalAlignment="CENTER">
-							<Dimensions x="75" y="18" />
-							<Anchor point="TOPLEFT" relativeTo="$(parent)_SQS_SL" relativePoint="TOPRIGHT" offsetX="0" offsetY="0" />
-						</Label>
-						<Line name="$(parent)_SQS_L" color="FFCCCCCC" thickness="1.5" pixelRoundingEnabled="true">
-							<Anchor point="TOPLEFT" relativeTo="$(parent)_SQS_Z" relativePoint="BOTTOMLEFT" offsetX="3" offsetY="0" />
-							<Anchor point="TOPRIGHT" relativeTo="$(parent)_SQS_SS" relativePoint="BOTTOMRIGHT" offsetX="-5" offsetY="0" />
-						</Line>
-
-
 						<Control name="$(parent)_SQS_ListHolder" inherits="ZO_ScrollList" resizeToFitDescendents="true">
-							<Anchor point="TOPLEFT" relativeTo="$(parent)_SQS_L" relativePoint="BOTTOMLEFT" offsetX="-3" offsetY="0" />
-							<Anchor point="TOPRIGHT" relativeTo="$(parent)_SQS_L" relativePoint="BOTTOMRIGHT" offsetX="21" offsetY="0" />
+							<Anchor point="TOPLEFT" relativeTo="$(parent)_SQS" relativePoint="BOTTOMLEFT" offsetX="0" offsetY="0" />
+							<Anchor point="TOPRIGHT" relativeTo="$(parent)_SQS" relativePoint="BOTTOMRIGHT" offsetX="16" offsetY="0" />
 						</Control>
 
-
-						<Line name="$(parent)_SQS_L1" color="FFCCCCCC" thickness="1.5" pixelRoundingEnabled="true">
-							<Anchor point="TOPLEFT" relativeTo="$(parent)_SQS_ListHolder" relativePoint="BOTTOMLEFT" offsetX="3" offsetY="0" />
-							<Anchor point="TOPRIGHT" relativeTo="$(parent)_SQS_ListHolder" relativePoint="BOTTOMRIGHT" offsetX="-21" offsetY="0" />
-						</Line>
 						<Label name="$(parent)_SQS_Z_T" font="$(ANTIQUE_FONT)|14" text="USPF_GUI_TOTAL" horizontalAlignment="CENTER" verticalAlignment="CENTER" inherits="USPF_TooltipTarget">
 							<Dimensions x="150" y="18" />
-							<Anchor point="TOPLEFT" relativeTo="$(parent)_SQS_L1" relativePoint="BOTTOMLEFT" offsetX="-3" offsetY="0" />
+							<Anchor point="TOPLEFT" relativeTo="$(parent)_SQS_ListHolder" relativePoint="BOTTOMLEFT" offsetX="0" offsetY="0" />
 						</Label>
 						<Label name="$(parent)_SQS_SL_T" font="$(ANTIQUE_FONT)|14" text="" horizontalAlignment="CENTER" verticalAlignment="CENTER" inherits="USPF_TooltipTarget">
 							<Dimensions x="75" y="18" />
@@ -242,37 +207,14 @@
 							<Dimensions x="350" y="24" />
 							<Anchor point="TOPLEFT" relativeTo="$(parent)_SQS" relativePoint="TOPRIGHT" offsetX="12" offsetY="0" />
 						</Label>
-						<Label name="$(parent)_GDQ_Z" font="$(ANTIQUE_FONT)|14" text="USPF_GUI_ZONE" horizontalAlignment="CENTER" verticalAlignment="CENTER">
-							<Dimensions x="125" y="18" />
-							<Anchor point="TOPLEFT" relativeTo="$(parent)_GDQ" relativePoint="BOTTOMLEFT" offsetX="0" offsetY="0" />
-						</Label>
-						<Label name="$(parent)_GDQ_D" font="$(ANTIQUE_FONT)|14" text="USPF_GUI_GROUP_DUNGEON" horizontalAlignment="CENTER" verticalAlignment="CENTER">
-							<Dimensions x="150" y="18" />
-							<Anchor point="TOPLEFT" relativeTo="$(parent)_GDQ_Z" relativePoint="TOPRIGHT" offsetX="0" offsetY="0" />
-						</Label>
-						<Label name="$(parent)_GDQ_P" font="$(ANTIQUE_FONT)|14" text="USPF_GUI_PROGRESS" horizontalAlignment="CENTER" verticalAlignment="CENTER">
-							<Dimensions x="75" y="18" />
-							<Anchor point="TOPLEFT" relativeTo="$(parent)_GDQ_D" relativePoint="TOPRIGHT" offsetX="0" offsetY="0" />
-						</Label>
-						<Line name="$(parent)_GDQ_L" color="FFCCCCCC" thickness="1.5" pixelRoundingEnabled="true">
-							<Anchor point="TOPLEFT" relativeTo="$(parent)_GDQ_Z" relativePoint="BOTTOMLEFT" offsetX="3" offsetY="0" />
-							<Anchor point="TOPRIGHT" relativeTo="$(parent)_GDQ_P" relativePoint="BOTTOMRIGHT" offsetX="-5" offsetY="0" />
-						</Line>
-
-
 						<Control name="$(parent)_GDQ_ListHolder" inherits="ZO_ScrollList" resizeToFitDescendents="true">
-							<Anchor point="TOPLEFT" relativeTo="$(parent)_GDQ_L" relativePoint="BOTTOMLEFT" offsetX="-3" offsetY="0" />
-							<Anchor point="TOPRIGHT" relativeTo="$(parent)_GDQ_L" relativePoint="BOTTOMRIGHT" offsetX="21" offsetY="0" />
+							<Anchor point="TOPLEFT" relativeTo="$(parent)_GDQ" relativePoint="BOTTOMLEFT" offsetX="0" offsetY="0" />
+							<Anchor point="TOPRIGHT" relativeTo="$(parent)_GDQ" relativePoint="BOTTOMRIGHT" offsetX="16" offsetY="0" />
 						</Control>
 
-
-						<Line name="$(parent)_GDQ_L1" color="FFCCCCCC" thickness="1.5" pixelRoundingEnabled="true">
-							<Anchor point="TOPLEFT" relativeTo="$(parent)_GDQ_ListHolder" relativePoint="BOTTOMLEFT" offsetX="3" offsetY="0" />
-							<Anchor point="TOPRIGHT" relativeTo="$(parent)_GDQ_ListHolder" relativePoint="BOTTOMRIGHT" offsetX="-21" offsetY="0" />
-						</Line>
 						<Label name="$(parent)_GDQ_T" font="$(ANTIQUE_FONT)|14" horizontalAlignment="CENTER" verticalAlignment="CENTER" inherits="USPF_TooltipTarget">
 							<Dimensions x="350" y="18" />
-							<Anchor point="TOPLEFT" relativeTo="$(parent)_GDQ_L1" relativePoint="BOTTOMLEFT" offsetX="-3" offsetY="0" />
+							<Anchor point="TOPLEFT" relativeTo="$(parent)_GDQ_ListHolder" relativePoint="BOTTOMLEFT" offsetX="0" offsetY="0" />
 						</Label>
 						<Backdrop name="$(parent)_BG_GDQ" inherits="ZO_DefaultBackdrop" centerColor="FF000000">
 							<Anchor point="TOPLEFT" relativeTo="$(parent)_GDQ" relativePoint="TOPLEFT" offsetX="0" offsetY="0" />
@@ -284,37 +226,14 @@
 							<Dimensions x="400" y="24" />
 							<Anchor point="TOPLEFT" relativeTo="$(parent)_GSP_T" relativePoint="BOTTOMLEFT" offsetX="0" offsetY="18" />
 						</Label>
-						<Label name="$(parent)_PDGBE_Z" font="$(ANTIQUE_FONT)|14" text="USPF_GUI_ZONE" horizontalAlignment="CENTER" verticalAlignment="CENTER">
-							<Dimensions x="140" y="18" />
-							<Anchor point="TOPLEFT" relativeTo="$(parent)_PDGBE" relativePoint="BOTTOMLEFT" offsetX="0" offsetY="0" />
-						</Label>
-						<Label name="$(parent)_PDGBE_D" font="$(ANTIQUE_FONT)|14" text="USPF_GUI_PUBLIC_DUNGEON" horizontalAlignment="CENTER" verticalAlignment="CENTER">
-							<Dimensions x="185" y="18" />
-							<Anchor point="TOPLEFT" relativeTo="$(parent)_PDGBE_Z" relativePoint="TOPRIGHT" offsetX="0" offsetY="0" />
-						</Label>
-						<Label name="$(parent)_PDGBE_P" font="$(ANTIQUE_FONT)|14" text="USPF_GUI_PROGRESS" horizontalAlignment="CENTER" verticalAlignment="CENTER">
-							<Dimensions x="75" y="18" />
-							<Anchor point="TOPLEFT" relativeTo="$(parent)_PDGBE_D" relativePoint="TOPRIGHT" offsetX="0" offsetY="0" />
-						</Label>
-						<Line name="$(parent)_PGDBE_L" color="FFCCCCCC" thickness="1.5" pixelRoundingEnabled="true">
-							<Anchor point="TOPLEFT" relativeTo="$(parent)_PDGBE_Z" relativePoint="BOTTOMLEFT" offsetX="3" offsetY="0" />
-							<Anchor point="TOPRIGHT" relativeTo="$(parent)_PDGBE_P" relativePoint="BOTTOMRIGHT" offsetX="-3" offsetY="0" />
-						</Line>
-
-
 						<Control name="$(parent)_PDGBE_ListHolder" inherits="ZO_ScrollList" resizeToFitDescendents="true">
-							<Anchor point="TOPLEFT" relativeTo="$(parent)_PGDBE_L" relativePoint="BOTTOMLEFT" offsetX="-3" offsetY="0" />
-							<Anchor point="TOPRIGHT" relativeTo="$(parent)_PGDBE_L" relativePoint="BOTTOMRIGHT" offsetX="21" offsetY="0" />
+							<Anchor point="TOPLEFT" relativeTo="$(parent)_PDGBE" relativePoint="BOTTOMLEFT" offsetX="0" offsetY="0" />
+							<Anchor point="TOPRIGHT" relativeTo="$(parent)_PDGBE" relativePoint="BOTTOMRIGHT" offsetX="16" offsetY="0" />
 						</Control>
 
-
-						<Line name="$(parent)_PGDBE_L1" color="FFCCCCCC" thickness="1.5" pixelRoundingEnabled="true">
-							<Anchor point="TOPLEFT" relativeTo="$(parent)_PDGBE_ListHolder" relativePoint="BOTTOMLEFT" offsetX="3" offsetY="0" />
-							<Anchor point="TOPRIGHT" relativeTo="$(parent)_PDGBE_ListHolder" relativePoint="BOTTOMRIGHT" offsetX="-21" offsetY="0" />
-						</Line>
 						<Label name="$(parent)_PDGBE_T" font="$(ANTIQUE_FONT)|14" horizontalAlignment="CENTER" verticalAlignment="CENTER" inherits="USPF_TooltipTarget">
 							<Dimensions x="400" y="18" />
-							<Anchor point="TOPLEFT" relativeTo="$(parent)_PGDBE_L1" relativePoint="BOTTOMLEFT" offsetX="-3" offsetY="0" />
+							<Anchor point="TOPLEFT" relativeTo="$(parent)_PDGBE_ListHolder" relativePoint="BOTTOMLEFT" offsetX="0" offsetY="0" />
 						</Label>
 						<Backdrop name="$(parent)_BG_PDGBE" inherits="ZO_DefaultBackdrop" centerColor="FF000000">
 							<Anchor point="TOPLEFT" relativeTo="$(parent)_PDGBE" relativePoint="TOPLEFT" offsetX="0" offsetY="0" />

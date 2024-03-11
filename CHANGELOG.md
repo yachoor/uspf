@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.1.0] - 2024-03-11
+
+### Added
+
+- Support for Scions of Ithelia DLC - 2 new dungeons
+
+
 ## [7.0.2] - 2023-12-11
 
 ### Fixed
@@ -235,7 +242,7 @@
 
 - Support for Markarth - The Reach questline and skyshards
 
-
+[7.1.0]: https://github.com/yachoor/uspf/compare/7.0.2...7.1.0
 [7.0.2]: https://github.com/yachoor/uspf/compare/7.0.1...7.0.2
 [7.0.1]: https://github.com/yachoor/uspf/compare/7.0.0...7.0.1
 [7.0.0]: https://github.com/yachoor/uspf/compare/6.10.1...7.0.0

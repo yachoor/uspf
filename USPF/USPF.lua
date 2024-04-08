@@ -763,7 +763,6 @@ local function USPF_UpdateGUITable(sVarPtsData)
 		DC3	 = GetQuestTooltipText("DC3").."\n\n"..GetZoneTooltipText("DC3"),
 		DC4	 = GetQuestTooltipText("DC4").."\n\n"..GetZoneTooltipText("DC4"),
 		DC5	 = GetQuestTooltipText("DC5").."\n\n"..GetZoneTooltipText("DC5"),
-		EO	 = GetQuestTooltipText("EO"),
 		EP0a = GS(USPF_QUEST_NONE).."\n\n"..GetZoneTooltipText("EP0a"),
 		EP0b = GS(USPF_QUEST_NONE).."\n\n"..GetZoneTooltipText("EP0b"),
 		EP1	 = GetQuestTooltipText("EP1").."\n\n"..GetZoneTooltipText("EP1"),
@@ -775,19 +774,15 @@ local function USPF_UpdateGUITable(sVarPtsData)
 		LCL	 = GS(USPF_QUEST_NONE).."\n\n"..GetZoneTooltipText("LCL"),
 		UCL	 = GS(USPF_QUEST_NONE).."\n\n"..GetZoneTooltipText("UCL"),
 		MM	 = GetQuestTooltipText("MM").."\n\n"..GetZoneTooltipText("MM"),
-		MO	 = GetQuestTooltipText("MO"),
 		MW	 = GetQuestTooltipText("MW").."\n\n"..GetZoneTooltipText("MW"),
 		MQ	 = GetQuestTooltipText("MQ").."\n\n"..GetMainQuestTooltip(),
 		NE	 = GetQuestTooltipText("NE").."\n\n"..GetZoneTooltipText("NE"),
 		RO	 = GetQuestTooltipText("RO").."\n\n"..GetZoneTooltipText("RO"),
 		SE	 = GetQuestTooltipText("SE").."\n\n"..GetZoneTooltipText("SE"),
-		SO	 = GetQuestTooltipText("SO"),
 		TG	 = GetQuestTooltipText("TG").."\n\n"..GetZoneTooltipText("TG"),
 		SU	 = GetQuestTooltipText("SU").."\n\n"..GetZoneTooltipText("SU"),
 		WS   = GetQuestTooltipText("WS").."\n\n"..GetZoneTooltipText("WS"),
-		GO   = GetQuestTooltipText("GO"),
 		EA   = GetQuestTooltipText("EA").."\n\n"..getTooltipEndlessArchive(),
-		BO   = GetQuestTooltipText("BO"),
 		TR   = GetQuestTooltipText("TR").."\n\n"..GetZoneTooltipText("TR"),
 		BW   = GetQuestTooltipText("BW").."\n\n"..GetZoneTooltipText("BW"),
 		TD   = GetQuestTooltipText("TD").."\n\n"..GetZoneTooltipText("TD"),
@@ -796,16 +791,14 @@ local function USPF_UpdateGUITable(sVarPtsData)
 		AP   = GetQuestTooltipText("AP").."\n\n"..GetZoneTooltipText("AP"),
 	}
 
+	local tutorial = GetSV(sVarPtsData.MWChar) + GetSV(sVarPtsData.SUChar) + GetSV(sVarPtsData.EWChar) + GetSV(sVarPtsData.GMChar) + GetSV(sVarPtsData.BWChar)
+
 	USPF.GUI = {
 		GSP = {
 			{ 1, GS(USPF_GUI_CHAR_LEVEL),	GetSV(sVarPtsData.Level),	USPF.ptsTots.Level,		GS(USPF_QUEST_NA)},
 			{ 2, GS(USPF_GUI_MAIN_QUEST),	GetSV(sVarPtsData.MainQ),	USPF.ptsTots.MainQ,		questTooltips.MQ},
 			{ 3, GS(USPF_GUI_FOLIUM),		GetSV(sVarPtsData.FolDis),	USPF.ptsTots.FolDis,	GS(USPF_QUEST_NA)},
-			{ 4, GS(USPF_GUI_MW_CHAR),		GetSV(sVarPtsData.MWChar),	USPF.ptsTots.MWChar,	questTooltips.MO},
-			{ 5, GS(USPF_GUI_SU_CHAR),		GetSV(sVarPtsData.SUChar),	USPF.ptsTots.SUChar,	questTooltips.SO},
-			{ 6, GS(USPF_GUI_EW_CHAR),		GetSV(sVarPtsData.EWChar),	USPF.ptsTots.EWChar,	questTooltips.EO},
-			{ 7, GS(USPF_GUI_GM_CHAR),		GetSV(sVarPtsData.GMChar),	USPF.ptsTots.GMChar,	questTooltips.GO},
-			{ 8, GS(USPF_GUI_BW_CHAR),		GetSV(sVarPtsData.BWChar),	USPF.ptsTots.BWChar,	questTooltips.BO},
+			{ 4, GS(USPF_GUI_TUTORIAL),		tutorial, 1, ""},
 			{ 9, GS(USPF_GUI_AVA_RANK),		GetSV(sVarPtsData.PvPRank),	USPF.ptsTots.PvPRank,	getTooltipPvPRank()},
 			{10, GS(USPF_GUI_MAEL_ARENA),	GetSV(sVarPtsData.MaelAr),	USPF.ptsTots.MaelAr,	getTooltipMaelstrom()},
 			{11, zf("<<t:1>>", GZNBId(USPF.data.ZId.ZN.EA)),	GetSV(sVarPtsData.EndlArch),	USPF.ptsTots.EndlArch,	questTooltips.EA},
@@ -1300,7 +1293,7 @@ local function USPF_UpdateListData(control, data)
 end
 
 function USPF:UpdateDataLines()
-	local dataLines_GSP, dataLines_SQS, dataLines_GDQ, dataLines_PDGBE= {},{},{},{}
+	local dataLines_GSP, dataLines_SQS, dataLines_GDQ, dataLines_GDQ2, dataLines_PDGBE= {},{},{},{},{}
 
 	USPF_SetupData(selectedChar)
 
@@ -1353,15 +1346,28 @@ function USPF:UpdateDataLines()
 		})
 	end
 
-	table.insert(dataLines_GDQ, {
+	local gdqHeader = {
 		header = true,
 		zone = GS(USPF_GUI_ZONE),
 		dungeon = GS(USPF_GUI_GROUP_DUNGEON),
 		progress = GS(USPF_GUI_PROGRESS)
-	})
+	}
 	tempTable = USPF_LTF:SortTable(USPF.GUI.GDQ, USPF.settings.GDQ.sortCol)
-	for i = 1, #tempTable do
+	local splitIndex = #tempTable/2
+
+	table.insert(dataLines_GDQ, gdqHeader)
+	for i = 1, splitIndex do
 		table.insert(dataLines_GDQ, {
+			zone = tempTable[i][2],
+			dungeon = tempTable[i][3],
+			progress = USPF_FormatProgress(tempTable[i][4], tempTable[i][5], GDQ_Color),
+			tooltipText = tempTable[i][6]
+		})
+	end
+
+	table.insert(dataLines_GDQ2, gdqHeader)
+	for i = splitIndex + 1, #tempTable do
+		table.insert(dataLines_GDQ2, {
 			zone = tempTable[i][2],
 			dungeon = tempTable[i][3],
 			progress = USPF_FormatProgress(tempTable[i][4], tempTable[i][5], GDQ_Color),
@@ -1391,8 +1397,9 @@ function USPF:UpdateDataLines()
 	USPF_UpdateListData(USPF_GUI_Body_GSP_ListHolder, dataLines_GSP)
 	USPF_UpdateListData(USPF_GUI_Body_SQS_ListHolder, dataLines_SQS)
 	USPF_UpdateListData(USPF_GUI_Body_GDQ_ListHolder, dataLines_GDQ)
+	USPF_UpdateListData(USPF_GUI_Body_GDQ2_ListHolder, dataLines_GDQ2)
 	USPF_UpdateListData(USPF_GUI_Body_PDGBE_ListHolder, dataLines_PDGBE)
-	
+
 	USPF_GUI_Body_GSP_T:SetText(USPF.GUI.GSP_T)
 
 	USPF_GUI_Body_SQS_SL_T:SetText(USPF.GUI.SQS_SL_T)
@@ -1455,7 +1462,7 @@ function USPF:SetupValues()
 	--Set the window size and position.
 	USPF_GUI:ClearAnchors()
 	USPF_GUI:SetAnchor(CENTER, GuiRoot, CENTER, 0, 0)
-	USPF_GUI:SetHeight(USPF_GUI_Header:GetHeight() + #USPF.GUI.GDQ * 18 + USPF_GUI_Footer:GetHeight() + 18 + 76)
+	USPF_GUI:SetHeight(USPF_GUI_Header:GetHeight() + #USPF.GUI.SQS * 18 + USPF_GUI_Footer:GetHeight() + 18 + 76)
 
 	--Add information to window.
 	local titleFont = USPF.Options.Font.Fonts[USPF.settings.title.font]
@@ -1482,6 +1489,8 @@ function USPF:SetupValues()
 	ZO_ScrollList_AddDataType(USPF_GUI_Body_SQS_ListHolder, USPF_LIST_SEPARATOR_TYPE, "USPF_ListSeparator", 2, function(control, data) end)
 	ZO_ScrollList_AddDataType(USPF_GUI_Body_GDQ_ListHolder, USPF_LIST_DATA_TYPE, "USPF_GDQTemplate", 18, function(control, data) self:SetupGdqItem(control, data, USPF.settings.GDQ.font) end)
 	ZO_ScrollList_AddDataType(USPF_GUI_Body_GDQ_ListHolder, USPF_LIST_SEPARATOR_TYPE, "USPF_ListSeparator", 2, function(control, data) end)
+	ZO_ScrollList_AddDataType(USPF_GUI_Body_GDQ2_ListHolder, USPF_LIST_DATA_TYPE, "USPF_GDQTemplate", 18, function(control, data) self:SetupGdqItem(control, data, USPF.settings.GDQ.font) end)
+	ZO_ScrollList_AddDataType(USPF_GUI_Body_GDQ2_ListHolder, USPF_LIST_SEPARATOR_TYPE, "USPF_ListSeparator", 2, function(control, data) end)
 	ZO_ScrollList_AddDataType(USPF_GUI_Body_PDGBE_ListHolder, USPF_LIST_DATA_TYPE, "USPF_PDGBETemplate", 18, function(control, data) self:SetupGdqItem(control, data, USPF.settings.PDB.font) end)
 	ZO_ScrollList_AddDataType(USPF_GUI_Body_PDGBE_ListHolder, USPF_LIST_SEPARATOR_TYPE, "USPF_ListSeparator", 2, function(control, data) end)
 	ZO_ScrollList_AddDataType(USPF_GUI_Body_GSP_ListHolder, USPF_LIST_DATA_TYPE, "USPF_GeneralTemplate", 18, function(control, data) self:SetupGeneralItem(control, data) end)

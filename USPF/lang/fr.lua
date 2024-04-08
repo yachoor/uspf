@@ -66,9 +66,6 @@ SafeAddString(USPF_SETTINGS_OVERRIDE_EWC_SET_DESC,		"Ce paramètre vous permet d
 SafeAddString(USPF_GUI_CHAR_LEVEL,						"Niveau du Personnage")
 SafeAddString(USPF_GUI_MAIN_QUEST,						"Quête Principale")
 SafeAddString(USPF_GUI_FOLIUM,							"Folium Discognitum")
-SafeAddString(USPF_GUI_MW_CHAR,							"Personnage de Morrowind")
-SafeAddString(USPF_GUI_SU_CHAR,							"Personnage de Couchant")
-SafeAddString(USPF_GUI_EW_CHAR,							"Personnage de Elsweyr")
 SafeAddString(USPF_GUI_AVA_RANK,						"Rang de Guerre de L'Alliance")
 SafeAddString(USPF_GUI_MAEL_ARENA,						"Arène de Maelström")
 

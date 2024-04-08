@@ -71,11 +71,6 @@ SafeAddString(USPF_SETTINGS_OVERRIDE_BWC_SET_DESC,                 "此设置允
 SafeAddString(USPF_GUI_CHAR_LEVEL,                                 "角色等级")
 SafeAddString(USPF_GUI_MAIN_QUEST,                                 "主线任务")
 SafeAddString(USPF_GUI_FOLIUM,                                     "狂言魔典")
-SafeAddString(USPF_GUI_MW_CHAR,                                    "晨风章节")
-SafeAddString(USPF_GUI_SU_CHAR,                                    "夏幕岛章节")
-SafeAddString(USPF_GUI_EW_CHAR,                                    "艾斯维尔章节")
-SafeAddString(USPF_GUI_GM_CHAR,                                    "灰沼章节")
-SafeAddString(USPF_GUI_BW_CHAR,                                    "黑木章节")
 SafeAddString(USPF_GUI_AVA_RANK,                                   "联盟战争等级")
 SafeAddString(USPF_GUI_MAEL_ARENA,                                 "漩涡竞技场")
 

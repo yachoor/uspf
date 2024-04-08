@@ -66,9 +66,6 @@ SafeAddString(USPF_SETTINGS_OVERRIDE_EWC_SET_DESC,		"Mit dieser Einstellung kön
 SafeAddString(USPF_GUI_CHAR_LEVEL,						"Charakterstufe")
 SafeAddString(USPF_GUI_MAIN_QUEST,						"Hauptaufgabe")
 SafeAddString(USPF_GUI_FOLIUM,							"Folium Discognitum")
-SafeAddString(USPF_GUI_MW_CHAR,							"Morrowind Charakter")
-SafeAddString(USPF_GUI_SU_CHAR,							"Summerset Charakter")
-SafeAddString(USPF_GUI_EW_CHAR,							"Elsweyr Charakter")
 SafeAddString(USPF_GUI_AVA_RANK,						"Allianz Kriegsrang")
 SafeAddString(USPF_GUI_MAEL_ARENA,						"Mahlstrom-Arena")
 

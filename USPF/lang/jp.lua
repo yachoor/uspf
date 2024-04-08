@@ -66,9 +66,6 @@ SafeAddString(USPF_SETTINGS_OVERRIDE_EWC_SET_DESC,		"この設定では、USPF�
 SafeAddString(USPF_GUI_CHAR_LEVEL,						"キャラクターレベル")
 SafeAddString(USPF_GUI_MAIN_QUEST,						"メインクエスト")
 SafeAddString(USPF_GUI_FOLIUM,							"フォリム・ディスコニタム")
-SafeAddString(USPF_GUI_MW_CHAR,							"モロウウィンドキャラクター")
-SafeAddString(USPF_GUI_SU_CHAR,							"サマーセットキャラクター")
-SafeAddString(USPF_GUI_EW_CHAR,							"エルスウェアのキャラクター")
 SafeAddString(USPF_GUI_AVA_RANK,						"同盟戦争ランク")
 SafeAddString(USPF_GUI_MAEL_ARENA,						"メイルストローム・アリーナ")
 

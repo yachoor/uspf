@@ -73,11 +73,6 @@ SafeAddString(USPF_SETTINGS_OVERRIDE_BWC_SET_DESC, "Эта настройка п
 SafeAddString(USPF_GUI_CHAR_LEVEL, "Уровень персонажа")
 SafeAddString(USPF_GUI_MAIN_QUEST, "Основная сюжетная линия")
 SafeAddString(USPF_GUI_FOLIUM, "Folium Discognitum")
-SafeAddString(USPF_GUI_MW_CHAR, "Обучение Морровинда")
-SafeAddString(USPF_GUI_SU_CHAR, "Обучение Саммерсета")
-SafeAddString(USPF_GUI_EW_CHAR, "Обучение Эльсвейра")
-SafeAddString(USPF_GUI_GM_CHAR, "Обучение Греймура")
-SafeAddString(USPF_GUI_BW_CHAR, "Обучение Черного Леса")
 SafeAddString(USPF_GUI_AVA_RANK, "Ранг на войне альянсов")
 SafeAddString(USPF_GUI_MAEL_ARENA, "Вихревая арена")
 

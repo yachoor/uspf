@@ -1,4 +1,10 @@
 # Changelog
+## [7.2.0] - 2024-04-20
+
+### Changed
+
+- Split group dungeons into 2-columns to reduce vertical height
+
 
 ## [7.1.0] - 2024-03-11
 
@@ -242,6 +248,7 @@
 
 - Support for Markarth - The Reach questline and skyshards
 
+[7.2.0]: https://github.com/yachoor/uspf/compare/7.1.0...7.2.0
 [7.1.0]: https://github.com/yachoor/uspf/compare/7.0.2...7.1.0
 [7.0.2]: https://github.com/yachoor/uspf/compare/7.0.1...7.0.2
 [7.0.1]: https://github.com/yachoor/uspf/compare/7.0.0...7.0.1

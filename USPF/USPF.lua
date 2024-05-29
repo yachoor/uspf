@@ -106,7 +106,7 @@ USPF.ptsData = {
 local function USPF_CalculateTotalPoints()
 	local quests = 0
 	local skyshards = 0
-	for _, zi in pairs(USPF.data.zones) do
+	for _, zi in ipairs(USPF.data.zones) do
 		quests = quests + #zi.quests
 		skyshards = skyshards + zi.skyshards[2]
 	end
@@ -166,15 +166,18 @@ local tempZId = {
 }
 
 local zones = {
-	WP = {
+	{
+		key = "WP",
 		quests = {}, -- none
 		skyshards = { 259, 1 },
 	},
-	AD0 = {
+	{
+		key = "AD0",
 		quests = {}, -- none
 		skyshards = { 87,  6},
 	},
-	AD1 = {
+	{
+		key = "AD1",
 		quests = {
 			4222,
 			4345,
@@ -182,7 +185,8 @@ local zones = {
 		},
 		skyshards = { 93, 16},
 	},
-	AD2 = {
+	{
+		key = "AD2",
 		quests = {
 			4868,
 			4386,
@@ -190,7 +194,8 @@ local zones = {
 		},
 		skyshards = {109, 16},
 	},
-	AD3 = {
+	{
+		key = "AD3",
 		quests = {
 			4750,
 			4765,
@@ -198,7 +203,8 @@ local zones = {
 		},
 		skyshards = {125, 16},
 	},
-	AD4 = {
+	{
+		key = "AD4",
 		quests = {
 			4337,
 			4452,
@@ -206,7 +212,8 @@ local zones = {
 		},
 		skyshards = {141, 16},
 	},
-	AD5 = {
+	{
+		key = "AD5",
 		quests = {
 			4712,
 			4479,
@@ -214,15 +221,18 @@ local zones = {
 		},
 		skyshards = {157, 16},
 	},
-	DC0b = {
+	{
+		key = "DC0b",
 		quests = {}, -- none
 		skyshards = {173,  3},
 	},
-	DC0a = {
+	{
+		key = "DC0a",
 		quests = {}, -- none
 		skyshards = {176,  3},
 	},
-	DC1 = {
+	{
+		key = "DC1",
 		quests = {
 			3006,
 			3235,
@@ -231,7 +241,8 @@ local zones = {
 		},
 		skyshards = {179, 16},
 	},
-	DC2 = {
+	{
+		key = "DC2",
 		quests = {
 			467,
 			1633,
@@ -239,7 +250,8 @@ local zones = {
 		},
 		skyshards = {195, 16},
 	},
-	DC3 = {
+	{
+		key = "DC3",
 		quests = {
 			465,
 			4972,
@@ -247,7 +259,8 @@ local zones = {
 		},
 		skyshards = {211, 16},
 	},
-	DC4 = {
+	{
+		key = "DC4",
 		quests = {
 			2192,
 			2222,
@@ -255,7 +268,8 @@ local zones = {
 		},
 		skyshards = {227, 16},
 	},
-	DC5 = {
+	{
+		key = "DC5",
 		quests = {
 			4891,
 			4912,
@@ -263,15 +277,18 @@ local zones = {
 		},
 		skyshards = {243, 16},
 	},
-	EP0b = {
+	{
+		key = "EP0b",
 		quests = {}, -- none
 		skyshards = {  1,  3},
 	},
-	EP0a = {
+	{
+		key = "EP0a",
 		quests = {}, -- none
 		skyshards = {  4,  3},
 	},
-	EP1 = {
+	{
+		key = "EP1",
 		quests = {
 			3735,
 			3634,
@@ -279,7 +296,8 @@ local zones = {
 		},
 		skyshards = {  7, 16},
 	},
-	EP2 = {
+	{
+		key = "EP2",
 		quests = {
 			3797,
 			3817,
@@ -287,7 +305,8 @@ local zones = {
 		},
 		skyshards = { 23, 16},
 	},
-	EP3 = {
+	{
+		key = "EP3",
 		quests = {
 			4590,
 			4606,
@@ -295,7 +314,8 @@ local zones = {
 		},
 		skyshards = { 39, 16},
 	},
-	EP4 = {
+	{
+		key = "EP4",
 		quests = {
 			4061,
 			4115,
@@ -303,7 +323,8 @@ local zones = {
 		},
 		skyshards = { 55, 16},
 	},
-	EP5 = {
+	{
+		key = "EP5",
 		quests = {
 			3968,
 			4139,
@@ -311,7 +332,8 @@ local zones = {
 		},
 		skyshards = { 71, 16},
 	},
-	CH = {
+	{
+		key = "CH",
 		quests = {
 			4602,
 			4730,
@@ -319,37 +341,45 @@ local zones = {
 		},
 		skyshards = {260, 16},
 	},
-	CAD = {
+	{
+		key = "CAD",
 		quests = {}, -- none
 		skyshards = {306, 15},
 	},
-	CDC = {
+	{
+		key = "CDC",
 		quests = {}, -- none
 		skyshards = {291, 15},
 	},
-	CEP = {
+	{
+		key = "CEP",
 		quests = {}, -- none
 		skyshards = {276, 15},
 	},
-	CMT = {
+	{
+		key = "CMT",
 		quests = {}, -- none
 		skyshards = {321,  1},
 	},
-	LCL = {
+	{
+		key = "LCL",
 		quests = {}, -- none
 		skyshards = {322, 12},
 	},
-	UCL = {
+	{
+		key = "UCL",
 		quests = {}, -- none
 		skyshards = {334,  6},
 	},
-	IC = {
+	{
+		key = "IC",
 		quests = {
 			5482,
 		},
 		skyshards = {340, 13},
 	},
-	WR = {
+	{
+		key = "WR",
 		quests = {
 			5447,
 			5468,
@@ -357,7 +387,8 @@ local zones = {
 		},
 		skyshards = {353, 17},
 	},
-	HB = {
+	{
+		key = "HB",
 		quests = {
 			5531,
 			5534,
@@ -368,7 +399,8 @@ local zones = {
 		},
 		skyshards = {370,  6},
 	},
-	GC = {
+	{
+		key = "GC",
 		quests = {
 			5540,
 			5595,
@@ -381,7 +413,8 @@ local zones = {
 		},
 		skyshards = {376,  6},
 	},
-	VV = {
+	{
+		key = "VV",
 		quests = {
 			6003,
 			5922,
@@ -389,7 +422,8 @@ local zones = {
 		},
 		skyshards = {382, 18},
 	},
-	CC = {
+	{
+		key = "CC",
 		quests = {
 			6050,
 			6057,
@@ -402,7 +436,8 @@ local zones = {
 		},
 		skyshards = {400,  6},
 	},
-	SU = {
+	{
+		key = "SU",
 		quests = {
 			6132,
 			6113,
@@ -410,7 +445,8 @@ local zones = {
 		},
 		skyshards = {406, 18},
 	},
-	MM = {
+	{
+		key = "MM",
 		quests = {
 			6246,
 			6266,
@@ -422,7 +458,8 @@ local zones = {
 		},
 		skyshards = {424,  6},
 	},
-	NE = {
+	{
+		key = "NE",
 		quests = {
 			6336,
 			6304,
@@ -430,7 +467,8 @@ local zones = {
 		},
 		skyshards = {430, 18},
 	},
-	SE = {
+	{
+		key = "SE",
 		quests = {
 			6401,
 			6409,
@@ -444,7 +482,8 @@ local zones = {
 		},
 		skyshards = {448,  6},
 	},
-	WS = {
+	{
+		key = "WS",
 		quests = {
 			6476,
 			6466,
@@ -452,7 +491,8 @@ local zones = {
 		},
 		skyshards = {454, 18},
 	},
-	TR = {
+	{
+		key = "TR",
 		quests = {
 			6550,
 			6551,
@@ -466,7 +506,8 @@ local zones = {
 		},
 		skyshards = {472,  6},
 	},
-	BW = {
+	{
+		key = "BW",
 		quests = {
 			6616,
 			6619,
@@ -474,7 +515,8 @@ local zones = {
 		},
 		skyshards = {478, 18},
 	},
-	TD = {
+	{
+		key = "TD",
 		quests = {
 			6723,
 			6724,
@@ -488,7 +530,8 @@ local zones = {
 		},
 		skyshards = {496,  6},
 	},
-	HI = {
+	{
+		key = "HI",
 		quests = {
 			6753, -- Peaople of Import
 			6765, -- To Catch a Magus
@@ -498,7 +541,8 @@ local zones = {
 		},
 		skyshards = {504, 18},
 	},
-	GY = {
+	{
+		key = "GY",
 		quests = {
 			6849, -- A Sea of Troubles - MQ 1
 			6850, -- Tides of Ruin - MQ 2
@@ -512,7 +556,8 @@ local zones = {
 		},
 		skyshards = {522,  6},
 	},
-	AP = {
+	{
+		key = "AP",
 		quests = {
 			6971, -- Fate's Proxy
 			6972, -- Keeper Of the Fate
@@ -526,7 +571,8 @@ local zones = {
 		},
 		skyshards = {528, 18},
 	},
-	WW = {
+	{
+		key = "WW",
 		quests = {
 			7071, -- Paths of Chaos
 			7072, -- Seeds of Suspicion
@@ -740,13 +786,13 @@ local function GetZoneTooltipText(zone)
     local function FormatProgress(points, total)
         return ColorCompletion(points .."/".. total, points ~= "?" and points >= total)
 	end
-	local quests = { GetQuestTooltipText(USPF.data.zones[zone].quests).."\n" }
+	local quests = { GetQuestTooltipText(zone.quests).."\n" }
 	for _, char in ipairs(USPF.charData) do
 		local charPointsData = USPF.sVar.ptsData[char.charId]
-		local questPoints = charPointsData.ZQ[zone] or "?"
-		local questTotal = #USPF.data.zones[zone].quests
-		local skyShardPoints = charPointsData.SS[zone] or "?"
-		local skyShardTotal = USPF.data.zones[zone].skyshards[2]
+		local questPoints = charPointsData.ZQ[zone.key] or "?"
+		local questTotal = #zone.quests
+		local skyShardPoints = charPointsData.SS[zone.key] or "?"
+		local skyShardTotal = zone.skyshards[2]
 		local txt = questTotal ~= 0 and FormatProgress(questPoints, questTotal) .. "  " or ""
 		table.insert(quests, txt .. FormatProgress(skyShardPoints, skyShardTotal) .. "  " .. char.charName)
 	end
@@ -977,21 +1023,14 @@ local function USPF_UpdateGUITable(sVarPtsData)
 		CharacterTot = strF("%s: %d/%d (%s %s)", GS(USPF_GUI_CHAR_TOTAL), sVarPtsData.Tot, USPF.ptsTots.Tot, sVarPtsData.Unassigned and tostring(sVarPtsData.Unassigned) or "?", GS(USPF_GUI_UNASSIGNED)),
 	}
 
-	local defaultZoneOrder = {
-		"WP", "AD0", "AD1", "AD2", "AD3", "AD4", "AD5", "DC0b", "DC0a", "DC1", "DC2", "DC3", "DC4", "DC5",
-		"EP0b", "EP0a", "EP1", "EP2", "EP3", "EP4", "EP5", "CH", "CAD", "CDC", "CEP", "CMT", "LCL", "UCL",
-		"IC", "WR", "HB", "GC", "VV", "CC", "SU", "MM", "NE", "SE", "WS", "TR", "BW", "TD", "HI", "GY",
-		"AP", "WW"
-	}
-
-	for i, z in ipairs(defaultZoneOrder) do
+	for i, z in ipairs(USPF.data.zones) do
         table.insert(USPF.GUI.SQS, {
             i,
-            USPF_GetZoneName(z),
-            GetSV(sVarPtsData.ZQ[z]),
-            #USPF.data.zones[z].quests,
-            GetSV(sVarPtsData.SS[z]),
-            USPF.data.zones[z].skyshards[2],
+            USPF_GetZoneName(z.key),
+            GetSV(sVarPtsData.ZQ[z.key]),
+            #z.quests,
+            GetSV(sVarPtsData.SS[z.key]),
+            z.skyshards[2],
             GetZoneTooltipText(z)
         })
     end
@@ -1045,12 +1084,12 @@ local function USPF_SetQuestPoints()
 
 	USPF.ptsData.EndlArch = (GCQI(USPF.data.EA[1]) ~= "") and 1 or 0
 
-	for zn, zd in pairs(USPF.data.zones) do
-		USPF.ptsData.ZQ[zn] = 0
+	for _, zd in ipairs(USPF.data.zones) do
+		USPF.ptsData.ZQ[zd.key] = 0
 		for i=1, #zd.quests do
-			USPF.ptsData.ZQ[zn] = USPF.ptsData.ZQ[zn] + ((GCQI(zd.quests[i]) ~= "") and 1 or 0)
+			USPF.ptsData.ZQ[zd.key] = USPF.ptsData.ZQ[zd.key] + ((GCQI(zd.quests[i]) ~= "") and 1 or 0)
 		end
-		USPF.ptsData.ZQTot = USPF.ptsData.ZQTot + USPF.ptsData.ZQ[zn]
+		USPF.ptsData.ZQTot = USPF.ptsData.ZQTot + USPF.ptsData.ZQ[zd.key]
 	end
 
 	--Group Dungeon Quest Skill Points
@@ -1091,14 +1130,14 @@ local function USPF_SetPublicDungeonPoints()
 end
 
 local function USPF_SetSkyshardPoints()
-	for k,_ in pairs(USPF.ptsData.SS) do
-        local v = USPF.data.zones[k].skyshards
+	for _, zd in ipairs(USPF.data.zones) do
+        local v = zd.skyshards
 		for i=v[1], v[1] + v[2] - 1 do
             if GetSkyshardDiscoveryStatus(i) == SKYSHARD_DISCOVERY_STATUS_ACQUIRED then
-                USPF.ptsData.SS[k] = USPF.ptsData.SS[k] + 1
+                USPF.ptsData.SS[zd.key] = USPF.ptsData.SS[zd.key] + 1
             end
 		end
-		USPF.ptsData.numSSTot = USPF.ptsData.numSSTot + USPF.ptsData.SS[k]
+		USPF.ptsData.numSSTot = USPF.ptsData.numSSTot + USPF.ptsData.SS[zd.key]
 	end
 
 	--Calculate the total and round for points.

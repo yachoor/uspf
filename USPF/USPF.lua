@@ -82,7 +82,7 @@ USPF.ptsData = {
 		DC1 = 0, DC2 = 0, DC3 = 0, DC4 = 0, DC5 = 0, EP0a = 0, EP0b = 0, EP1  = 0,
 		EP2 = 0, EP3 = 0, EP4 = 0, EP5 = 0, CH  = 0, CAD  = 0, CDC  = 0, CEP  = 0,
 		CMT = 0, LCL = 0, UCL = 0, IC  = 0, WR  = 0, HB   = 0, GC   = 0, VV   = 0,
-		CC  = 0, MQ  = 0, SU  = 0, MM  = 0, NE  = 0, SE   = 0, WS   = 0, TR   = 0,
+		CC  = 0, WP  = 0, SU  = 0, MM  = 0, NE  = 0, SE   = 0, WS   = 0, TR   = 0,
 		BW  = 0, TD  = 0, HI  = 0, GY  = 0, AP  = 0, WW   = 0,
 	},
 	GD = {
@@ -121,7 +121,7 @@ USPF.ptsTots = {	--Tot and GenTot are 494 and 129 because you can't do more than
 		DC0b = 3,  DC1 = 16, DC2 = 16, DC3 = 16, DC4 = 16, DC5 = 16, EP0a = 3,
 		EP0b = 3,  EP1 = 16, EP2 = 16, EP3 = 16, EP4 = 16, EP5 = 16, CH   = 16,
 		CAD  = 15, CDC = 15, CEP = 15, CMT = 1,  LCL = 12, UCL = 6,  IC   = 13,
-		WR   = 17, HB  = 6,  GC  = 6,  VV  = 18, CC  = 6,  MQ  = 1,  SU   = 18,
+		WR   = 17, HB  = 6,  GC  = 6,  VV  = 18, CC  = 6,  WP  = 1,  SU   = 18,
 		MM   = 6,  NE  = 18, SE  = 6,  WS  = 18, TR  = 6,  BW  = 18, TD   = 6,
 		HI   = 18, GY  = 6,  AP  = 18, WW  = 18,
 	},
@@ -497,7 +497,7 @@ USPF.data = {
 	},
 	SS = {
 		-- First skyshard ID, count
-		MQ   = {259,  1},
+		WP   = {259,  1},
 		AD0  = { 87,  6},
 		AD1  = { 93, 16},
 		AD2  = {109, 16},
@@ -736,7 +736,7 @@ end
 
 local function USPF_UpdateGUITable(sVarPtsData)
 	local questTooltips = {
-		WP	 = GS(USPF_QUEST_NONE).."\n\n"..GetZoneTooltipText("MQ"),
+		WP	 = GS(USPF_QUEST_NONE).."\n\n"..GetZoneTooltipText("WP"),
 		AD0	 = GS(USPF_QUEST_NONE).."\n\n"..GetZoneTooltipText("AD0"),
 		AD1  = GetQuestTooltipText("AD1").."\n\n"..GetZoneTooltipText("AD1"),
 		AD2  = GetQuestTooltipText("AD2").."\n\n"..GetZoneTooltipText("AD2"),
@@ -800,7 +800,7 @@ local function USPF_UpdateGUITable(sVarPtsData)
 		},
 		GSP_T = strF("%s: %d/%d", GS(USPF_GUI_TOTAL), sVarPtsData.GenTot, USPF.ptsTots.GenTot),
 		SQS = {
-			{ 1, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.WP)),						GetSV(sVarPtsData.ZQ.WP),	USPF.ptsTots.ZQ.WP,		GetSV(sVarPtsData.SS.MQ),	USPF.ptsTots.SS.MQ,		questTooltips.WP},
+			{ 1, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.WP)),						GetSV(sVarPtsData.ZQ.WP),	USPF.ptsTots.ZQ.WP,		GetSV(sVarPtsData.SS.WP),	USPF.ptsTots.SS.WP,		questTooltips.WP},
 			{ 2, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.AD0)),						GetSV(sVarPtsData.ZQ.AD0),	USPF.ptsTots.ZQ.AD0,	GetSV(sVarPtsData.SS.AD0),	USPF.ptsTots.SS.AD0,	questTooltips.AD0},
 			{ 3, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.AD1)),						GetSV(sVarPtsData.ZQ.AD1),	USPF.ptsTots.ZQ.AD1,	GetSV(sVarPtsData.SS.AD1),	USPF.ptsTots.SS.AD1,	questTooltips.AD1},
 			{ 4, zf("<<C:1>>",			GZNBId(USPF.data.ZId.ZN.AD2)),						GetSV(sVarPtsData.ZQ.AD2),	USPF.ptsTots.ZQ.AD2,	GetSV(sVarPtsData.SS.AD2),	USPF.ptsTots.SS.AD2,	questTooltips.AD2},
@@ -1588,6 +1588,9 @@ local function USPF_MigrateSavedVariables()
 			zonePoints[new] = zonePoints[new] or zonePoints[old]
 			zonePoints[old] = nil
 		end
+		local skyshards = USPF.sVar.ptsData[char.charId].SS
+		skyshards["WP"] = skyshards["WP"] or skyshards["MQ"]
+		skyshards["MQ"] = nil
 	end
 end
 

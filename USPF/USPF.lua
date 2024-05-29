@@ -103,12 +103,34 @@ USPF.ptsData = {
 	},
 }
 
-USPF.ptsTots = {	--Tot and GenTot are 494 and 129 because you can't do more than one DLC tutorial.
-	Tot		= 560, GenTot = 130, ZQTot	= 155, numSSTot	= 561, SSTot  = 187,
-	GDTot	=  54, PDTot  =  34, Level	=  64, MainQ	=  11, FolDis =   2,
-	MWChar	=   1, SUChar =   1, EWChar	=   1, GMChar	=   1, BWChar =   1,
-	PvPRank	=  50, MaelAr =   1, EndlArch	=   1,
-}
+local function USPF_CalculateTotalPoints()
+	local quests = 0
+	local skyshards = 0
+	for _, zi in pairs(USPF.data.zones) do
+		quests = quests + #zi.quests
+		skyshards = skyshards + zi.skyshards[2]
+	end
+
+	local points = {
+		ZQTot = quests,
+		numSSTot = skyshards,
+		SSTot = math.floor(skyshards / 3),
+		GDTot = NonContiguousCount(USPF.data.GD),
+		PDTot = NonContiguousCount(USPF.data.PD),
+		Level = 64,
+		MainQ = #USPF.data.MQ,
+		FolDis = 2,
+		PvPRank = 50,
+		MaelAr = 1,
+		EndlArch = 1
+	}
+
+	local tutorial = 1
+	points.GenTot = points.Level + points.MainQ + points.FolDis + tutorial + points.PvPRank + points.MaelAr + points.EndlArch
+	points.Tot = points.GenTot + points.GDTot + points.ZQTot + points.SSTot + points.PDTot
+
+	return points
+end
 
 local tempZId = {
 	ZN = {
@@ -1669,6 +1691,8 @@ local function USPF_CreateCharList()
 end
 
 local function USPF_InitSetup()
+	USPF.ptsTots = USPF_CalculateTotalPoints()
+
 	local charIdKnown = {}
 	for i = 1, GetNumCharacters() do
 		local name, _, _, _, _, _, id, _ = GetCharacterInfo(i)

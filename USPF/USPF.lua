@@ -572,7 +572,13 @@ USPF.data = {
 	ZId = tempZId,
 	MAAch = 1304,
 	zones = zones,
-	EO = { 6324 },
+	tutorials = {
+		EO = 6324,
+		MO = 5804,
+		SO = 6143,
+		GO = 6455,
+		BO = 6646,
+	},
 	GD = {
 		{ key = "BC1", id = 380, zone = "AD1", quest = 4107 },
 		{ key = "BC2", id = 935, zone = "AD1", quest = 4597 },
@@ -629,7 +635,6 @@ USPF.data = {
 		{ key = "OP", id = 1470, zone = "TR", quest = 7105, },
 		{ key = "BV", id = 1471, zone = "WR", quest = 7155, },
 	},
-	MO = { 5804 },
 	MQ = {	--1003
 		4296,
 		4831,
@@ -643,9 +648,6 @@ USPF.data = {
 		4832,
 		4847,
 	},
-	SO = { 6143 },
-	GO = { 6455 },
-	BO = { 6646 },
 	EA = { 7061 },
 	PD = {
 		{ key = "AD1", id = 486, zone = "AD1", achievement = 468 },
@@ -980,19 +982,19 @@ local function USPF_SetQuestPoints()
 	end
 
 	--Morrowind Only Character Quest Skill Points
-	USPF.ptsData.MWChar = (GCQI(USPF.data.MO[1]) ~= "" or USPF.settings.MWC) and 1 or 0
+	USPF.ptsData.MWChar = (GCQI(USPF.data.tutorials.MO) ~= "" or USPF.settings.MWC) and 1 or 0
 
 	--Summerset Only Character Quest Skill Points
-	USPF.ptsData.SUChar = (GCQI(USPF.data.SO[1]) ~= "" or USPF.settings.SSC) and 1 or 0
+	USPF.ptsData.SUChar = (GCQI(USPF.data.tutorials.SO) ~= "" or USPF.settings.SSC) and 1 or 0
 
 	--Elsweyr Only Character Quest Skill Points
-	USPF.ptsData.EWChar = (GCQI(USPF.data.EO[1]) ~= "" or USPF.settings.EWC) and 1 or 0
+	USPF.ptsData.EWChar = (GCQI(USPF.data.tutorials.EO) ~= "" or USPF.settings.EWC) and 1 or 0
 
 	--Greymoor Only Character Quest Skill Points
-	USPF.ptsData.GMChar = (GCQI(USPF.data.GO[1]) ~= "" or USPF.settings.GMC) and 1 or 0
+	USPF.ptsData.GMChar = (GCQI(USPF.data.tutorials.GO) ~= "" or USPF.settings.GMC) and 1 or 0
 
 	--Blackwood Only Character Quest Skill Points
-	USPF.ptsData.BWChar = (GCQI(USPF.data.BO[1]) ~= "" or USPF.settings.BWC) and 1 or 0
+	USPF.ptsData.BWChar = (GCQI(USPF.data.tutorials.BO) ~= "" or USPF.settings.BWC) and 1 or 0
 
 	USPF.ptsData.EndlArch = (GCQI(USPF.data.EA[1]) ~= "") and 1 or 0
 

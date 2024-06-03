@@ -115,7 +115,7 @@ local function USPF_CalculateTotalPoints()
 		ZQTot = quests,
 		numSSTot = skyshards,
 		SSTot = math.floor(skyshards / 3),
-		GDTot = NonContiguousCount(USPF.data.GD),
+		GDTot = #USPF.data.GD,
 		PDTot = NonContiguousCount(USPF.data.PD),
 		Level = 64,
 		MainQ = #USPF.data.MQ,
@@ -143,17 +143,6 @@ local tempZId = {
 		MM   =  726, NE   = 1086, WP   =  586, SE  = 1133, WS = 1160, BGC = 1161,
 		TR   = 1207, BW   = 1261, TD   = 1286, HI  = 1318, GY = 1383, AP  = 1413,
 		EA   = 1436, WW   = 1443,
-	},
-	GDN = {
-		BC1 =  380, BC2 =  935, EH1 =  126, EH2 =  931, CA1 =  176, CA2 =  681,
-		TI  =  131, SW  =   31, SC1 =  144, SC2 =  936, WS1 =  146, WS2 =  933,
-		CH1 =  130, CH2 =  932, VF  =   22, BH  =   38, FG1 =  283, FG2 =  934,
-		DC1 =   63, DC2 =  930, AC  =  148, DK  =  449, BC  =   64, VM  =   11,
-		ICP =  678, WGT =  688, CS  =  848, RM  =  843, BF  =  973, FH  =  974,
-		FL  = 1009, SP  = 1010, MHK = 1052, MOS = 1055, DoM = 1081, FV  = 1080,
-		LM  = 1123, MF  = 1122, IR  = 1152, UG  = 1153, SG  = 1197, CT  = 1201,
-		BDV = 1228, TC  = 1229, RPB = 1267, TDC = 1268, CA  = 1301, SR  = 1302,
-		ERE = 1360, GD  = 1361, BS  = 1389, SH =  1390, OP  = 1470, BV  = 1471
 	},
 	PDN = {
 		AD1 =  486, AD2 =  124, AD3 =  137, AD4 =  138, AD5 =  487, DC1 =  284,
@@ -593,60 +582,60 @@ USPF.data = {
 	zones = zones,
 	EO = { 6324 },
 	GD = {
-		BC1 = 4107,
-		BC2 = 4597,
-		EH1 = 4336,
-		EH2 = 4675,
-		CA1 = 4778,
-		CA2 = 5120,
-		TI  = 4538,
-		SW  = 4733,
-		SC1 = 4054,
-		SC2 = 4555,
-		WS1 = 4246,
-		WS2 = 4813,
-		CH1 = 4379,
-		CH2 = 5113,
-		VF  = 4432,
-		BH  = 4589,
-		FG1 = 3993,
-		FG2 = 4303,
-		DC1 = 4145,
-		DC2 = 4641,
-		AC  = 4202,
-		DK  = 4346,
-		BC  = 4469,
-		VM  = 4822,
-		ICP = 5136,
-		WGT = 5342,
-		CS  = 5702,
-		RM  = 5403,
-		BF  = 5889,
-		FH  = 5891,
-		FL  = 6064,
-		SP  = 6065,
-		MHK = 6186,
-		MOS = 6188,
-		DoM = 6251,
-		FV  = 6249,
-		LM  = 6351,
-		MF  = 6349,
-		IR  = 6414,
-		UG  = 6416,
-		SG  = 6505,
-		CT  = 6507,
-		BDV = 6576,
-		TC  = 6578,
-		RPB = 6683,
-		TDC = 6685,
-		CA  = 6740,
-		SR  = 6742,
-		ERE = 6835,
-		GD  = 6837,
-		BS  = 6896,
-		SH  = 7027,
-		OP  = 7105,
-		BV  = 7155,
+		{ key = "BC1", id = 380, zone = "AD1", quest = 4107 },
+		{ key = "BC2", id = 935, zone = "AD1", quest = 4597 },
+		{ key = "EH1", id = 126, zone = "AD2", quest = 4336 },
+		{ key = "EH2", id = 931, zone = "AD2", quest = 4675 },
+		{ key = "CA1", id = 176, zone = "AD3", quest = 4778 },
+		{ key = "CA2", id = 681, zone = "AD3", quest = 5120 },
+		{ key = "TI", id = 131, zone = "AD4", quest = 4538 },
+		{ key = "SW", id = 31, zone = "AD5", quest = 4733 },
+		{ key = "SC1", id = 144, zone = "DC1", quest = 4054 },
+		{ key = "SC2", id = 936, zone = "DC1", quest = 4555 },
+		{ key = "WS1", id = 146, zone = "DC2", quest = 4246 },
+		{ key = "WS2", id = 933, zone = "DC2", quest = 4813 },
+		{ key = "CH1", id = 130, zone = "DC3", quest = 4380 },
+		{ key = "CH2", id = 932, zone = "DC3", quest = 5113 },
+		{ key = "VF", id = 22, zone = "DC4", quest = 4432 },
+		{ key = "BH", id = 38, zone = "DC5", quest = 4589 },
+		{ key = "FG1", id = 283, zone = "EP1", quest = 3993 },
+		{ key = "FG2", id = 934, zone = "EP1", quest = 4303 },
+		{ key = "DC1", id = 63, zone = "EP2", quest = 4145 },
+		{ key = "DC2", id = 930, zone = "EP2", quest = 4641 },
+		{ key = "AC", id = 148, zone = "EP3", quest = 4202 },
+		{ key = "DK", id = 449, zone = "EP4", quest = 4346 },
+		{ key = "BC", id = 64, zone = "EP5", quest = 4469 },
+		{ key = "VM", id = 11, zone = "CH", quest = 4822 },
+		{ key = "ICP", id = 678, zone = "CYD", quest = 5136 },
+		{ key = "WGT", id = 688, zone = "CYD", quest = 5342 },
+		{ key = "CS", id = 848, zone = "EP3", quest = 5702 },
+		{ key = "RM", id = 843, zone = "EP3", quest = 5403 },
+		{ key = "BF", id = 973, zone = "LCL", quest = 5889 },
+		{ key = "FH", id = 974, zone = "LCL", quest = 5891 },
+		{ key = "FL", id = 1009, zone = "DC5", quest = 6064 },
+		{ key = "SP", id = 1010, zone = "DC2", quest = 6065 },
+		{ key = "MHK", id = 1052, zone = "AD5", quest = 6186 },
+		{ key = "MOS", id = 1055, zone = "AD3", quest = 6188 },
+		{ key = "DoM", id = 1081, zone = "GC", quest = 6251 },
+		{ key = "FV", id = 1080, zone = "EP4", quest = 6249 },
+		{ key = "LM", id = 1123, zone = "AD2", quest = 6351 },
+		{ key = "MF", id = 1122, zone = "NE", quest = 6349 },
+		{ key = "IR", id = 1152, zone = "WR", quest = 6414 },
+		{ key = "UG", id = 1153, zone = "DC5", quest = 6416 },
+		{ key = "SG", id = 1197, zone = "BGC", quest = 6505 },
+		{ key = "CT", id = 1201, zone = "WS", quest = 6507 },
+		{ key = "BDV", id = 1228, zone = "GC", quest = 6576 },
+		{ key = "TC", id = 1229, zone = "EP2", quest = 6578 },
+		{ key = "RPB", id = 1267, zone = "DC1", quest = 6683 },
+		{ key = "TDC", id = 1268, zone = "BW", quest = 6685 },
+		{ key = "CA", id = 1301, zone = "SU", quest = 6740 },
+		{ key = "SR", id = 1302, zone = "DC3", quest = 6742 },
+		{ key = "ERE", id = 1360, zone = "HI", quest = 6835 },
+		{ key = "GD", id = 1361, zone = "HI", quest = 6837 },
+		{ key = "BS", id = 1389, zone = "EP1", quest = 6896 },
+		{ key = "SH", id = 1390, zone = "EP5", quest = 7027 },
+		{ key = "OP", id = 1470, zone = "TR", quest = 7105, },
+		{ key = "BV", id = 1471, zone = "WR", quest = 7155, },
 	},
 	MO = { 5804 },
 	MQ = {	--1003
@@ -800,10 +789,10 @@ local function GetZoneTooltipText(zone)
 end
 
 local function GetGDQuestTooltipText(dungeon)
-	local questName = GetQuestName(USPF.data.GD[dungeon])
-	local list = {FormatQuestName(questName, selectedChar == GCCId() and GCQI(USPF.data.GD[dungeon]) ~= "").."\n"}
+	local questName = GetQuestName(dungeon.quest)
+	local list = {FormatQuestName(questName, selectedChar == GCCId() and GCQI(dungeon.quest) ~= "").."\n"}
 	for _, char in ipairs(USPF.charData) do
-		local val = USPF.sVar.ptsData[char.charId].GD[dungeon]
+		local val = USPF.sVar.ptsData[char.charId].GD[dungeon.key]
 		table.insert(list, ColorCompletion(char.charName, val == 1))
 	end
 	return table.concat(list, "\n")
@@ -926,62 +915,7 @@ local function USPF_UpdateGUITable(sVarPtsData)
 		SQS = {},
 		SQS_SL_T = strF("%d/%d", sVarPtsData.ZQTot, USPF.ptsTots.ZQTot),
 		SQS_SS_T = strF("%d/%d", sVarPtsData.SSTot, USPF.ptsTots.SSTot),
-		GDQ = {
-			{ 1, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.BC1)),	GetSV(sVarPtsData.GD.BC1),	GetGDQuestTooltipText("BC1")},
-			{ 2, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.BC2)),	GetSV(sVarPtsData.GD.BC2),	GetGDQuestTooltipText("BC2")},
-			{ 3, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.EH1)),	GetSV(sVarPtsData.GD.EH1),	GetGDQuestTooltipText("EH1")},
-			{ 4, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.EH2)),	GetSV(sVarPtsData.GD.EH2),	GetGDQuestTooltipText("EH2")},
-			{ 5, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.CA1)),	GetSV(sVarPtsData.GD.CA1),	GetGDQuestTooltipText("CA1")},
-			{ 6, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.CA2)),	GetSV(sVarPtsData.GD.CA2),	GetGDQuestTooltipText("CA2")},
-			{ 7, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.TI)),	GetSV(sVarPtsData.GD.TI),	GetGDQuestTooltipText("TI")},
-			{ 8, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.SW)),	GetSV(sVarPtsData.GD.SW),	GetGDQuestTooltipText("SW")},
-			{ 9, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.SC1)),	GetSV(sVarPtsData.GD.SC1),	GetGDQuestTooltipText("SC1")},
-			{10, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.SC2)),	GetSV(sVarPtsData.GD.SC2),	GetGDQuestTooltipText("SC2")},
-			{11, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.WS1)),	GetSV(sVarPtsData.GD.WS1),	GetGDQuestTooltipText("WS1")},
-			{12, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.WS2)),	GetSV(sVarPtsData.GD.WS2),	GetGDQuestTooltipText("WS2")},
-			{13, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.CH1)),	GetSV(sVarPtsData.GD.CH1),	GetGDQuestTooltipText("CH1")},
-			{14, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.CH2)),	GetSV(sVarPtsData.GD.CH2),	GetGDQuestTooltipText("CH2")},
-			{15, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.VF)),	GetSV(sVarPtsData.GD.VF),	GetGDQuestTooltipText("VF")},
-			{16, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.BH)),	GetSV(sVarPtsData.GD.BH),	GetGDQuestTooltipText("BH")},
-			{17, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.FG1)),	GetSV(sVarPtsData.GD.FG1),	GetGDQuestTooltipText("FG1")},
-			{18, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.FG2)),	GetSV(sVarPtsData.GD.FG2),	GetGDQuestTooltipText("FG2")},
-			{19, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.DC1)),	GetSV(sVarPtsData.GD.DC1),	GetGDQuestTooltipText("DC1")},
-			{20, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.DC2)),	GetSV(sVarPtsData.GD.DC2),	GetGDQuestTooltipText("DC2")},
-			{21, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.AC)),	GetSV(sVarPtsData.GD.AC),	GetGDQuestTooltipText("AC")},
-			{22, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.DK)),	GetSV(sVarPtsData.GD.DK),	GetGDQuestTooltipText("DK")},
-			{23, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.BC)),	GetSV(sVarPtsData.GD.BC),	GetGDQuestTooltipText("BC")},
-			{24, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.CH)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.VM)),	GetSV(sVarPtsData.GD.VM),	GetGDQuestTooltipText("VM")},
-			{25, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.CYD)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.ICP)),	GetSV(sVarPtsData.GD.ICP),	GetGDQuestTooltipText("ICP")},
-			{26, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.CYD)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.WGT)),	GetSV(sVarPtsData.GD.WGT),	GetGDQuestTooltipText("WGT")},
-			{27, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.CS)),	GetSV(sVarPtsData.GD.CS),	GetGDQuestTooltipText("CS")},
-			{28, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.RM)),	GetSV(sVarPtsData.GD.RM),	GetGDQuestTooltipText("RM")},
-			{29, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.CL)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.BF)),	GetSV(sVarPtsData.GD.BF),	GetGDQuestTooltipText("BF")},
-			{30, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.CL)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.FH)),	GetSV(sVarPtsData.GD.FH),	GetGDQuestTooltipText("FH")},
-			{31, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.FL)),	GetSV(sVarPtsData.GD.FL),	GetGDQuestTooltipText("FL")},
-			{32, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.SP)),	GetSV(sVarPtsData.GD.SP),	GetGDQuestTooltipText("SP")},
-			{33, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.MHK)),	GetSV(sVarPtsData.GD.MHK),	GetGDQuestTooltipText("MHK")},
-			{34, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.MOS)),	GetSV(sVarPtsData.GD.MOS),	GetGDQuestTooltipText("MOS")},
-			{35, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.GC)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.DoM)),	GetSV(sVarPtsData.GD.DoM),	GetGDQuestTooltipText("DoM")},
-			{36, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.FV)),	GetSV(sVarPtsData.GD.FV),	GetGDQuestTooltipText("FV")},
-			{37, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.LM)),	GetSV(sVarPtsData.GD.LM),	GetGDQuestTooltipText("LM")},
-			{38, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.NE)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.MF)),	GetSV(sVarPtsData.GD.MF),	GetGDQuestTooltipText("MF")},
-			{39, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.WR)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.IR)),	GetSV(sVarPtsData.GD.IR),	GetGDQuestTooltipText("IR")},
-			{40, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.UG)),	GetSV(sVarPtsData.GD.UG),	GetGDQuestTooltipText("UG")},
-			{41, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BGC)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.SG)),	GetSV(sVarPtsData.GD.SG),	GetGDQuestTooltipText("SG")},
-			{42, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.WS)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.CT)),	GetSV(sVarPtsData.GD.CT),	GetGDQuestTooltipText("CT")},
-			{43, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.GC)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.BDV)),	GetSV(sVarPtsData.GD.BDV),	GetGDQuestTooltipText("BDV")},
-			{44, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.TC)),	GetSV(sVarPtsData.GD.TC),	GetGDQuestTooltipText("TC")},
-			{45, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.RPB)),	GetSV(sVarPtsData.GD.RPB),	GetGDQuestTooltipText("RPB")},
-			{46, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BW)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.TDC)),	GetSV(sVarPtsData.GD.TDC),	GetGDQuestTooltipText("TDC")},
-			{47, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.SU)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.CA)),	GetSV(sVarPtsData.GD.CA),	GetGDQuestTooltipText("CA")},
-			{48, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.SR)),	GetSV(sVarPtsData.GD.SR),	GetGDQuestTooltipText("SR")},
-			{49, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.HI)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.ERE)),	GetSV(sVarPtsData.GD.ERE),	GetGDQuestTooltipText("ERE")},
-			{50, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.HI)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.GD)),	GetSV(sVarPtsData.GD.GD),	GetGDQuestTooltipText("GD")},
-			{51, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.BS)),	GetSV(sVarPtsData.GD.BS),	GetGDQuestTooltipText("BS")},
-			{52, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.SH)),	GetSV(sVarPtsData.GD.SH),	GetGDQuestTooltipText("SH")},
-			{53, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.TR)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.OP)),	GetSV(sVarPtsData.GD.OP),	GetGDQuestTooltipText("OP")},
-			{54, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.WR)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.GDN.BV)),	GetSV(sVarPtsData.GD.BV),	GetGDQuestTooltipText("BV")},
-		},
+		GDQ = {},
 		GDQ_T = strF("%s: %d/%d", GS(USPF_GUI_TOTAL), sVarPtsData.GDTot, USPF.ptsTots.GDTot),
 		PDGBE = {
 			{ 1, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD1)),	GetSV(sVarPtsData.PD.AD1),	GetPDTooltipText("AD1")},
@@ -1033,7 +967,17 @@ local function USPF_UpdateGUITable(sVarPtsData)
             z.skyshards[2],
             GetZoneTooltipText(z)
         })
-    end
+	end
+
+	for i, d in ipairs(USPF.data.GD) do
+        table.insert(USPF.GUI.GDQ, {
+            i,
+            GZNBId(USPF.data.ZId.ZN[d.zone]),
+			GZNBId(d.id),
+            GetSV(sVarPtsData.GD[d.key]),
+            GetGDQuestTooltipText(d)
+        })
+	end
 end
 
 local function USPF_CheckSavedVars(value)
@@ -1093,9 +1037,9 @@ local function USPF_SetQuestPoints()
 	end
 
 	--Group Dungeon Quest Skill Points
-	for k,_ in pairs(USPF.ptsData.GD) do
-		USPF.ptsData.GD[k] = GCQI(USPF.data.GD[k]) ~= "" and 1 or 0
-		USPF.ptsData.GDTot = USPF.ptsData.GDTot + USPF.ptsData.GD[k]
+	for _,d in pairs(USPF.data.GD) do
+		USPF.ptsData.GD[d.key] = GCQI(d.quest) ~= "" and 1 or 0
+		USPF.ptsData.GDTot = USPF.ptsData.GDTot + USPF.ptsData.GD[d.key]
 	end
 
 	--Update saved variables for all.

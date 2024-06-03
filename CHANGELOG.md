@@ -1,4 +1,18 @@
 # Changelog
+## [7.3.0] - 2024-06-03
+
+### Added
+
+- Support for Gold Road chapter - new skillpoints:
+* 8 from main quest
+* 2 from public dungeons
+* 6 from skyshards
+
+### Changed
+
+- Reorganized internal data structures to ease adding new zones, dungeons, etc
+
+
 ## [7.2.0] - 2024-04-20
 
 ### Changed
@@ -248,6 +262,7 @@
 
 - Support for Markarth - The Reach questline and skyshards
 
+[7.3.0]: https://github.com/yachoor/uspf/compare/7.2.0...7.3.0
 [7.2.0]: https://github.com/yachoor/uspf/compare/7.1.0...7.2.0
 [7.1.0]: https://github.com/yachoor/uspf/compare/7.0.2...7.1.0
 [7.0.2]: https://github.com/yachoor/uspf/compare/7.0.1...7.0.2

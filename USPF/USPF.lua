@@ -116,7 +116,7 @@ local function USPF_CalculateTotalPoints()
 		numSSTot = skyshards,
 		SSTot = math.floor(skyshards / 3),
 		GDTot = #USPF.data.GD,
-		PDTot = NonContiguousCount(USPF.data.PD),
+		PDTot = #USPF.data.PD,
 		Level = 64,
 		MainQ = #USPF.data.MQ,
 		FolDis = 2,
@@ -142,15 +142,7 @@ local tempZId = {
 		WR   =  684, HB   =  816, GC   =  823, VV  =  849, CC  = 980, SU  = 1011,
 		MM   =  726, NE   = 1086, WP   =  586, SE  = 1133, WS = 1160, BGC = 1161,
 		TR   = 1207, BW   = 1261, TD   = 1286, HI  = 1318, GY = 1383, AP  = 1413,
-		EA   = 1436, WW   = 1443,
-	},
-	PDN = {
-		AD1 =  486, AD2 =  124, AD3 =  137, AD4 =  138, AD5 =  487, DC1 =  284,
-		DC2 =  142, DC3 =  162, DC4 =  308, DC5 =  169, EP1 =  216, EP2 =  306,
-		EP3 =  134, EP4 =  339, EP5 =  341, CH  =  557, WOO =  706, WRK =  705,
-		VFW =  919, VNC =  918, SKW = 1020, SSH = 1021, RN  = 1089, OC  = 1090,
-		LT  = 1186, NK  = 1187, SH  = 1260, ZA  = 1259, GHB = 1338, SCC = 1337,
-		GO  = 1415, TU  = 1416, LW  = 1466, SI  = 1467,
+		TP   = 1414, EA   = 1436, WW   = 1443,
 	},
 }
 
@@ -656,40 +648,40 @@ USPF.data = {
 	BO = { 6646 },
 	EA = { 7061 },
 	PD = {
-		AD1 =  468,
-		AD2 =  470,
-		AD3 =  445,
-		AD4 =  460,
-		AD5 =  469,
-		DC1 =  380,
-		DC2 =  714,
-		DC3 =  713,
-		DC4 =  707,
-		DC5 =  708,
-		EP1 =  379,
-		EP2 =  388,
-		EP3 =  372,
-		EP4 =  381,
-		EP5 =  371,
-		CH  =  874,
-		VFW = 1855,
-		VNC = 1846,
-		WOO = 1238,
-		WRK = 1235,
-		SKW = 2096,
-		SSH = 2095,
-		RN  = 2444,
-		OC  = 2445,
-		LT  = 2714,
-		NK  = 2715,
-		SH  = 2994,
-		ZA  = 2995,
-		GHB = 3281,
-		SCC = 3283,
-		GO  = 3658,
-		TU  = 3657,
-		LW  = 4000,
-		SI  = 4002,
+		{ key = "AD1", id = 486, zone = "AD1", achievement = 468 },
+		{ key = "AD2", id = 124, zone = "AD2", achievement = 470 },
+		{ key = "AD3", id = 137, zone = "AD3", achievement = 445 },
+		{ key = "AD4", id = 138, zone = "AD4", achievement = 460 },
+		{ key = "AD5", id = 487, zone = "AD5", achievement = 469 },
+		{ key = "DC1", id = 284, zone = "DC1", achievement = 380 },
+		{ key = "DC2", id = 142, zone = "DC2", achievement = 714 },
+		{ key = "DC3", id = 162, zone = "DC3", achievement = 713 },
+		{ key = "DC4", id = 308, zone = "DC4", achievement = 707 },
+		{ key = "DC5", id = 169, zone = "DC5", achievement = 708 },
+		{ key = "EP1", id = 216, zone = "EP1", achievement = 379 },
+		{ key = "EP2", id = 306, zone = "EP2", achievement = 388 },
+		{ key = "EP3", id = 134, zone = "EP3", achievement = 372 },
+		{ key = "EP4", id = 339, zone = "EP4", achievement = 381 },
+		{ key = "EP5", id = 341, zone = "EP5", achievement = 371 },
+		{ key = "CH", id = 557, zone = "CH", achievement = 874 },
+		{ key = "VFW", id = 919, zone = "VV", achievement = 1855 },
+		{ key = "VNC", id = 918, zone = "VV", achievement = 1846 },
+		{ key = "WOO", id = 706, zone = "WR", achievement = 1238 },
+		{ key = "WRK", id = 705, zone = "WR", achievement = 1235 },
+		{ key = "SKW", id = 1020, zone = "SU", achievement = 2096 },
+		{ key = "SSH", id = 1021, zone = "SU", achievement = 2095 },
+		{ key = "RN", id = 1089, zone = "NE", achievement = 2444 },
+		{ key = "OC", id = 1090, zone = "NE", achievement = 2445 },
+		{ key = "LT", id = 1186, zone = "WS", achievement = 2714 },
+		{ key = "NK", id = 1187, zone = "BGC", achievement = 2715 },
+		{ key = "SH", id = 1260, zone = "BW", achievement = 2994 },
+		{ key = "ZA", id = 1259, zone = "BW", achievement = 2995 },
+		{ key = "GHB", id = 1338, zone = "HI", achievement = 3281 },
+		{ key = "SCC", id = 1337, zone = "HI", achievement = 3283 },
+		{ key = "GO", id = 1415, zone = "TP", achievement = 3658 },
+		{ key = "TU", id = 1416, zone = "AP", achievement = 3657 },
+		{ key = "LW", id = 1444, zone = "WW", achievement = 4000 },
+		{ key = "SI", id = 1467, zone = "WW", achievement = 4002 },
 	},
 	racialLineIds = {
 		--RaceId	SkillLineId	Race
@@ -807,9 +799,9 @@ local function GetSV(value)
 end
 
 local function GetPDTooltipText(pdung)
-	local list = { GetAchLink(USPF.data.PD[pdung]) .. "\n" }
+	local list = { GetAchLink(pdung.achievement) .. "\n" }
 	for _, char in ipairs(USPF.charData) do
-		local val = USPF.sVar.ptsData[char.charId].PD[pdung]
+		local val = USPF.sVar.ptsData[char.charId].PD[pdung.key]
 		table.insert(list, ColorCompletion(char.charName, val == 1))
 	end
 	return table.concat(list, "\n")
@@ -917,42 +909,7 @@ local function USPF_UpdateGUITable(sVarPtsData)
 		SQS_SS_T = strF("%d/%d", sVarPtsData.SSTot, USPF.ptsTots.SSTot),
 		GDQ = {},
 		GDQ_T = strF("%s: %d/%d", GS(USPF_GUI_TOTAL), sVarPtsData.GDTot, USPF.ptsTots.GDTot),
-		PDGBE = {
-			{ 1, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD1)),	GetSV(sVarPtsData.PD.AD1),	GetPDTooltipText("AD1")},
-			{ 2, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD2)),	GetSV(sVarPtsData.PD.AD2),	GetPDTooltipText("AD2")},
-			{ 3, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD3)),	GetSV(sVarPtsData.PD.AD3),	GetPDTooltipText("AD3")},
-			{ 4, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD4)),	GetSV(sVarPtsData.PD.AD4),	GetPDTooltipText("AD4")},
-			{ 5, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AD5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.AD5)),	GetSV(sVarPtsData.PD.AD5),	GetPDTooltipText("AD5")},
-			{ 6, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC1)),	GetSV(sVarPtsData.PD.DC1),	GetPDTooltipText("DC1")},
-			{ 7, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC2)),	GetSV(sVarPtsData.PD.DC2),	GetPDTooltipText("DC2")},
-			{ 8, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC3)),	GetSV(sVarPtsData.PD.DC3),	GetPDTooltipText("DC3")},
-			{ 9, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC4)),	GetSV(sVarPtsData.PD.DC4),	GetPDTooltipText("DC4")},
-			{10, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.DC5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.DC5)),	GetSV(sVarPtsData.PD.DC5),	GetPDTooltipText("DC5")},
-			{11, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP1)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP1)),	GetSV(sVarPtsData.PD.EP1),	GetPDTooltipText("EP1")},
-			{12, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP2)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP2)),	GetSV(sVarPtsData.PD.EP2),	GetPDTooltipText("EP2")},
-			{13, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP3)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP3)),	GetSV(sVarPtsData.PD.EP3),	GetPDTooltipText("EP3")},
-			{14, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP4)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP4)),	GetSV(sVarPtsData.PD.EP4),	GetPDTooltipText("EP4")},
-			{15, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.EP5)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.EP5)),	GetSV(sVarPtsData.PD.EP5),	GetPDTooltipText("EP5")},
-			{16, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.CH)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.CH)),	GetSV(sVarPtsData.PD.CH),	GetPDTooltipText("CH")},
-			{17, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.WR)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.WOO)),	GetSV(sVarPtsData.PD.WOO),	GetPDTooltipText("WOO")},
-			{18, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.WR)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.WRK)),	GetSV(sVarPtsData.PD.WRK),	GetPDTooltipText("WRK")},
-			{19, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.VV)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.VFW)),	GetSV(sVarPtsData.PD.VFW),	GetPDTooltipText("VFW")},
-			{20, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.VV)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.VNC)),	GetSV(sVarPtsData.PD.VNC),	GetPDTooltipText("VNC")},
-			{21, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.SU)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.SKW)),	GetSV(sVarPtsData.PD.SKW),	GetPDTooltipText("SKW")},
-			{22, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.SU)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.SSH)),	GetSV(sVarPtsData.PD.SSH),	GetPDTooltipText("SSH")},
-			{23, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.NE)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.OC)),	GetSV(sVarPtsData.PD.OC),	GetPDTooltipText("OC")},
-			{24, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.NE)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.RN)),	GetSV(sVarPtsData.PD.RN),	GetPDTooltipText("RN")},
-			{25, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.WS)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.LT)),	GetSV(sVarPtsData.PD.LT),	GetPDTooltipText("LT")},
-			{26, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BGC)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.NK)),	GetSV(sVarPtsData.PD.NK),	GetPDTooltipText("NK")},
-			{27, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BW)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.SH)),	GetSV(sVarPtsData.PD.SH),	GetPDTooltipText("SH")},
-			{28, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.BW)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.ZA)),	GetSV(sVarPtsData.PD.ZA),	GetPDTooltipText("ZA")},
-			{29, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.HI)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.GHB)),	GetSV(sVarPtsData.PD.GHB),	GetPDTooltipText("GHB")},
-			{30, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.HI)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.SCC)),	GetSV(sVarPtsData.PD.SCC),	GetPDTooltipText("SCC")},
-			{31, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AP)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.GO)),	GetSV(sVarPtsData.PD.GO),	GetPDTooltipText("GO")},
-			{32, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.AP)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.TU)),	GetSV(sVarPtsData.PD.TU),	GetPDTooltipText("TU")},
-			{33, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.WW)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.LW)),	GetSV(sVarPtsData.PD.LW),	GetPDTooltipText("LW")},
-			{34, zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN.WW)),	zf("<<C:1>>", GZNBId(USPF.data.ZId.PDN.SI)),	GetSV(sVarPtsData.PD.SI),	GetPDTooltipText("SI")},
-		},
+		PDGBE = {},
 		PDGBE_T = strF("%s: %d/%d", GS(USPF_GUI_TOTAL), sVarPtsData.PDTot, USPF.ptsTots.PDTot),
 		CharacterTot = strF("%s: %d/%d (%s %s)", GS(USPF_GUI_CHAR_TOTAL), sVarPtsData.Tot, USPF.ptsTots.Tot, sVarPtsData.Unassigned and tostring(sVarPtsData.Unassigned) or "?", GS(USPF_GUI_UNASSIGNED)),
 	}
@@ -978,6 +935,17 @@ local function USPF_UpdateGUITable(sVarPtsData)
             GetGDQuestTooltipText(d)
         })
 	end
+
+	for i, d in ipairs(USPF.data.PD) do
+        table.insert(USPF.GUI.PDGBE, {
+            i,
+            GZNBId(USPF.data.ZId.ZN[d.zone]),
+			GZNBId(d.id),
+            GetSV(sVarPtsData.PD[d.key]),
+            GetPDTooltipText(d)
+        })
+	end
+
 end
 
 local function USPF_CheckSavedVars(value)
@@ -1061,9 +1029,9 @@ local function USPF_SetQuestPoints()
 end
 
 local function USPF_SetPublicDungeonPoints()
-	for k,_ in pairs(USPF.ptsData.PD) do
-		USPF.ptsData.PD[k] = IAchC(USPF.data.PD[k]) and 1 or 0
-		USPF.ptsData.PDTot = USPF.ptsData.PDTot + USPF.ptsData.PD[k]
+	for _,d in ipairs(USPF.data.PD) do
+		USPF.ptsData.PD[d.key] = IAchC(d.achievement) and 1 or 0
+		USPF.ptsData.PDTot = USPF.ptsData.PDTot + USPF.ptsData.PD[d.key]
 	end
 
 	if USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar]) then

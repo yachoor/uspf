@@ -879,17 +879,17 @@ end
 
 local function USPF_GetZoneName(zone)
 	if zone == "CAD" then
-		return GZNBId(USPF.data.ZId.ZN.CAD) .. " AD"
+		return zf("<<C:1>> AD", GZNBId(USPF.data.ZId.ZN.CAD))
 	elseif zone == "CEP" then
-		return GZNBId(USPF.data.ZId.ZN.CEP) .. " EP"
+		return zf("<<C:1>> EP", GZNBId(USPF.data.ZId.ZN.CEP))
 	elseif zone == "CDC" then
-		return GZNBId(USPF.data.ZId.ZN.CDC) .. " DC"
+		return zf("<<C:1>> DC", GZNBId(USPF.data.ZId.ZN.CDC))
 	elseif zone == "LCL" then
-		return GS(USPF_GUI_ZN_LCL) .. " " .. GZNBId(USPF.data.ZId.ZN.CL)
+		return zf("<<C:1>> <<C:2>>", GS(USPF_GUI_ZN_LCL), GZNBId(USPF.data.ZId.ZN.CL))
 	elseif zone == "UCL" then
-		return GS(USPF_GUI_ZN_UCL) .. " " .. GZNBId(USPF.data.ZId.ZN.CL)
+		return zf("<<C:1>> <<C:2>>", GS(USPF_GUI_ZN_UCL), GZNBId(USPF.data.ZId.ZN.CL))
 	end
-	return GZNBId(USPF.data.ZId.ZN[zone])
+	return zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN[zone]))
 end
 
 local function USPF_UpdateGUITable(sVarPtsData)
@@ -931,8 +931,8 @@ local function USPF_UpdateGUITable(sVarPtsData)
 	for i, d in ipairs(USPF.data.GD) do
         table.insert(USPF.GUI.GDQ, {
             i,
-            GZNBId(USPF.data.ZId.ZN[d.zone]),
-			GZNBId(d.id),
+            zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN[d.zone])),
+			zf("<<C:1>>", GZNBId(d.id)),
             GetSV(sVarPtsData.GD[d.key]),
             GetGDQuestTooltipText(d)
         })
@@ -941,8 +941,8 @@ local function USPF_UpdateGUITable(sVarPtsData)
 	for i, d in ipairs(USPF.data.PD) do
         table.insert(USPF.GUI.PDGBE, {
             i,
-            GZNBId(USPF.data.ZId.ZN[d.zone]),
-			GZNBId(d.id),
+            zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN[d.zone])),
+			zf("<<C:1>>", GZNBId(d.id)),
             GetSV(sVarPtsData.PD[d.key]),
             GetPDTooltipText(d)
         })

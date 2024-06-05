@@ -1,4 +1,11 @@
 # Changelog
+## [7.3.2] - 2024-06-05
+
+### Fixed
+
+- Incorrect quest checked for Crypt of Hearts I
+
+
 ## [7.3.1] - 2024-06-04
 
 ### Fixed
@@ -270,6 +277,7 @@
 
 - Support for Markarth - The Reach questline and skyshards
 
+[7.3.2]: https://github.com/yachoor/uspf/compare/7.3.1...7.3.2
 [7.3.1]: https://github.com/yachoor/uspf/compare/7.3.0...7.3.1
 [7.3.0]: https://github.com/yachoor/uspf/compare/7.2.0...7.3.0
 [7.2.0]: https://github.com/yachoor/uspf/compare/7.1.0...7.2.0

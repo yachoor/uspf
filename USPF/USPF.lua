@@ -592,7 +592,7 @@ USPF.data = {
 		{ key = "SC2", id = 936, zone = "DC1", quest = 4555 },
 		{ key = "WS1", id = 146, zone = "DC2", quest = 4246 },
 		{ key = "WS2", id = 933, zone = "DC2", quest = 4813 },
-		{ key = "CH1", id = 130, zone = "DC3", quest = 4380 },
+		{ key = "CH1", id = 130, zone = "DC3", quest = 4379 },
 		{ key = "CH2", id = 932, zone = "DC3", quest = 5113 },
 		{ key = "VF", id = 22, zone = "DC4", quest = 4432 },
 		{ key = "BH", id = 38, zone = "DC5", quest = 4589 },

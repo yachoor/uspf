@@ -1,4 +1,16 @@
 # Changelog
+## [7.3.3] - 2024-06-10
+
+### Added
+
+- Skill point from quest The Wing of the Crow in West Weald
+
+### Fixed
+
+- Multiple tutorials counted if user selected overrides
+
+
+# Changelog
 ## [7.3.2] - 2024-06-05
 
 ### Fixed
@@ -277,6 +289,7 @@
 
 - Support for Markarth - The Reach questline and skyshards
 
+[7.3.3]: https://github.com/yachoor/uspf/compare/7.3.2...7.3.3
 [7.3.2]: https://github.com/yachoor/uspf/compare/7.3.1...7.3.2
 [7.3.1]: https://github.com/yachoor/uspf/compare/7.3.0...7.3.1
 [7.3.0]: https://github.com/yachoor/uspf/compare/7.2.0...7.3.0

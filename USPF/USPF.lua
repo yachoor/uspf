@@ -894,7 +894,7 @@ local function USPF_GetZoneName(zone)
 end
 
 local function USPF_UpdateGUITable(sVarPtsData)
-	local tutorial = GetSV(sVarPtsData.MWChar) + GetSV(sVarPtsData.SUChar) + GetSV(sVarPtsData.EWChar) + GetSV(sVarPtsData.GMChar) + GetSV(sVarPtsData.BWChar)
+	local tutorial = GetSV(sVarPtsData.MWChar) or GetSV(sVarPtsData.SUChar) or GetSV(sVarPtsData.EWChar) or GetSV(sVarPtsData.GMChar) or GetSV(sVarPtsData.BWChar)
 
 	USPF.GUI = {
 		GSP = {
@@ -1144,9 +1144,9 @@ local function USPF_SetFoliumDiscognitumPoints()
 		USPF.ptsData.FolDis = USPF.settings.FD.charHasFD and 2 or 0
 	else
 		local skillPoints = USPF_GetTotSkillPoints()
-		local skillPointsDiff =	USPF.ptsData.Level + USPF.ptsData.MainQ + USPF.ptsData.MWChar +
-								USPF.ptsData.SUChar + USPF.ptsData.EWChar + USPF.ptsData.GMChar +
-								USPF.ptsData.BWChar + USPF.ptsData.PvPRank + USPF.ptsData.MaelAr +
+		local skillPointsDiff =	USPF.ptsData.Level + USPF.ptsData.MainQ + (USPF.ptsData.MWChar or
+								USPF.ptsData.SUChar or USPF.ptsData.EWChar or USPF.ptsData.GMChar or
+								USPF.ptsData.BWChar) + USPF.ptsData.PvPRank + USPF.ptsData.MaelAr +
 								USPF.ptsData.EndlArch + USPF.ptsData.ZQTot + USPF.ptsData.SSTot +
 								USPF.ptsData.GDTot + USPF.ptsData.PDTot
 		USPF.ptsData.FolDis = skillPoints == skillPointsDiff + 2 and 2 or 0
@@ -1186,8 +1186,8 @@ local function USPF_SetUnassigned()
 end
 
 local function USPF_SetGeneralPoints()
-	USPF.ptsData.GenTot =	USPF.ptsData.Level + USPF.ptsData.MainQ + USPF.ptsData.FolDis + USPF.ptsData.MWChar +
-							USPF.ptsData.SUChar + USPF.ptsData.EWChar + USPF.ptsData.GMChar + USPF.ptsData.BWChar +
+	USPF.ptsData.GenTot =	USPF.ptsData.Level + USPF.ptsData.MainQ + USPF.ptsData.FolDis + (USPF.ptsData.MWChar or
+							USPF.ptsData.SUChar or USPF.ptsData.EWChar or USPF.ptsData.GMChar or USPF.ptsData.BWChar) +
 							USPF.ptsData.PvPRank + USPF.ptsData.MaelAr + USPF.ptsData.EndlArch
 
 	--Update saved variables.

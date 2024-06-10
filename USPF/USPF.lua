@@ -563,6 +563,7 @@ local zones = {
 			7076, -- Ithelia's Fury
 			7077, -- Fate of the Forgotten Prince
 			7078, -- In Memory Of
+			7220, -- The Wing of the Crow
 		},
 		skyshards = {546, 18},
 	},

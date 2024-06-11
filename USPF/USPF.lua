@@ -50,11 +50,7 @@ USPF.settings = {
 		override = false,
 		charHasFD = false,
 	},
-	MWC = false,
-	SSC = false,
-	EWC = false,
-	GMC = false,
-	BWC = false,
+	TUT = false,
 }
 
 USPF.defaults = {
@@ -67,8 +63,7 @@ USPF.defaults = {
 USPF.ptsData = {
 	Tot	= 0, GenTot	= 0, ZQTot	= 0, numSSTot	= 0, SSTot	= 0,
 	GDTot	= 0, PDTot	= 0, Level	= 0, MainQ	= 0, FolDis	= 0,
-	MWChar	= 0, SUChar	= 0, EWChar	= 0, GMChar	= 0, BWChar = 0,
-	PvPRank	= 0, MaelAr	= 0, EndlArch	= 0, Unassigned = nil,
+	tutorial = 0, PvPRank	= 0, MaelAr	= 0, EndlArch	= 0, Unassigned = nil,
 	ZQ = {
 		AD0 = 0, AD1 = 0, AD2 = 0, AD3 = 0, AD4 = 0, AD5  = 0, DC0a = 0, DC0b = 0,
 		DC1 = 0, DC2 = 0, DC3 = 0, DC4 = 0, DC5 = 0, EP0a = 0, EP0b = 0, EP1  = 0,
@@ -894,14 +889,12 @@ local function USPF_GetZoneName(zone)
 end
 
 local function USPF_UpdateGUITable(sVarPtsData)
-	local tutorial = GetSV(sVarPtsData.MWChar) or GetSV(sVarPtsData.SUChar) or GetSV(sVarPtsData.EWChar) or GetSV(sVarPtsData.GMChar) or GetSV(sVarPtsData.BWChar)
-
 	USPF.GUI = {
 		GSP = {
 			{ 1, GS(USPF_GUI_CHAR_LEVEL),	GetSV(sVarPtsData.Level),	USPF.ptsTots.Level,		GS(USPF_QUEST_NA) },
 			{ 2, GS(USPF_GUI_MAIN_QUEST),	GetSV(sVarPtsData.MainQ),	USPF.ptsTots.MainQ,		GetMainQuestTooltip() },
 			{ 3, GS(USPF_GUI_FOLIUM),		GetSV(sVarPtsData.FolDis),	USPF.ptsTots.FolDis,	GS(USPF_QUEST_NA) },
-			{ 4, GS(USPF_GUI_TUTORIAL),		tutorial, 1, "" },
+			{ 4, GS(USPF_GUI_TUTORIAL),		GetSV(sVarPtsData.tutorial), 1, "" },
 			{ 5, GS(USPF_GUI_AVA_RANK),		GetSV(sVarPtsData.PvPRank),	USPF.ptsTots.PvPRank,	getTooltipPvPRank() },
 			{ 6, GS(USPF_GUI_MAEL_ARENA),	GetSV(sVarPtsData.MaelAr),	USPF.ptsTots.MaelAr,	getTooltipMaelstrom() },
 			{ 7, zf("<<t:1>>", GZNBId(USPF.data.ZId.ZN.EA)),	GetSV(sVarPtsData.EndlArch),	USPF.ptsTots.EndlArch,	getTooltipEndlessArchive() },
@@ -982,20 +975,12 @@ local function USPF_SetQuestPoints()
 		USPF.ptsData.MainQ = USPF.ptsData.MainQ + ((GCQI(USPF.data.MQ[i]) ~= "") and 1 or 0)
 	end
 
-	--Morrowind Only Character Quest Skill Points
-	USPF.ptsData.MWChar = (GCQI(USPF.data.tutorials.MO) ~= "" or USPF.settings.MWC) and 1 or 0
-
-	--Summerset Only Character Quest Skill Points
-	USPF.ptsData.SUChar = (GCQI(USPF.data.tutorials.SO) ~= "" or USPF.settings.SSC) and 1 or 0
-
-	--Elsweyr Only Character Quest Skill Points
-	USPF.ptsData.EWChar = (GCQI(USPF.data.tutorials.EO) ~= "" or USPF.settings.EWC) and 1 or 0
-
-	--Greymoor Only Character Quest Skill Points
-	USPF.ptsData.GMChar = (GCQI(USPF.data.tutorials.GO) ~= "" or USPF.settings.GMC) and 1 or 0
-
-	--Blackwood Only Character Quest Skill Points
-	USPF.ptsData.BWChar = (GCQI(USPF.data.tutorials.BO) ~= "" or USPF.settings.BWC) and 1 or 0
+	USPF.ptsData.tutorial = (
+		GCQI(USPF.data.tutorials.MO) ~= "" or 
+		GCQI(USPF.data.tutorials.SO) ~= "" or 
+		GCQI(USPF.data.tutorials.EO) ~= "" or 
+		GCQI(USPF.data.tutorials.GO) ~= "" or 
+		GCQI(USPF.data.tutorials.BO) ~= "" or USPF.settings.TUT) and 1 or 0
 
 	USPF.ptsData.EndlArch = (GCQI(USPF.data.EA[1]) ~= "") and 1 or 0
 
@@ -1016,11 +1001,7 @@ local function USPF_SetQuestPoints()
 	--Update saved variables for all.
 	if USPF_CheckSavedVars(USPF.sVar.ptsData[selectedChar]) then
 		USPF.sVar.ptsData[selectedChar].MainQ = USPF.ptsData.MainQ
-		USPF.sVar.ptsData[selectedChar].MWChar = USPF.ptsData.MWChar
-		USPF.sVar.ptsData[selectedChar].SUChar = USPF.ptsData.SUChar
-		USPF.sVar.ptsData[selectedChar].EWChar = USPF.ptsData.EWChar
-		USPF.sVar.ptsData[selectedChar].GMChar = USPF.ptsData.GMChar
-		USPF.sVar.ptsData[selectedChar].BWChar = USPF.ptsData.BWChar
+		USPF.sVar.ptsData[selectedChar].tutorial = USPF.ptsData.tutorial
 		USPF.sVar.ptsData[selectedChar].EndlArch = USPF.ptsData.EndlArch
 
 		USPF.sVar.ptsData[selectedChar].ZQ = USPF_LTF:CopyTable(USPF.ptsData.ZQ)
@@ -1144,9 +1125,7 @@ local function USPF_SetFoliumDiscognitumPoints()
 		USPF.ptsData.FolDis = USPF.settings.FD.charHasFD and 2 or 0
 	else
 		local skillPoints = USPF_GetTotSkillPoints()
-		local skillPointsDiff =	USPF.ptsData.Level + USPF.ptsData.MainQ + (USPF.ptsData.MWChar or
-								USPF.ptsData.SUChar or USPF.ptsData.EWChar or USPF.ptsData.GMChar or
-								USPF.ptsData.BWChar) + USPF.ptsData.PvPRank + USPF.ptsData.MaelAr +
+		local skillPointsDiff =	USPF.ptsData.Level + USPF.ptsData.MainQ + USPF.ptsData.tutorial + USPF.ptsData.PvPRank + USPF.ptsData.MaelAr +
 								USPF.ptsData.EndlArch + USPF.ptsData.ZQTot + USPF.ptsData.SSTot +
 								USPF.ptsData.GDTot + USPF.ptsData.PDTot
 		USPF.ptsData.FolDis = skillPoints == skillPointsDiff + 2 and 2 or 0
@@ -1186,8 +1165,7 @@ local function USPF_SetUnassigned()
 end
 
 local function USPF_SetGeneralPoints()
-	USPF.ptsData.GenTot =	USPF.ptsData.Level + USPF.ptsData.MainQ + USPF.ptsData.FolDis + (USPF.ptsData.MWChar or
-							USPF.ptsData.SUChar or USPF.ptsData.EWChar or USPF.ptsData.GMChar or USPF.ptsData.BWChar) +
+	USPF.ptsData.GenTot =	USPF.ptsData.Level + USPF.ptsData.MainQ + USPF.ptsData.FolDis + USPF.ptsData.tutorial +
 							USPF.ptsData.PvPRank + USPF.ptsData.MaelAr + USPF.ptsData.EndlArch
 
 	--Update saved variables.
@@ -1570,11 +1548,6 @@ local function USPF_LoadSettings(charId)
 			USPF.settings.SQS.progColorZQ = {0.7843, 0.3922, 0}
 			USPF.sVar.settings[charId].SQS.progColorZQ = USPF.settings.SQS.progColorZQ
 		end
-
-		USPF.settings.MWC = USPF.sVar.settings[charId].SSC and false or USPF.sVar.settings[charId].MWC
-		USPF.settings.SSC = USPF.sVar.settings[charId].MWC and false or USPF.sVar.settings[charId].SSC
-		USPF.sVar.settings[charId].MWC = USPF.settings.SSC and false or USPF.settings.MWC
-		USPF.sVar.settings[charId].SSC = USPF.settings.MWC and false or USPF.settings.SSC
 	end
 end
 
@@ -1586,14 +1559,29 @@ local function USPF_MigrateSavedVariables()
 		MW = "VV"
 	}
 	for _, char in ipairs(USPF.charData) do
-		local zonePoints = USPF.sVar.ptsData[char.charId].ZQ
+		local ptsData = USPF.sVar.ptsData[char.charId]
+		local zonePoints = ptsData.ZQ
 		for old, new in pairs(renames) do
 			zonePoints[new] = zonePoints[new] or zonePoints[old]
 			zonePoints[old] = nil
 		end
-		local skyshards = USPF.sVar.ptsData[char.charId].SS
+		local skyshards = ptsData.SS
 		skyshards["WP"] = skyshards["WP"] or skyshards["MQ"]
 		skyshards["MQ"] = nil
+
+		local settings = USPF.sVar.settings[char.charId]
+		settings.TUT = settings.MWC or settings.SSC or settings.EWC or settings.GMC or settings.BWC or settings.TUT
+		settings.MWC = nil
+		settings.SSC = nil
+		settings.EWC = nil
+		settings.GMC = nil
+		settings.BWC = nil
+		ptsData.tutorial = (ptsData.MWChar == 1 or ptsData.SUChar == 1 or ptsData.EWChar == 1 or ptsData.GMChar == 1 or ptsData.BWChar == 1) and 1 or ptsData.tutorial
+		ptsData.MWChar = nil
+		ptsData.SSChar = nil
+		ptsData.EWChar = nil
+		ptsData.GMChar = nil
+		ptsData.BWChar = nil
 	end
 end
 

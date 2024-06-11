@@ -53,20 +53,8 @@ SafeAddString(USPF_SETTINGS_OVERRIDE_WARN,                         "可能导致
 SafeAddString(USPF_SETTINGS_OVERRIDE_FOLIUM_SET,                   "拥有狂言魔典的角色")
 SafeAddString(USPF_SETTINGS_OVERRIDE_FOLIUM_SET_DESC,              "此设置强制USPF内建狂言魔典点数。你必须选择狂言魔典覆盖选项后此功能才起效。")
 
-SafeAddString(USPF_SETTINGS_OVERRIDE_MWC_SET,                      "晨风任务覆盖")
-SafeAddString(USPF_SETTINGS_OVERRIDE_MWC_SET_DESC,                 "此设置允许你忽略USPF内建的晨风入门任务逻辑。这通常只有当你在晨风放出之后创造了一个角色，并跳过了 \"破碎的镣铐\" 入门任务时才需要开启。")
-
-SafeAddString(USPF_SETTINGS_OVERRIDE_SSC_SET,                      "夏幕岛任务覆盖")
-SafeAddString(USPF_SETTINGS_OVERRIDE_SSC_SET_DESC,                 "此设置允许你忽略USPF内建的夏幕岛入门任务逻辑。这通常只有当你在夏幕岛放出之后创造了一个角色，并跳过了 \"灵魂陷阱\" 入门任务时才需要开启。")
-
-SafeAddString(USPF_SETTINGS_OVERRIDE_EWC_SET,                      "艾斯维尔任务覆盖")
-SafeAddString(USPF_SETTINGS_OVERRIDE_EWC_SET_DESC,                 "此设置允许你忽略USPF内建的艾斯维尔入门任务逻辑。这通常只有当你在艾斯维尔放出之后创造了一个角色，并跳过了 \"皓月与暖沙\" 入门任务时才需要开启。")
-
-SafeAddString(USPF_SETTINGS_OVERRIDE_GMC_SET,                      "灰沼任务覆盖")
-SafeAddString(USPF_SETTINGS_OVERRIDE_GMC_SET_DESC,                 "此设置允许你忽略USPF内建的灰沼入门任务逻辑。这通常只有当你在灰沼放出之后创造了一个角色，并跳过了 \"血之约缚\" 入门任务时才需要开启。")
-
-SafeAddString(USPF_SETTINGS_OVERRIDE_BWC_SET,                      "黑木任务覆盖")
-SafeAddString(USPF_SETTINGS_OVERRIDE_BWC_SET_DESC,                 "此设置允许你忽略USPF内建的黑木入门任务逻辑。这通常只有当你在黑木放出之后创造了一个角色，并跳过了 \"坚石之门\" 入门任务时才需要开启。")
+SafeAddString(USPF_SETTINGS_OVERRIDE_TUT_SET,                      "教程任务覆盖")
+SafeAddString(USPF_SETTINGS_OVERRIDE_TUT_SET_DESC,                 "此设置允许你忽略USPF内建的入门任务逻辑。这通常只有当你在晨风放出之后创造了一个角色，并跳过了 入门任务时才需要开启。")
 
 SafeAddString(USPF_GUI_CHAR_LEVEL,                                 "角色等级")
 SafeAddString(USPF_GUI_MAIN_QUEST,                                 "主线任务")

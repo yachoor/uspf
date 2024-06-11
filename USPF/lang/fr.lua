@@ -53,14 +53,8 @@ SafeAddString(USPF_SETTINGS_OVERRIDE_WARN,				"Peut entraîner un nombre total i
 SafeAddString(USPF_SETTINGS_OVERRIDE_FOLIUM_SET,		"Folium Discognitum a un personnage.")
 SafeAddString(USPF_SETTINGS_OVERRIDE_FOLIUM_SET_DESC,	"Ce paramètre force les points Folium Discognitum intégrés de l'USPF. Vous devez sélectionner l'option Folium Discognitum Override pour que cela ait un effet.")
 
-SafeAddString(USPF_SETTINGS_OVERRIDE_MWC_SET,			"Morrowind Quest Override")
-SafeAddString(USPF_SETTINGS_OVERRIDE_MWC_SET_DESC,		"Ce paramètre vous permet de remplacer la logique de caractère de Morrowind intégrée à l'USPF uniquement. Ceci est nécessaire si vous avez créé un personnage après la sortie de Morrowind et avez sauté la quête d'introduction \"Liens Brisés\".")
-
-SafeAddString(USPF_SETTINGS_OVERRIDE_SSC_SET,			"Couchant Quest Override")
-SafeAddString(USPF_SETTINGS_OVERRIDE_SSC_SET_DESC,		"Ce paramètre vous permet de remplacer la logique de caractère uniquement Couchant intégrée de l'USPF. Ceci est nécessaire si vous avez créé un personnage après la sortie de Couchant et avez sauté la quête d'introduction \"Le Piège Mental\".")
-
-SafeAddString(USPF_SETTINGS_OVERRIDE_EWC_SET,			"Elsweyr Quest Override")
-SafeAddString(USPF_SETTINGS_OVERRIDE_EWC_SET_DESC,		"Ce paramètre vous permet de remplacer la logique de caractère de Elsweyr intégrée à l'USPF uniquement. Ceci est nécessaire si vous avez créé un personnage après la sortie de Elsweyr et avez sauté la quête d'introduction \"Vives Lunes, Ssables Cchauds\".")
+SafeAddString(USPF_SETTINGS_OVERRIDE_TUT_SET,			"Remplacement de la quête d'introduction")
+SafeAddString(USPF_SETTINGS_OVERRIDE_TUT_SET_DESC,		"Ce paramètre permet de changer la logique de l'USPF pour la quête d'introduction fait par un caractère. Ceci est nécessaire si votre caractère date d'après l'introduction du DLC de Morrowind et vous avez sauté la quête d'introduction.")
 
 
 SafeAddString(USPF_GUI_CHAR_LEVEL,						"Niveau du Personnage")

@@ -357,55 +357,13 @@ function USPF:SetupMenu(charId)
 					warning = GetString(USPF_SETTINGS_OVERRIDE_WARN),
 				},
 
-				--Character Has Morrowind Broken Bonds Skill Point True/False
+				--Character Has (skipped) the tutorial
 				{
 					type = "checkbox",
-					name = GetString(USPF_SETTINGS_OVERRIDE_MWC_SET),
-					tooltip = GetString(USPF_SETTINGS_OVERRIDE_MWC_SET_DESC),
-					getFunc = function() return (USPF.sVar.settings[charId].MWC ~= nil and USPF.sVar.settings[charId].MWC or false) end,
-					setFunc = function(value) USPF.sVar.settings[charId].MWC = value; USPF.settings.MWC = value end,
-					width = "full", -- or "half" (optional)
-					warning = GetString(USPF_SETTINGS_OVERRIDE_WARN),
-				},
-
-				--Character Has Summerset The Mind Trap Skill Point True/False
-				{
-					type = "checkbox",
-					name = GetString(USPF_SETTINGS_OVERRIDE_SSC_SET),
-					tooltip = GetString(USPF_SETTINGS_OVERRIDE_SSC_SET_DESC),
-					getFunc = function() return (USPF.sVar.settings[charId].SSC ~= nil and USPF.sVar.settings[charId].SSC or false) end,
-					setFunc = function(value) USPF.sVar.settings[charId].SSC = value; USPF.settings.SSC = value end,
-					width = "full", -- or "half" (optional)
-					warning = GetString(USPF_SETTINGS_OVERRIDE_WARN),
-				},
-
-				--Character Has Elsweyr Bright Moons, Warm Sands Skill Point True/False
-				{
-					type = "checkbox",
-					name = GetString(USPF_SETTINGS_OVERRIDE_EWC_SET),
-					tooltip = GetString(USPF_SETTINGS_OVERRIDE_EWC_SET_DESC),
-					getFunc = function() return (USPF.sVar.settings[charId].EWC ~= nil and USPF.sVar.settings[charId].EWC or false) end,
-					setFunc = function(value) USPF.sVar.settings[charId].EWC = value; USPF.settings.EWC = value end,
-					width = "full", -- or "half" (optional)
-					warning = GetString(USPF_SETTINGS_OVERRIDE_WARN),
-				},
-				--Character Has Greymoor Bound in Blood Skill Point True/False
-				{
-					type = "checkbox",
-					name = GetString(USPF_SETTINGS_OVERRIDE_GMC_SET),
-					tooltip = GetString(USPF_SETTINGS_OVERRIDE_GMC_SET_DESC),
-					getFunc = function() return (USPF.sVar.settings[charId].GMC ~= nil and USPF.sVar.settings[charId].GMC or false) end,
-					setFunc = function(value) USPF.sVar.settings[charId].GMC = value; USPF.settings.GMC = value end,
-					width = "full", -- or "half" (optional)
-					warning = GetString(USPF_SETTINGS_OVERRIDE_WARN),
-				},
-				--Character Has Blackwood The Gates of Adamant Skill Point True/False
-				{
-					type = "checkbox",
-					name = GetString(USPF_SETTINGS_OVERRIDE_BWC_SET),
-					tooltip = GetString(USPF_SETTINGS_OVERRIDE_BWC_SET_DESC),
-					getFunc = function() return (USPF.sVar.settings[charId].BWC ~= nil and USPF.sVar.settings[charId].BWC or false) end,
-					setFunc = function(value) USPF.sVar.settings[charId].BWC = value; USPF.settings.BWC = value end,
+					name = GetString(USPF_SETTINGS_OVERRIDE_TUT_SET),
+					tooltip = GetString(USPF_SETTINGS_OVERRIDE_TUT_SET_DESC),
+					getFunc = function() return (USPF.sVar.settings[charId].TUT ~= nil and USPF.sVar.settings[charId].TUT or false) end,
+					setFunc = function(value) USPF.sVar.settings[charId].TUT = value; USPF.settings.TUT = value end,
 					width = "full", -- or "half" (optional)
 					warning = GetString(USPF_SETTINGS_OVERRIDE_WARN),
 				},

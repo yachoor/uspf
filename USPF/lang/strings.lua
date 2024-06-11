@@ -53,20 +53,8 @@ local strings = {
 	USPF_SETTINGS_OVERRIDE_FOLIUM_SET = "Character Has Folium Discognitum",
 	USPF_SETTINGS_OVERRIDE_FOLIUM_SET_DESC = "This setting forces the USPF's built-in Folium Discognitum points. You must select the Folium Discognitum Override option for this to have any effect.",
 
-	USPF_SETTINGS_OVERRIDE_MWC_SET = "Morrowind Quest Override",
-	USPF_SETTINGS_OVERRIDE_MWC_SET_DESC = "This setting allows you to override the USPF's built-in Morrowind intro quest logic. This is usually only necessary if you've created a character after the release of Morrowind and skipped the \"Broken Bonds\" introduction quest.",
-
-	USPF_SETTINGS_OVERRIDE_SSC_SET = "Summerset Quest Override",
-	USPF_SETTINGS_OVERRIDE_SSC_SET_DESC = "This setting allows you to override the USPF's built-in Summerset intro quest logic. This is usually only necessary if you've created a character after the release of Summerset and skipped the \"The Mind Trap\" introduction quest.",
-
-	USPF_SETTINGS_OVERRIDE_EWC_SET = "Elsweyr Quest Override",
-	USPF_SETTINGS_OVERRIDE_EWC_SET_DESC = "This setting allows you to override the USPF's built-in Elsweyr intro quest logic. This is usually only necessary if you've created a character after the release of Elsweyr and skipped the \"Bright Moons, Warm Sands\" introduction quest.",
-
-	USPF_SETTINGS_OVERRIDE_GMC_SET = "Greymoor Quest Override",
-	USPF_SETTINGS_OVERRIDE_GMC_SET_DESC = "This setting allows you to override the USPF's built-in Greymoor intro quest logic. This is usually only necessary if you've created a character after the release of Elsweyr and skipped the \"Bound in Blood\" introduction quest.",
-
-	USPF_SETTINGS_OVERRIDE_BWC_SET = "Blackwood Quest Override",
-	USPF_SETTINGS_OVERRIDE_BWC_SET_DESC = "This setting allows you to override the USPF's built-in Blackwood intro quest logic. This is usually only necessary if you've created a character after the release of Blackwood and skipped the \"The Gates of Adamant\" introduction quest.",
+	USPF_SETTINGS_OVERRIDE_TUT_SET = "Tutorial Quest Override",
+	USPF_SETTINGS_OVERRIDE_TUT_SET_DESC = "This setting allows you to override the USPF's built-in intro quest logic. This is usually only necessary if you've created a character after the release of Morrowind and skipped the introduction quest.",
 
 	USPF_GUI_CHAR_LEVEL	= "Character Level",
 	USPF_GUI_MAIN_QUEST	= "Main Quest",

@@ -1,4 +1,12 @@
 # Changelog
+## [7.3.4] - 2024-06-11
+
+### Changed
+
+- Merge all tutorial overrides together
+
+
+# Changelog
 ## [7.3.3] - 2024-06-10
 
 ### Added
@@ -289,6 +297,7 @@
 
 - Support for Markarth - The Reach questline and skyshards
 
+[7.3.4]: https://github.com/yachoor/uspf/compare/7.3.3...7.3.4
 [7.3.3]: https://github.com/yachoor/uspf/compare/7.3.2...7.3.3
 [7.3.2]: https://github.com/yachoor/uspf/compare/7.3.1...7.3.2
 [7.3.1]: https://github.com/yachoor/uspf/compare/7.3.0...7.3.1

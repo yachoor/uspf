@@ -678,7 +678,7 @@ USPF.data = {
 		{ key = "SCC", id = 1337, zone = "HI", achievement = 3283 },
 		{ key = "GO", id = 1415, zone = "TP", achievement = 3658 },
 		{ key = "TU", id = 1416, zone = "AP", achievement = 3657 },
-		{ key = "LW", id = 1444, zone = "WW", achievement = 4000 },
+		{ key = "LW", id = 1466, zone = "WW", achievement = 4000 },
 		{ key = "SI", id = 1467, zone = "WW", achievement = 4002 },
 	},
 	racialLineIds = {

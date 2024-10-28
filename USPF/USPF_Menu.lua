@@ -2,7 +2,7 @@ if USPF == nil then USPF = {} end
 
 local ADDON_NAME = GetString(USPF_GUI_TITLE)
 local ADDON_AUTHOR = "Urich"
-local ADDON_VERSION = "7.3.4"
+local ADDON_VERSION = "7.3.5"
 
 USPF.Options = {
 	Font = {

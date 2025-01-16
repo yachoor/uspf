@@ -1060,6 +1060,11 @@ local function USPF_GetSkillSpentPoints(skillType, skillLine, skillIndex)
 	local _, _, _, _, _, purchased, progressionIndex = GetSkillAbilityInfo(skillType, skillLine, skillIndex)
 	local spent, possible, reduction
 
+	if IsCraftedAbilitySkill(skillType, skillLine, skillIndex) then
+		skills[skillIndex] = {0, 0}
+		return skills[skillIndex]
+	end
+
 	if not purchased then spent = 0 end
 	reduction = IsSkillAbilityAutoGrant(skillType, skillLine, skillIndex) and 1 or 0
 

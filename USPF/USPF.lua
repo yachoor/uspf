@@ -1029,11 +1029,17 @@ local function USPF_SetSkyshardPoints()
 	for _, zd in ipairs(USPF.data.zones) do
         local v = zd.skyshards
 		for i=v[1], v[1] + v[2] - 1 do
-            if GetSkyshardDiscoveryStatus(i) == SKYSHARD_DISCOVERY_STATUS_ACQUIRED then
-                USPF.ptsData.SS[zd.key] = USPF.ptsData.SS[zd.key] + 1
-            end
+			if GetSkyshardDiscoveryStatus(i) == SKYSHARD_DISCOVERY_STATUS_ACQUIRED then
+				USPF.ptsData.SS[zd.key] = USPF.ptsData.SS[zd.key] + 1
+			end
 		end
 		USPF.ptsData.numSSTot = USPF.ptsData.numSSTot + USPF.ptsData.SS[zd.key]
+	end
+
+	-- Fix Wailing Prison Skyshard if quest was skipped - it is earned but not marked as acquired :/
+	if USPF.ptsData.SS.WP == 0 and GCQI(USPF.data.MQ[1]) ~= "" then
+		USPF.ptsData.SS.WP = 1
+		USPF.ptsData.numSSTot = USPF.ptsData.numSSTot + 1
 	end
 
 	--Calculate the total and round for points.

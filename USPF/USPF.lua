@@ -1134,12 +1134,14 @@ end
 local function USPF_SetFoliumDiscognitumPoints()
 	if USPF.settings.FD.override then
 		USPF.ptsData.FolDis = USPF.settings.FD.charHasFD and 2 or 0
-	else
+	elseif GCQI(3997) ~= "" then -- The Mad God's Bargain completed
 		local skillPoints = USPF_GetTotSkillPoints()
 		local skillPointsDiff =	USPF.ptsData.Level + USPF.ptsData.MainQ + USPF.ptsData.tutorial + USPF.ptsData.PvPRank + USPF.ptsData.MaelAr +
 								USPF.ptsData.EndlArch + USPF.ptsData.ZQTot + USPF.ptsData.SSTot +
 								USPF.ptsData.GDTot + USPF.ptsData.PDTot
-		USPF.ptsData.FolDis = skillPoints == skillPointsDiff + 2 and 2 or 0
+		USPF.ptsData.FolDis = (skillPoints - skillPointsDiff) >= 2 and 2 or 0
+	else
+		USPF.ptsData.FolDis = 0
 	end
 
 	--Update saved variables.

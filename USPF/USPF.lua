@@ -1131,15 +1131,11 @@ local function USPF_GetTotSkillPoints()
 	return USPF.cache.total
 end
 
-local function USPF_SetFoliumDiscognitumPoints()
+local function USPF_SetFoliumDiscognitumPoints(skillPoints, countedSkillPoints)
 	if USPF.settings.FD.override then
 		USPF.ptsData.FolDis = USPF.settings.FD.charHasFD and 2 or 0
 	elseif GCQI(3997) ~= "" then -- The Mad God's Bargain completed
-		local skillPoints = USPF_GetTotSkillPoints()
-		local skillPointsDiff =	USPF.ptsData.Level + USPF.ptsData.MainQ + USPF.ptsData.tutorial + USPF.ptsData.PvPRank + USPF.ptsData.MaelAr +
-								USPF.ptsData.EndlArch + USPF.ptsData.ZQTot + USPF.ptsData.SSTot +
-								USPF.ptsData.GDTot + USPF.ptsData.PDTot
-		USPF.ptsData.FolDis = (skillPoints - skillPointsDiff) >= 2 and 2 or 0
+		USPF.ptsData.FolDis = (skillPoints - countedSkillPoints) >= 2 and 2 or 0
 	else
 		USPF.ptsData.FolDis = 0
 	end
@@ -1212,43 +1208,57 @@ local function USPF_LoadData(charId)
 	USPF_UpdateGUITable(sVarPtsData)
 end
 
+local function USPF_RefreshData()
+	--Reset All Points to Zero.
+	USPF.ptsData = USPF_LTF:SimpleResetTable(USPF.ptsData, 0)
+
+	--Update Level Points.
+	USPF_SetLevelPoints()
+
+	--Update Quest Points.
+	USPF_SetQuestPoints()
+
+	--Update Public Dungeon Points.
+	USPF_SetPublicDungeonPoints()
+
+	--Update Skyshard Points.
+	USPF_SetSkyshardPoints()
+
+	--Update Alliance War Rank Points.
+	USPF_SetAllianceWarRankPoints()
+
+	--Update MaelAr Arena Point.
+	USPF_SetMaelArPoints()
+
+	--Update Unassigned Skillpoints
+	USPF_SetUnassigned()
+
+	local skillPoints = USPF_GetTotSkillPoints()
+	local countedSkillPoints = USPF.ptsData.Level + USPF.ptsData.MainQ + USPF.ptsData.tutorial + USPF.ptsData.PvPRank + USPF.ptsData.MaelAr +
+								USPF.ptsData.EndlArch + USPF.ptsData.ZQTot + USPF.ptsData.SSTot +
+								USPF.ptsData.GDTot + USPF.ptsData.PDTot
+	--Update Folium Discognitum Points.
+	USPF_SetFoliumDiscognitumPoints(skillPoints, countedSkillPoints)
+
+	-- Update tutorial if not marked as done and we have spare skill point
+	if USPF.ptsData.tutorial == 0 and (skillPoints - countedSkillPoints - USPF.ptsData.FolDis) > 0 then
+		USPF.ptsData.tutorial = 1
+		USPF.sVar.ptsData[selectedChar].tutorial = USPF.ptsData.tutorial
+	end
+
+	--Update General Points.
+	USPF_SetGeneralPoints()
+
+	--Update Tot Points.
+	USPF_SetTotPoints()
+
+	--Update the GUI Table.
+	USPF_UpdateGUITable(USPF.ptsData)
+end
+
 local function USPF_SetupData(charId)
 	if charId == GCCId() then
-		--Reset All Points to Zero.
-		USPF.ptsData = USPF_LTF:SimpleResetTable(USPF.ptsData, 0)
-
-		--Update Level Points.
-		USPF_SetLevelPoints()
-
-		--Update Quest Points.
-		USPF_SetQuestPoints()
-
-		--Update Public Dungeon Points.
-		USPF_SetPublicDungeonPoints()
-
-		--Update Skyshard Points.
-		USPF_SetSkyshardPoints()
-
-		--Update Alliance War Rank Points.
-		USPF_SetAllianceWarRankPoints()
-
-		--Update MaelAr Arena Point.
-		USPF_SetMaelArPoints()
-
-		--Update Unassigned Skillpoints
-		USPF_SetUnassigned()
-
-		--Update Folium Discognitum Points.
-		USPF_SetFoliumDiscognitumPoints()
-
-		--Update General Points.
-		USPF_SetGeneralPoints()
-
-		--Update Tot Points.
-		USPF_SetTotPoints()
-
-		--Update the GUI Table.
-		USPF_UpdateGUITable(USPF.ptsData)
+		USPF_RefreshData()
 
 		--Update the saved variables.
 		USPF_UpdateAllSavedVars()
@@ -1418,38 +1428,7 @@ end
 
 
 function USPF:SetupValues()
-	--Reset All Points to Zero.
-	USPF.ptsData = USPF_LTF:SimpleResetTable(USPF.ptsData, 0)
-
-	--Update Level Points.
-	USPF_SetLevelPoints()
-
-	--Update Quest Points.
-	USPF_SetQuestPoints()
-
-	--Update Public Dungeon Points.
-	USPF_SetPublicDungeonPoints()
-
-	--Update Skyshard Points.
-	USPF_SetSkyshardPoints()
-
-	--Update Alliance War Rank Points.
-	USPF_SetAllianceWarRankPoints()
-
-	--Update MaelAr Arena Point.
-	USPF_SetMaelArPoints()
-
-	--Update Folium Discognitum Points.
-	USPF_SetFoliumDiscognitumPoints()
-
-	--Update General Points.
-	USPF_SetGeneralPoints()
-
-	--Update Tot Points.
-	USPF_SetTotPoints()
-
-	--Update the GUI Table.
-	USPF_UpdateGUITable(USPF.ptsData)
+	USPF_RefreshData()
 
 	--Set the window size and position.
 	USPF_GUI:ClearAnchors()

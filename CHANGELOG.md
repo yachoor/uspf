@@ -1,4 +1,17 @@
 # Changelog
+
+## [7.3.6] - 2025-01-26
+
+### Added
+
+- Skipped tutorial skill point detection
+
+### Fixed
+
+- Folium Discognitum detection
+- Wailing Prison skyshard detection when skipping quest
+
+
 ## [7.3.5] - 2024-10-28
 
 ### Fixed
@@ -301,6 +314,7 @@
 
 - Support for Markarth - The Reach questline and skyshards
 
+[7.3.6]: https://github.com/yachoor/uspf/compare/7.3.5...7.3.6
 [7.3.5]: https://github.com/yachoor/uspf/compare/7.3.4...7.3.5
 [7.3.4]: https://github.com/yachoor/uspf/compare/7.3.3...7.3.4
 [7.3.3]: https://github.com/yachoor/uspf/compare/7.3.2...7.3.3

@@ -87,7 +87,7 @@ USPF.ptsData = {
 		WGT = 0, ICP = 0, RM  = 0, CS  = 0, BF  = 0, FH  = 0, FL = 0, SP = 0,
 		MHK = 0, MOS = 0, DoM = 0, FV  = 0, LM  = 0, MF  = 0, IR = 0, UG = 0,
 		SG  = 0, CT  = 0, BDV = 0, TC  = 0, RPB = 0, TDC = 0, CA = 0, SR = 0,
-		ERE = 0, GD  = 0, BS  = 0, SH  = 0, OP  = 0, BV  = 0,
+		ERE = 0, GD  = 0, BS  = 0, SH  = 0, OP  = 0, BV  = 0, ER = 0, LS = 0,
 	},
 	PD = {
 		AD1 = 0, AD2 = 0, AD3 = 0, AD4 = 0, AD5 = 0, DC1 = 0, DC2 = 0, DC3 = 0,
@@ -630,6 +630,8 @@ USPF.data = {
 		{ key = "SH", id = 1390, zone = "EP5", quest = 7027 },
 		{ key = "OP", id = 1470, zone = "TR", quest = 7105, },
 		{ key = "BV", id = 1471, zone = "WR", quest = 7155, },
+		{ key = "ER", id = 1496, zone = "WW", quest = 7235, },
+		{ key = "LS", id = 1497, zone = "HB", quest = 7237, },
 	},
 	MQ = {	--1003
 		4296,

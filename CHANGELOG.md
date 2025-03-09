@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.3.7] - 2025-03-09
+
+### Added
+
+- Support for Fallen Banners DLC - 2 new dungeons
+
+
 ## [7.3.6] - 2025-01-26
 
 ### Added
@@ -314,6 +321,7 @@
 
 - Support for Markarth - The Reach questline and skyshards
 
+[7.3.7]: https://github.com/yachoor/uspf/compare/7.3.6...7.3.7
 [7.3.6]: https://github.com/yachoor/uspf/compare/7.3.5...7.3.6
 [7.3.5]: https://github.com/yachoor/uspf/compare/7.3.4...7.3.5
 [7.3.4]: https://github.com/yachoor/uspf/compare/7.3.3...7.3.4

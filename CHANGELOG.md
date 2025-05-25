@@ -1,5 +1,15 @@
 # Changelog
 
+## [7.4.0] - 2025-05-25
+
+### Added
+
+- Support for Seasons of the Worm Cult Part 1 - new skillpoints:
+* 3 from main quest
+* 1 from public dungeon
+* 3 from skyshards
+
+
 ## [7.3.7] - 2025-03-09
 
 ### Added
@@ -321,6 +331,7 @@
 
 - Support for Markarth - The Reach questline and skyshards
 
+[7.4.0]: https://github.com/yachoor/uspf/compare/7.3.7...7.4.0
 [7.3.7]: https://github.com/yachoor/uspf/compare/7.3.6...7.3.7
 [7.3.6]: https://github.com/yachoor/uspf/compare/7.3.5...7.3.6
 [7.3.5]: https://github.com/yachoor/uspf/compare/7.3.4...7.3.5

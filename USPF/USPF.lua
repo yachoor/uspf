@@ -70,7 +70,7 @@ USPF.ptsData = {
 		EP2 = 0, EP3 = 0, EP4 = 0, EP5 = 0, CH  = 0, CAD  = 0, CDC  = 0, CEP  = 0,
 		CMT = 0, LCL = 0, UCL = 0, CC  = 0, GC  = 0, IC   = 0, VV   = 0, WR   = 0,
 		HB  = 0, SU  = 0, MM  = 0, NE  = 0, WP  = 0, SE   = 0, WS   = 0, TR   = 0,
-		BW  = 0, TD  = 0, HI  = 0, GY  = 0, AP  = 0, WW   = 0,
+		BW  = 0, TD  = 0, HI  = 0, GY  = 0, AP  = 0, WW   = 0, SO   = 0,
 	},
 	SS = {
 		AD0 = 0, AD1 = 0, AD2 = 0, AD3 = 0, AD4 = 0, AD5  = 0, DC0a = 0, DC0b = 0,
@@ -78,7 +78,7 @@ USPF.ptsData = {
 		EP2 = 0, EP3 = 0, EP4 = 0, EP5 = 0, CH  = 0, CAD  = 0, CDC  = 0, CEP  = 0,
 		CMT = 0, LCL = 0, UCL = 0, IC  = 0, WR  = 0, HB   = 0, GC   = 0, VV   = 0,
 		CC  = 0, WP  = 0, SU  = 0, MM  = 0, NE  = 0, SE   = 0, WS   = 0, TR   = 0,
-		BW  = 0, TD  = 0, HI  = 0, GY  = 0, AP  = 0, WW   = 0,
+		BW  = 0, TD  = 0, HI  = 0, GY  = 0, AP  = 0, WW   = 0, SO   = 0,
 	},
 	GD = {
 		BC1 = 0, BC2 = 0, EH1 = 0, EH2 = 0, CA1 = 0, CA2 = 0, TI = 0, SW = 0,
@@ -94,7 +94,7 @@ USPF.ptsData = {
 		DC4 = 0, DC5 = 0, EP1 = 0, EP2 = 0, EP3 = 0, EP4 = 0, EP5 = 0, CH  = 0,
 		VFW = 0, VNC = 0, WOO = 0, WRK = 0, SKW = 0, SSH = 0, RN  = 0, OC  = 0,
 		LT  = 0, NK  = 0, SH  = 0, ZA  = 0, GHB = 0, SCC = 0, GO  = 0, TU  = 0,
-		LW  = 0, SI  = 0,
+		LW  = 0, SI  = 0, DG  = 0
 	},
 }
 
@@ -137,7 +137,7 @@ local tempZId = {
 		WR   =  684, HB   =  816, GC   =  823, VV  =  849, CC  = 980, SU  = 1011,
 		MM   =  726, NE   = 1086, WP   =  586, SE  = 1133, WS = 1160, BGC = 1161,
 		TR   = 1207, BW   = 1261, TD   = 1286, HI  = 1318, GY = 1383, AP  = 1413,
-		TP   = 1414, EA   = 1436, WW   = 1443,
+		TP   = 1414, EA   = 1436, WW   = 1443, SO  = 1502,
 	},
 }
 
@@ -562,6 +562,15 @@ local zones = {
 		},
 		skyshards = {546, 18},
 	},
+	{
+		key = "SO",
+		quests = {
+			7294, -- The Regent of Sunport
+			7295, -- The Writhing Wall
+			7296, -- The Gift of Death
+		},
+		skyshards = {564, 9},
+	},
 }
 
 USPF.data = {
@@ -682,6 +691,7 @@ USPF.data = {
 		{ key = "TU", id = 1416, zone = "AP", achievement = 3657 },
 		{ key = "LW", id = 1466, zone = "WW", achievement = 4000 },
 		{ key = "SI", id = 1467, zone = "WW", achievement = 4002 },
+		{ key = "DG", id = 1514, zone = "SO", achievement = 4264 },
 	},
 	racialLineIds = {
 		--RaceId	SkillLineId	Race

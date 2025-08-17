@@ -693,19 +693,6 @@ USPF.data = {
 		{ key = "SI", id = 1467, zone = "WW", achievement = 4002 },
 		{ key = "DG", id = 1514, zone = "SO", achievement = 4264 },
 	},
-	racialLineIds = {
-		--RaceId	SkillLineId	Race
-		[1]  = 60,		--Breton
-		[2]  = 62,		--Redguard
-		[3]  = 52,		--Orc
-		[4]  = 64,		--Dark Elf
-		[5]  = 65,		--Nord
-		[6]  = 63,		--Argonian
-		[7]  = 56,		--High Elf
-		[8]  = 57,		--Wood Elf
-		[9]  = 58,		--Khajiit
-		[10] = 59,		--Imperial
-	},
 }
 
 
@@ -1065,82 +1052,21 @@ local function USPF_SetSkyshardPoints()
 	end
 end
 
-local function USPF_IsValidRacialLine(skillType, skillLine)
-	if skillType == SKILL_TYPE_RACIAL then
-		local _, _, _, skillLineId = GetSkillLineInfo(skillType, skillLine)
-		return skillLineId == USPF.data.racialLineIds[GetUnitRaceId("player")]
+local function USPF_GetTypeSpentPoints(skillTypeData)
+	local total = 0
+	for _, skillLineData in ipairs(skillTypeData.orderedSkillLines) do
+		total = total + SKILL_POINT_ALLOCATION_MANAGER:GetNumPointsAllocatedInSkillLine(skillLineData)
 	end
-	return false
-end
-
-local function USPF_GetSkillSpentPoints(skillType, skillLine, skillIndex)
-	local skills = USPF.cache.skillTypes[skillType].lines[skillLine].skills
-	local _, _, _, _, _, purchased, progressionIndex = GetSkillAbilityInfo(skillType, skillLine, skillIndex)
-	local spent, possible, reduction
-
-	if IsCraftedAbilitySkill(skillType, skillLine, skillIndex) then
-		skills[skillIndex] = {0, 0}
-		return skills[skillIndex]
-	end
-
-	if not purchased then spent = 0 end
-	reduction = IsSkillAbilityAutoGrant(skillType, skillLine, skillIndex) and 1 or 0
-
-	if progressionIndex then
-		local _, morph = GetAbilityProgressionInfo(progressionIndex)
-		if not spent then
-			spent = morph > 0 and (2 - reduction) or (1 - reduction)
-		end
-		possible = 2 - reduction
-	else
-		local currentLevel, maxLevel = GetSkillAbilityUpgradeInfo(skillType, skillLine, skillIndex)
-		if currentLevel then
-			if not spent then spent = currentLevel - reduction end
-			possible = maxLevel - reduction
-		else
-			if not spent then spent = 1 - reduction end
-			possible = 1 - reduction
-		end
-	end
-	skills[skillIndex] = {spent, possible}
-	return skills[skillIndex]
-end
-
-local function USPF_GetLineSpentPoints(skillType, skillLine)
-	if skillType ~= SKILL_TYPE_RACIAL or USPF_IsValidRacialLine(skillType, skillLine) then
-		USPF.cache.skillTypes[skillType].lines[skillLine] = {}
-		local line = USPF.cache.skillTypes[skillType].lines[skillLine]
-		line.skills = {}
-		line.total = 0
-		line.possible = 0
-		local numSkillAbilities = GetNumSkillAbilities(skillType, skillLine)
-		for ability = 1, numSkillAbilities do
-			local spent = USPF_GetSkillSpentPoints(skillType, skillLine, ability)
-			line.total = line.total + spent[1]
-			line.possible = line.possible + spent[2]
-		end
-
-		return line.total
-	end
-	return 0
-end
-
-local function USPF_GetTypeSpentPoints(skillTypeId)
-	USPF.cache.skillTypes[skillTypeId] = {}
-	local skillType = USPF.cache.skillTypes[skillTypeId]
-	skillType.lines = {}
-	skillType.total = 0
-	local numSkillLines = GetNumSkillLines(skillTypeId)
-	for skillLine = 1, numSkillLines do skillType.total = skillType.total + USPF_GetLineSpentPoints(skillTypeId, skillLine) end
-	return skillType.total
+	return total
 end
 
 local function USPF_GetTotSkillPoints()
-	USPF.cache.skillTypes = {}
-	USPF.cache.total = GetAvailableSkillPoints()
+	local total = SKILL_POINT_ALLOCATION_MANAGER:GetAvailableSkillPoints() 
+	for _, skillTypeData in SKILLS_DATA_MANAGER:SkillTypeIterator() do
+		total = total + USPF_GetTypeSpentPoints(skillTypeData)
+	end
+	return total
 
-	for skillType = 1, GetNumSkillTypes() do USPF.cache.total = USPF.cache.total + USPF_GetTypeSpentPoints(skillType) end
-	return USPF.cache.total
 end
 
 local function USPF_SetFoliumDiscognitumPoints(skillPoints, countedSkillPoints)

@@ -1,5 +1,16 @@
 # Changelog
 
+## [7.4.1] - 2025-08-18
+
+### Added
+
+- Support for Feast of Shadows DLC - 2 new dungeons
+
+### Fixed
+
+- Total/spent skill points calculation
+
+
 ## [7.4.0] - 2025-05-25
 
 ### Added
@@ -331,6 +342,7 @@
 
 - Support for Markarth - The Reach questline and skyshards
 
+[7.4.1]: https://github.com/yachoor/uspf/compare/7.4.0...7.4.1
 [7.4.0]: https://github.com/yachoor/uspf/compare/7.3.7...7.4.0
 [7.3.7]: https://github.com/yachoor/uspf/compare/7.3.6...7.3.7
 [7.3.6]: https://github.com/yachoor/uspf/compare/7.3.5...7.3.6

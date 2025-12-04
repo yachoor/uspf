@@ -2,7 +2,6 @@ if USPF == nil then USPF = {} end
 USPF.AddonName = "USPF"
 USPF.version = 1.0
 USPF.active = false
-USPF.cache = {}
 USPF.GUI = {}
 local selectedChar = GetCurrentCharacterId()
 local currentCharName = nil
@@ -67,16 +66,16 @@ USPF.ptsData = {
 	ZQ = {
 		AD0 = 0, AD1 = 0, AD2 = 0, AD3 = 0, AD4 = 0, AD5  = 0, DC0a = 0, DC0b = 0,
 		DC1 = 0, DC2 = 0, DC3 = 0, DC4 = 0, DC5 = 0, EP0a = 0, EP0b = 0, EP1  = 0,
-		EP2 = 0, EP3 = 0, EP4 = 0, EP5 = 0, CH  = 0, CAD  = 0, CDC  = 0, CEP  = 0,
-		CMT = 0, LCL = 0, UCL = 0, CC  = 0, GC  = 0, IC   = 0, VV   = 0, WR   = 0,
+		EP2 = 0, EP3 = 0, EP4 = 0, EP5 = 0, CH  = 0, CY   = 0, 
+		CL  = 0, CC  = 0, GC  = 0, IC  = 0, VV   = 0, WR   = 0,
 		HB  = 0, SU  = 0, MM  = 0, NE  = 0, WP  = 0, SE   = 0, WS   = 0, TR   = 0,
 		BW  = 0, TD  = 0, HI  = 0, GY  = 0, AP  = 0, WW   = 0, SO   = 0,
 	},
 	SS = {
 		AD0 = 0, AD1 = 0, AD2 = 0, AD3 = 0, AD4 = 0, AD5  = 0, DC0a = 0, DC0b = 0,
 		DC1 = 0, DC2 = 0, DC3 = 0, DC4 = 0, DC5 = 0, EP0a = 0, EP0b = 0, EP1  = 0,
-		EP2 = 0, EP3 = 0, EP4 = 0, EP5 = 0, CH  = 0, CAD  = 0, CDC  = 0, CEP  = 0,
-		CMT = 0, LCL = 0, UCL = 0, IC  = 0, WR  = 0, HB   = 0, GC   = 0, VV   = 0,
+		EP2 = 0, EP3 = 0, EP4 = 0, EP5 = 0, CH  = 0, CY   = 0, CL   = 0, IC   = 0,
+		WR  = 0, HB  = 0, GC  = 0, VV  = 0,
 		CC  = 0, WP  = 0, SU  = 0, MM  = 0, NE  = 0, SE   = 0, WS   = 0, TR   = 0,
 		BW  = 0, TD  = 0, HI  = 0, GY  = 0, AP  = 0, WW   = 0, SO   = 0,
 	},
@@ -95,7 +94,7 @@ USPF.ptsData = {
 		DC4 = 0, DC5 = 0, EP1 = 0, EP2 = 0, EP3 = 0, EP4 = 0, EP5 = 0, CH  = 0,
 		VFW = 0, VNC = 0, WOO = 0, WRK = 0, SKW = 0, SSH = 0, RN  = 0, OC  = 0,
 		LT  = 0, NK  = 0, SH  = 0, ZA  = 0, GHB = 0, SCC = 0, GO  = 0, TU  = 0,
-		LW  = 0, SI  = 0, DG  = 0
+		LW  = 0, SI  = 0, DG  = 0, CG  = 0,
 	},
 }
 
@@ -104,7 +103,8 @@ local function USPF_CalculateTotalPoints()
 	local skyshards = 0
 	for _, zi in ipairs(USPF.data.zones) do
 		quests = quests + #zi.quests
-		skyshards = skyshards + zi.skyshards[2]
+		zi.skyshards = GetNumSkyshardsInZone(USPF.data.ZId.ZN[zi.key])
+		skyshards = skyshards + zi.skyshards
 	end
 
 	local points = {
@@ -130,15 +130,14 @@ end
 
 local tempZId = {
 	ZN = {
-		AD0  =  537, AD1  =  381, AD2  =  383, AD3 =  108, AD4 =  58, AD5 =  382,
-		DC0a =  535, DC0b =  534, DC1  =    3, DC2 =   19, DC3 =  20, DC4 =  104,
-		DC5  =   92, EP0b =  280, EP0a =  281, EP1 =   41, EP2 =  57, EP3 =  117,
-		EP4  =  101, EP5  =  103, CH   =  347, CYD =  181, CAD = 181, CDC =  181,
-		CEP  =  181, CMT  =  181, CL   =  888, LCL =  888, UCL = 888, IC  =  584,
-		WR   =  684, HB   =  816, GC   =  823, VV  =  849, CC  = 980, SU  = 1011,
-		MM   =  726, NE   = 1086, WP   =  586, SE  = 1133, WS = 1160, BGC = 1161,
-		TR   = 1207, BW   = 1261, TD   = 1286, HI  = 1318, GY = 1383, AP  = 1413,
-		TP   = 1414, EA   = 1436, WW   = 1443, SO  = 1502,
+		AD0  =  537, AD1  =  381, AD2  =  383, AD3 =  108, AD4 =   58, AD5 =  382,
+		DC0a =  535, DC0b =  534, DC1  =    3, DC2 =   19, DC3 =   20, DC4 =  104,
+		DC5  =   92, EP0b =  280, EP0a =  281, EP1 =   41, EP2 =   57, EP3 =  117,
+		EP4  =  101, EP5  =  103, CH   =  347, CY  =  181, CMT =  181, CL  =  888,
+		IC   =  584, WR   =  684, HB   =  816, GC  =  823, VV  =  849, CC  =  980,
+		SU   = 1011, MM   =  726, NE   = 1086, WP  =  809, SE  = 1133, WS  = 1160,
+		BGC  = 1161, TR   = 1207, BW   = 1261, TD  = 1286, HI  = 1318, GY  = 1383,
+		AP   = 1413, TP   = 1414, EA   = 1436, WW  = 1443, SO  = 1502,
 	},
 }
 
@@ -146,12 +145,10 @@ local zones = {
 	{
 		key = "WP",
 		quests = {}, -- none
-		skyshards = { 259, 1 },
 	},
 	{
 		key = "AD0",
 		quests = {}, -- none
-		skyshards = { 87,  6},
 	},
 	{
 		key = "AD1",
@@ -160,7 +157,6 @@ local zones = {
 			4345,
 			4261,
 		},
-		skyshards = { 93, 16},
 	},
 	{
 		key = "AD2",
@@ -169,7 +165,6 @@ local zones = {
 			4386,
 			4885,
 		},
-		skyshards = {109, 16},
 	},
 	{
 		key = "AD3",
@@ -178,7 +173,6 @@ local zones = {
 			4765,
 			4690,
 		},
-		skyshards = {125, 16},
 	},
 	{
 		key = "AD4",
@@ -187,7 +181,6 @@ local zones = {
 			4452,
 			4143,
 		},
-		skyshards = {141, 16},
 	},
 	{
 		key = "AD5",
@@ -196,17 +189,14 @@ local zones = {
 			4479,
 			4720,
 		},
-		skyshards = {157, 16},
 	},
 	{
 		key = "DC0b",
 		quests = {}, -- none
-		skyshards = {173,  3},
 	},
 	{
 		key = "DC0a",
 		quests = {}, -- none
-		skyshards = {176,  3},
 	},
 	{
 		key = "DC1",
@@ -216,7 +206,6 @@ local zones = {
 			3267,
 			3379,
 		},
-		skyshards = {179, 16},
 	},
 	{
 		key = "DC2",
@@ -225,7 +214,6 @@ local zones = {
 			1633,
 			575,
 		},
-		skyshards = {195, 16},
 	},
 	{
 		key = "DC3",
@@ -234,7 +222,6 @@ local zones = {
 			4972,
 			4884,
 		},
-		skyshards = {211, 16},
 	},
 	{
 		key = "DC4",
@@ -243,7 +230,6 @@ local zones = {
 			2222,
 			2997,
 		},
-		skyshards = {227, 16},
 	},
 	{
 		key = "DC5",
@@ -252,17 +238,14 @@ local zones = {
 			4912,
 			4960,
 		},
-		skyshards = {243, 16},
 	},
 	{
 		key = "EP0b",
 		quests = {}, -- none
-		skyshards = {  1,  3},
 	},
 	{
 		key = "EP0a",
 		quests = {}, -- none
-		skyshards = {  4,  3},
 	},
 	{
 		key = "EP1",
@@ -271,7 +254,6 @@ local zones = {
 			3634,
 			3868,
 		},
-		skyshards = {  7, 16},
 	},
 	{
 		key = "EP2",
@@ -280,7 +262,6 @@ local zones = {
 			3817,
 			3831,
 		},
-		skyshards = { 23, 16},
 	},
 	{
 		key = "EP3",
@@ -289,7 +270,6 @@ local zones = {
 			4606,
 			3910,
 		},
-		skyshards = { 39, 16},
 	},
 	{
 		key = "EP4",
@@ -298,7 +278,6 @@ local zones = {
 			4115,
 			4117,
 		},
-		skyshards = { 55, 16},
 	},
 	{
 		key = "EP5",
@@ -307,7 +286,6 @@ local zones = {
 			4139,
 			4188,
 		},
-		skyshards = { 71, 16},
 	},
 	{
 		key = "CH",
@@ -316,44 +294,20 @@ local zones = {
 			4730,
 			4758,
 		},
-		skyshards = {260, 16},
 	},
 	{
-		key = "CAD",
+		key = "CY",
 		quests = {}, -- none
-		skyshards = {306, 15},
 	},
 	{
-		key = "CDC",
+		key = "CL",
 		quests = {}, -- none
-		skyshards = {291, 15},
-	},
-	{
-		key = "CEP",
-		quests = {}, -- none
-		skyshards = {276, 15},
-	},
-	{
-		key = "CMT",
-		quests = {}, -- none
-		skyshards = {321,  1},
-	},
-	{
-		key = "LCL",
-		quests = {}, -- none
-		skyshards = {322, 12},
-	},
-	{
-		key = "UCL",
-		quests = {}, -- none
-		skyshards = {334,  6},
 	},
 	{
 		key = "IC",
 		quests = {
 			5482,
 		},
-		skyshards = {340, 13},
 	},
 	{
 		key = "WR",
@@ -362,7 +316,6 @@ local zones = {
 			5468,
 			5481,
 		},
-		skyshards = {353, 17},
 	},
 	{
 		key = "HB",
@@ -374,7 +327,6 @@ local zones = {
 			5549,
 			5545,
 		},
-		skyshards = {370,  6},
 	},
 	{
 		key = "GC",
@@ -388,7 +340,6 @@ local zones = {
 			5598,
 			5600,
 		},
-		skyshards = {376,  6},
 	},
 	{
 		key = "VV",
@@ -397,7 +348,6 @@ local zones = {
 			5922,
 			5948,
 		},
-		skyshards = {382, 18},
 	},
 	{
 		key = "CC",
@@ -411,7 +361,6 @@ local zones = {
 			6047,
 			6048,
 		},
-		skyshards = {400,  6},
 	},
 	{
 		key = "SU",
@@ -420,7 +369,6 @@ local zones = {
 			6113,
 			6126,
 		},
-		skyshards = {406, 18},
 	},
 	{
 		key = "MM",
@@ -433,7 +381,6 @@ local zones = {
 			6244,
 			6245,
 		},
-		skyshards = {424,  6},
 	},
 	{
 		key = "NE",
@@ -442,7 +389,6 @@ local zones = {
 			6304,
 			6315,
 		},
-		skyshards = {430, 18},
 	},
 	{
 		key = "SE",
@@ -457,7 +403,6 @@ local zones = {
 			6397,
 			6402,
 		},
-		skyshards = {448,  6},
 	},
 	{
 		key = "WS",
@@ -466,7 +411,6 @@ local zones = {
 			6466,
 			6481,
 		},
-		skyshards = {454, 18},
 	},
 	{
 		key = "TR",
@@ -481,7 +425,6 @@ local zones = {
 			6560,
 			6570,
 		},
-		skyshards = {472,  6},
 	},
 	{
 		key = "BW",
@@ -490,7 +433,6 @@ local zones = {
 			6619,
 			6660,
 		},
-		skyshards = {478, 18},
 	},
 	{
 		key = "TD",
@@ -505,7 +447,6 @@ local zones = {
 			6697,
 			6693,
 		},
-		skyshards = {496,  6},
 	},
 	{
 		key = "HI",
@@ -516,7 +457,6 @@ local zones = {
 			6762, -- Buried at the Bay - PD quest
 			6768, -- Blood, Books, and Steel - PD quest
 		},
-		skyshards = {504, 18},
 	},
 	{
 		key = "GY",
@@ -531,7 +471,6 @@ local zones = {
 			6848, -- The Ivy Throne - Epilogue 2
 			6894, -- And Now, Perhaps, Peace - Epilogue 3
 		},
-		skyshards = {522,  6},
 	},
 	{
 		key = "AP",
@@ -546,7 +485,6 @@ local zones = {
 			6991, -- An Unhealthy Fate
 			6977, -- Chronicle of Fate
 		},
-		skyshards = {528, 18},
 	},
 	{
 		key = "WW",
@@ -561,7 +499,6 @@ local zones = {
 			7078, -- In Memory Of
 			7220, -- The Wing of the Crow
 		},
-		skyshards = {546, 18},
 	},
 	{
 		key = "SO",
@@ -569,8 +506,13 @@ local zones = {
 			7294, -- The Regent of Sunport
 			7295, -- The Writhing Wall
 			7296, -- The Gift of Death
+			7284, -- The Worm Turns
+			7329, -- Hunt for the Great Mage
+			7285, -- The Deep Tombs of Xul-Haj
+			7317, -- The Gates of Mor Naril
+			7286, -- The Final Dark
+			7393, -- The Golden Knight
 		},
-		skyshards = {564, 9},
 	},
 }
 
@@ -610,12 +552,12 @@ USPF.data = {
 		{ key = "DK", id = 449, zone = "EP4", quest = 4346 },
 		{ key = "BC", id = 64, zone = "EP5", quest = 4469 },
 		{ key = "VM", id = 11, zone = "CH", quest = 4822 },
-		{ key = "ICP", id = 678, zone = "CYD", quest = 5136 },
-		{ key = "WGT", id = 688, zone = "CYD", quest = 5342 },
+		{ key = "ICP", id = 678, zone = "CY", quest = 5136 },
+		{ key = "WGT", id = 688, zone = "CY", quest = 5342 },
 		{ key = "CS", id = 848, zone = "EP3", quest = 5702 },
 		{ key = "RM", id = 843, zone = "EP3", quest = 5403 },
-		{ key = "BF", id = 973, zone = "LCL", quest = 5889 },
-		{ key = "FH", id = 974, zone = "LCL", quest = 5891 },
+		{ key = "BF", id = 973, zone = "CL", quest = 5889 },
+		{ key = "FH", id = 974, zone = "CL", quest = 5891 },
 		{ key = "FL", id = 1009, zone = "DC5", quest = 6064 },
 		{ key = "SP", id = 1010, zone = "DC2", quest = 6065 },
 		{ key = "MHK", id = 1052, zone = "AD5", quest = 6186 },
@@ -695,6 +637,7 @@ USPF.data = {
 		{ key = "LW", id = 1466, zone = "WW", achievement = 4000 },
 		{ key = "SI", id = 1467, zone = "WW", achievement = 4002 },
 		{ key = "DG", id = 1514, zone = "SO", achievement = 4264 },
+		{ key = "CG", id = 1530, zone = "SO", achievement = 4471 },
 	},
 }
 
@@ -773,7 +716,7 @@ local function GetZoneTooltipText(zone)
 		local questPoints = charPointsData.ZQ[zone.key] or "?"
 		local questTotal = #zone.quests
 		local skyShardPoints = charPointsData.SS[zone.key] or "?"
-		local skyShardTotal = zone.skyshards[2]
+		local skyShardTotal = zone.skyshards
 		local txt = questTotal ~= 0 and FormatProgress(questPoints, questTotal) .. "  " or ""
 		table.insert(quests, txt .. FormatProgress(skyShardPoints, skyShardTotal) .. "  " .. char.charName)
 	end
@@ -876,17 +819,6 @@ local function getTooltipEndlessArchive()
 end
 
 local function USPF_GetZoneName(zone)
-	if zone == "CAD" then
-		return zf("<<C:1>> AD", GZNBId(USPF.data.ZId.ZN.CAD))
-	elseif zone == "CEP" then
-		return zf("<<C:1>> EP", GZNBId(USPF.data.ZId.ZN.CEP))
-	elseif zone == "CDC" then
-		return zf("<<C:1>> DC", GZNBId(USPF.data.ZId.ZN.CDC))
-	elseif zone == "LCL" then
-		return zf("<<C:1>> <<C:2>>", GS(USPF_GUI_ZN_LCL), GZNBId(USPF.data.ZId.ZN.CL))
-	elseif zone == "UCL" then
-		return zf("<<C:1>> <<C:2>>", GS(USPF_GUI_ZN_UCL), GZNBId(USPF.data.ZId.ZN.CL))
-	end
 	return zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN[zone]))
 end
 
@@ -919,7 +851,7 @@ local function USPF_UpdateGUITable(sVarPtsData)
             GetSV(sVarPtsData.ZQ[z.key]),
             #z.quests,
             GetSV(sVarPtsData.SS[z.key]),
-            z.skyshards[2],
+            z.skyshards,
             GetZoneTooltipText(z)
         })
 	end
@@ -1029,9 +961,10 @@ end
 
 local function USPF_SetSkyshardPoints()
 	for _, zd in ipairs(USPF.data.zones) do
-        local v = zd.skyshards
-		for i=v[1], v[1] + v[2] - 1 do
-			if GetSkyshardDiscoveryStatus(i) == SKYSHARD_DISCOVERY_STATUS_ACQUIRED then
+		local zId = USPF.data.ZId.ZN[zd.key]
+		for i=1, zd.skyshards do
+			local ssId = GetZoneSkyshardId(zId,i)
+			if GetSkyshardDiscoveryStatus(ssId) == SKYSHARD_DISCOVERY_STATUS_ACQUIRED then
 				USPF.ptsData.SS[zd.key] = USPF.ptsData.SS[zd.key] + 1
 			end
 		end
@@ -1374,7 +1307,7 @@ function USPF:SetupValues()
 	--Set the window size and position.
 	USPF_GUI:ClearAnchors()
 	USPF_GUI:SetAnchor(CENTER, GuiRoot, CENTER, 0, 0)
-	USPF_GUI:SetHeight(USPF_GUI_Header:GetHeight() + #USPF.GUI.SQS * 18 + USPF_GUI_Footer:GetHeight() + 18 + 76)
+	USPF_GUI:SetHeight(USPF_GUI_Header:GetHeight() + #USPF.GUI.PDGBE * 18 + USPF_GUI_Footer:GetHeight() + 304)
 
 	--Add information to window.
 	local titleFont = USPF.Options.Font.Fonts[USPF.settings.title.font]

@@ -1,5 +1,22 @@
 # Changelog
 
+## [7.5.0] - 2025-12-04
+
+### Added
+
+- Support for Seasons of the Worm Cult Part 2 - new skillpoints:
+* 6 from zone quest
+* 1 from public dungeon
+* 3 from skyshards
+
+### Changed
+
+- Because of the gap in skyshard ids for eastern solstice, all skyshards are
+now retrieved from game using API instead of hardcoded, so Cyrodil and Craglorn
+are now merged like in zone guide. Info for those zones will be incorrect
+for characters until logging into them.
+
+
 ## [7.4.1] - 2025-08-18
 
 ### Added
@@ -342,6 +359,7 @@
 
 - Support for Markarth - The Reach questline and skyshards
 
+[7.5.0]: https://github.com/yachoor/uspf/compare/7.4.1...7.5.0
 [7.4.1]: https://github.com/yachoor/uspf/compare/7.4.0...7.4.1
 [7.4.0]: https://github.com/yachoor/uspf/compare/7.3.7...7.4.0
 [7.3.7]: https://github.com/yachoor/uspf/compare/7.3.6...7.3.7

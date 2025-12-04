@@ -85,8 +85,6 @@ SafeAddString(USPF_GUI_UNASSIGNED, "из них сейчас можно испо
 
 SafeAddString(SI_BINDING_NAME_USPF_TOGGLE, "Показать/скрыть окно USPF.")
 
-SafeAddString(USPF_GUI_ZN_LCL, "Нижний")
-SafeAddString(USPF_GUI_ZN_UCL, "Верхний")
 SafeAddString(USPF_GUI_ZN_MQ, "Основная сюжетная линия")
 
 SafeAddString(USPF_MSG_SHOW_GUI, "USPF выключен.")

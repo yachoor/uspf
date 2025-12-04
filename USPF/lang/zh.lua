@@ -85,8 +85,6 @@ SafeAddString(USPF_GUI_UNASSIGNED,                                 "未分配")
 
 SafeAddString(SI_BINDING_NAME_USPF_TOGGLE,                         "显示/隐藏 USPF窗口。")
 
-SafeAddString(USPF_GUI_ZN_LCL,                                     "更低")
-SafeAddString(USPF_GUI_ZN_UCL,                                     "更高")
 SafeAddString(USPF_GUI_ZN_MQ,                                      "主线任务")
 
 SafeAddString(USPF_MSG_SHOW_GUI,                                   "USPF已显示。")

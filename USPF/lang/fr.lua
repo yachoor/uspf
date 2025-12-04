@@ -86,8 +86,6 @@ SafeAddString(USPF_GUI_UNASSIGNED,						"non attribué")
 
 SafeAddString(SI_BINDING_NAME_USPF_TOGGLE,				"Afficher/masquer la fenêtre USPF.")
 
-SafeAddString(USPF_GUI_ZN_LCL,							"Bas")
-SafeAddString(USPF_GUI_ZN_UCL,							"Haut")
 SafeAddString(USPF_GUI_ZN_MQ,							"Quête Principale")
 
 SafeAddString(USPF_MSG_SHOW_GUI,						"USPF affiché.")

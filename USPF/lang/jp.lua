@@ -86,8 +86,6 @@ SafeAddString(USPF_GUI_UNASSIGNED,						"未割り当て")
 
 SafeAddString(SI_BINDING_NAME_USPF_TOGGLE,				"ウィンドウを表示/非表示にします。")
 
-SafeAddString(USPF_GUI_ZN_LCL,							"低い")
-SafeAddString(USPF_GUI_ZN_UCL,							"上の")
 SafeAddString(USPF_GUI_ZN_MQ,							"メインクエスト")
 
 SafeAddString(USPF_MSG_SHOW_GUI,						"USPFが表示されます。")

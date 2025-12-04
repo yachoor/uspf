@@ -85,8 +85,6 @@ local strings = {
 
 
 	SI_BINDING_NAME_USPF_TOGGLE = "Show/Hide the USPF window.",
-	USPF_GUI_ZN_LCL		= "Lower",
-	USPF_GUI_ZN_UCL		= "Upper",
 	USPF_GUI_ZN_MQ		= "Main Quest",
 
 	USPF_MSG_SHOW_GUI	= "USPF displayed.",

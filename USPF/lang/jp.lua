@@ -85,6 +85,9 @@ SafeAddString(USPF_GUI_UNASSIGNED,						"未割り当て")
 
 
 SafeAddString(SI_BINDING_NAME_USPF_TOGGLE,				"ウィンドウを表示/非表示にします。")
+SafeAddString(SI_BINDING_NAME_USPF_DUN_TOGGLE,			"ダンジョンアカウントウィンドウを表示/非表示にします。")
+SafeAddString(USPF_DUN_PD_SORT_DUNGEON,				"パブリックダンジョン: ダンジョン名で並べ替え")
+SafeAddString(USPF_DUN_PD_SORT_ZONE,				"パブリックダンジョン: ゾーン名で並べ替え")
 
 SafeAddString(USPF_GUI_ZN_MQ,							"メインクエスト")
 

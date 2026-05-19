@@ -266,5 +266,76 @@
 				</Control>
 			</Controls>
 		</TopLevelControl>
+
+		<TopLevelControl name="USPF_DUN_GUI" mouseEnabled="true" movable="true" hidden="true" allowBringToTop="true" tier="HIGH">
+			<Dimensions x="440" y="458" />
+			<Anchor point="CENTER" relativeTo="GuiRoot" relativePoint="CENTER" offsetX="0" offsetY="0" />
+
+			<Controls>
+				<Backdrop name="$(parent)_BG" inherits="ZO_DefaultBackdrop" centerColor="FFFFFFFF" />
+
+				<Control name="$(parent)_Header" resizeToFitConstrains="X">
+					<Dimensions y="36" />
+					<Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="0" offsetY="0" />
+					<Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT" offsetX="0" offsetY="0" />
+
+					<Controls>
+						<Button name="$(parent)_Hide">
+							<Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT" offsetX="-6" offsetY="6" />
+							<OnMouseUp>USPF:ToggleDunWindow()</OnMouseUp>
+							<Dimensions x="25" y="25" />
+							<Textures normal="/esoui/art/buttons/decline_up.dds" pressed="/esoui/art/buttons/decline_down.dds" mouseOver="/esoui/art/buttons/decline_over.dds" />
+						</Button>
+						<Label name="$(parent)_Title" font="$(ANTIQUE_FONT)|24" text="USPF_DUN_WINDOW_TITLE" horizontalAlignment="CENTER" verticalAlignment="CENTER">
+							<Dimensions y="30" />
+							<Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="0" offsetY="4" />
+							<Anchor point="TOPRIGHT" relativeTo="$(parent)_Hide" relativePoint="TOPLEFT" offsetX="-4" offsetY="0" />
+						</Label>
+					</Controls>
+				</Control>
+
+				<Control name="$(parent)_Body">
+					<Anchor point="TOPLEFT" relativeTo="$(parent)_Header" relativePoint="BOTTOMLEFT" offsetX="8" offsetY="10" />
+					<Anchor point="TOPRIGHT" relativeTo="$(parent)_Header" relativePoint="BOTTOMRIGHT" offsetX="-8" offsetY="10" />
+
+					<Controls>
+						<Label name="$(parent)_Label_PD" font="$(ANTIQUE_FONT)|16" text="USPF_DUN_LABEL_PD" horizontalAlignment="LEFT" verticalAlignment="CENTER">
+							<Dimensions x="424" y="20" />
+							<Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="0" offsetY="0" />
+						</Label>
+						<Control name="$(parent)_PDCombo" inherits="ZO_ComboBox" tier="HIGH">
+							<Dimensions x="400" y="26" />
+							<Anchor point="TOPLEFT" relativeTo="$(parent)_Label_PD" relativePoint="BOTTOMLEFT" offsetX="0" offsetY="4" />
+						</Control>
+
+						<Button name="$(parent)_PDSortBtn" inherits="ZO_DefaultButton" text="USPF_DUN_PD_SORT_DUNGEON">
+							<Dimensions x="400" y="28" />
+							<Anchor point="TOPLEFT" relativeTo="$(parent)_PDCombo" relativePoint="BOTTOMLEFT" offsetX="0" offsetY="6" />
+							<OnMouseUp>USPF:CycleDunPDSort()</OnMouseUp>
+						</Button>
+
+						<Label name="$(parent)_Label_GD" font="$(ANTIQUE_FONT)|16" text="USPF_DUN_LABEL_GD" horizontalAlignment="LEFT" verticalAlignment="CENTER">
+							<Dimensions x="424" y="20" />
+							<Anchor point="TOPLEFT" relativeTo="$(parent)_PDSortBtn" relativePoint="BOTTOMLEFT" offsetX="0" offsetY="10" />
+						</Label>
+						<Control name="$(parent)_GDCombo" inherits="ZO_ComboBox" tier="HIGH">
+							<Dimensions x="400" y="26" />
+							<Anchor point="TOPLEFT" relativeTo="$(parent)_Label_GD" relativePoint="BOTTOMLEFT" offsetX="0" offsetY="4" />
+						</Control>
+
+						<Button name="$(parent)_ListBtn" inherits="ZO_DefaultButton" text="USPF_DUN_LIST_BTN">
+							<Dimensions x="200" y="28" />
+							<Anchor point="TOPLEFT" relativeTo="$(parent)_GDCombo" relativePoint="BOTTOMLEFT" offsetX="0" offsetY="12" />
+							<OnMouseUp>USPF:OnDunListButton()</OnMouseUp>
+						</Button>
+
+						<Control name="$(parent)_ListHolder" inherits="ZO_ScrollList">
+							<Dimensions x="400" y="220" />
+							<Anchor point="TOPLEFT" relativeTo="$(parent)_ListBtn" relativePoint="BOTTOMLEFT" offsetX="0" offsetY="12" />
+						</Control>
+					</Controls>
+				</Control>
+			</Controls>
+		</TopLevelControl>
 	</Controls>
 </GuiXml>

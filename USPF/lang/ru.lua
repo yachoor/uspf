@@ -84,6 +84,9 @@ SafeAddString(USPF_GUI_UNASSIGNED, "из них сейчас можно испо
 
 
 SafeAddString(SI_BINDING_NAME_USPF_TOGGLE, "Показать/скрыть окно USPF.")
+SafeAddString(SI_BINDING_NAME_USPF_DUN_TOGGLE, "Показать/скрыть окно подземелий USPF (аккаунт).")
+SafeAddString(USPF_DUN_PD_SORT_DUNGEON, "Открытые подземелья: сортировка по названию подземелья")
+SafeAddString(USPF_DUN_PD_SORT_ZONE, "Открытые подземелья: сортировка по названию зоны")
 
 SafeAddString(USPF_GUI_ZN_MQ, "Основная сюжетная линия")
 

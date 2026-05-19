@@ -4,6 +4,9 @@
 			<Action name="USPF_TOGGLE">
 				<Up>USPF:ToggleWindow()</Up>
 			</Action>
+			<Action name="USPF_DUN_TOGGLE">
+				<Up>USPF:ToggleDunWindow()</Up>
+			</Action>
 		</Category>
 	</Layer>
 </Bindings>

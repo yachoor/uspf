@@ -24,6 +24,5 @@ jobs:
         uses: docker://antonyurchenko/git-release:v7
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CHANGELOG_FILE: USPF/CHANGELOG.md
         with:
           args: USPF-${{ steps.get_version.outputs.RELEASE_VERSION }}.zip

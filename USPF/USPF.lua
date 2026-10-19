@@ -64,20 +64,20 @@ USPF.ptsData = {
 	GDTot	= 0, PDTot	= 0, Level	= 0, MainQ	= 0, FolDis	= 0,
 	tutorial = 0, PvPRank	= 0, MaelAr	= 0, EndlArch	= 0, Unassigned = nil,
 	ZQ = {
-		AD0 = 0, AD1 = 0, AD2 = 0, AD3 = 0, AD4 = 0, AD5  = 0, DC0a = 0, DC0b = 0,
-		DC1 = 0, DC2 = 0, DC3 = 0, DC4 = 0, DC5 = 0, EP0a = 0, EP0b = 0, EP1  = 0,
-		EP2 = 0, EP3 = 0, EP4 = 0, EP5 = 0, CH  = 0, CY   = 0, 
-		CL  = 0, CC  = 0, GC  = 0, IC  = 0, VV   = 0, WR   = 0,
-		HB  = 0, SU  = 0, MM  = 0, NE  = 0, WP  = 0, SE   = 0, WS   = 0, TR   = 0,
-		BW  = 0, TD  = 0, HI  = 0, GY  = 0, AP  = 0, WW   = 0, SO   = 0,
+		NW   = 0, WP   = 0, AD0 = 0, AD1 = 0, AD2 = 0, AD3 = 0, AD4 = 0, AD5  = 0,
+		DC0a = 0, DC0b = 0, DC1 = 0, DC2 = 0, DC3 = 0, DC4 = 0, DC5 = 0, EP0a = 0,
+		EP0b = 0, EP1  = 0, EP2 = 0, EP3 = 0, EP4 = 0, EP5 = 0, CH  = 0, CY   = 0,
+		CL   = 0, IC   = 0, WR  = 0, HB  = 0, GC  = 0, VV  = 0, CC  = 0, SU   = 0,
+		MM   = 0, NE   = 0, SE  = 0, WS  = 0, TR  = 0, BW  = 0, TD  = 0, HI   = 0,
+		GY   = 0, AP   = 0, WW  = 0, SO  = 0,
 	},
 	SS = {
-		AD0 = 0, AD1 = 0, AD2 = 0, AD3 = 0, AD4 = 0, AD5  = 0, DC0a = 0, DC0b = 0,
-		DC1 = 0, DC2 = 0, DC3 = 0, DC4 = 0, DC5 = 0, EP0a = 0, EP0b = 0, EP1  = 0,
-		EP2 = 0, EP3 = 0, EP4 = 0, EP5 = 0, CH  = 0, CY   = 0, CL   = 0, IC   = 0,
-		WR  = 0, HB  = 0, GC  = 0, VV  = 0,
-		CC  = 0, WP  = 0, SU  = 0, MM  = 0, NE  = 0, SE   = 0, WS   = 0, TR   = 0,
-		BW  = 0, TD  = 0, HI  = 0, GY  = 0, AP  = 0, WW   = 0, SO   = 0,
+		NW   = 0, WP   = 0, AD0 = 0, AD1 = 0, AD2 = 0, AD3 = 0, AD4 = 0, AD5  = 0,
+		DC0a = 0, DC0b = 0, DC1 = 0, DC2 = 0, DC3 = 0, DC4 = 0, DC5 = 0, EP0a = 0,
+		EP0b = 0, EP1  = 0, EP2 = 0, EP3 = 0, EP4 = 0, EP5 = 0, CH  = 0, CY   = 0,
+		CL   = 0, IC   = 0, WR  = 0, HB  = 0, GC  = 0, VV  = 0, CC  = 0, SU  = 0,
+		MM   = 0, NE   = 0, SE  = 0, WS  = 0, TR  = 0, BW  = 0, TD  = 0, HI  = 0,
+		GY   = 0, AP   = 0, WW  = 0, SO  = 0,
 	},
 	GD = {
 		BC1 = 0, BC2 = 0, EH1 = 0, EH2 = 0, CA1 = 0, CA2 = 0, TI = 0, SW = 0,
@@ -137,11 +137,15 @@ local tempZId = {
 		IC   =  584, WR   =  684, HB   =  816, GC  =  823, VV  =  849, CC  =  980,
 		SU   = 1011, MM   =  726, NE   = 1086, WP  =  809, SE  = 1133, WS  = 1160,
 		BGC  = 1161, TR   = 1207, BW   = 1261, TD  = 1286, HI  = 1318, GY  = 1383,
-		AP   = 1413, TP   = 1414, EA   = 1436, WW  = 1443, SO  = 1502,
+		AP   = 1413, TP   = 1414, EA   = 1436, WW  = 1443, SO  = 1502, NW  = 1533,
 	},
 }
 
 local zones = {
+	{
+		key = "NW",
+		quests = {}, -- none
+	},
 	{
 		key = "WP",
 		quests = {}, -- none

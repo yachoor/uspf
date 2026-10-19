@@ -11,7 +11,7 @@ jobs:
   build-and-publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v7
 
       - name: Get version
         id: get_version
@@ -21,7 +21,7 @@ jobs:
         run: 7z a ${{ github.workspace }}/USPF-${{ steps.get_version.outputs.RELEASE_VERSION }}.zip ${{ github.workspace }}/USPF
 
       - name: Release
-        uses: docker://antonyurchenko/git-release:v4
+        uses: docker://antonyurchenko/git-release:v7
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CHANGELOG_FILE: USPF/CHANGELOG.md

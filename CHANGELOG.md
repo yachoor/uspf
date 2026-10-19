@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.5.1] - 2026-10-19
+
+### Added
+
+- Nowhere Vault skyshards (6)
+
+
 ## [7.5.0] - 2025-12-04
 
 ### Added
@@ -359,6 +366,7 @@ for characters until logging into them.
 
 - Support for Markarth - The Reach questline and skyshards
 
+[7.5.1]: https://github.com/yachoor/uspf/compare/7.5.0...7.5.1
 [7.5.0]: https://github.com/yachoor/uspf/compare/7.4.1...7.5.0
 [7.4.1]: https://github.com/yachoor/uspf/compare/7.4.0...7.4.1
 [7.4.0]: https://github.com/yachoor/uspf/compare/7.3.7...7.4.0

@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.5.2] - 2026-10-27
+
+### Added
+
+- Solo dungeons quest skillpoints
+
+
 ## [7.5.1] - 2026-10-19
 
 ### Added
@@ -366,6 +373,7 @@ for characters until logging into them.
 
 - Support for Markarth - The Reach questline and skyshards
 
+[7.5.2]: https://github.com/yachoor/uspf/compare/7.5.1...7.5.2
 [7.5.1]: https://github.com/yachoor/uspf/compare/7.5.0...7.5.1
 [7.5.0]: https://github.com/yachoor/uspf/compare/7.4.1...7.5.0
 [7.4.1]: https://github.com/yachoor/uspf/compare/7.4.0...7.4.1

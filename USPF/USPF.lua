@@ -106,12 +106,16 @@ local function USPF_CalculateTotalPoints()
 		zi.skyshards = GetNumSkyshardsInZone(USPF.data.ZId.ZN[zi.key])
 		skyshards = skyshards + zi.skyshards
 	end
+	local dungeons = 0
+	for _, d in ipairs(USPF.data.GD) do
+		dungeons = dungeons + #d.quests
+	end
 
 	local points = {
 		ZQTot = quests,
 		numSSTot = skyshards,
 		SSTot = math.floor(skyshards / 3),
-		GDTot = #USPF.data.GD,
+		GDTot = dungeons,
 		PDTot = #USPF.data.PD,
 		Level = 64,
 		MainQ = #USPF.data.MQ,
@@ -532,64 +536,64 @@ USPF.data = {
 		BO = 6646,
 	},
 	GD = {
-		{ key = "BC1", id = 380, zone = "AD1", quest = 4107 },
-		{ key = "BC2", id = 935, zone = "AD1", quest = 4597 },
-		{ key = "EH1", id = 126, zone = "AD2", quest = 4336 },
-		{ key = "EH2", id = 931, zone = "AD2", quest = 4675 },
-		{ key = "CA1", id = 176, zone = "AD3", quest = 4778 },
-		{ key = "CA2", id = 681, zone = "AD3", quest = 5120 },
-		{ key = "TI", id = 131, zone = "AD4", quest = 4538 },
-		{ key = "SW", id = 31, zone = "AD5", quest = 4733 },
-		{ key = "SC1", id = 144, zone = "DC1", quest = 4054 },
-		{ key = "SC2", id = 936, zone = "DC1", quest = 4555 },
-		{ key = "WS1", id = 146, zone = "DC2", quest = 4246 },
-		{ key = "WS2", id = 933, zone = "DC2", quest = 4813 },
-		{ key = "CH1", id = 130, zone = "DC3", quest = 4379 },
-		{ key = "CH2", id = 932, zone = "DC3", quest = 5113 },
-		{ key = "VF", id = 22, zone = "DC4", quest = 4432 },
-		{ key = "BH", id = 38, zone = "DC5", quest = 4589 },
-		{ key = "FG1", id = 283, zone = "EP1", quest = 3993 },
-		{ key = "FG2", id = 934, zone = "EP1", quest = 4303 },
-		{ key = "DC1", id = 63, zone = "EP2", quest = 4145 },
-		{ key = "DC2", id = 930, zone = "EP2", quest = 4641 },
-		{ key = "AC", id = 148, zone = "EP3", quest = 4202 },
-		{ key = "DK", id = 449, zone = "EP4", quest = 4346 },
-		{ key = "BC", id = 64, zone = "EP5", quest = 4469 },
-		{ key = "VM", id = 11, zone = "CH", quest = 4822 },
-		{ key = "ICP", id = 678, zone = "CY", quest = 5136 },
-		{ key = "WGT", id = 688, zone = "CY", quest = 5342 },
-		{ key = "CS", id = 848, zone = "EP3", quest = 5702 },
-		{ key = "RM", id = 843, zone = "EP3", quest = 5403 },
-		{ key = "BF", id = 973, zone = "CL", quest = 5889 },
-		{ key = "FH", id = 974, zone = "CL", quest = 5891 },
-		{ key = "FL", id = 1009, zone = "DC5", quest = 6064 },
-		{ key = "SP", id = 1010, zone = "DC2", quest = 6065 },
-		{ key = "MHK", id = 1052, zone = "AD5", quest = 6186 },
-		{ key = "MOS", id = 1055, zone = "AD3", quest = 6188 },
-		{ key = "DoM", id = 1081, zone = "GC", quest = 6251 },
-		{ key = "FV", id = 1080, zone = "EP4", quest = 6249 },
-		{ key = "LM", id = 1123, zone = "AD2", quest = 6351 },
-		{ key = "MF", id = 1122, zone = "NE", quest = 6349 },
-		{ key = "IR", id = 1152, zone = "WR", quest = 6414 },
-		{ key = "UG", id = 1153, zone = "DC5", quest = 6416 },
-		{ key = "SG", id = 1197, zone = "BGC", quest = 6505 },
-		{ key = "CT", id = 1201, zone = "WS", quest = 6507 },
-		{ key = "BDV", id = 1228, zone = "GC", quest = 6576 },
-		{ key = "TC", id = 1229, zone = "EP2", quest = 6578 },
-		{ key = "RPB", id = 1267, zone = "DC1", quest = 6683 },
-		{ key = "TDC", id = 1268, zone = "BW", quest = 6685 },
-		{ key = "CA", id = 1301, zone = "SU", quest = 6740 },
-		{ key = "SR", id = 1302, zone = "DC3", quest = 6742 },
-		{ key = "ERE", id = 1360, zone = "HI", quest = 6835 },
-		{ key = "GD", id = 1361, zone = "HI", quest = 6837 },
-		{ key = "BS", id = 1389, zone = "EP1", quest = 6896 },
-		{ key = "SH", id = 1390, zone = "EP5", quest = 7027 },
-		{ key = "OP", id = 1470, zone = "TR", quest = 7105, },
-		{ key = "BV", id = 1471, zone = "WR", quest = 7155, },
-		{ key = "ER", id = 1496, zone = "WW", quest = 7235, },
-		{ key = "LS", id = 1497, zone = "HB", quest = 7237, },
-		{ key = "NC", id = 1551, zone = "SO", quest = 7320, },
-		{ key = "BGF", id = 1552, zone = "SO", quest = 7323, },
+		{ key = "BC1", id = 380, zone = "AD1", quests = { 4107 } },
+		{ key = "BC2", id = 935, zone = "AD1", quests = { 4597 } },
+		{ key = "EH1", id = 126, zone = "AD2", quests = { 4336 } },
+		{ key = "EH2", id = 931, zone = "AD2", quests = { 4675 } },
+		{ key = "CA1", id = 176, zone = "AD3", quests = { 4778 } },
+		{ key = "CA2", id = 681, zone = "AD3", quests = { 5120 } },
+		{ key = "TI", id = 131, zone = "AD4", quests = { 4538 } },
+		{ key = "SW", id = 31, zone = "AD5", quests = { 4733 } },
+		{ key = "SC1", id = 144, zone = "DC1", quests = { 4054 } },
+		{ key = "SC2", id = 936, zone = "DC1", quests = { 4555 } },
+		{ key = "WS1", id = 146, zone = "DC2", quests = { 4246 } },
+		{ key = "WS2", id = 933, zone = "DC2", quests = { 4813 } },
+		{ key = "CH1", id = 130, zone = "DC3", quests = { 4379 } },
+		{ key = "CH2", id = 932, zone = "DC3", quests = { 5113 } },
+		{ key = "VF", id = 22, zone = "DC4", quests = { 4432 } },
+		{ key = "BH", id = 38, zone = "DC5", quests = { 4589 } },
+		{ key = "FG1", id = 283, zone = "EP1", quests = { 3993 } },
+		{ key = "FG2", id = 934, zone = "EP1", quests = { 4303 } },
+		{ key = "DC1", id = 63, zone = "EP2", quests = { 4145 } },
+		{ key = "DC2", id = 930, zone = "EP2", quests = { 4641 } },
+		{ key = "AC", id = 148, zone = "EP3", quests = { 4202 } },
+		{ key = "DK", id = 449, zone = "EP4", quests = { 4346 } },
+		{ key = "BC", id = 64, zone = "EP5", quests = { 4469 } },
+		{ key = "VM", id = 11, zone = "CH", quests = { 4822 } },
+		{ key = "ICP", id = 678, zone = "CY", quests = { 5136 } },
+		{ key = "WGT", id = 688, zone = "CY", quests = { 5342 } },
+		{ key = "CS", id = 848, zone = "EP3", quests = { 5702 } },
+		{ key = "RM", id = 843, zone = "EP3", quests = { 5403 } },
+		{ key = "BF", id = 973, zone = "CL", quests = { 5889 } },
+		{ key = "FH", id = 974, zone = "CL", quests = { 5891 } },
+		{ key = "FL", id = 1009, zone = "DC5", quests = { 6064 } },
+		{ key = "SP", id = 1010, zone = "DC2", quests = { 6065 } },
+		{ key = "MHK", id = 1052, zone = "AD5", quests = { 6186, 7514 } },
+		{ key = "MOS", id = 1055, zone = "AD3", quests = { 6188, 7509 } },
+		{ key = "DoM", id = 1081, zone = "GC", quests = { 6251 } },
+		{ key = "FV", id = 1080, zone = "EP4", quests = { 6249 } },
+		{ key = "LM", id = 1123, zone = "AD2", quests = { 6351 } },
+		{ key = "MF", id = 1122, zone = "NE", quests = { 6349 } },
+		{ key = "IR", id = 1152, zone = "WR", quests = { 6414 } },
+		{ key = "UG", id = 1153, zone = "DC5", quests = { 6416 } },
+		{ key = "SG", id = 1197, zone = "BGC", quests = { 6505 } },
+		{ key = "CT", id = 1201, zone = "WS", quests = { 6507 } },
+		{ key = "BDV", id = 1228, zone = "GC", quests = { 6576 } },
+		{ key = "TC", id = 1229, zone = "EP2", quests = { 6578 } },
+		{ key = "RPB", id = 1267, zone = "DC1", quests = { 6683 } },
+		{ key = "TDC", id = 1268, zone = "BW", quests = { 6685 } },
+		{ key = "CA", id = 1301, zone = "SU", quests = { 6740 } },
+		{ key = "SR", id = 1302, zone = "DC3", quests = { 6742 } },
+		{ key = "ERE", id = 1360, zone = "HI", quests = { 6835 } },
+		{ key = "GD", id = 1361, zone = "HI", quests = { 6837 } },
+		{ key = "BS", id = 1389, zone = "EP1", quests = { 6896 } },
+		{ key = "SH", id = 1390, zone = "EP5", quests = { 7027 } },
+		{ key = "OP", id = 1470, zone = "TR", quests = { 7105 }, },
+		{ key = "BV", id = 1471, zone = "WR", quests = { 7155 }, },
+		{ key = "ER", id = 1496, zone = "WW", quests = { 7235 }, },
+		{ key = "LS", id = 1497, zone = "HB", quests = { 7237 }, },
+		{ key = "NC", id = 1551, zone = "SO", quests = { 7320 }, },
+		{ key = "BGF", id = 1552, zone = "SO", quests = { 7323 }, },
 	},
 	MQ = {	--1003
 		4296,
@@ -728,11 +732,15 @@ local function GetZoneTooltipText(zone)
 end
 
 local function GetGDQuestTooltipText(dungeon)
-	local questName = GetQuestName(dungeon.quest)
-	local list = {FormatQuestName(questName, selectedChar == GCCId() and GCQI(dungeon.quest) ~= "").."\n"}
+	local list = {}
+	for _, q in ipairs(dungeon.quests) do
+		local questName = GetQuestName(q)
+		table.insert(list, FormatQuestName(questName, selectedChar == GCCId() and GCQI(q) ~= ""))
+	end
+	table.insert(list, "\n")
 	for _, char in ipairs(USPF.charData) do
 		local val = USPF.sVar.ptsData[char.charId].GD[dungeon.key]
-		table.insert(list, ColorCompletion(char.charName, val == 1))
+		table.insert(list, ColorCompletion(val .. "/" .. #dungeon.quests .. " " .. char.charName, val == #dungeon.quests))
 	end
 	return table.concat(list, "\n")
 end
@@ -864,8 +872,9 @@ local function USPF_UpdateGUITable(sVarPtsData)
         table.insert(USPF.GUI.GDQ, {
             i,
             zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN[d.zone])),
-			zf("<<C:1>>", GZNBId(d.id)),
+            zf("<<C:1>>", GZNBId(d.id)),
             GetSV(sVarPtsData.GD[d.key]),
+            #d.quests,
             GetGDQuestTooltipText(d)
         })
 	end
@@ -874,7 +883,7 @@ local function USPF_UpdateGUITable(sVarPtsData)
         table.insert(USPF.GUI.PDGBE, {
             i,
             zf("<<C:1>>", GZNBId(USPF.data.ZId.ZN[d.zone])),
-			zf("<<C:1>>", GZNBId(d.id)),
+            zf("<<C:1>>", GZNBId(d.id)),
             GetSV(sVarPtsData.PD[d.key]),
             GetPDTooltipText(d)
         })
@@ -931,8 +940,12 @@ local function USPF_SetQuestPoints()
 	end
 
 	--Group Dungeon Quest Skill Points
-	for _,d in pairs(USPF.data.GD) do
-		USPF.ptsData.GD[d.key] = GCQI(d.quest) ~= "" and 1 or 0
+	for _, d in pairs(USPF.data.GD) do
+		local points = 0
+		for _, q in ipairs(d.quests) do
+			points = points + (GCQI(q) ~= "" and 1 or 0)
+		end
+		USPF.ptsData.GD[d.key] = points
 		USPF.ptsData.GDTot = USPF.ptsData.GDTot + USPF.ptsData.GD[d.key]
 	end
 
@@ -1194,6 +1207,7 @@ function USPF:UpdateDataLines()
 	}
 	local GDQ_Color = {
 		need = USPF_rgbToHex(USPF.settings.GDQ.needColor),
+		progress = USPF_rgbToHex(USPF.settings.SQS.progColorSS),
 		done = USPF_rgbToHex(USPF.settings.GDQ.doneColor)
 	}
 	local PDB_Color = {
@@ -1240,8 +1254,8 @@ function USPF:UpdateDataLines()
 		table.insert(dataLines_GDQ, {
 			zone = tempTable[i][2],
 			dungeon = tempTable[i][3],
-			progress = USPF_FormatProgress(tempTable[i][4], 1, GDQ_Color),
-			tooltipText = tempTable[i][5]
+			progress = USPF_FormatProgress(tempTable[i][4], tempTable[i][5], GDQ_Color),
+			tooltipText = tempTable[i][6]
 		})
 	end
 
@@ -1250,8 +1264,8 @@ function USPF:UpdateDataLines()
 		table.insert(dataLines_GDQ2, {
 			zone = tempTable[i][2],
 			dungeon = tempTable[i][3],
-			progress = USPF_FormatProgress(tempTable[i][4], 1, GDQ_Color),
-			tooltipText = tempTable[i][5]
+			progress = USPF_FormatProgress(tempTable[i][4], tempTable[i][5], GDQ_Color),
+			tooltipText = tempTable[i][6]
 		})
 	end
 

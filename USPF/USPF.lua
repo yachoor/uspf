@@ -731,6 +731,10 @@ local function GetZoneTooltipText(zone)
 	return table.concat(quests, "\n")
 end
 
+local function GetSV(value)
+	return  value ~= nil and value or 0
+end
+
 local function GetGDQuestTooltipText(dungeon)
 	local list = {}
 	for _, q in ipairs(dungeon.quests) do
@@ -739,7 +743,7 @@ local function GetGDQuestTooltipText(dungeon)
 	end
 	table.insert(list, "\n")
 	for _, char in ipairs(USPF.charData) do
-		local val = USPF.sVar.ptsData[char.charId].GD[dungeon.key]
+		local val = GetSV(USPF.sVar.ptsData[char.charId].GD[dungeon.key])
 		table.insert(list, ColorCompletion(val .. "/" .. #dungeon.quests .. " " .. char.charName, val == #dungeon.quests))
 	end
 	return table.concat(list, "\n")
@@ -747,10 +751,6 @@ end
 
 local function GetAchLink(achId)
 	return GetAchievementLink(achId, LINK_TYPE_ACHIEVEMENT)
-end
-
-local function GetSV(value)
-	return  value ~= nil and value or 0
 end
 
 local function GetPDTooltipText(pdung)

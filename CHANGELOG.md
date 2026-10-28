@@ -1,4 +1,10 @@
 # Changelog
+## [7.5.3] - 2026-10-29
+
+### Fixed
+
+- Lua error due to misssing value
+
 
 ## [7.5.2] - 2026-10-27
 
@@ -373,6 +379,7 @@ for characters until logging into them.
 
 - Support for Markarth - The Reach questline and skyshards
 
+[7.5.3]: https://github.com/yachoor/uspf/compare/7.5.2...7.5.3
 [7.5.2]: https://github.com/yachoor/uspf/compare/7.5.1...7.5.2
 [7.5.1]: https://github.com/yachoor/uspf/compare/7.5.0...7.5.1
 [7.5.0]: https://github.com/yachoor/uspf/compare/7.4.1...7.5.0

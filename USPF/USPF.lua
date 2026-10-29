@@ -1008,7 +1008,9 @@ end
 local function USPF_GetTypeSpentPoints(skillTypeData)
 	local total = 0
 	for _, skillLineData in ipairs(skillTypeData.orderedSkillLines) do
-		total = total + SKILL_POINT_ALLOCATION_MANAGER:GetNumPointsAllocatedInSkillLine(skillLineData)
+		if not skillLineData:IsClassMastery() then
+			total = total + SKILL_POINT_ALLOCATION_MANAGER:GetNumPointsAllocatedInSkillLine(skillLineData)
+		end
 	end
 	return total
 end

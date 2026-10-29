@@ -1,4 +1,11 @@
 # Changelog
+## [7.5.4] - 2026-10-29
+
+### Fixed
+
+- Folium Discognitum detection logic with points allocated in masteries
+
+
 ## [7.5.3] - 2026-10-29
 
 ### Fixed
@@ -379,6 +386,7 @@ for characters until logging into them.
 
 - Support for Markarth - The Reach questline and skyshards
 
+[7.5.4]: https://github.com/yachoor/uspf/compare/7.5.3...7.5.4
 [7.5.3]: https://github.com/yachoor/uspf/compare/7.5.2...7.5.3
 [7.5.2]: https://github.com/yachoor/uspf/compare/7.5.1...7.5.2
 [7.5.1]: https://github.com/yachoor/uspf/compare/7.5.0...7.5.1
